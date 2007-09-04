@@ -144,16 +144,17 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn Event_Data;
         private Button scanDevices;
         private OpenFileDialog openFileDialog1;
-
-        public String serialBuffer = "This is a test.";
-        private EventManager eventManager = new EventManager();
-        private DeviceManager deviceManager = new DeviceManager();
         private DataGridViewTextBoxColumn devices_deviceAddress;
         private DataGridViewTextBoxColumn devices_name;
         private DataGridViewTextBoxColumn devices_description;
         private ContextMenuStrip EventActionsMenuStrip;
         private ToolStripMenuItem addEventToolStripMenuItem;
+
+        private EventManager eventManager = new EventManager();
+        private DeviceManager deviceManager = new DeviceManager();
+        private EventDiscovery eventDisovery = new EventDiscovery();
         private string opened_filename = "";
+        public String serialBuffer = "This is a test.";
 
 		public Form1()
 		{
@@ -2028,11 +2029,25 @@ namespace IEBus_Studio
         private void discoverEvent_Click(object sender, EventArgs e)
         {
             // Get the number of seconds to scan for
-            long time = Convert.ToInt64(secondsToDiscover.Text);
+            long time = 0;
+            if (secondsToDiscover.Text == null || secondsToDiscover.Text == "")
+            {
+                MessageBox.Show("You must first select a time interval", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+                time = Convert.ToInt64(secondsToDiscover.Text);
 
-            // Reset the connection
-            this.serialPort1.Close();
-            this.serialPort1.Open();
+            // if the serial port isn't open
+            if (!serialPort1.IsOpen)
+            {
+                MessageBox.Show("There is no serial port connection open, you must open a connection first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            eventDisovery = new EventDiscovery();
+            eventDisovery.TimeLeft = time;
+            eventDisovery.Start();
         }
 
         private void displayDeviceList()
