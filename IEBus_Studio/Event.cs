@@ -208,6 +208,26 @@ namespace IEBus_Studio
             }
         }
 
+        public bool Equals(Event ev)
+        {
+            // If parameter is null return false:
+            if ((object)ev == null)
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return 
+                (name == ev.Name) && 
+                (description == ev.Description) &&
+                (broadcast == ev.Broadcast) &&
+                (master_address == ev.Master_Address) &&
+                (slave_address == ev.Slave_Address) &&
+                (control == ev.Control) &&
+                (datasize == ev.DataSize) &&
+                (data == ev.Data);
+        }
+
         
     }
 }
