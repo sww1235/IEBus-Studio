@@ -154,6 +154,7 @@ namespace IEBus_Studio
         private DeviceManager deviceManager = new DeviceManager();
         private EventDiscovery eventDisovery = new EventDiscovery();
         private string opened_filename = "";
+        private Label timeLeftLabel;
         public String serialBuffer = "This is a test.";
 
 		public Form1()
@@ -288,6 +289,7 @@ namespace IEBus_Studio
             this.terminalTab = new System.Windows.Forms.TabPage();
             this.terminal = new System.Windows.Forms.TextBox();
             this.eventDiscoveryPage = new System.Windows.Forms.TabPage();
+            this.timeLeftLabel = new System.Windows.Forms.Label();
             this.EventDiscoveryTable = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1106,6 +1108,7 @@ namespace IEBus_Studio
             // 
             // eventDiscoveryPage
             // 
+            this.eventDiscoveryPage.Controls.Add(this.timeLeftLabel);
             this.eventDiscoveryPage.Controls.Add(this.EventDiscoveryTable);
             this.eventDiscoveryPage.Controls.Add(this.discoverEvent);
             this.eventDiscoveryPage.Controls.Add(this.secondsToDiscover);
@@ -1117,6 +1120,14 @@ namespace IEBus_Studio
             this.eventDiscoveryPage.TabIndex = 3;
             this.eventDiscoveryPage.Text = "Event Discovery";
             this.eventDiscoveryPage.UseVisualStyleBackColor = true;
+            // 
+            // timeLeftLabel
+            // 
+            this.timeLeftLabel.AutoSize = true;
+            this.timeLeftLabel.Location = new System.Drawing.Point(295, 13);
+            this.timeLeftLabel.Name = "timeLeftLabel";
+            this.timeLeftLabel.Size = new System.Drawing.Size(0, 13);
+            this.timeLeftLabel.TabIndex = 6;
             // 
             // EventDiscoveryTable
             // 
@@ -2048,7 +2059,7 @@ namespace IEBus_Studio
 
             eventDisovery = new EventDiscovery();
             eventDisovery.TimeLeft = time;
-            eventDisovery.Start();
+            eventDisovery.Start(this, timeLeftLabel);
         }
 
         private void displayDeviceList()
