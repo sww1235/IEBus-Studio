@@ -95,6 +95,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="DeviceManager.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventDiscovery.cs" />
     <Compile Include="EventManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -119,7 +119,7 @@ namespace IEBus_Studio
         private TextBox terminal;
         private TabPage eventDiscoveryPage;
         private Button discoverEvent;
-        private TextBox txtSecondsToDiscover;
+        private TextBox secondsToDiscover;
         private Label label8;
         private DataGridView EventDiscoveryTable;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
@@ -297,7 +297,7 @@ namespace IEBus_Studio
             this.EventActionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.discoverEvent = new System.Windows.Forms.Button();
-            this.txtSecondsToDiscover = new System.Windows.Forms.TextBox();
+            this.secondsToDiscover = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.devicesTab = new System.Windows.Forms.TabPage();
             this.scanDevices = new System.Windows.Forms.Button();
@@ -1107,7 +1107,7 @@ namespace IEBus_Studio
             // 
             this.eventDiscoveryPage.Controls.Add(this.EventDiscoveryTable);
             this.eventDiscoveryPage.Controls.Add(this.discoverEvent);
-            this.eventDiscoveryPage.Controls.Add(this.txtSecondsToDiscover);
+            this.eventDiscoveryPage.Controls.Add(this.secondsToDiscover);
             this.eventDiscoveryPage.Controls.Add(this.label8);
             this.eventDiscoveryPage.Location = new System.Drawing.Point(4, 22);
             this.eventDiscoveryPage.Name = "eventDiscoveryPage";
@@ -1239,12 +1239,12 @@ namespace IEBus_Studio
             this.discoverEvent.UseVisualStyleBackColor = true;
             this.discoverEvent.Click += new System.EventHandler(this.discoverEvent_Click);
             // 
-            // txtSecondsToDiscover
+            // secondsToDiscover
             // 
-            this.txtSecondsToDiscover.Location = new System.Drawing.Point(179, 10);
-            this.txtSecondsToDiscover.Name = "txtSecondsToDiscover";
-            this.txtSecondsToDiscover.Size = new System.Drawing.Size(98, 20);
-            this.txtSecondsToDiscover.TabIndex = 1;
+            this.secondsToDiscover.Location = new System.Drawing.Point(179, 10);
+            this.secondsToDiscover.Name = "secondsToDiscover";
+            this.secondsToDiscover.Size = new System.Drawing.Size(98, 20);
+            this.secondsToDiscover.TabIndex = 1;
             // 
             // label8
             // 
@@ -2028,6 +2028,7 @@ namespace IEBus_Studio
         private void discoverEvent_Click(object sender, EventArgs e)
         {
             // Get the number of seconds to scan for
+            long time = Convert.ToInt64(secondsToDiscover.Text);
 
             // Reset the connection
             this.serialPort1.Close();
