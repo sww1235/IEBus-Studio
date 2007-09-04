@@ -40,6 +40,8 @@ namespace IEBus_Studio
         private ArrayList discoveredEvents;
         private long timeLeft;
         private Timer timer;
+        private Form formToLock;
+        private Label timeLeftLabel;
 
         public EventDiscovery()
         {
@@ -53,9 +55,14 @@ namespace IEBus_Studio
         public void reduceTimeLeft(object obj, EventArgs args)
         {
             timeLeft--;
+            timeLeftLabel.Text = timeLeft + " seconds left";
 
             if (timeLeft == 0)
+            {
                 timer.Stop();
+                formToLock.Enabled = true;
+                timeLeftLabel.Text = "";
+            }
         }
 
         public long TimeLeft
@@ -64,9 +71,15 @@ namespace IEBus_Studio
             set { timeLeft = value; }
         }
 
-        public void Start()
+        public void Start(Form form, Label label)
         {
             timer.Start();
+            formToLock = form;
+            timeLeftLabel = label;
+
+            formToLock.Enabled = false;
+            timeLeftLabel.Text = timeLeft + " seconds left";
+ 
         }
 
         public bool discoveryingEvents()
