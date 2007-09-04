@@ -1120,6 +1120,7 @@ namespace IEBus_Studio
             // 
             // EventDiscoveryTable
             // 
+            this.EventDiscoveryTable.AllowUserToAddRows = false;
             this.EventDiscoveryTable.AllowUserToOrderColumns = true;
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
             this.EventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
