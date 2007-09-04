@@ -7,7 +7,7 @@ namespace IEBus_Studio
     static class HexStringConverter
     {
 
-        public static byte[] ToByteArray(String HexString)
+        public static byte[] ToByteArray(string HexString)
         {
             int NumberChars = HexString.Length;
             byte[] bytes = new byte[(NumberChars+1) / 3];
@@ -16,6 +16,26 @@ namespace IEBus_Studio
                 bytes[i / 3] = Convert.ToByte(HexString.Substring(i, 2), 16);
             }
             return bytes;
+        }
+
+        public static string ToHyphenatedHexString(string hexString, int numBytes)
+        {
+            // if the hexstring is smaller than the number of bytes, pad with a zero
+            while (hexString.Length / 2.0 < numBytes) { hexString = "0" + hexString; }
+
+            string newHexString = "";
+
+            for (int i = 0; i < hexString.Length; i++)
+            {
+                // if this is the next byte in the hex string, add a -
+                if ((i + 1) % 2 == 0)
+                    newHexString += "-";
+                
+                // add the next character to the new hex string
+                newHexString += hexString[i];
+            }
+
+            return newHexString;
         }
     }
 

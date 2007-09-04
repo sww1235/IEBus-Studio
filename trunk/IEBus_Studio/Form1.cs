@@ -117,11 +117,11 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn Data1;
         private TabPage terminalTab;
         private TextBox terminal;
-        private TabPage eventDiscoveryPage;
+        private TabPage eventDiscoveryTab;
         private Button discoverEvent;
         private TextBox secondsToDiscover;
         private Label label8;
-        private DataGridView EventDiscoveryTable;
+        private DataGridView eventDiscoveryTable;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
@@ -152,7 +152,7 @@ namespace IEBus_Studio
 
         private EventManager eventManager = new EventManager();
         private DeviceManager deviceManager = new DeviceManager();
-        private EventDiscovery eventDisovery = new EventDiscovery();
+        private EventDiscovery eventDiscoverer = new EventDiscovery();
         private string opened_filename = "";
         private Label timeLeftLabel;
         public String serialBuffer = "This is a test.";
@@ -288,9 +288,9 @@ namespace IEBus_Studio
             this.Data1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.terminalTab = new System.Windows.Forms.TabPage();
             this.terminal = new System.Windows.Forms.TextBox();
-            this.eventDiscoveryPage = new System.Windows.Forms.TabPage();
+            this.eventDiscoveryTab = new System.Windows.Forms.TabPage();
             this.timeLeftLabel = new System.Windows.Forms.Label();
-            this.EventDiscoveryTable = new System.Windows.Forms.DataGridView();
+            this.eventDiscoveryTable = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -359,8 +359,8 @@ namespace IEBus_Studio
             this.ParsedMessageTableTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).BeginInit();
             this.terminalTab.SuspendLayout();
-            this.eventDiscoveryPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EventDiscoveryTable)).BeginInit();
+            this.eventDiscoveryTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventDiscoveryTable)).BeginInit();
             this.EventActionsMenuStrip.SuspendLayout();
             this.devicesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.devicesTable)).BeginInit();
@@ -725,7 +725,7 @@ namespace IEBus_Studio
             this.MessageTableTabs.Controls.Add(this.RawMessageTableTab);
             this.MessageTableTabs.Controls.Add(this.ParsedMessageTableTab);
             this.MessageTableTabs.Controls.Add(this.terminalTab);
-            this.MessageTableTabs.Controls.Add(this.eventDiscoveryPage);
+            this.MessageTableTabs.Controls.Add(this.eventDiscoveryTab);
             this.MessageTableTabs.Controls.Add(this.devicesTab);
             this.MessageTableTabs.Controls.Add(this.eventsTab);
             this.MessageTableTabs.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1106,20 +1106,20 @@ namespace IEBus_Studio
             this.terminal.Size = new System.Drawing.Size(817, 302);
             this.terminal.TabIndex = 0;
             // 
-            // eventDiscoveryPage
+            // eventDiscoveryTab
             // 
-            this.eventDiscoveryPage.Controls.Add(this.timeLeftLabel);
-            this.eventDiscoveryPage.Controls.Add(this.EventDiscoveryTable);
-            this.eventDiscoveryPage.Controls.Add(this.discoverEvent);
-            this.eventDiscoveryPage.Controls.Add(this.secondsToDiscover);
-            this.eventDiscoveryPage.Controls.Add(this.label8);
-            this.eventDiscoveryPage.Location = new System.Drawing.Point(4, 22);
-            this.eventDiscoveryPage.Name = "eventDiscoveryPage";
-            this.eventDiscoveryPage.Padding = new System.Windows.Forms.Padding(3);
-            this.eventDiscoveryPage.Size = new System.Drawing.Size(823, 308);
-            this.eventDiscoveryPage.TabIndex = 3;
-            this.eventDiscoveryPage.Text = "Event Discovery";
-            this.eventDiscoveryPage.UseVisualStyleBackColor = true;
+            this.eventDiscoveryTab.Controls.Add(this.timeLeftLabel);
+            this.eventDiscoveryTab.Controls.Add(this.eventDiscoveryTable);
+            this.eventDiscoveryTab.Controls.Add(this.discoverEvent);
+            this.eventDiscoveryTab.Controls.Add(this.secondsToDiscover);
+            this.eventDiscoveryTab.Controls.Add(this.label8);
+            this.eventDiscoveryTab.Location = new System.Drawing.Point(4, 22);
+            this.eventDiscoveryTab.Name = "eventDiscoveryTab";
+            this.eventDiscoveryTab.Padding = new System.Windows.Forms.Padding(3);
+            this.eventDiscoveryTab.Size = new System.Drawing.Size(823, 308);
+            this.eventDiscoveryTab.TabIndex = 3;
+            this.eventDiscoveryTab.Text = "Event Discovery";
+            this.eventDiscoveryTab.UseVisualStyleBackColor = true;
             // 
             // timeLeftLabel
             // 
@@ -1129,39 +1129,39 @@ namespace IEBus_Studio
             this.timeLeftLabel.Size = new System.Drawing.Size(0, 13);
             this.timeLeftLabel.TabIndex = 6;
             // 
-            // EventDiscoveryTable
+            // eventDiscoveryTable
             // 
-            this.EventDiscoveryTable.AllowUserToAddRows = false;
-            this.EventDiscoveryTable.AllowUserToOrderColumns = true;
+            this.eventDiscoveryTable.AllowUserToAddRows = false;
+            this.eventDiscoveryTable.AllowUserToOrderColumns = true;
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.EventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
-            this.EventDiscoveryTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            this.eventDiscoveryTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.EventDiscoveryTable.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.EventDiscoveryTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.EventDiscoveryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.EventDiscoveryTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.eventDiscoveryTable.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.eventDiscoveryTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.eventDiscoveryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.eventDiscoveryTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn21,
             this.dataGridViewTextBoxColumn22,
             this.dataGridViewTextBoxColumn23,
             this.dataGridViewTextBoxColumn24,
             this.dataGridViewTextBoxColumn25,
             this.dataGridViewTextBoxColumn26});
-            this.EventDiscoveryTable.Cursor = System.Windows.Forms.Cursors.Default;
-            this.EventDiscoveryTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.EventDiscoveryTable.Location = new System.Drawing.Point(3, 39);
-            this.EventDiscoveryTable.Margin = new System.Windows.Forms.Padding(0);
-            this.EventDiscoveryTable.Name = "EventDiscoveryTable";
-            this.EventDiscoveryTable.RowTemplate.ContextMenuStrip = this.EventActionsMenuStrip;
-            this.EventDiscoveryTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Azure;
-            this.EventDiscoveryTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.EventDiscoveryTable.RowTemplate.Height = 18;
-            this.EventDiscoveryTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.EventDiscoveryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.EventDiscoveryTable.Size = new System.Drawing.Size(817, 266);
-            this.EventDiscoveryTable.TabIndex = 5;
-            this.EventDiscoveryTable.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.EventDiscoveryTable_RowContextMenuStripNeeded);
+            this.eventDiscoveryTable.Cursor = System.Windows.Forms.Cursors.Default;
+            this.eventDiscoveryTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
+            this.eventDiscoveryTable.Location = new System.Drawing.Point(3, 39);
+            this.eventDiscoveryTable.Margin = new System.Windows.Forms.Padding(0);
+            this.eventDiscoveryTable.Name = "eventDiscoveryTable";
+            this.eventDiscoveryTable.RowTemplate.ContextMenuStrip = this.EventActionsMenuStrip;
+            this.eventDiscoveryTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Azure;
+            this.eventDiscoveryTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.eventDiscoveryTable.RowTemplate.Height = 18;
+            this.eventDiscoveryTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.eventDiscoveryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.eventDiscoveryTable.Size = new System.Drawing.Size(817, 266);
+            this.eventDiscoveryTable.TabIndex = 5;
+            this.eventDiscoveryTable.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.EventDiscoveryTable_RowContextMenuStripNeeded);
             // 
             // dataGridViewTextBoxColumn21
             // 
@@ -1800,9 +1800,9 @@ namespace IEBus_Studio
             ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).EndInit();
             this.terminalTab.ResumeLayout(false);
             this.terminalTab.PerformLayout();
-            this.eventDiscoveryPage.ResumeLayout(false);
-            this.eventDiscoveryPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EventDiscoveryTable)).EndInit();
+            this.eventDiscoveryTab.ResumeLayout(false);
+            this.eventDiscoveryTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventDiscoveryTable)).EndInit();
             this.EventActionsMenuStrip.ResumeLayout(false);
             this.devicesTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.devicesTable)).EndInit();
@@ -1918,6 +1918,21 @@ namespace IEBus_Studio
                         //Populate a new row for each table
                         RawMessageTable.Rows.Add(rawArray);
                         ParsedMessageTable.Rows.Add(parsedArray);
+
+                        if (eventDiscoverer.discoveryingEvents())
+                        {
+                            string broadcast = HexStringConverter.ToHyphenatedHexString(rawArray[0], 3);
+                            string master_address = parsedArray[1];
+                            string slave_address = parsedArray[2];
+                            string control = parsedArray[3];
+                            ushort datasize = (ushort)Convert.ToInt16(parsedArray[4]);
+                            string data = parsedArray[5];
+
+                            Event discoveredEvent = new Event("", "", broadcast, master_address, slave_address, control, datasize, data);
+                            eventDiscoverer.addEvent(discoveredEvent);
+
+                            displayDiscoveredDeviceList();
+                        }
                     }
                 }
                 else
@@ -2057,9 +2072,28 @@ namespace IEBus_Studio
                 return;
             }
 
-            eventDisovery = new EventDiscovery();
-            eventDisovery.TimeLeft = time;
-            eventDisovery.Start(this, timeLeftLabel);
+            eventDiscoverer = new EventDiscovery();
+            eventDiscoverer.TimeLeft = time;
+            eventDiscoverer.Start(this, timeLeftLabel);
+        }
+
+        private void displayDiscoveredDeviceList()
+        {
+            // Store the devices temporarily
+            ArrayList discoveredEventList = new ArrayList(eventDiscoverer.DiscoveredEvents);
+
+            // Remove all existing rows (saveDeviceChanges() is invoked)
+            eventDiscoveryTable.Rows.Clear();
+
+            // Restore the devices to the device manager
+            eventDiscoverer.DiscoveredEvents = discoveredEventList;
+
+            // Display each devices info as a row
+            for (int i = 0; i < eventDiscoverer.DiscoveredEvents.Count; i++)
+            {
+                Event ev = (Event)(eventDiscoverer.DiscoveredEvents[i]);
+                eventDiscoveryTable.Rows.Add(ev.BroadcastString, ev.Master_Address_String, ev.Slave_Address_String, ev.ControlString, ev.DataSize, ev.DataString);
+            }
         }
 
         private void displayDeviceList()
@@ -2230,7 +2264,7 @@ namespace IEBus_Studio
 
         private void EventDiscoveryTable_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
         {
-            DataGridViewRow EventDiscoveryRow = EventDiscoveryTable.Rows[e.RowIndex];
+            DataGridViewRow EventDiscoveryRow = eventDiscoveryTable.Rows[e.RowIndex];
 
             //toolStripMenuItem1.Enabled = true;
 

@@ -65,10 +65,28 @@ namespace IEBus_Studio
             }
         }
 
+        public ArrayList DiscoveredEvents
+        {
+            get { return discoveredEvents; }
+            set { discoveredEvents = value; }
+        }
+
         public long TimeLeft
         {
             get { return timeLeft; }
             set { timeLeft = value; }
+        }
+
+        public Form FormToLock
+        {
+            get { return FormToLock; }
+            set { formToLock = value; }
+        }
+
+        public Label TimeLeftLabel
+        {
+            get { return timeLeftLabel; }
+            set { timeLeftLabel = value; }
         }
 
         public void Start(Form form, Label label)
@@ -91,6 +109,8 @@ namespace IEBus_Studio
 
         public void addEvent(Event theEvent)
         {
+            bool eventAdded = false;
+
             for (int i = 0; i < discoveredEvents.Count; i++)
             {
                 DiscoveredEvent discoveredEvent = (DiscoveredEvent)discoveredEvents[i];
@@ -109,15 +129,22 @@ namespace IEBus_Studio
                         DiscoveredEvent temp = (DiscoveredEvent)discoveredEvents[i];
                         discoveredEvents[i] = discoveredEvents[i - 1];
                         discoveredEvents[i - 1] = temp;
+
+                        // set the boolean that the event has been added
+                        eventAdded = true;
                     }
                 }
-                else
-                {
-                    // This is the first time the event has happend 
-                    // during discovery so add it to the list
-                    discoveredEvents.Add(theEvent);
-                }
             }
+
+            // if the event wasn't added because it wasn't 
+            // already in the list of discovered events
+            if (!eventAdded)
+            {
+                // add it to the list of discovered events
+                discoveredEvents.Add(theEvent);
+            }
+
+
         }
     }
 }
