@@ -216,10 +216,8 @@ namespace IEBus_Studio
                 return false;
             }
 
-            // Return true if the fields match:
+            // Return true if the fields match (other than name/description):
             return 
-                (name == ev.Name) && 
-                (description == ev.Description) &&
                 (broadcast == ev.Broadcast) &&
                 (master_address == ev.Master_Address) &&
                 (slave_address == ev.Slave_Address) &&
