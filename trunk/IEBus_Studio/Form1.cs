@@ -1921,12 +1921,22 @@ namespace IEBus_Studio
 
                         if (eventDiscoverer.discoveryingEvents())
                         {
-                            string broadcast = HexStringConverter.ToHyphenatedHexString(rawArray[0], 3);
-                            string master_address = parsedArray[1];
-                            string slave_address = parsedArray[2];
+                            rawArray = wrkMessage.Split(':');
+
+                            string broadcast = rawArray[0];
+                            string master_address = HexStringConverter.ToHyphenatedHexString(rawArray[1], 3);
+                            string slave_address = HexStringConverter.ToHyphenatedHexString(rawArray[2], 3);
                             string control = parsedArray[3];
                             ushort datasize = (ushort)Convert.ToInt16(parsedArray[4]);
-                            string data = parsedArray[5];
+
+                            string data = "";
+                            for (int j = 5; j < parsedArray.Length; j++)
+                            {
+                                if(j != 5)
+                                    data += "-";
+
+                                data += parsedArray[j];
+                            }
 
                             Event discoveredEvent = new Event("", "", broadcast, master_address, slave_address, control, datasize, data);
                             eventDiscoverer.addEvent(discoveredEvent);

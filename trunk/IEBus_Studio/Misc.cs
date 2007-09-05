@@ -21,14 +21,14 @@ namespace IEBus_Studio
         public static string ToHyphenatedHexString(string hexString, int numBytes)
         {
             // if the hexstring is smaller than the number of bytes, pad with a zero
-            while (hexString.Length / 2.0 < numBytes) { hexString = "0" + hexString; }
+            while (hexString.Length < (numBytes*2)) { hexString = "0" + hexString; }
 
             string newHexString = "";
 
             for (int i = 0; i < hexString.Length; i++)
             {
                 // if this is the next byte in the hex string, add a -
-                if ((i + 1) % 2 == 0)
+                if (i != 0 && i % 2 == 0)
                     newHexString += "-";
                 
                 // add the next character to the new hex string
@@ -67,9 +67,9 @@ namespace IEBus_Studio
             // Convert to all uppercase
             control = control.ToUpper();
 
-            if (control.Length != 2) return false;
+            if (control.Length != 1) return false;
 
-            if (isHexChar(control[0]) && isHexChar(control[1]))
+            if (isHexChar(control[0]))
                 return true;
 
             return false;
