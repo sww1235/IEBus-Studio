@@ -93,7 +93,7 @@ namespace IEBus_Studio
             // Convert to all uppercase
             address = address.ToUpper();
 
-            if (address.Length != 59) return false;
+            if (address.Length != 47) return false;
 
             for (int i = 0; i < address.Length; i++)
             {
