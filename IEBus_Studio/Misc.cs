@@ -43,6 +43,8 @@ namespace IEBus_Studio
     {
         public static bool validate_address(string address)
         {
+            if (address == null) return false;
+
             // Convert to all uppercase
             address = address.ToUpper();
 
