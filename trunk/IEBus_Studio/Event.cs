@@ -208,22 +208,36 @@ namespace IEBus_Studio
             }
         }
 
-        public bool Equals(Event ev)
+        private bool compare_byte_array(byte[] ar1, byte[] ar2)
         {
-            // If parameter is null return false:
-            if ((object)ev == null)
+            if (ar1.Length != ar2.Length) return false;
+
+            for (int i = 0; i < ar1.Length; i++)
             {
-                return false;
+                if (ar1[i] != ar2[i])
+                    return false;
             }
+
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+
+            if (this.GetType() != obj.GetType()) return false;
+
+            Event ev = (Event)obj;
+
 
             // Return true if the fields match (other than name/description):
             return 
                 (broadcast == ev.Broadcast) &&
-                (master_address == ev.Master_Address) &&
-                (slave_address == ev.Slave_Address) &&
+                compare_byte_array(master_address, ev.Master_Address) &&
+                compare_byte_array(slave_address, ev.Slave_Address) &&
                 (control == ev.Control) &&
                 (datasize == ev.DataSize) &&
-                (data == ev.Data);
+                compare_byte_array(data, ev.Data);
         }
 
         

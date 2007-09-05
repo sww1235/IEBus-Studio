@@ -2081,6 +2081,9 @@ namespace IEBus_Studio
 
         private void discoverEvent_Click(object sender, EventArgs e)
         {
+            // Remove all existing rows (saveDeviceChanges() is invoked)
+            eventDiscoveryTable.Rows.Clear();
+
             // Get the number of seconds to scan for
             long time = 0;
             if (secondsToDiscover.Text == null || secondsToDiscover.Text == "")

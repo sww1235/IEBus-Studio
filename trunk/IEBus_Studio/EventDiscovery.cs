@@ -33,6 +33,17 @@ namespace IEBus_Studio
         {
             numberOfInstances++;
         }
+
+        public override bool Equals(object obj)
+        {
+            if(obj == null) return false;
+
+            if (this.GetType() != obj.GetType()) return false;
+
+            DiscoveredEvent devent = (DiscoveredEvent)obj;
+
+            return this.TheEvent.Equals(devent.TheEvent);
+        }
     }
 
     class EventDiscovery
@@ -116,7 +127,7 @@ namespace IEBus_Studio
                 DiscoveredEvent discoveredEvent = (DiscoveredEvent)discoveredEvents[i];
 
                 // If the event has already happened since discovery begain
-                if (discoveredEvent.Equals(theEvent))
+                if (discoveredEvent.TheEvent.Equals(theEvent))
                 {
                     // increment the number of instances found for that evnet
                     discoveredEvent.addInstance();
@@ -129,10 +140,10 @@ namespace IEBus_Studio
                         DiscoveredEvent temp = (DiscoveredEvent)discoveredEvents[i];
                         discoveredEvents[i] = discoveredEvents[i - 1];
                         discoveredEvents[i - 1] = temp;
-
-                        // set the boolean that the event has been added
-                        eventAdded = true;
                     }
+
+                    // set the boolean that the event has been added
+                    eventAdded = true;
                 }
             }
 
