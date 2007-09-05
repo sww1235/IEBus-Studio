@@ -14,7 +14,7 @@ namespace IEBus_Studio
         public DiscoveredEvent(Event theEvent)
         {
             this.theEvent = theEvent;
-            numberOfInstances = 0;
+            numberOfInstances = 1;
         }
 
         public Event TheEvent
@@ -141,7 +141,7 @@ namespace IEBus_Studio
             if (!eventAdded)
             {
                 // add it to the list of discovered events
-                discoveredEvents.Add(theEvent);
+                discoveredEvents.Add(new DiscoveredEvent(theEvent));
             }
 
 
