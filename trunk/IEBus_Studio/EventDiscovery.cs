@@ -118,6 +118,7 @@ namespace IEBus_Studio
             return false;
         }
 
+
         public void addEvent(Event theEvent)
         {
             bool eventAdded = false;
@@ -132,15 +133,20 @@ namespace IEBus_Studio
                     // increment the number of instances found for that evnet
                     discoveredEvent.addInstance();
 
-                    // if the discovered event is the first one in the list
+                    // while the discovered event is not the first one in the list
                     // and it has been found more than the event above it
-                    if (i != 0 && discoveredEvent.NumberOfInstances > ((DiscoveredEvent)discoveredEvents[i - 1]).NumberOfInstances)
+                    int j = i;
+                    while (j != 0 && ((DiscoveredEvent)discoveredEvents[j]).NumberOfInstances > ((DiscoveredEvent)discoveredEvents[j - 1]).NumberOfInstances)
                     {
                         // move the the discovered event higher up in the list
-                        DiscoveredEvent temp = (DiscoveredEvent)discoveredEvents[i];
-                        discoveredEvents[i] = discoveredEvents[i - 1];
-                        discoveredEvents[i - 1] = temp;
+                        DiscoveredEvent temp = (DiscoveredEvent)discoveredEvents[j];
+                        discoveredEvents[j] = discoveredEvents[j - 1];
+                        discoveredEvents[j - 1] = temp;
+
+                        // and compare this event with the one above that
+                        j--;
                     }
+
 
                     // set the boolean that the event has been added
                     eventAdded = true;
