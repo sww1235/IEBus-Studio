@@ -147,7 +147,7 @@ namespace IEBus_Studio
             {
                 if (!Validator.validate_control(value))
                 {
-                    value = "7F";
+                    value = "F";
                 }
                 control = Convert.ToByte(value, 16);
             }
