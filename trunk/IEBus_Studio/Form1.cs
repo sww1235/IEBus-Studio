@@ -1785,6 +1785,80 @@ namespace IEBus_Studio
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Instances";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn21
+            // 
+            this.dataGridViewTextBoxColumn21.HeaderText = "B";
+            this.dataGridViewTextBoxColumn21.MaxInputLength = 1;
+            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            this.dataGridViewTextBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn21.ToolTipText = "Broadcast Bit";
+            this.dataGridViewTextBoxColumn21.Width = 25;
+            // 
+            // dataGridViewTextBoxColumn22
+            // 
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn22.HeaderText = "Master Address";
+            this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
+            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            this.dataGridViewTextBoxColumn22.ReadOnly = true;
+            this.dataGridViewTextBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn22.Width = 115;
+            // 
+            // dataGridViewTextBoxColumn23
+            // 
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle13.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumn23.HeaderText = "Slave Address";
+            this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.ReadOnly = true;
+            this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn23.Width = 115;
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle14.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumn24.HeaderText = "Control";
+            this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.ReadOnly = true;
+            this.dataGridViewTextBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn24.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn25
+            // 
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle15.Format = "N0";
+            dataGridViewCellStyle15.NullValue = "0";
+            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn25.HeaderText = "Size";
+            this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.ReadOnly = true;
+            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn25.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn26
+            // 
+            this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn26.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn26.MaxInputLength = 4;
+            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            this.dataGridViewTextBoxColumn26.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
