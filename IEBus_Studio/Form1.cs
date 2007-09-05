@@ -2011,8 +2011,8 @@ namespace IEBus_Studio
                             rawArray = wrkMessage.Split(':');
 
                             string broadcast = rawArray[0];
-                            string master_address = HexStringConverter.ToHyphenatedHexString(rawArray[1], 3);
-                            string slave_address = HexStringConverter.ToHyphenatedHexString(rawArray[2], 3);
+                            string master_address = rawArray[1]; // HexStringConverter.ToHyphenatedHexString(rawArray[1], 3);
+                            string slave_address = rawArray[2]; // HexStringConverter.ToHyphenatedHexString(rawArray[2], 3);
                             string control = parsedArray[3];
                             ushort datasize = (ushort)Convert.ToInt16(parsedArray[4]);
 
