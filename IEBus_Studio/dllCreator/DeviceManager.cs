@@ -1,68 +1,71 @@
 using System.Collections;
-public class DeviceManager
+namespace dllCreator
 {
-    private ArrayList _devices;
-    public void DeviceManager()
+    public class DeviceManager
     {
-        _devices = new ArrayList();
-    }
-    public Device this[string Name]
-    {
-        get
+        private ArrayList _devices;
+        public void DeviceManager()
         {
-            foreach (Device dev in _devices)
-            {
-                if (dev.Name == Name)
-                    return dev;
-            }
-            return null;
+            _devices = new ArrayList();
         }
-        set
+        public Device this[string Name]
         {
-            foreach (Device dev in _devices)
+            get
             {
-                if (dev.Name == Name)
-                    dev = value;
-            }
-        }
-    }
-    public Device this[int Index]
-    {
-        get
-        {
-            if (_devices.Count > Index)
-                return _devices(Index);
-            else
+                foreach (Device dev in _devices)
+                {
+                    if (dev.Name == Name)
+                        return dev;
+                }
                 return null;
+            }
+            set
+            {
+                foreach (Device dev in _devices)
+                {
+                    if (dev.Name == Name)
+                        dev = value;
+                }
+            }
         }
-        set
+        public Device this[int Index]
         {
-            if (_devices.Count > Index)
-                _devices(Index) = value;
+            get
+            {
+                if (_devices.Count > Index)
+                    return _devices(Index);
+                else
+                    return null;
+            }
+            set
+            {
+                if (_devices.Count > Index)
+                    _devices(Index) = value;
+            }
         }
-    }
-    public ArrayList Devices
-    {
-        get
+        public ArrayList Devices
         {
-            return _devices;
+            get
+            {
+                return _devices;
+            }
+            set
+            {
+                _devices = value;
+            }
         }
-        set
+        public void AddDevice(Device Device)
         {
-            _devices = value;
+            _devices.Add(Device);
         }
-    }
-    public void AddDevice(Device Device)
-    {
-        _devices.Add(Device);
-    }
-    public void AddDevice(int Address, string Name, string Description)
-    {
-        _devices.Add(new Device(Address, Name, Description));
-    }
-    public void RemoveDevice(Device Device)
-    {
-        if (_devices.Contains(Device))
-            _devices.Remove(Device);
+        public void AddDevice(int Address, string Name, string Description)
+        {
+            _devices.Add(new Device(Address, Name, Description));
+        }
+        public void RemoveDevice(Device Device)
+        {
+            if (_devices.Contains(Device))
+                _devices.Remove(Device);
+        }
     }
 }
