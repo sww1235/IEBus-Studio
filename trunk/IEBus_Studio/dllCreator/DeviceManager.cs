@@ -1,3 +1,4 @@
+
 Public Class DeviceManager
     Private _devices As ArrayList
     Public Sub New()
