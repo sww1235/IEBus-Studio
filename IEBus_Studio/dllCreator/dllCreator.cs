@@ -9,11 +9,13 @@ namespace dllCreator
     {
         private string _Make;
         private string _Model;
+        private int _Year;
         private DeviceManager _dm;
-        public void dllCreator(string Make, string Model)
+        public void dllCreator(string Make, string Model, int Year)
         {
             _Make = Make;
             _Model = Model;
+            _Year = Year;
             _dm = new DeviceManager();
         }
         public readonly DeviceManager DeviceManager
@@ -30,8 +32,8 @@ namespace dllCreator
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.AppendLine("Imports System");
             sBuilder.AppendLine("Imports System.Windows.Forms");
-            sBuilder.AppendLine("Namespace " & _Make);
-            sBuilder.AppendLine("Public Class " & _Model);
+            sBuilder.AppendLine("Namespace " + _Make);
+            sBuilder.AppendLine("Public Class " + _Model + "_" + _Year);
             sBuilder.AppendLine("''' <summary>");
             sBuilder.AppendLine("''' Specific devices for this car.");
             sBuilder.AppendLine("''' </summary>");
@@ -39,9 +41,9 @@ namespace dllCreator
             for (int x; x < DeviceManager.Devices.Count; x++)
             {
                 sBuilder.AppendLine("''' <summary>");
-                sBuilder.AppendLine("''' " & DeviceManager(x).Description);
+                sBuilder.AppendLine("''' " + DeviceManager(x).Description);
                 sBuilder.AppendLine("''' </summary>");
-                sBuilder.AppendLine(DeviceManager(x).Name.Replace(" ", "_") & " = " & BitConverter.ToString(DeviceManager(x).Address, 0, 3));
+                sBuilder.AppendLine(DeviceManager(x).Name.Replace(" ", "_") + " = " + BitConverter.ToString(DeviceManager(x).Address, 0, 3));
             }
             sBuilder.AppendLine("End Enum");
             sBuilder.AppendLine("''' <summary>");
@@ -58,7 +60,7 @@ namespace dllCreator
         {
             VBCodeProvider vbCP = new VBCodeProvider();
             CompilerParameters comParams = new CompilerParameters();
-            comParams.OutputAssembly = OutputFolder + "\\" + _Make + "." + _Model + ".dll";
+            comParams.OutputAssembly = OutputFolder + "\\" + _Make + "." + _Model + "." + _Year + ".dll";
             comParams.ReferencedAssemblies.Add("System.dll");
             comParams.ReferencedAssemblies.Add("System.Data.dll");
             comParams.ReferencedAssemblies.Add("System.Xml.dll");
