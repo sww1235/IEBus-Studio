@@ -1249,13 +1249,14 @@ namespace IEBus_Studio
             this.EventActionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEventToolStripMenuItem});
             this.EventActionsMenuStrip.Name = "EventActions";
-            this.EventActionsMenuStrip.Size = new System.Drawing.Size(136, 26);
+            this.EventActionsMenuStrip.Size = new System.Drawing.Size(153, 48);
             // 
             // addEventToolStripMenuItem
             // 
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
-            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
+            this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
             // 
             // discoverEvent
             // 
@@ -1846,12 +1847,6 @@ namespace IEBus_Studio
 
 		private void Form1_Load(object sender, System.EventArgs e)
 		{
-            dllCreator.Creator DC = new dllCreator.Creator("Toyota","Camry",1993);
-            DC.DeviceManager.AddDevice(0x1c, "Horn LOL", "Something you press when you see a woman trying to drive.");
-            DC.DeviceManager.AddDevice(0x1d, "HeadUnit", "Entertainment.");
-            DC.DeviceManager.AddDevice(0x1f, "NavUnit", "The big black box in the back.");
-            DC.DeviceManager.AddDevice(0x0, "Something", "Something else?.");
-            DC.CompileDLL(Application.StartupPath + "\\");
 		}
 
         private void outputBrowse_Click(object sender, EventArgs e)
