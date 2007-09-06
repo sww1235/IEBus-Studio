@@ -1843,7 +1843,13 @@ namespace IEBus_Studio
 		}
 
 		private void Form1_Load(object sender, System.EventArgs e)
-		{
+        {
+            dllCreator.Creator DC = new dllCreator.Creator("Toyota", "Camry", 1993);
+            DC.DeviceManager.AddDevice(0x1c, "Horn LOL", "Something you press when you see a woman trying to drive.");
+            DC.DeviceManager.AddDevice(0x1d, "HeadUnit", "Entertainment.");
+            DC.DeviceManager.AddDevice(0x1f, "NavUnit", "The big black box in the back.");
+            DC.DeviceManager.AddDevice(0x0, "Something", "Something else?.");
+            DC.CompileDLL(Application.StartupPath + "\\");
 		}
 
         private void outputBrowse_Click(object sender, EventArgs e)
