@@ -103,12 +103,22 @@
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AddEventPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEventPopup.Designer.cs">
+      <DependentUpon>AddEventPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddEventPopup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AddEventPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
