@@ -22,9 +22,9 @@ namespace IEBus_Studio
 
             int NumBytes = HexString.Length / 2;
             byte[] bytes2 = new byte[NumBytes];
-            for (int i = 0; i < NumBytes; i += 2)
+            for (int i = 0; i < NumBytes; i++)
             {
-                bytes2[i] = Convert.ToByte(HexString.Substring(i, 2), 16);
+                bytes2[i] = Convert.ToByte(HexString.Substring(i*2, 2), 16);
             }
             return bytes2;
         }
