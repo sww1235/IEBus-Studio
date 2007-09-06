@@ -85,6 +85,27 @@ namespace IEBus_Studio
 
     static class Validator
     {
+        public static bool validate_hex(string hexString, int numBytes)
+        {
+            if (hexString == null) return false;
+
+            // Covert to all uppercase
+            hexString = hexString.ToUpper();
+
+            while (hexString.Length < numBytes*2) hexString = "0" + hexString;
+
+            if (hexString.Length != numBytes * 2)
+                return false;
+
+            foreach (char ch in hexString)
+            {
+                if (!isHexChar(ch))
+                    return false;
+            }
+
+            return true;
+        }
+
         public static bool validate_address(string address)
         {
             if (address == null) return false;
