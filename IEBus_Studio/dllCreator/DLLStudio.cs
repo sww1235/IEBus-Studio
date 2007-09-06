@@ -17,16 +17,16 @@ public class dllCreator
     }
     public readonly DeviceManager DeviceManager
     {
-      get {return _dm;}
+        get { return _dm; }
     }
     public void CompileDLL(string OutputFolder)
     {
         string dynamicCode = CreateCode;
-        CompileCode(dynamicCode,OutputFolder);
+        CompileCode(dynamicCode, OutputFolder);
     }
     private string CreateCode()
     {
-      StringBuilder sBuilder = new StringBuilder();
+        StringBuilder sBuilder = new StringBuilder();
         sBuilder.AppendLine("Imports System");
         sBuilder.AppendLine("Imports System.Windows.Forms");
         sBuilder.AppendLine("Namespace " & _Make);
@@ -35,8 +35,8 @@ public class dllCreator
         sBuilder.AppendLine("''' Specific devices for this car.");
         sBuilder.AppendLine("''' </summary>");
         sBuilder.AppendLine("Public Enum CarDevices").AppendLine();
-        for (int x; x<DeviceManager.Devices.Count; x++)
-        {    
+        for (int x; x < DeviceManager.Devices.Count; x++)
+        {
             sBuilder.AppendLine("''' <summary>");
             sBuilder.AppendLine("''' " & DeviceManager(x).Description);
             sBuilder.AppendLine("''' </summary>");
@@ -55,7 +55,7 @@ public class dllCreator
     }
     private void CompileCode(string strCode, string OutputFolder)
     {
-    VBCodeProvider vbCP = new VBCodeProvider();
+        VBCodeProvider vbCP = new VBCodeProvider();
         CompilerParameters comParams = new CompilerParameters();
         comParams.OutputAssembly = OutputFolder + "\\" + _Make + "." + _Model + ".dll";
         comParams.ReferencedAssemblies.Add("System.dll");
@@ -68,9 +68,9 @@ public class dllCreator
         comParams.CompilerOptions = "/target:library /doc /optimize";
         comParams.GenerateExecutable = false;
         comParams.GenerateInMemory = false;
-    
-        CompilerResults comResults = vbCP.CompileAssemblyFromSource(comParams,strCode);
-        foreach (string strOut in comResults.Output )
+
+        CompilerResults comResults = vbCP.CompileAssemblyFromSource(comParams, strCode);
+        foreach (string strOut in comResults.Output)
         {
             Console.WriteLine(strOut);
         }
@@ -79,9 +79,9 @@ public class dllCreator
         {
             foreach (CompilerError cErr in comResults.Errors)
             {
-                Console.WriteLine(cErr.ErrorNumber + ": " + cErr.ErrorText);  
+                Console.WriteLine(cErr.ErrorNumber + ": " + cErr.ErrorText);
             }
             MessageBox.Show("Errors occoured", "Errors", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-      }
+    }
 }
