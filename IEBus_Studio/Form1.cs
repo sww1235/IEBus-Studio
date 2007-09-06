@@ -1256,7 +1256,6 @@ namespace IEBus_Studio
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
             this.addEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
-            this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
             // 
             // discoverEvent
             // 
@@ -2209,7 +2208,7 @@ namespace IEBus_Studio
                 string b = "1";
                 if(!ev.Broadcast) b = "0";
 
-                eventsTable.Rows.Add(ev.Name, ev.Description, b, System.BitConverter.ToString(ev.Master_Address), System.BitConverter.ToString(ev.Slave_Address), Convert.ToString(ev.Control, 16), ev.DataSize, System.BitConverter.ToString(ev.Data));
+                eventsTable.Rows.Add(ev.Name, ev.Description, b, ev.Master_Address_String, ev.Slave_Address_String, ev.ControlString, ev.DataSize, ev.DataString);
             }
         }
 
