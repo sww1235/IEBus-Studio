@@ -41,16 +41,20 @@ namespace IEBus_Studio
         {
             get
             {
-               return System.BitConverter.ToString(address);
+                string hexString = "";
+                foreach (byte abyte in address)
+                    hexString += Convert.ToString(abyte);
+                return hexString;
+               //return System.BitConverter.ToString(address);
             }
             set
             {
                 // If invalid address is typed use static address
                 if (!Validator.validate_address(value))
                 {
-                    value = "00-00-00";
+                    value = "000000";
                 }
-                address = HexStringConverter.ToByteArray(value);
+                address = HexStringConverter.ToByteArray(value, false);
             }
         }
 

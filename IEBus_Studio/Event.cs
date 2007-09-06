@@ -60,7 +60,7 @@ namespace IEBus_Studio
         public string Description
         {
             get { return description; }
-            set { name = value; }
+            set { description = value; }
         }
 
         public bool Broadcast
@@ -95,16 +95,22 @@ namespace IEBus_Studio
         {
             get
             {
-                return System.BitConverter.ToString(master_address);
+                string hexString = "";
+                foreach (byte abyte in master_address)
+                    hexString += Convert.ToString(abyte);
+                return hexString;
+                
+                //return System.BitConverter.ToString(master_address);
             }
             set
             {
+                
                 // If invalid address is typed use static address
                 if (!Validator.validate_address(value))
                 {
-                    value = "00-00-00";
+                    value = "000000";
                 }
-                master_address = HexStringConverter.ToByteArray(value);
+                master_address = HexStringConverter.ToByteArray(value, false);
             }
         }
 
@@ -118,16 +124,20 @@ namespace IEBus_Studio
         {
             get
             {
-                return System.BitConverter.ToString(slave_address);
+                string hexString = "";
+                foreach (byte abyte in slave_address)
+                    hexString += Convert.ToString(abyte);
+                return hexString;
+                //return System.BitConverter.ToString(slave_address);
             }
             set
             {
                 // If invalid address is typed use static address
                 if (!Validator.validate_address(value))
                 {
-                    value = "00-00-00";
+                    value = "000000";
                 }
-                slave_address = HexStringConverter.ToByteArray(value);
+                slave_address = HexStringConverter.ToByteArray(value, false);
             }
         }
 
@@ -204,7 +214,7 @@ namespace IEBus_Studio
                 }
 
                 // Convert hex string to byte array
-                data = HexStringConverter.ToByteArray(value);
+                data = HexStringConverter.ToByteArray(value, true);
             }
         }
 
