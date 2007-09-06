@@ -93,7 +93,7 @@
     <Content Include="App.ico" />
     <Compile Include="dllCreator\Device.cs" />
     <Compile Include="dllCreator\DeviceManager.cs" />
-    <Compile Include="dllCreator\dllCreator.cs" />
+    <Compile Include="dllCreator\Creator.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceManager.cs" />
