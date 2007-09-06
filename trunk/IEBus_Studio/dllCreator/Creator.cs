@@ -5,13 +5,13 @@ using System.Windows.Forms;
 using System.Text;
 namespace dllCreator
 {
-    public class dllCreator
+    public class Creator
     {
         private string _Make;
         private string _Model;
         private int _Year;
         private DeviceManager _dm;
-        public dllCreator(string Make, string Model, int Year)
+        public Creator(string Make, string Model, int Year)
         {
             _Make = Make;
             _Model = Model;
