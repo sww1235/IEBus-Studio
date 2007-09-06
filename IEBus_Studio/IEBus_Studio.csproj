@@ -91,11 +91,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
+    <Compile Include="Device.cs" />
     <Compile Include="dllCreator\Device.cs" />
     <Compile Include="dllCreator\DeviceManager.cs" />
     <Compile Include="dllCreator\Creator.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Device.cs" />
     <Compile Include="DeviceManager.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventDiscovery.cs" />
