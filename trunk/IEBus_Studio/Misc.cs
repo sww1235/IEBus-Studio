@@ -7,15 +7,26 @@ namespace IEBus_Studio
     static class HexStringConverter
     {
 
-        public static byte[] ToByteArray(string HexString)
+        public static byte[] ToByteArray(string HexString, bool hyphenated)
         {
-            int NumberChars = HexString.Length;
-            byte[] bytes = new byte[(NumberChars+1) / 3];
-            for (int i = 0; i < NumberChars; i += 3)
+            if(hyphenated)
             {
-                bytes[i / 3] = Convert.ToByte(HexString.Substring(i, 2), 16);
+                int NumberChars = HexString.Length;
+                byte[] bytes = new byte[(NumberChars+1) / 3];
+                for (int i = 0; i < NumberChars; i += 3)
+                {
+                    bytes[i / 3] = Convert.ToByte(HexString.Substring(i, 2), 16);
+                }
+                return bytes;
             }
-            return bytes;
+
+            int NumBytes = HexString.Length / 2;
+            byte[] bytes2 = new byte[NumBytes];
+            for (int i = 0; i < NumBytes; i += 2)
+            {
+                bytes2[i] = Convert.ToByte(HexString.Substring(i, 2), 16);
+            }
+            return bytes2;
         }
 
         public static string ToHyphenatedHexString(string hexString, int numBytes)
@@ -48,16 +59,11 @@ namespace IEBus_Studio
             // Convert to all uppercase
             address = address.ToUpper();
 
-            if (address.Length != 8) return false;
+            if (address.Length != 6) return false;
 
             for (int i = 0; i < address.Length; i++)
             {
-                if ((i + 1) % 3 == 0)
-                {
-                    if (address[i] != '-')
-                        return false;
-                }
-                else if (!isHexChar(address[i]))
+                if (!isHexChar(address[i]))
                     return false;
             }
 
