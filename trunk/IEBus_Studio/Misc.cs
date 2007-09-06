@@ -20,10 +20,14 @@ namespace IEBus_Studio
                 return bytes;
             }
 
+            if (HexString.Length % 2 == 1)
+                HexString = "0" + HexString;
+
             int NumBytes = HexString.Length / 2;
             byte[] bytes2 = new byte[NumBytes];
             for (int i = 0; i < NumBytes; i++)
             {
+                string temp = HexString.Substring(i * 2, 2);
                 bytes2[i] = Convert.ToByte(HexString.Substring(i*2, 2), 16);
             }
             return bytes2;
@@ -47,6 +51,35 @@ namespace IEBus_Studio
             }
 
             return newHexString;
+        }
+
+        public static string ToHyphenatedHexString(byte[] data)
+        {
+            return BitConverter.ToString(data);
+        }
+
+        public static string ToHexString(byte[] data)
+        {
+            string hexString = "";
+            foreach (byte abyte in data)
+            {
+                string temp = abyte.ToString("X2");
+                if (temp.Length == 1) temp = "0" + temp;
+                hexString += temp;
+            }
+
+            while (hexString.Length > 1 && hexString[0] == '0') hexString = hexString.Substring(1, hexString.Length - 1);
+
+            return hexString;
+        }
+
+        public static string ToPaddedHexString(byte[] data, int length)
+        {
+            string hexString = ToHexString(data);
+
+            while (data.Length < length) hexString = "0" + hexString;
+
+            return hexString;
         }
     }
 

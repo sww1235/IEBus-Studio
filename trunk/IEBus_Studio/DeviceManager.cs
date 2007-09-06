@@ -35,11 +35,35 @@ namespace IEBus_Studio
                 xml += "    <device>\r\n";
                 xml += "        <name>" + device.Name + "</name>\r\n";
                 xml += "        <description>" + device.Description + "</description>\r\n";
-                xml += "        <address>" + device.AddressString + "</address>\r\n";
+                xml += "        <address>" + HexStringConverter.ToHexString(device.Address) + "</address>\r\n";
                 xml += "    </device>\r\n";
             }
             xml += "</devices>\r\n";
             return xml;
+        }
+
+        private bool compare_address(byte[] ar1, byte[] ar2)
+        {
+            if (ar1.Length != ar2.Length) return false;
+
+            for (int i = 0; i < ar2.Length; i++)
+            {
+                if (ar1[i] != ar2[i])
+                    return false;
+            }
+
+            return true;
+        }
+
+        public string GetDeviceName(byte[] address)
+        {
+            foreach (Device device in devices)
+            {
+                if (compare_address(device.Address, address))
+                    return device.Name;
+            }
+
+            return null;
         }
 
         static public ArrayList ScanDevices()

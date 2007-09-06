@@ -39,6 +39,7 @@ namespace IEBus_Studio
             this.Data           = data;
         }
 
+        
         public Event(string name, string description, string broadcast, string master_address, string slave_address, string control, ushort datasize, string data)
         {
             this.name                  = name;
@@ -50,7 +51,7 @@ namespace IEBus_Studio
             this.datasize              = datasize;
             this.DataString            = data;
         }
-
+        
         public string Name
         {
             get { return name; }
@@ -85,12 +86,14 @@ namespace IEBus_Studio
             }
         }
 
+        
         public byte[] Master_Address
         {
             get { return master_address; }
             set { master_address = value; }
         }
 
+        
         public string Master_Address_String
         {
             get
@@ -121,6 +124,7 @@ namespace IEBus_Studio
                 master_address = HexStringConverter.ToByteArray(value, false);
             }
         }
+        
 
         public byte[] Slave_Address
         {

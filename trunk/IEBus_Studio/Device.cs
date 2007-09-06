@@ -6,76 +6,54 @@ namespace IEBus_Studio
 {
     class Device
     {
-        protected byte[] address;
-        protected string name;
-        protected string description;
+        private byte[] _address;
+        private string _name;
+        private string _description;
 
         public Device()
         {
-            address = new byte[3];
-            name = "Unkown Name";
-            description = "Unkown Description";
+            _address = new byte[3];
+            _name = string.Empty;
+            _description = string.Empty;
         }
-
         public Device(byte[] address, string name, string description)
         {
-            this.address = address;
-            this.name = name;
-            this.description = description;
+            _address = address;
+            _name = name;
+            _description = description;
         }
-
-        public Device(string address, string name, string description)
-        {
-            this.AddressString = address;
-            this.name = name;
-            this.description = description;
-        }
-
         public byte[] Address
-        {
-            get { return address; }
-            set { address = value; }
-        }
-
-        public string AddressString
         {
             get
             {
-                string hexString = "";
-                foreach (byte abyte in address)
-                {
-                    string temp = Convert.ToString(abyte);
-                    if (temp.Length == 1) temp = "0" + temp;
-                    hexString += temp;
-                }
-
-                while (hexString.Length != 0 && hexString[0] == '0') hexString = hexString.Substring(1, hexString.Length - 1);
-                if (hexString.Length == 0) hexString = "0";
-
-                return hexString;
-               //return System.BitConverter.ToString(address);
+                return _address;
             }
             set
             {
-                // If invalid address is typed use static address
-                if (!Validator.validate_address(value))
-                {
-                    value = "000000";
-                }
-                address = HexStringConverter.ToByteArray(value, false);
+                _address = value;
             }
         }
-
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
         }
-
         public string Description
         {
-            get {return description; }
-            set { description = value; }
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = value;
+            }
         }
     }
 }

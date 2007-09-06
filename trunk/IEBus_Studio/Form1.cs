@@ -129,14 +129,6 @@ namespace IEBus_Studio
         private TabPage eventsTab;
         private DataGridView eventsTable;
         private Button addEvent;
-        private DataGridViewTextBoxColumn Event_Name;
-        private DataGridViewTextBoxColumn Event_Description;
-        private DataGridViewTextBoxColumn Event_Broadcast;
-        private DataGridViewTextBoxColumn Event_MasterDevice;
-        private DataGridViewTextBoxColumn event_SlaveAddress;
-        private DataGridViewTextBoxColumn Event_Control;
-        private DataGridViewTextBoxColumn Event_DataSize;
-        private DataGridViewTextBoxColumn Event_Data;
         private Button scanDevices;
         private OpenFileDialog openFileDialog1;
         private DataGridViewTextBoxColumn devices_deviceAddress;
@@ -157,6 +149,14 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private DataGridViewTextBoxColumn Event_Name;
+        private DataGridViewTextBoxColumn Event_Description;
+        private DataGridViewTextBoxColumn Event_Broadcast;
+        private DataGridViewTextBoxColumn Event_Master;
+        private DataGridViewTextBoxColumn event_Slave;
+        private DataGridViewTextBoxColumn Event_Control;
+        private DataGridViewTextBoxColumn Event_DataSize;
+        private DataGridViewTextBoxColumn Event_Data;
         public String serialBuffer = "This is a test.";
 
 		public Form1()
@@ -209,13 +209,13 @@ namespace IEBus_Studio
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -293,13 +293,6 @@ namespace IEBus_Studio
             this.eventDiscoveryTab = new System.Windows.Forms.TabPage();
             this.timeLeftLabel = new System.Windows.Forms.Label();
             this.eventDiscoveryTable = new System.Windows.Forms.DataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EventActionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.discoverEvent = new System.Windows.Forms.Button();
@@ -315,14 +308,6 @@ namespace IEBus_Studio
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
-            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_MasterDevice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.event_SlaveAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.stopButton = new System.Windows.Forms.Button();
@@ -350,6 +335,21 @@ namespace IEBus_Studio
             this.chooseOutputFile = new System.Windows.Forms.SaveFileDialog();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1170,91 +1170,17 @@ namespace IEBus_Studio
             this.eventDiscoveryTable.TabIndex = 5;
             this.eventDiscoveryTable.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.EventDiscoveryTable_RowContextMenuStripNeeded);
             // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Instances";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            this.dataGridViewTextBoxColumn21.HeaderText = "B";
-            this.dataGridViewTextBoxColumn21.MaxInputLength = 1;
-            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            this.dataGridViewTextBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn21.ToolTipText = "Broadcast Bit";
-            this.dataGridViewTextBoxColumn21.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxColumn22.HeaderText = "Master Address";
-            this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
-            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            this.dataGridViewTextBoxColumn22.ReadOnly = true;
-            this.dataGridViewTextBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn22.Width = 115;
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle13.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxColumn23.HeaderText = "Slave Address";
-            this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
-            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            this.dataGridViewTextBoxColumn23.ReadOnly = true;
-            this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn23.Width = 115;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle14.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridViewTextBoxColumn24.HeaderText = "Control";
-            this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            this.dataGridViewTextBoxColumn24.ReadOnly = true;
-            this.dataGridViewTextBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn24.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle15.Format = "N0";
-            dataGridViewCellStyle15.NullValue = "0";
-            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridViewTextBoxColumn25.HeaderText = "Size";
-            this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
-            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            this.dataGridViewTextBoxColumn25.ReadOnly = true;
-            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn25.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn26.HeaderText = "Data";
-            this.dataGridViewTextBoxColumn26.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            this.dataGridViewTextBoxColumn26.ReadOnly = true;
-            // 
             // EventActionsMenuStrip
             // 
             this.EventActionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEventToolStripMenuItem});
             this.EventActionsMenuStrip.Name = "EventActions";
-            this.EventActionsMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.EventActionsMenuStrip.Size = new System.Drawing.Size(136, 26);
             // 
             // addEventToolStripMenuItem
             // 
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
-            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
             // 
             // discoverEvent
@@ -1409,8 +1335,8 @@ namespace IEBus_Studio
             this.Event_Name,
             this.Event_Description,
             this.Event_Broadcast,
-            this.Event_MasterDevice,
-            this.event_SlaveAddress,
+            this.Event_Master,
+            this.event_Slave,
             this.Event_Control,
             this.Event_DataSize,
             this.Event_Data});
@@ -1427,54 +1353,6 @@ namespace IEBus_Studio
             this.eventsTable.TabIndex = 7;
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
-            // 
-            // Event_Name
-            // 
-            this.Event_Name.HeaderText = "Name";
-            this.Event_Name.Name = "Event_Name";
-            // 
-            // Event_Description
-            // 
-            this.Event_Description.HeaderText = "Description";
-            this.Event_Description.Name = "Event_Description";
-            // 
-            // Event_Broadcast
-            // 
-            this.Event_Broadcast.HeaderText = "B";
-            this.Event_Broadcast.Name = "Event_Broadcast";
-            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Event_Broadcast.ToolTipText = "Broadcast";
-            this.Event_Broadcast.Width = 20;
-            // 
-            // Event_MasterDevice
-            // 
-            this.Event_MasterDevice.HeaderText = "Master Device";
-            this.Event_MasterDevice.Name = "Event_MasterDevice";
-            this.Event_MasterDevice.Width = 115;
-            // 
-            // event_SlaveAddress
-            // 
-            this.event_SlaveAddress.HeaderText = "Slave Address";
-            this.event_SlaveAddress.Name = "event_SlaveAddress";
-            this.event_SlaveAddress.Width = 115;
-            // 
-            // Event_Control
-            // 
-            this.Event_Control.HeaderText = "Control";
-            this.Event_Control.Name = "Event_Control";
-            this.Event_Control.Width = 50;
-            // 
-            // Event_DataSize
-            // 
-            this.Event_DataSize.HeaderText = "DataSize";
-            this.Event_DataSize.Name = "Event_DataSize";
-            this.Event_DataSize.Width = 75;
-            // 
-            // Event_Data
-            // 
-            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Event_Data.HeaderText = "Data";
-            this.Event_Data.Name = "Event_Data";
             // 
             // groupBox2
             // 
@@ -1788,6 +1666,126 @@ namespace IEBus_Studio
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Instances";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn21
+            // 
+            this.dataGridViewTextBoxColumn21.HeaderText = "B";
+            this.dataGridViewTextBoxColumn21.MaxInputLength = 1;
+            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            this.dataGridViewTextBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn21.ToolTipText = "Broadcast Bit";
+            this.dataGridViewTextBoxColumn21.Width = 25;
+            // 
+            // dataGridViewTextBoxColumn22
+            // 
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn22.HeaderText = "Master";
+            this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
+            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            this.dataGridViewTextBoxColumn22.ReadOnly = true;
+            this.dataGridViewTextBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn23
+            // 
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle13.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumn23.HeaderText = "Slave";
+            this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.ReadOnly = true;
+            this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle14.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumn24.HeaderText = "Control";
+            this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.ReadOnly = true;
+            this.dataGridViewTextBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn24.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn25
+            // 
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle15.Format = "N0";
+            dataGridViewCellStyle15.NullValue = "0";
+            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn25.HeaderText = "Size";
+            this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.ReadOnly = true;
+            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn25.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn26
+            // 
+            this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn26.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn26.MaxInputLength = 4;
+            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            this.dataGridViewTextBoxColumn26.ReadOnly = true;
+            // 
+            // Event_Name
+            // 
+            this.Event_Name.HeaderText = "Name";
+            this.Event_Name.Name = "Event_Name";
+            // 
+            // Event_Description
+            // 
+            this.Event_Description.HeaderText = "Description";
+            this.Event_Description.Name = "Event_Description";
+            // 
+            // Event_Broadcast
+            // 
+            this.Event_Broadcast.HeaderText = "B";
+            this.Event_Broadcast.Name = "Event_Broadcast";
+            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Event_Broadcast.ToolTipText = "Broadcast";
+            this.Event_Broadcast.Width = 20;
+            // 
+            // Event_Master
+            // 
+            this.Event_Master.HeaderText = "Master";
+            this.Event_Master.Name = "Event_Master";
+            this.Event_Master.Width = 115;
+            // 
+            // event_Slave
+            // 
+            this.event_Slave.HeaderText = "Slave";
+            this.event_Slave.Name = "event_Slave";
+            this.event_Slave.Width = 115;
+            // 
+            // Event_Control
+            // 
+            this.Event_Control.HeaderText = "Control";
+            this.Event_Control.Name = "Event_Control";
+            this.Event_Control.Width = 50;
+            // 
+            // Event_DataSize
+            // 
+            this.Event_DataSize.HeaderText = "DataSize";
+            this.Event_DataSize.Name = "Event_DataSize";
+            this.Event_DataSize.Width = 75;
+            // 
+            // Event_Data
+            // 
+            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Event_Data.HeaderText = "Data";
+            this.Event_Data.Name = "Event_Data";
             // 
             // Form1
             // 
@@ -2154,14 +2152,14 @@ namespace IEBus_Studio
             for (int i = 0; i < deviceManager.Devices.Count; i++)
             {
                 Device device = (Device)(deviceManager.Devices[i]);
-                devicesTable.Rows.Add(device.AddressString, device.Name, device.Description);
+                devicesTable.Rows.Add(HexStringConverter.ToHexString(device.Address), device.Name, device.Description);
             }
         }
 
         private void addDevice_Click(object sender, EventArgs e)
         {
             // Create a new device
-            Device device = new Device();
+            Device device = new Device(new byte[3], "Unkown Name", "Unkown Description");
 
             // Add it to the device list
             deviceManager.addDevice(device);
@@ -2180,7 +2178,7 @@ namespace IEBus_Studio
             // Get devices from dataview and save to memory
             for (int i = 0; i < devicesTable.Rows.Count; i++)
             {
-                string address     = (string)devicesTable.Rows[i].Cells[0].Value;
+                byte[] address     = HexStringConverter.ToByteArray((string)devicesTable.Rows[i].Cells[0].Value, false);
                 string name        = (string)devicesTable.Rows[i].Cells[1].Value;
                 string description = (string)devicesTable.Rows[i].Cells[2].Value;
                 Device device      = new Device(address, name, description);
@@ -2207,6 +2205,12 @@ namespace IEBus_Studio
 
                 string b = "1";
                 if(!ev.Broadcast) b = "0";
+
+            //    string master = deviceManager.GetDeviceName(ev.Master_Address);
+            //    if (master == null) master = ev.Master_Address_String;
+
+            //    string slave = deviceManager.GetDeviceName(ev.Slave_Address);
+            //    if (slave == null) master = ev.Slave_Address_String;
 
                 eventsTable.Rows.Add(ev.Name, ev.Description, b, ev.Master_Address_String, ev.Slave_Address_String, ev.ControlString, ev.DataSize, ev.DataString);
             }
@@ -2339,7 +2343,7 @@ namespace IEBus_Studio
             XmlNodeList events = xDoc.GetElementsByTagName("event");
 
             foreach (XmlNode device in devices)
-                deviceManager.addDevice(new Device(device.ChildNodes[2].FirstChild.Value, device.ChildNodes[0].FirstChild.Value, device.ChildNodes[1].FirstChild.Value));
+                deviceManager.addDevice(new Device(HexStringConverter.ToByteArray(device.ChildNodes[2].FirstChild.Value, false), device.ChildNodes[0].FirstChild.Value, device.ChildNodes[1].FirstChild.Value));
 
             foreach (XmlNode ev in events)
                 eventManager.addEvent(new Event(ev.ChildNodes[0].FirstChild.Value, ev.ChildNodes[1].FirstChild.Value, ev.ChildNodes[2].FirstChild.Value, ev.ChildNodes[3].FirstChild.Value, ev.ChildNodes[4].FirstChild.Value, ev.ChildNodes[5].FirstChild.Value, (ushort)Convert.ToInt16(ev.ChildNodes[6].FirstChild.Value), ev.ChildNodes[7].FirstChild.Value));
