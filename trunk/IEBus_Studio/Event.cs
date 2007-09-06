@@ -97,7 +97,15 @@ namespace IEBus_Studio
             {
                 string hexString = "";
                 foreach (byte abyte in master_address)
-                    hexString += Convert.ToString(abyte);
+                {
+                    string temp = Convert.ToString(abyte);
+                    if (temp.Length == 1) temp = "0" + temp;
+                    hexString += temp;
+                }
+
+                while (hexString.Length != 0 && hexString[0] == '0') hexString = hexString.Substring(1, hexString.Length - 1);
+                if (hexString.Length == 0) hexString = "0";
+
                 return hexString;
                 
                 //return System.BitConverter.ToString(master_address);
@@ -126,7 +134,15 @@ namespace IEBus_Studio
             {
                 string hexString = "";
                 foreach (byte abyte in slave_address)
-                    hexString += Convert.ToString(abyte);
+                {
+                    string temp = Convert.ToString(abyte);
+                    if (temp.Length == 1) temp = "0" + temp;
+                    hexString += temp;
+                }
+
+                while (hexString.Length != 0 && hexString[0] == '0') hexString = hexString.Substring(1, hexString.Length - 1);
+                if (hexString.Length == 0) hexString = "0";
+
                 return hexString;
                 //return System.BitConverter.ToString(slave_address);
             }
