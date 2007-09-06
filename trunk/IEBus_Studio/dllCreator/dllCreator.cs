@@ -11,20 +11,20 @@ namespace dllCreator
         private string _Model;
         private int _Year;
         private DeviceManager _dm;
-        public void dllCreator(string Make, string Model, int Year)
+        public dllCreator(string Make, string Model, int Year)
         {
             _Make = Make;
             _Model = Model;
             _Year = Year;
             _dm = new DeviceManager();
         }
-        public readonly DeviceManager DeviceManager
+        public DeviceManager DeviceManager
         {
             get { return _dm; }
         }
         public void CompileDLL(string OutputFolder)
         {
-            string dynamicCode = CreateCode;
+            string dynamicCode = CreateCode();
             CompileCode(dynamicCode, OutputFolder);
         }
         private string CreateCode()
@@ -38,12 +38,12 @@ namespace dllCreator
             sBuilder.AppendLine("''' Specific devices for this car.");
             sBuilder.AppendLine("''' </summary>");
             sBuilder.AppendLine("Public Enum CarDevices").AppendLine();
-            for (int x; x < DeviceManager.Devices.Count; x++)
+            for (int x=0; x < DeviceManager.Devices.Count; x++)
             {
                 sBuilder.AppendLine("''' <summary>");
-                sBuilder.AppendLine("''' " + DeviceManager(x).Description);
+                sBuilder.AppendLine("''' " + DeviceManager[x].Description);
                 sBuilder.AppendLine("''' </summary>");
-                sBuilder.AppendLine(DeviceManager(x).Name.Replace(" ", "_") + " = " + BitConverter.ToString(DeviceManager(x).Address, 0, 3));
+                sBuilder.AppendLine(DeviceManager[x].Name.Replace(" ", "_") + " = " + DeviceManager[x].Address);
             }
             sBuilder.AppendLine("End Enum");
             sBuilder.AppendLine("''' <summary>");
@@ -54,7 +54,7 @@ namespace dllCreator
             sBuilder.AppendLine("End Sub");
             sBuilder.AppendLine("End Class");
             sBuilder.AppendLine("End Namespace");
-            return sBuilder.ToString;
+            return sBuilder.ToString();
         }
         private void CompileCode(string strCode, string OutputFolder)
         {
@@ -75,14 +75,14 @@ namespace dllCreator
             CompilerResults comResults = vbCP.CompileAssemblyFromSource(comParams, strCode);
             foreach (string strOut in comResults.Output)
             {
-                Console.WriteLine(strOut);
+                //Console.WriteLine(strOut);
             }
 
             if (comResults.Errors.Count > 0)
             {
                 foreach (CompilerError cErr in comResults.Errors)
                 {
-                    Console.WriteLine(cErr.ErrorNumber + ": " + cErr.ErrorText);
+                    //Console.WriteLine(cErr.ErrorNumber + ": " + cErr.ErrorText);
                 }
                 MessageBox.Show("Errors occoured", "Errors", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

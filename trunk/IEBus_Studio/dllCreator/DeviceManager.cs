@@ -4,7 +4,7 @@ namespace dllCreator
     public class DeviceManager
     {
         private ArrayList _devices;
-        public void DeviceManager()
+        public DeviceManager()
         {
             _devices = new ArrayList();
         }
@@ -24,7 +24,7 @@ namespace dllCreator
                 foreach (Device dev in _devices)
                 {
                     if (dev.Name == Name)
-                        dev = value;
+                        _devices[_devices.IndexOf(dev)] = value;
                 }
             }
         }
@@ -33,14 +33,14 @@ namespace dllCreator
             get
             {
                 if (_devices.Count > Index)
-                    return _devices(Index);
+                    return (Device)_devices[Index];
                 else
                     return null;
             }
             set
             {
                 if (_devices.Count > Index)
-                    _devices(Index) = value;
+                    _devices[Index] = value;
             }
         }
         public ArrayList Devices

@@ -5,13 +5,13 @@ namespace dllCreator
         private int _address;
         private string _name;
         private string _description;
-        public void Device()
+        public Device()
         {
             _address = -1;
             _name = string.Empty;
             _description = string.Empty;
         }
-        public void Device(int address, string name, string description)
+        public Device(int address, string name, string description)
         {
             _address = address;
             _name = name;
