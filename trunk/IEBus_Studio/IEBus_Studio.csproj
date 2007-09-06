@@ -91,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
-    <Content Include="dllCreator\Device.vb" />
+    <Compile Include="dllCreator\Device.cs" />
     <Compile Include="dllCreator\DeviceManager.cs" />
     <Compile Include="dllCreator\DLLStudio.cs" />
     <Compile Include="AssemblyInfo.cs" />
