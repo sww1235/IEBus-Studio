@@ -1,7 +1,8 @@
-Imports Microsoft.VisualBasic
-Imports System.CodeDom
-Imports System.CodeDom.Compiler
-Imports system.Windows.Forms
+using Microsoft.VisualBasic;
+using System.CodeDom;
+using System.CodeDom.Compiler;
+using system.Windows.Forms;
+
 Public Class DLLStudio
     Private _Make As String
     Private _Model As String
