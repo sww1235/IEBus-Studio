@@ -19,7 +19,7 @@ namespace dllCreator
             sBuilder.AppendLine("Imports System.Windows.Forms");
             sBuilder.AppendLine("Namespace " + _Make);
             sBuilder.AppendLine("Public Class " + _Model + "_" + _Year);
-            sBuilder.AppendLine("Public WithEvents sPort as System.IO.Ports.SerialPort");
+            sBuilder.AppendLine("Public WithEvents sPort as New System.IO.Ports.SerialPort");
             for (int x = 0; x < Events.Count; x++)
             {
                 sBuilder.AppendLine("''' <summary>");
@@ -61,6 +61,9 @@ namespace dllCreator
             sBuilder.AppendLine("End Sub");
             sBuilder.AppendLine("Public Sub ClosePort()");
             sBuilder.AppendLine("If sPort.IsOpen Then sPort.Close");
+            sBuilder.AppendLine("End Sub");
+            sBuilder.AppendLine("Public Sub DataReceived(ByVal sender as object, ByVal e as System.IO.Ports.SerialDataReceivedEventArgs) Handles sPort.DataReceived");
+            sBuilder.AppendLine("");
             sBuilder.AppendLine("End Sub");
             sBuilder.AppendLine("End Class");
             sBuilder.AppendLine("End Namespace");
