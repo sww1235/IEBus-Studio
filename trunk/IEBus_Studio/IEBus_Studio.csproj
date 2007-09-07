@@ -97,6 +97,7 @@
     <Compile Include="dllCreator\Creator.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="DeviceManager.cs" />
+    <Compile Include="dllCreator\Event.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventDiscovery.cs" />
     <Compile Include="EventManager.cs" />

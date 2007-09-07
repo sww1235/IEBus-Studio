@@ -1849,6 +1849,7 @@ namespace IEBus_Studio
             DC.DeviceManager.AddDevice(0x1d, "HeadUnit", "Entertainment.");
             DC.DeviceManager.AddDevice(0x1f, "NavUnit", "The big black box in the back.");
             DC.DeviceManager.AddDevice(0x0, "Something", "Something else?.");
+            DC.AddEvent("VolumeChange", "Triggers when the volume changes.", 1, 2, "4:3:2:%VolumeLevel:67:7:%X:43:%Y");
             DC.CompileDLL(Application.StartupPath + "\\");
 		}
 
