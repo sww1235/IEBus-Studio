@@ -19,7 +19,7 @@ namespace dllCreator
             sBuilder.AppendLine("Imports System.Windows.Forms");
             sBuilder.AppendLine("Namespace " + _Make);
             sBuilder.AppendLine("Public Class " + _Model + "_" + _Year);
-            sBuilder.AppendLine("Public WithEvents sPort as SerialPort");
+            sBuilder.AppendLine("Public WithEvents sPort as System.IO.Ports.SerialPort");
             for (int x = 0; x < Events.Count; x++)
             {
                 sBuilder.AppendLine("''' <summary>");
@@ -45,11 +45,22 @@ namespace dllCreator
                 sBuilder.AppendLine(DeviceManager[x].Name.Replace(" ", "_") + " = " + DeviceManager[x].Address);
             }
             sBuilder.AppendLine("End Enum");
-            sBuilder.AppendLine("''' <summary>");
-            sBuilder.AppendLine("''' this is sample method");
-            sBuilder.AppendLine("''' </summary>");
-            sBuilder.AppendLine("Sub Run");
-            sBuilder.AppendLine("MessageBox.Show(\"dfsdf\")");
+            sBuilder.AppendLine("Public Sub OpenPort(ByVal PortName as String, ByVal BaudRate as Integer, ByVal DataBits as Integer, ByVal Parity as System.IO.Ports.Parity, ByVal StopBits as System.IO.Ports.StopBits, ByVal Handshake as System.IO.Ports.Handshake)");
+            sBuilder.AppendLine("If sPort.IsOpen Then sPort.Close"); 
+            sBuilder.AppendLine("Try");
+            sBuilder.AppendLine("sPort.PortName = PortName");
+            sBuilder.AppendLine("sPort.BaudRate = BaudRate");
+            sBuilder.AppendLine("sPort.DataBits = DataBits");
+            sBuilder.AppendLine("sPort.Parity = Parity");
+            sBuilder.AppendLine("sPort.StopBits = StopBits");
+            sBuilder.AppendLine("sPort.Handshake = Handshake");
+            sBuilder.AppendLine("sPort.Open()");
+            sBuilder.AppendLine("Catch ex as Exception");
+            sBuilder.AppendLine("MessageBox.Show(ex.Message)");
+            sBuilder.AppendLine("End Try");
+            sBuilder.AppendLine("End Sub");
+            sBuilder.AppendLine("Public Sub ClosePort()");
+            sBuilder.AppendLine("If sPort.IsOpen Then sPort.Close");
             sBuilder.AppendLine("End Sub");
             sBuilder.AppendLine("End Class");
             sBuilder.AppendLine("End Namespace");
