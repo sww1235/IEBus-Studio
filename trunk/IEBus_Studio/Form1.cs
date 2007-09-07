@@ -2081,7 +2081,7 @@ namespace IEBus_Studio
                         this.serialPort1.Handshake = System.IO.Ports.Handshake.None;
                         break;
                 }
-
+                
                 this.serialPort1.Open();
             }
             catch (Exception ex)
