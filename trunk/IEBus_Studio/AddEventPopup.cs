@@ -6,18 +6,27 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace IEBus_studioBridge
+namespace IEBus_Studio
 {
     public partial class AddEventPopup : Form
     {
-        public AddEventPopup()
+        private EventManager eventManager;
+
+        public AddEventPopup(EventManager eventManager)
         {
             InitializeComponent();
+            this.eventManager = eventManager;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void addDiscoveredEvent_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void cancelDiscoveredEvent_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.Dispose();
         }
     }
 }

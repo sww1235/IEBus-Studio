@@ -1182,6 +1182,7 @@ namespace IEBus_Studio
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
             this.addEventToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
+            this.addEventToolStripMenuItem.Click += new EventHandler(addEventToolStripMenuItem_Click);
             // 
             // discoverEvent
             // 
@@ -1831,6 +1832,12 @@ namespace IEBus_Studio
             this.PerformLayout();
 
 		}
+
+        void addEventToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddEventPopup eventPopup = new AddEventPopup(eventManager);
+            eventPopup.Show();
+        }
 		#endregion
 
 		/// <summary>

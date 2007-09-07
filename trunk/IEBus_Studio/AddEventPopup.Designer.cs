@@ -1,4 +1,4 @@
-namespace IEBus_studioBridge
+namespace IEBus_Studio
 {
     partial class AddEventPopup
     {
@@ -28,8 +28,8 @@ namespace IEBus_studioBridge
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cancelDiscoveredEvent = new System.Windows.Forms.Button();
+            this.addDiscoveredEvent = new System.Windows.Forms.Button();
             this.eventName = new System.Windows.Forms.TextBox();
             this.eventDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,26 +37,27 @@ namespace IEBus_studioBridge
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // cancelDiscoveredEvent
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(205, 228);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cancelDiscoveredEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelDiscoveredEvent.Location = new System.Drawing.Point(205, 228);
+            this.cancelDiscoveredEvent.Name = "cancelDiscoveredEvent";
+            this.cancelDiscoveredEvent.Size = new System.Drawing.Size(75, 23);
+            this.cancelDiscoveredEvent.TabIndex = 0;
+            this.cancelDiscoveredEvent.Text = "Cancel";
+            this.cancelDiscoveredEvent.UseVisualStyleBackColor = true;
+            this.cancelDiscoveredEvent.Click += new System.EventHandler(this.cancelDiscoveredEvent_Click);
             // 
-            // button2
+            // addDiscoveredEvent
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(124, 228);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Add";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.addDiscoveredEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addDiscoveredEvent.Location = new System.Drawing.Point(124, 228);
+            this.addDiscoveredEvent.Name = "addDiscoveredEvent";
+            this.addDiscoveredEvent.Size = new System.Drawing.Size(75, 23);
+            this.addDiscoveredEvent.TabIndex = 1;
+            this.addDiscoveredEvent.Text = "Add";
+            this.addDiscoveredEvent.UseVisualStyleBackColor = true;
+            this.addDiscoveredEvent.Click += new System.EventHandler(this.addDiscoveredEvent_Click);
             // 
             // eventName
             // 
@@ -114,8 +115,8 @@ namespace IEBus_studioBridge
             this.Controls.Add(this.label1);
             this.Controls.Add(this.eventDescription);
             this.Controls.Add(this.eventName);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.addDiscoveredEvent);
+            this.Controls.Add(this.cancelDiscoveredEvent);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddEventPopup";
@@ -128,8 +129,8 @@ namespace IEBus_studioBridge
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cancelDiscoveredEvent;
+        private System.Windows.Forms.Button addDiscoveredEvent;
         private System.Windows.Forms.TextBox eventName;
         private System.Windows.Forms.TextBox eventDescription;
         private System.Windows.Forms.Label label1;

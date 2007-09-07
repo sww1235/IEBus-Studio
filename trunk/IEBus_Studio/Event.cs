@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IEBus_Studio
 {
-    class Event
+    public class Event
     {
         string name;
         string description;
