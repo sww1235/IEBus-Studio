@@ -1835,6 +1835,8 @@ namespace IEBus_Studio
 
         void addEventToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ToolStripDropDownItem addEventItem = (ToolStripDropDownItem)sender;
+
             AddEventPopup eventPopup = new AddEventPopup(eventManager);
             eventPopup.Show();
         }
