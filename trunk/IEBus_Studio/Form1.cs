@@ -1183,6 +1183,7 @@ namespace IEBus_Studio
             this.addEventToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
             this.addEventToolStripMenuItem.Click += new EventHandler(addEventToolStripMenuItem_Click);
+            this.addEventToolStripMenuItem.
             // 
             // discoverEvent
             // 
