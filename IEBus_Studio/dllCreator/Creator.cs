@@ -19,6 +19,7 @@ namespace dllCreator
             sBuilder.AppendLine("Imports System.Windows.Forms");
             sBuilder.AppendLine("Namespace " + _Make);
             sBuilder.AppendLine("Public Class " + _Model + "_" + _Year);
+            sBuilder.AppendLine("Dim leftovertext as string = String.Empty");
             sBuilder.AppendLine("Public WithEvents sPort as New System.IO.Ports.SerialPort");
             for (int x = 0; x < Events.Count; x++)
             {
@@ -31,12 +32,12 @@ namespace dllCreator
                     if (Events[x].Variables[y].StartsWith("%"))
                         args += ", ByVal " + Events[x].Variables[y].Remove(0, 1) + " as Integer";
                 }
-                sBuilder.AppendLine("Public Event " + Events[x].Name + "(ByVal Master as Integer, ByVal Slave as Integer" + args + ")");
+                sBuilder.AppendLine("Public Event " + Events[x].Name + "(ByVal Master as CarDevice, ByVal Slave as CarDevice" + args + ")");
             }
             sBuilder.AppendLine("''' <summary>");
             sBuilder.AppendLine("''' Specific devices for this car.");
             sBuilder.AppendLine("''' </summary>");
-            sBuilder.AppendLine("Public Enum CarDevices").AppendLine();
+            sBuilder.AppendLine("Public Enum CarDevice").AppendLine();
             for (int x = 0; x < DeviceManager.Devices.Count; x++)
             {
                 sBuilder.AppendLine("''' <summary>");
@@ -46,7 +47,7 @@ namespace dllCreator
             }
             sBuilder.AppendLine("End Enum");
             sBuilder.AppendLine("Public Sub OpenPort(ByVal PortName as String, ByVal BaudRate as Integer, ByVal DataBits as Integer, ByVal Parity as System.IO.Ports.Parity, ByVal StopBits as System.IO.Ports.StopBits, ByVal Handshake as System.IO.Ports.Handshake)");
-            sBuilder.AppendLine("If sPort.IsOpen Then sPort.Close"); 
+            sBuilder.AppendLine("If sPort.IsOpen Then sPort.Close");
             sBuilder.AppendLine("Try");
             sBuilder.AppendLine("sPort.PortName = PortName");
             sBuilder.AppendLine("sPort.BaudRate = BaudRate");
@@ -62,9 +63,82 @@ namespace dllCreator
             sBuilder.AppendLine("Public Sub ClosePort()");
             sBuilder.AppendLine("If sPort.IsOpen Then sPort.Close");
             sBuilder.AppendLine("End Sub");
-            sBuilder.AppendLine("Public Sub DataReceived(ByVal sender as object, ByVal e as System.IO.Ports.SerialDataReceivedEventArgs) Handles sPort.DataReceived");
-            sBuilder.AppendLine("");
+            sBuilder.AppendLine("Public Sub DataReceived(ByVal sender As Object, ByVal e As System.IO.Ports.SerialDataReceivedEventArgs) Handles sPort.DataReceived");
+            sBuilder.AppendLine("Dim text As String = CType(sender, System.IO.Ports.SerialPort).ReadExisting");
+            sBuilder.AppendLine("text = leftovertext + text");
+            sBuilder.AppendLine("If ((text.Contains(\"^\") AndAlso text.Contains(\"~\"))) Then");
+            sBuilder.AppendLine("Dim clearStart As Integer = text.LastIndexOf(\"^\"c) + 1");
+            sBuilder.AppendLine("If (clearStart < text.Length) Then");
+            sBuilder.AppendLine("leftovertext = text.Substring(clearStart)");
+            sBuilder.AppendLine("text = text.Substring(0, clearStart)");
+            sBuilder.AppendLine("End If");
+            sBuilder.AppendLine("Dim split1() As String = text.Split(\"^\"c)");
+            sBuilder.AppendLine("For i As Integer = 0 To split1.Length - 1");
+            sBuilder.AppendLine("Dim split2() As String = split1(i).Split(\"~\"c)");
+            sBuilder.AppendLine("Dim wrkMessage as string = split2(1)");
+            sBuilder.AppendLine("Dim rawArray() As String = wrkMessage.Split(\":\"c)");
+            sBuilder.AppendLine("Dim MasterDevice As CarDevice = System.Convert.ToInt32(rawArray(1), 16)");
+            sBuilder.AppendLine("Dim SlaveDevice As CarDevice = System.Convert.ToInt32(rawArray(2), 16)");
+            sBuilder.AppendLine("Dim DataLength As Integer = rawArray(4)");
+            sBuilder.AppendLine("Dim RawData(DataLength - 1) As String");
+            sBuilder.AppendLine("Array.Copy(rawArray, 5, RawData, 0, DataLength)");
+
+            for (int x = 0; x < Events.Count; x++)
+            {
+                string valueString = string.Empty;
+                string paramsString = string.Empty;
+                string indicesString = string.Empty;
+                string compareString = string.Empty;
+                int argsCount = 0;
+                for (int y = 0; y < Events[x].Variables.Count; y++)
+                {
+                    if (Events[x].Variables[y].StartsWith("%"))
+                    {
+                        paramsString += ", paramVariables(" + argsCount.ToString() + ")";
+                        //valueString += "Console.WriteLine(RawData(" + y.ToString() + "))" + System.Environment.NewLine;
+                        valueString += "paramVariables(" + argsCount.ToString() + ") = System.Convert.ToInt32(RawData(" + y.ToString() + "), 16)" + System.Environment.NewLine;
+                        argsCount++;
+
+                        compareString += "*:";
+                        indicesString += y.ToString() + ", ";
+                    }
+                    else
+                    {
+                        compareString += Events[x].Variables[y] + ":";
+                    }
+                }
+                compareString = compareString.Substring(0, compareString.Length - 1);
+                indicesString = indicesString.Substring(0, indicesString.Length - 2);
+                argsCount--;
+                sBuilder.AppendLine("If MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " Then");
+                sBuilder.AppendLine("If BuildWildcard(RawData, New Integer() {" + indicesString + "}).ToLower() = \"" + compareString + "\".ToLower() Then");
+                sBuilder.AppendLine("Array.Copy(rawArray, 5, RawData, 0, DataLength)");
+                sBuilder.AppendLine("Dim paramVariables(" + argsCount +") as Integer");
+                sBuilder.AppendLine(valueString);
+                sBuilder.AppendLine("RaiseEvent " + Events[x].Name + "(MasterDevice, SlaveDevice" + paramsString + ")");
+                sBuilder.AppendLine("End If");
+                sBuilder.AppendLine("End If");
+            }
+
+            sBuilder.AppendLine("Next");
+            sBuilder.AppendLine("Else");
+            sBuilder.AppendLine("leftovertext = text");
+            sBuilder.AppendLine("End If");
             sBuilder.AppendLine("End Sub");
+            sBuilder.AppendLine("Function BuildWildcard(ByVal rData() As String, ByVal Indices() As Integer) As String");
+            sBuilder.AppendLine("Dim DataString As String = String.Empty");
+            sBuilder.AppendLine("For x As Integer = 0 To Indices.Length - 1");
+            sBuilder.AppendLine("rData(Indices(x)) = \"*\"");
+            sBuilder.AppendLine("Next");
+            sBuilder.AppendLine("For x As Integer = 0 To rData.Length - 1");
+            sBuilder.AppendLine("If x = rData.Length - 1 Then");
+            sBuilder.AppendLine("DataString &= rData(x).ToString");
+            sBuilder.AppendLine("Else");
+            sBuilder.AppendLine("DataString &= rData(x).ToString & \":\"");
+            sBuilder.AppendLine("End If");
+            sBuilder.AppendLine("Next");
+            sBuilder.AppendLine("Return DataString");
+            sBuilder.AppendLine("End Function");
             sBuilder.AppendLine("End Class");
             sBuilder.AppendLine("End Namespace");
             System.Console.WriteLine(sBuilder.ToString());
@@ -89,14 +163,14 @@ namespace dllCreator
             CompilerResults comResults = vbCP.CompileAssemblyFromSource(comParams, strCode);
             foreach (string strOut in comResults.Output)
             {
-                //Console.WriteLine(strOut);
+                System.Console.WriteLine(strOut);
             }
 
             if (comResults.Errors.Count > 0)
             {
                 foreach (CompilerError cErr in comResults.Errors)
                 {
-                    //Console.WriteLine(cErr.ErrorNumber + ": " + cErr.ErrorText);
+                  System.Console.WriteLine(cErr.ErrorNumber + ": " + cErr.ErrorText);
                 }
                 MessageBox.Show("Errors occoured", "Errors", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
