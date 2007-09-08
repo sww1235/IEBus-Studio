@@ -1853,12 +1853,10 @@ namespace IEBus_Studio
 
 		private void Form1_Load(object sender, System.EventArgs e)
         {
-            dllCreator.Creator DC = new dllCreator.Creator("Toyota", "Camry", 1993);
-            DC.DeviceManager.AddDevice(0x1c, "Horn LOL", "Something you press when you see a woman trying to drive.");
-            DC.DeviceManager.AddDevice(0x1d, "HeadUnit", "Entertainment.");
-            DC.DeviceManager.AddDevice(0x1f, "NavUnit", "The big black box in the back.");
-            DC.DeviceManager.AddDevice(0x0, "Something", "Something else?.");
-            DC.AddEvent("VolumeChange", "Triggers when the volume changes.", 1, 2, "4:3:2:%VolumeLevel:67:7:%X:43:%Y");
+            dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
+            DC.DeviceManager.AddDevice(0x131, "Touch Screen", "The touch screen.");
+            DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
+            DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:0:0:0:0:%Unknown1");
             DC.CompileDLL(Application.StartupPath + "\\");
 		}
 
