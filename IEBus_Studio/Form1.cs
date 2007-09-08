@@ -1838,6 +1838,8 @@ namespace IEBus_Studio
             // Store the devices temporarily
             ArrayList discoveredEventList = new ArrayList(eventDiscoverer.DiscoveredEvents);
 
+            eventDiscoveryTable.SuspendLayout();
+
             // Remove all existing rows (saveDeviceChanges() is invoked)
             eventDiscoveryTable.Rows.Clear();
 
@@ -1851,12 +1853,15 @@ namespace IEBus_Studio
                 Event ev = (Event)devent.TheEvent;
                 eventDiscoveryTable.Rows.Add(devent.NumberOfInstances, ev.BroadcastString, ev.Master_Address_String, ev.Slave_Address_String, ev.ControlString, ev.DataSize, ev.DataString);
             }
+            eventDiscoveryTable.ResumeLayout();
         }
 
         private void displayDeviceList()
         {
             // Store the devices temporarily
             ArrayList deviceList = new ArrayList(deviceManager.Devices);
+
+            devicesTable.SuspendLayout();
 
             // Remove all existing rows (saveDeviceChanges() is invoked)
             devicesTable.Rows.Clear();
@@ -1870,6 +1875,8 @@ namespace IEBus_Studio
                 Device device = (Device)(deviceManager.Devices[i]);
                 devicesTable.Rows.Add(HexStringConverter.ToHexString(device.Address), device.Name, device.Description);
             }
+
+            devicesTable.ResumeLayout();
         }
 
         private void addDevice_Click(object sender, EventArgs e)
@@ -1908,6 +1915,9 @@ namespace IEBus_Studio
             // Store the devices temporarily
             ArrayList eventList = new ArrayList(eventManager.Events);
 
+            // Pause drawing for a sec (speed boost)
+            eventsTable.SuspendLayout();
+
             // Remove all existing rows (saveDeviceChanges() is invoked)
             eventsTable.Rows.Clear();
 
@@ -1930,6 +1940,9 @@ namespace IEBus_Studio
 
                 eventsTable.Rows.Add(ev.Name, ev.Description, b, ev.Master_Address_String, ev.Slave_Address_String, ev.ControlString, ev.DataSize, ev.DataString);
             }
+
+            // Resume Drawing
+            eventsTable.ResumeLayout();
         }
 
         private void addEvent_Click(object sender, EventArgs e)
