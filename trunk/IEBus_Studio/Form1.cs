@@ -2258,7 +2258,7 @@ namespace IEBus_Studio
                 string master_address = (string)eventsTable.Rows[i].Cells[3].Value;
                 string slave_address  = (string)eventsTable.Rows[i].Cells[4].Value;
                 string control        = (string)eventsTable.Rows[i].Cells[5].Value;
-                ushort datasize       = (ushort)eventsTable.Rows[i].Cells[6].Value;
+                ushort datasize       = 15; //(ushort)eventsTable.Rows[i].Cells[6].Value;  <-- bombs on the cast
                 string data           = (string)eventsTable.Rows[i].Cells[7].Value;
                   
                 // Create the event object with all the data from the table
