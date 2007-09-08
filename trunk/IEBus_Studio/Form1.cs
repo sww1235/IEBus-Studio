@@ -56,68 +56,11 @@ namespace IEBus_Studio
         private ToolStripMenuItem aboutToolStripMenuItem;
         private Panel panel1;
         private SplitContainer splitContainer1;
-        private Button Connect;
-        private GroupBox groupBox1;
-        private ComboBox bitsPerSecond;
-        private Label label1;
-        private Label label2;
-        private ComboBox dataBits;
-        private Label label4;
-        private ComboBox stopBits;
-        private Label label3;
-        private ComboBox parity;
-        private Label label5;
-        private ComboBox flowControl;
-        private Label label6;
-        private ComboBox port;
-        private Button connectComButton;
-        private Button disconnectComButton;
-        private GroupBox groupBox2;
-        private TextBox outputPath;
-        private Button outputBrowse;
         private SaveFileDialog chooseOutputFile;
-        private CheckBox outputRawCheckBox;
-        private Label label7;
-        private Button stopButton;
-        private Button pauseButton;
-        private Button startButton;
         private System.IO.Ports.SerialPort serialPort1;
         private IContainer components;
         private ToolStripMenuItem changeMessageTableToolStripMenuItem;
         private TabControl MessageTableTabs;
-        private TabPage RawMessageTableTab;
-        private DataGridView RawMessageTable;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private TabPage ParsedMessageTableTab;
-        private DataGridView ParsedMessageTable;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Master;
-        private DataGridViewTextBoxColumn Slave;
-        private DataGridViewTextBoxColumn Control;
-        private DataGridViewTextBoxColumn DataSize;
-        private DataGridViewTextBoxColumn Data1;
-        private TabPage terminalTab;
-        private TextBox terminal;
         private TabPage eventDiscoveryTab;
         private Button discoverEvent;
         private TextBox secondsToDiscover;
@@ -157,6 +100,41 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn Event_Control;
         private DataGridViewTextBoxColumn Event_DataSize;
         private DataGridViewTextBoxColumn Event_Data;
+        private TabControl BottomTabs;
+        private TabPage tabPage1;
+        private TextBox terminal;
+        private GroupBox groupBox1;
+        private Button disconnectComButton;
+        private Button connectComButton;
+        private Label label6;
+        private ComboBox port;
+        private Label label5;
+        private ComboBox flowControl;
+        private Label label4;
+        private ComboBox stopBits;
+        private Label label3;
+        private ComboBox parity;
+        private Label label2;
+        private ComboBox dataBits;
+        private Label label1;
+        private ComboBox bitsPerSecond;
+        private Button Connect;
+        private TabPage liveMessages;
+        private Label label7;
+        private DataGridView ParsedMessageTable;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Master;
+        private DataGridViewTextBoxColumn Slave;
+        private DataGridViewTextBoxColumn Control;
+        private DataGridViewTextBoxColumn DataSize;
+        private DataGridViewTextBoxColumn Data1;
+        private CheckBox checkBox1;
+        private CheckBox variableDataFilter;
+        private Label label10;
+        private ComboBox comboBox2;
+        private Label label9;
+        private ComboBox masterFilter;
+        private ToolStripStatusLabel ts_connectionStatus;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -198,25 +176,21 @@ namespace IEBus_Studio
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.ts_connectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -257,47 +231,26 @@ namespace IEBus_Studio
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.MessageTableTabs = new System.Windows.Forms.TabControl();
-            this.RawMessageTableTab = new System.Windows.Forms.TabPage();
-            this.RawMessageTable = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ParsedMessageTableTab = new System.Windows.Forms.TabPage();
-            this.ParsedMessageTable = new System.Windows.Forms.DataGridView();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Data1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.terminalTab = new System.Windows.Forms.TabPage();
-            this.terminal = new System.Windows.Forms.TextBox();
             this.eventDiscoveryTab = new System.Windows.Forms.TabPage();
+            this.variableDataFilter = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.timeLeftLabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.eventDiscoveryTable = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EventActionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterFilter = new System.Windows.Forms.ComboBox();
             this.discoverEvent = new System.Windows.Forms.Button();
-            this.secondsToDiscover = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.secondsToDiscover = new System.Windows.Forms.TextBox();
             this.devicesTab = new System.Windows.Forms.TabPage();
             this.scanDevices = new System.Windows.Forms.Button();
             this.addDevice = new System.Windows.Forms.Button();
@@ -308,14 +261,17 @@ namespace IEBus_Studio
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.stopButton = new System.Windows.Forms.Button();
-            this.pauseButton = new System.Windows.Forms.Button();
-            this.startButton = new System.Windows.Forms.Button();
-            this.outputRawCheckBox = new System.Windows.Forms.CheckBox();
-            this.outputPath = new System.Windows.Forms.TextBox();
-            this.outputBrowse = new System.Windows.Forms.Button();
+            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BottomTabs = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.terminal = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.disconnectComButton = new System.Windows.Forms.Button();
             this.connectComButton = new System.Windows.Forms.Button();
@@ -332,24 +288,20 @@ namespace IEBus_Studio
             this.label1 = new System.Windows.Forms.Label();
             this.bitsPerSecond = new System.Windows.Forms.ComboBox();
             this.Connect = new System.Windows.Forms.Button();
+            this.liveMessages = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ParsedMessageTable = new System.Windows.Forms.DataGridView();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.chooseOutputFile = new System.Windows.Forms.SaveFileDialog();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -357,11 +309,6 @@ namespace IEBus_Studio
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.MessageTableTabs.SuspendLayout();
-            this.RawMessageTableTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RawMessageTable)).BeginInit();
-            this.ParsedMessageTableTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).BeginInit();
-            this.terminalTab.SuspendLayout();
             this.eventDiscoveryTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventDiscoveryTable)).BeginInit();
             this.EventActionsMenuStrip.SuspendLayout();
@@ -369,17 +316,28 @@ namespace IEBus_Studio
             ((System.ComponentModel.ISupportInitialize)(this.devicesTable)).BeginInit();
             this.eventsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventsTable)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.BottomTabs.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.liveMessages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ts_connectionStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 520);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(831, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(719, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // ts_connectionStatus
+            // 
+            this.ts_connectionStatus.Enabled = false;
+            this.ts_connectionStatus.Name = "ts_connectionStatus";
+            this.ts_connectionStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStrip1
             // 
@@ -396,7 +354,7 @@ namespace IEBus_Studio
             this.helpToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(831, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(719, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -493,7 +451,7 @@ namespace IEBus_Studio
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(831, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(719, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -699,7 +657,7 @@ namespace IEBus_Studio
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 49);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(831, 490);
+            this.panel1.Size = new System.Drawing.Size(719, 471);
             this.panel1.TabIndex = 5;
             // 
             // splitContainer1
@@ -719,18 +677,13 @@ namespace IEBus_Studio
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainer1.Size = new System.Drawing.Size(831, 490);
-            this.splitContainer1.SplitterDistance = 334;
+            this.splitContainer1.Panel2.Controls.Add(this.BottomTabs);
+            this.splitContainer1.Size = new System.Drawing.Size(719, 471);
+            this.splitContainer1.SplitterDistance = 287;
             this.splitContainer1.TabIndex = 0;
             // 
             // MessageTableTabs
             // 
-            this.MessageTableTabs.Controls.Add(this.RawMessageTableTab);
-            this.MessageTableTabs.Controls.Add(this.ParsedMessageTableTab);
-            this.MessageTableTabs.Controls.Add(this.terminalTab);
             this.MessageTableTabs.Controls.Add(this.eventDiscoveryTab);
             this.MessageTableTabs.Controls.Add(this.devicesTab);
             this.MessageTableTabs.Controls.Add(this.eventsTab);
@@ -738,394 +691,61 @@ namespace IEBus_Studio
             this.MessageTableTabs.Location = new System.Drawing.Point(0, 0);
             this.MessageTableTabs.Name = "MessageTableTabs";
             this.MessageTableTabs.SelectedIndex = 0;
-            this.MessageTableTabs.Size = new System.Drawing.Size(831, 334);
+            this.MessageTableTabs.Size = new System.Drawing.Size(719, 287);
             this.MessageTableTabs.TabIndex = 5;
-            // 
-            // RawMessageTableTab
-            // 
-            this.RawMessageTableTab.Controls.Add(this.RawMessageTable);
-            this.RawMessageTableTab.Location = new System.Drawing.Point(4, 22);
-            this.RawMessageTableTab.Name = "RawMessageTableTab";
-            this.RawMessageTableTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RawMessageTableTab.Size = new System.Drawing.Size(823, 308);
-            this.RawMessageTableTab.TabIndex = 0;
-            this.RawMessageTableTab.Text = "Raw";
-            this.RawMessageTableTab.UseVisualStyleBackColor = true;
-            // 
-            // RawMessageTable
-            // 
-            this.RawMessageTable.AllowUserToAddRows = false;
-            this.RawMessageTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
-            this.RawMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.RawMessageTable.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.RawMessageTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RawMessageTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RawMessageTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn15,
-            this.dataGridViewTextBoxColumn16,
-            this.dataGridViewTextBoxColumn17,
-            this.dataGridViewTextBoxColumn18,
-            this.dataGridViewTextBoxColumn19,
-            this.dataGridViewTextBoxColumn20});
-            this.RawMessageTable.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.RawMessageTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RawMessageTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.RawMessageTable.Location = new System.Drawing.Point(3, 3);
-            this.RawMessageTable.MultiSelect = false;
-            this.RawMessageTable.Name = "RawMessageTable";
-            this.RawMessageTable.ReadOnly = true;
-            this.RawMessageTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Azure;
-            this.RawMessageTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.RawMessageTable.RowTemplate.Height = 18;
-            this.RawMessageTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RawMessageTable.ShowEditingIcon = false;
-            this.RawMessageTable.Size = new System.Drawing.Size(817, 302);
-            this.RawMessageTable.TabIndex = 6;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "B";
-            this.Column1.MaxInputLength = 1;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.ToolTipText = "Broadcast Bit";
-            this.Column1.Width = 20;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.Format = "\"0x\"0000";
-            dataGridViewCellStyle2.NullValue = "0x0";
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Master";
-            this.dataGridViewTextBoxColumn1.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.Format = "\"0x\"0000";
-            dataGridViewCellStyle3.NullValue = "0x0";
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Slave";
-            this.dataGridViewTextBoxColumn2.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle4.Format = "\"0x\"0000";
-            dataGridViewCellStyle4.NullValue = "0x0";
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Control";
-            this.dataGridViewTextBoxColumn3.MaxInputLength = 1;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Size";
-            this.dataGridViewTextBoxColumn4.MaxInputLength = 2;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn4.Width = 35;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "";
-            this.dataGridViewTextBoxColumn5.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "";
-            this.dataGridViewTextBoxColumn6.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "";
-            this.dataGridViewTextBoxColumn7.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "";
-            this.dataGridViewTextBoxColumn8.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "";
-            this.dataGridViewTextBoxColumn9.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.HeaderText = "";
-            this.dataGridViewTextBoxColumn10.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.HeaderText = "";
-            this.dataGridViewTextBoxColumn11.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.HeaderText = "";
-            this.dataGridViewTextBoxColumn12.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.HeaderText = "";
-            this.dataGridViewTextBoxColumn13.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.HeaderText = "";
-            this.dataGridViewTextBoxColumn14.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            this.dataGridViewTextBoxColumn14.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.HeaderText = "";
-            this.dataGridViewTextBoxColumn15.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            this.dataGridViewTextBoxColumn15.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            this.dataGridViewTextBoxColumn16.HeaderText = "";
-            this.dataGridViewTextBoxColumn16.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            this.dataGridViewTextBoxColumn16.ReadOnly = true;
-            this.dataGridViewTextBoxColumn16.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            this.dataGridViewTextBoxColumn17.HeaderText = "";
-            this.dataGridViewTextBoxColumn17.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            this.dataGridViewTextBoxColumn17.ReadOnly = true;
-            this.dataGridViewTextBoxColumn17.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            this.dataGridViewTextBoxColumn18.HeaderText = "";
-            this.dataGridViewTextBoxColumn18.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            this.dataGridViewTextBoxColumn18.ReadOnly = true;
-            this.dataGridViewTextBoxColumn18.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn19
-            // 
-            this.dataGridViewTextBoxColumn19.HeaderText = "";
-            this.dataGridViewTextBoxColumn19.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
-            this.dataGridViewTextBoxColumn19.ReadOnly = true;
-            this.dataGridViewTextBoxColumn19.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            this.dataGridViewTextBoxColumn20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn20.HeaderText = "";
-            this.dataGridViewTextBoxColumn20.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            this.dataGridViewTextBoxColumn20.ReadOnly = true;
-            // 
-            // ParsedMessageTableTab
-            // 
-            this.ParsedMessageTableTab.Controls.Add(this.ParsedMessageTable);
-            this.ParsedMessageTableTab.Location = new System.Drawing.Point(4, 22);
-            this.ParsedMessageTableTab.Name = "ParsedMessageTableTab";
-            this.ParsedMessageTableTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ParsedMessageTableTab.Size = new System.Drawing.Size(823, 308);
-            this.ParsedMessageTableTab.TabIndex = 1;
-            this.ParsedMessageTableTab.Text = "Parsed";
-            this.ParsedMessageTableTab.UseVisualStyleBackColor = true;
-            // 
-            // ParsedMessageTable
-            // 
-            this.ParsedMessageTable.AllowUserToAddRows = false;
-            this.ParsedMessageTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.ParsedMessageTable.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ParsedMessageTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ParsedMessageTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ParsedMessageTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column2,
-            this.Master,
-            this.Slave,
-            this.Control,
-            this.DataSize,
-            this.Data1});
-            this.ParsedMessageTable.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ParsedMessageTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ParsedMessageTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ParsedMessageTable.Location = new System.Drawing.Point(3, 3);
-            this.ParsedMessageTable.Margin = new System.Windows.Forms.Padding(0);
-            this.ParsedMessageTable.Name = "ParsedMessageTable";
-            this.ParsedMessageTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Azure;
-            this.ParsedMessageTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.ParsedMessageTable.RowTemplate.Height = 18;
-            this.ParsedMessageTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ParsedMessageTable.Size = new System.Drawing.Size(817, 302);
-            this.ParsedMessageTable.TabIndex = 4;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "B";
-            this.Column2.MaxInputLength = 1;
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column2.ToolTipText = "Broadcast Bit";
-            this.Column2.Width = 20;
-            // 
-            // Master
-            // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Master.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Master.HeaderText = "Master";
-            this.Master.MaxInputLength = 1024;
-            this.Master.Name = "Master";
-            this.Master.ReadOnly = true;
-            this.Master.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Slave
-            // 
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Info;
-            this.Slave.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Slave.HeaderText = "Slave";
-            this.Slave.MaxInputLength = 1024;
-            this.Slave.Name = "Slave";
-            this.Slave.ReadOnly = true;
-            this.Slave.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Control
-            // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.AliceBlue;
-            this.Control.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Control.HeaderText = "Control";
-            this.Control.MaxInputLength = 50;
-            this.Control.Name = "Control";
-            this.Control.ReadOnly = true;
-            this.Control.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Control.Width = 75;
-            // 
-            // DataSize
-            // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle10.Format = "N0";
-            dataGridViewCellStyle10.NullValue = "0";
-            this.DataSize.DefaultCellStyle = dataGridViewCellStyle10;
-            this.DataSize.HeaderText = "Size";
-            this.DataSize.MaxInputLength = 2;
-            this.DataSize.Name = "DataSize";
-            this.DataSize.ReadOnly = true;
-            this.DataSize.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataSize.Width = 35;
-            // 
-            // Data1
-            // 
-            this.Data1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Data1.HeaderText = "Data";
-            this.Data1.MaxInputLength = 4;
-            this.Data1.Name = "Data1";
-            this.Data1.ReadOnly = true;
-            // 
-            // terminalTab
-            // 
-            this.terminalTab.Controls.Add(this.terminal);
-            this.terminalTab.Location = new System.Drawing.Point(4, 22);
-            this.terminalTab.Name = "terminalTab";
-            this.terminalTab.Padding = new System.Windows.Forms.Padding(3);
-            this.terminalTab.Size = new System.Drawing.Size(823, 308);
-            this.terminalTab.TabIndex = 2;
-            this.terminalTab.Text = "Terminal";
-            this.terminalTab.UseVisualStyleBackColor = true;
-            // 
-            // terminal
-            // 
-            this.terminal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.terminal.Location = new System.Drawing.Point(3, 3);
-            this.terminal.Multiline = true;
-            this.terminal.Name = "terminal";
-            this.terminal.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.terminal.Size = new System.Drawing.Size(817, 302);
-            this.terminal.TabIndex = 0;
             // 
             // eventDiscoveryTab
             // 
+            this.eventDiscoveryTab.Controls.Add(this.variableDataFilter);
+            this.eventDiscoveryTab.Controls.Add(this.comboBox2);
             this.eventDiscoveryTab.Controls.Add(this.timeLeftLabel);
             this.eventDiscoveryTab.Controls.Add(this.eventDiscoveryTable);
+            this.eventDiscoveryTab.Controls.Add(this.masterFilter);
             this.eventDiscoveryTab.Controls.Add(this.discoverEvent);
-            this.eventDiscoveryTab.Controls.Add(this.secondsToDiscover);
             this.eventDiscoveryTab.Controls.Add(this.label8);
+            this.eventDiscoveryTab.Controls.Add(this.secondsToDiscover);
+            this.eventDiscoveryTab.Controls.Add(this.label10);
+            this.eventDiscoveryTab.Controls.Add(this.label9);
             this.eventDiscoveryTab.Location = new System.Drawing.Point(4, 22);
             this.eventDiscoveryTab.Name = "eventDiscoveryTab";
             this.eventDiscoveryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.eventDiscoveryTab.Size = new System.Drawing.Size(823, 308);
+            this.eventDiscoveryTab.Size = new System.Drawing.Size(711, 261);
             this.eventDiscoveryTab.TabIndex = 3;
             this.eventDiscoveryTab.Text = "Event Discovery";
             this.eventDiscoveryTab.UseVisualStyleBackColor = true;
+            // 
+            // variableDataFilter
+            // 
+            this.variableDataFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.variableDataFilter.AutoSize = true;
+            this.variableDataFilter.Location = new System.Drawing.Point(456, 24);
+            this.variableDataFilter.Name = "variableDataFilter";
+            this.variableDataFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.variableDataFilter.Size = new System.Drawing.Size(129, 17);
+            this.variableDataFilter.TabIndex = 6;
+            this.variableDataFilter.Text = "Look for variable data";
+            this.variableDataFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.variableDataFilter.UseVisualStyleBackColor = true;
+            this.variableDataFilter.CheckedChanged += new System.EventHandler(this.variableDataFilter_CheckedChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(197, 6);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 13);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Slave filter:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Build from device class"});
+            this.comboBox2.Location = new System.Drawing.Point(200, 22);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(132, 21);
+            this.comboBox2.TabIndex = 4;
             // 
             // timeLeftLabel
             // 
@@ -1135,12 +755,21 @@ namespace IEBus_Studio
             this.timeLeftLabel.Size = new System.Drawing.Size(0, 13);
             this.timeLeftLabel.TabIndex = 6;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(60, 7);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(64, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Master filter:";
+            // 
             // eventDiscoveryTable
             // 
             this.eventDiscoveryTable.AllowUserToAddRows = false;
             this.eventDiscoveryTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
             this.eventDiscoveryTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1157,7 +786,7 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn26});
             this.eventDiscoveryTable.Cursor = System.Windows.Forms.Cursors.Default;
             this.eventDiscoveryTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.eventDiscoveryTable.Location = new System.Drawing.Point(3, 39);
+            this.eventDiscoveryTable.Location = new System.Drawing.Point(3, 51);
             this.eventDiscoveryTable.Margin = new System.Windows.Forms.Padding(0);
             this.eventDiscoveryTable.Name = "eventDiscoveryTable";
             this.eventDiscoveryTable.RowTemplate.ContextMenuStrip = this.EventActionsMenuStrip;
@@ -1166,9 +795,81 @@ namespace IEBus_Studio
             this.eventDiscoveryTable.RowTemplate.Height = 18;
             this.eventDiscoveryTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.eventDiscoveryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.eventDiscoveryTable.Size = new System.Drawing.Size(817, 266);
+            this.eventDiscoveryTable.Size = new System.Drawing.Size(705, 207);
             this.eventDiscoveryTable.TabIndex = 5;
             this.eventDiscoveryTable.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.EventDiscoveryTable_RowContextMenuStripNeeded);
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Instances";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn21
+            // 
+            this.dataGridViewTextBoxColumn21.HeaderText = "B";
+            this.dataGridViewTextBoxColumn21.MaxInputLength = 1;
+            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            this.dataGridViewTextBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn21.ToolTipText = "Broadcast Bit";
+            this.dataGridViewTextBoxColumn21.Width = 25;
+            // 
+            // dataGridViewTextBoxColumn22
+            // 
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn22.HeaderText = "Master";
+            this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
+            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            this.dataGridViewTextBoxColumn22.ReadOnly = true;
+            this.dataGridViewTextBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn23
+            // 
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle16.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn23.HeaderText = "Slave";
+            this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.ReadOnly = true;
+            this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle17.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewTextBoxColumn24.HeaderText = "Control";
+            this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.ReadOnly = true;
+            this.dataGridViewTextBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn24.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn25
+            // 
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle18.Format = "N0";
+            dataGridViewCellStyle18.NullValue = "0";
+            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridViewTextBoxColumn25.HeaderText = "Size";
+            this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.ReadOnly = true;
+            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn25.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn26
+            // 
+            this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn26.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn26.MaxInputLength = 4;
+            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            this.dataGridViewTextBoxColumn26.ReadOnly = true;
             // 
             // EventActionsMenuStrip
             // 
@@ -1182,12 +883,22 @@ namespace IEBus_Studio
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
             this.addEventToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
-            this.addEventToolStripMenuItem.Click += new EventHandler(addEventToolStripMenuItem_Click);
+            this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
+            // 
+            // masterFilter
+            // 
+            this.masterFilter.FormattingEnabled = true;
+            this.masterFilter.Items.AddRange(new object[] {
+            "Build from device class"});
+            this.masterFilter.Location = new System.Drawing.Point(63, 22);
+            this.masterFilter.Name = "masterFilter";
+            this.masterFilter.Size = new System.Drawing.Size(131, 21);
+            this.masterFilter.TabIndex = 2;
             // 
             // discoverEvent
             // 
             this.discoverEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.discoverEvent.Location = new System.Drawing.Point(723, 10);
+            this.discoverEvent.Location = new System.Drawing.Point(602, 21);
             this.discoverEvent.Name = "discoverEvent";
             this.discoverEvent.Size = new System.Drawing.Size(92, 20);
             this.discoverEvent.TabIndex = 2;
@@ -1195,21 +906,22 @@ namespace IEBus_Studio
             this.discoverEvent.UseVisualStyleBackColor = true;
             this.discoverEvent.Click += new System.EventHandler(this.discoverEvent_Click);
             // 
-            // secondsToDiscover
-            // 
-            this.secondsToDiscover.Location = new System.Drawing.Point(179, 10);
-            this.secondsToDiscover.Name = "secondsToDiscover";
-            this.secondsToDiscover.Size = new System.Drawing.Size(98, 20);
-            this.secondsToDiscover.TabIndex = 1;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 13);
+            this.label8.Location = new System.Drawing.Point(5, 7);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(165, 13);
+            this.label8.Size = new System.Drawing.Size(52, 13);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Number of Seconds To Discover:";
+            this.label8.Text = "Seconds:";
+            // 
+            // secondsToDiscover
+            // 
+            this.secondsToDiscover.Location = new System.Drawing.Point(8, 23);
+            this.secondsToDiscover.Name = "secondsToDiscover";
+            this.secondsToDiscover.Size = new System.Drawing.Size(49, 20);
+            this.secondsToDiscover.TabIndex = 1;
+            this.secondsToDiscover.Text = "5";
             // 
             // devicesTab
             // 
@@ -1219,9 +931,9 @@ namespace IEBus_Studio
             this.devicesTab.Location = new System.Drawing.Point(4, 22);
             this.devicesTab.Name = "devicesTab";
             this.devicesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.devicesTab.Size = new System.Drawing.Size(823, 308);
+            this.devicesTab.Size = new System.Drawing.Size(711, 261);
             this.devicesTab.TabIndex = 4;
-            this.devicesTab.Text = "Devices";
+            this.devicesTab.Text = "Device Discovery";
             this.devicesTab.UseVisualStyleBackColor = true;
             // 
             // scanDevices
@@ -1237,7 +949,7 @@ namespace IEBus_Studio
             // addDevice
             // 
             this.addDevice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addDevice.Location = new System.Drawing.Point(725, 10);
+            this.addDevice.Location = new System.Drawing.Point(613, 10);
             this.addDevice.Name = "addDevice";
             this.addDevice.Size = new System.Drawing.Size(92, 20);
             this.addDevice.TabIndex = 7;
@@ -1249,8 +961,8 @@ namespace IEBus_Studio
             // 
             this.devicesTable.AllowUserToAddRows = false;
             this.devicesTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.devicesTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1270,7 +982,7 @@ namespace IEBus_Studio
             this.devicesTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.devicesTable.RowTemplate.Height = 18;
             this.devicesTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.devicesTable.Size = new System.Drawing.Size(817, 266);
+            this.devicesTable.Size = new System.Drawing.Size(705, 219);
             this.devicesTable.TabIndex = 6;
             this.devicesTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveDeviceChanges);
             this.devicesTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveDeviceChanges);
@@ -1278,9 +990,9 @@ namespace IEBus_Studio
             // devices_deviceAddress
             // 
             this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle20;
             this.devices_deviceAddress.HeaderText = "Address";
             this.devices_deviceAddress.MaxInputLength = 1024;
             this.devices_deviceAddress.Name = "devices_deviceAddress";
@@ -1305,9 +1017,9 @@ namespace IEBus_Studio
             this.eventsTab.Location = new System.Drawing.Point(4, 22);
             this.eventsTab.Name = "eventsTab";
             this.eventsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.eventsTab.Size = new System.Drawing.Size(823, 308);
+            this.eventsTab.Size = new System.Drawing.Size(711, 261);
             this.eventsTab.TabIndex = 5;
-            this.eventsTab.Text = "Events";
+            this.eventsTab.Text = "Defined Events";
             this.eventsTab.UseVisualStyleBackColor = true;
             // 
             // addEvent
@@ -1322,10 +1034,9 @@ namespace IEBus_Studio
             // 
             // eventsTable
             // 
-            this.eventsTable.AllowUserToAddRows = false;
             this.eventsTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
             this.eventsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1350,395 +1061,10 @@ namespace IEBus_Studio
             this.eventsTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.eventsTable.RowTemplate.Height = 18;
             this.eventsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.eventsTable.Size = new System.Drawing.Size(817, 266);
+            this.eventsTable.Size = new System.Drawing.Size(705, 219);
             this.eventsTable.TabIndex = 7;
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.stopButton);
-            this.groupBox2.Controls.Add(this.pauseButton);
-            this.groupBox2.Controls.Add(this.startButton);
-            this.groupBox2.Controls.Add(this.outputRawCheckBox);
-            this.groupBox2.Controls.Add(this.outputPath);
-            this.groupBox2.Controls.Add(this.outputBrowse);
-            this.groupBox2.Location = new System.Drawing.Point(431, 9);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(392, 135);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Output";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 81);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Control output to the file";
-            // 
-            // stopButton
-            // 
-            this.stopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.stopButton.Location = new System.Drawing.Point(10, 102);
-            this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(75, 23);
-            this.stopButton.TabIndex = 5;
-            this.stopButton.Text = "Stop";
-            this.stopButton.UseVisualStyleBackColor = true;
-            // 
-            // pauseButton
-            // 
-            this.pauseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pauseButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.pauseButton.Location = new System.Drawing.Point(224, 102);
-            this.pauseButton.Name = "pauseButton";
-            this.pauseButton.Size = new System.Drawing.Size(60, 23);
-            this.pauseButton.TabIndex = 4;
-            this.pauseButton.Text = "Pause";
-            this.pauseButton.UseVisualStyleBackColor = true;
-            // 
-            // startButton
-            // 
-            this.startButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.startButton.Location = new System.Drawing.Point(290, 102);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(88, 23);
-            this.startButton.TabIndex = 3;
-            this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = true;
-            // 
-            // outputRawCheckBox
-            // 
-            this.outputRawCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.outputRawCheckBox.AutoSize = true;
-            this.outputRawCheckBox.Location = new System.Drawing.Point(10, 21);
-            this.outputRawCheckBox.Name = "outputRawCheckBox";
-            this.outputRawCheckBox.Size = new System.Drawing.Size(134, 17);
-            this.outputRawCheckBox.TabIndex = 2;
-            this.outputRawCheckBox.Text = "Output Raw Messages";
-            this.outputRawCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // outputPath
-            // 
-            this.outputPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputPath.Location = new System.Drawing.Point(10, 45);
-            this.outputPath.Name = "outputPath";
-            this.outputPath.Size = new System.Drawing.Size(274, 20);
-            this.outputPath.TabIndex = 1;
-            // 
-            // outputBrowse
-            // 
-            this.outputBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.outputBrowse.Location = new System.Drawing.Point(290, 43);
-            this.outputBrowse.Name = "outputBrowse";
-            this.outputBrowse.Size = new System.Drawing.Size(88, 23);
-            this.outputBrowse.TabIndex = 0;
-            this.outputBrowse.Text = "Browse";
-            this.outputBrowse.UseVisualStyleBackColor = true;
-            this.outputBrowse.Click += new System.EventHandler(this.outputBrowse_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.disconnectComButton);
-            this.groupBox1.Controls.Add(this.connectComButton);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.port);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.flowControl);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.stopBits);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.parity);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.dataBits);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.bitsPerSecond);
-            this.groupBox1.Controls.Add(this.Connect);
-            this.groupBox1.Location = new System.Drawing.Point(8, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(417, 135);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Connection";
-            // 
-            // disconnectComButton
-            // 
-            this.disconnectComButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.disconnectComButton.Location = new System.Drawing.Point(233, 102);
-            this.disconnectComButton.Name = "disconnectComButton";
-            this.disconnectComButton.Size = new System.Drawing.Size(75, 23);
-            this.disconnectComButton.TabIndex = 20;
-            this.disconnectComButton.Text = "Disconnect";
-            this.disconnectComButton.UseVisualStyleBackColor = true;
-            this.disconnectComButton.Click += new System.EventHandler(this.disconnectComButton_Click);
-            // 
-            // connectComButton
-            // 
-            this.connectComButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.connectComButton.Location = new System.Drawing.Point(314, 102);
-            this.connectComButton.Name = "connectComButton";
-            this.connectComButton.Size = new System.Drawing.Size(90, 23);
-            this.connectComButton.TabIndex = 19;
-            this.connectComButton.Text = "Connect";
-            this.connectComButton.UseVisualStyleBackColor = true;
-            this.connectComButton.Click += new System.EventHandler(this.connectComButton_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(26, 13);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Port";
-            // 
-            // port
-            // 
-            this.port.FormattingEnabled = true;
-            this.port.Items.AddRange(new object[] {
-            "COM4",
-            "COM3",
-            "COM2",
-            "COM1"});
-            this.port.Location = new System.Drawing.Point(71, 17);
-            this.port.Name = "port";
-            this.port.Size = new System.Drawing.Size(132, 21);
-            this.port.TabIndex = 17;
-            this.port.Text = "COM1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(230, 74);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Flow";
-            // 
-            // flowControl
-            // 
-            this.flowControl.FormattingEnabled = true;
-            this.flowControl.Items.AddRange(new object[] {
-            "Xon / Xoff",
-            "None"});
-            this.flowControl.Location = new System.Drawing.Point(272, 71);
-            this.flowControl.Name = "flowControl";
-            this.flowControl.Size = new System.Drawing.Size(132, 21);
-            this.flowControl.TabIndex = 15;
-            this.flowControl.Text = "None";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(215, 47);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Stop bits";
-            // 
-            // stopBits
-            // 
-            this.stopBits.FormattingEnabled = true;
-            this.stopBits.Items.AddRange(new object[] {
-            "1",
-            "1.5",
-            "2"});
-            this.stopBits.Location = new System.Drawing.Point(272, 44);
-            this.stopBits.Name = "stopBits";
-            this.stopBits.Size = new System.Drawing.Size(132, 21);
-            this.stopBits.TabIndex = 13;
-            this.stopBits.Text = "1";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(230, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Parity";
-            // 
-            // parity
-            // 
-            this.parity.FormattingEnabled = true;
-            this.parity.Items.AddRange(new object[] {
-            "Even",
-            "Odd",
-            "None",
-            "Mark",
-            "Space"});
-            this.parity.Location = new System.Drawing.Point(272, 17);
-            this.parity.Name = "parity";
-            this.parity.Size = new System.Drawing.Size(132, 21);
-            this.parity.TabIndex = 11;
-            this.parity.Text = "None";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Data bits";
-            // 
-            // dataBits
-            // 
-            this.dataBits.FormattingEnabled = true;
-            this.dataBits.Items.AddRange(new object[] {
-            "5",
-            "6",
-            "7",
-            "8"});
-            this.dataBits.Location = new System.Drawing.Point(71, 69);
-            this.dataBits.Name = "dataBits";
-            this.dataBits.Size = new System.Drawing.Size(132, 21);
-            this.dataBits.TabIndex = 9;
-            this.dataBits.Text = "8";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 47);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(53, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Baud rate";
-            // 
-            // bitsPerSecond
-            // 
-            this.bitsPerSecond.FormattingEnabled = true;
-            this.bitsPerSecond.Items.AddRange(new object[] {
-            "110",
-            "300",
-            "1200",
-            "2400",
-            "4800",
-            "9600",
-            "19200",
-            "38400",
-            "57600",
-            "115200",
-            "230400",
-            "460800",
-            "921600"});
-            this.bitsPerSecond.Location = new System.Drawing.Point(71, 44);
-            this.bitsPerSecond.Name = "bitsPerSecond";
-            this.bitsPerSecond.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bitsPerSecond.Size = new System.Drawing.Size(132, 21);
-            this.bitsPerSecond.TabIndex = 7;
-            this.bitsPerSecond.Tag = "";
-            this.bitsPerSecond.Text = "9600";
-            // 
-            // Connect
-            // 
-            this.Connect.Location = new System.Drawing.Point(182, 280);
-            this.Connect.Name = "Connect";
-            this.Connect.Size = new System.Drawing.Size(75, 23);
-            this.Connect.TabIndex = 6;
-            this.Connect.Text = "Connect";
-            this.Connect.UseVisualStyleBackColor = true;
-            // 
-            // chooseOutputFile
-            // 
-            this.chooseOutputFile.DefaultExt = "txt";
-            this.chooseOutputFile.Filter = "XML|*.xml|Text Files|*.txt";
-            this.chooseOutputFile.Title = "Choose output file...";
-            this.chooseOutputFile.FileOk += new System.ComponentModel.CancelEventHandler(this.chooseOutputFile_FileOk);
-            // 
-            // serialPort1
-            // 
-            this.serialPort1.WriteBufferSize = 2;
-            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Instances";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            this.dataGridViewTextBoxColumn21.HeaderText = "B";
-            this.dataGridViewTextBoxColumn21.MaxInputLength = 1;
-            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            this.dataGridViewTextBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn21.ToolTipText = "Broadcast Bit";
-            this.dataGridViewTextBoxColumn21.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxColumn22.HeaderText = "Master";
-            this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
-            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            this.dataGridViewTextBoxColumn22.ReadOnly = true;
-            this.dataGridViewTextBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle13.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxColumn23.HeaderText = "Slave";
-            this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
-            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            this.dataGridViewTextBoxColumn23.ReadOnly = true;
-            this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle14.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridViewTextBoxColumn24.HeaderText = "Control";
-            this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            this.dataGridViewTextBoxColumn24.ReadOnly = true;
-            this.dataGridViewTextBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn24.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle15.Format = "N0";
-            dataGridViewCellStyle15.NullValue = "0";
-            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridViewTextBoxColumn25.HeaderText = "Size";
-            this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
-            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            this.dataGridViewTextBoxColumn25.ReadOnly = true;
-            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn25.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn26.HeaderText = "Data";
-            this.dataGridViewTextBoxColumn26.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            this.dataGridViewTextBoxColumn26.ReadOnly = true;
             // 
             // Event_Name
             // 
@@ -1788,10 +1114,396 @@ namespace IEBus_Studio
             this.Event_Data.HeaderText = "Data";
             this.Event_Data.Name = "Event_Data";
             // 
+            // BottomTabs
+            // 
+            this.BottomTabs.Controls.Add(this.tabPage1);
+            this.BottomTabs.Controls.Add(this.liveMessages);
+            this.BottomTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BottomTabs.Location = new System.Drawing.Point(0, 0);
+            this.BottomTabs.Margin = new System.Windows.Forms.Padding(0);
+            this.BottomTabs.Name = "BottomTabs";
+            this.BottomTabs.SelectedIndex = 0;
+            this.BottomTabs.Size = new System.Drawing.Size(719, 180);
+            this.BottomTabs.TabIndex = 21;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.terminal);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(711, 154);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Serial Port";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // terminal
+            // 
+            this.terminal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.terminal.Location = new System.Drawing.Point(414, 3);
+            this.terminal.Multiline = true;
+            this.terminal.Name = "terminal";
+            this.terminal.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.terminal.Size = new System.Drawing.Size(294, 138);
+            this.terminal.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.disconnectComButton);
+            this.groupBox1.Controls.Add(this.connectComButton);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.port);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.flowControl);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.stopBits);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.parity);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.dataBits);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.bitsPerSecond);
+            this.groupBox1.Controls.Add(this.Connect);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(405, 148);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Connection Settings";
+            // 
+            // disconnectComButton
+            // 
+            this.disconnectComButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.disconnectComButton.Location = new System.Drawing.Point(228, 108);
+            this.disconnectComButton.Name = "disconnectComButton";
+            this.disconnectComButton.Size = new System.Drawing.Size(75, 23);
+            this.disconnectComButton.TabIndex = 20;
+            this.disconnectComButton.Text = "Disconnect";
+            this.disconnectComButton.UseVisualStyleBackColor = true;
+            this.disconnectComButton.Click += new System.EventHandler(this.disconnectComButton_Click);
+            // 
+            // connectComButton
+            // 
+            this.connectComButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.connectComButton.Location = new System.Drawing.Point(309, 108);
+            this.connectComButton.Name = "connectComButton";
+            this.connectComButton.Size = new System.Drawing.Size(90, 23);
+            this.connectComButton.TabIndex = 19;
+            this.connectComButton.Text = "Connect";
+            this.connectComButton.UseVisualStyleBackColor = true;
+            this.connectComButton.Click += new System.EventHandler(this.connectComButton_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(26, 13);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Port";
+            // 
+            // port
+            // 
+            this.port.FormattingEnabled = true;
+            this.port.Items.AddRange(new object[] {
+            "COM4",
+            "COM3",
+            "COM2",
+            "COM1"});
+            this.port.Location = new System.Drawing.Point(67, 19);
+            this.port.Name = "port";
+            this.port.Size = new System.Drawing.Size(132, 21);
+            this.port.TabIndex = 17;
+            this.port.Text = "COM4";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(211, 77);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Flow";
+            // 
+            // flowControl
+            // 
+            this.flowControl.FormattingEnabled = true;
+            this.flowControl.Items.AddRange(new object[] {
+            "Xon / Xoff",
+            "None"});
+            this.flowControl.Location = new System.Drawing.Point(266, 74);
+            this.flowControl.Name = "flowControl";
+            this.flowControl.Size = new System.Drawing.Size(132, 21);
+            this.flowControl.TabIndex = 15;
+            this.flowControl.Text = "None";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(211, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Stop bits";
+            // 
+            // stopBits
+            // 
+            this.stopBits.FormattingEnabled = true;
+            this.stopBits.Items.AddRange(new object[] {
+            "1",
+            "1.5",
+            "2"});
+            this.stopBits.Location = new System.Drawing.Point(266, 19);
+            this.stopBits.Name = "stopBits";
+            this.stopBits.Size = new System.Drawing.Size(132, 21);
+            this.stopBits.TabIndex = 13;
+            this.stopBits.Text = "1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Parity";
+            // 
+            // parity
+            // 
+            this.parity.FormattingEnabled = true;
+            this.parity.Items.AddRange(new object[] {
+            "Even",
+            "Odd",
+            "None",
+            "Mark",
+            "Space"});
+            this.parity.Location = new System.Drawing.Point(67, 46);
+            this.parity.Name = "parity";
+            this.parity.Size = new System.Drawing.Size(132, 21);
+            this.parity.TabIndex = 11;
+            this.parity.Text = "None";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(211, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Data bits";
+            // 
+            // dataBits
+            // 
+            this.dataBits.FormattingEnabled = true;
+            this.dataBits.Items.AddRange(new object[] {
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.dataBits.Location = new System.Drawing.Point(266, 46);
+            this.dataBits.Name = "dataBits";
+            this.dataBits.Size = new System.Drawing.Size(132, 21);
+            this.dataBits.TabIndex = 9;
+            this.dataBits.Text = "8";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 77);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Baud rate";
+            // 
+            // bitsPerSecond
+            // 
+            this.bitsPerSecond.FormattingEnabled = true;
+            this.bitsPerSecond.Items.AddRange(new object[] {
+            "110",
+            "300",
+            "1200",
+            "2400",
+            "4800",
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200",
+            "230400",
+            "460800",
+            "921600"});
+            this.bitsPerSecond.Location = new System.Drawing.Point(67, 74);
+            this.bitsPerSecond.Name = "bitsPerSecond";
+            this.bitsPerSecond.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bitsPerSecond.Size = new System.Drawing.Size(132, 21);
+            this.bitsPerSecond.TabIndex = 7;
+            this.bitsPerSecond.Tag = "";
+            this.bitsPerSecond.Text = "9600";
+            // 
+            // Connect
+            // 
+            this.Connect.Location = new System.Drawing.Point(182, 280);
+            this.Connect.Name = "Connect";
+            this.Connect.Size = new System.Drawing.Size(75, 23);
+            this.Connect.TabIndex = 6;
+            this.Connect.Text = "Connect";
+            this.Connect.UseVisualStyleBackColor = true;
+            // 
+            // liveMessages
+            // 
+            this.liveMessages.Controls.Add(this.label7);
+            this.liveMessages.Controls.Add(this.ParsedMessageTable);
+            this.liveMessages.Controls.Add(this.checkBox1);
+            this.liveMessages.Location = new System.Drawing.Point(4, 22);
+            this.liveMessages.Name = "liveMessages";
+            this.liveMessages.Padding = new System.Windows.Forms.Padding(3);
+            this.liveMessages.Size = new System.Drawing.Size(711, 154);
+            this.liveMessages.TabIndex = 1;
+            this.liveMessages.Text = "Live Messages";
+            this.liveMessages.ToolTipText = "Raw messages currently being transmitted over the COM port connected to parsed in" +
+                "to a data grid view.";
+            this.liveMessages.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 7);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(325, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "View live messages as the are coming in over the serial connection.";
+            // 
+            // ParsedMessageTable
+            // 
+            this.ParsedMessageTable.AllowUserToAddRows = false;
+            this.ParsedMessageTable.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
+            this.ParsedMessageTable.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ParsedMessageTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ParsedMessageTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ParsedMessageTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column2,
+            this.Master,
+            this.Slave,
+            this.Control,
+            this.DataSize,
+            this.Data1});
+            this.ParsedMessageTable.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ParsedMessageTable.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ParsedMessageTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ParsedMessageTable.Location = new System.Drawing.Point(3, 36);
+            this.ParsedMessageTable.Margin = new System.Windows.Forms.Padding(0);
+            this.ParsedMessageTable.Name = "ParsedMessageTable";
+            this.ParsedMessageTable.ReadOnly = true;
+            this.ParsedMessageTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Azure;
+            this.ParsedMessageTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.ParsedMessageTable.RowTemplate.Height = 18;
+            this.ParsedMessageTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ParsedMessageTable.Size = new System.Drawing.Size(705, 115);
+            this.ParsedMessageTable.TabIndex = 4;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "B";
+            this.Column2.MaxInputLength = 1;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.ToolTipText = "Broadcast Bit";
+            this.Column2.Width = 20;
+            // 
+            // Master
+            // 
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Master.DefaultCellStyle = dataGridViewCellStyle23;
+            this.Master.HeaderText = "Master";
+            this.Master.MaxInputLength = 1024;
+            this.Master.Name = "Master";
+            this.Master.ReadOnly = true;
+            this.Master.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Slave
+            // 
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Info;
+            this.Slave.DefaultCellStyle = dataGridViewCellStyle24;
+            this.Slave.HeaderText = "Slave";
+            this.Slave.MaxInputLength = 1024;
+            this.Slave.Name = "Slave";
+            this.Slave.ReadOnly = true;
+            this.Slave.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Control
+            // 
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.AliceBlue;
+            this.Control.DefaultCellStyle = dataGridViewCellStyle25;
+            this.Control.HeaderText = "Control";
+            this.Control.MaxInputLength = 50;
+            this.Control.Name = "Control";
+            this.Control.ReadOnly = true;
+            this.Control.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Control.Width = 75;
+            // 
+            // DataSize
+            // 
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle26.Format = "N0";
+            dataGridViewCellStyle26.NullValue = "0";
+            this.DataSize.DefaultCellStyle = dataGridViewCellStyle26;
+            this.DataSize.HeaderText = "Size";
+            this.DataSize.MaxInputLength = 2;
+            this.DataSize.Name = "DataSize";
+            this.DataSize.ReadOnly = true;
+            this.DataSize.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataSize.Width = 35;
+            // 
+            // Data1
+            // 
+            this.Data1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Data1.HeaderText = "Data";
+            this.Data1.MaxInputLength = 4;
+            this.Data1.Name = "Data1";
+            this.Data1.ReadOnly = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox1.Location = new System.Drawing.Point(570, 6);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(135, 17);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Lookup Device Names";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // chooseOutputFile
+            // 
+            this.chooseOutputFile.DefaultExt = "txt";
+            this.chooseOutputFile.Filter = "XML|*.xml|Text Files|*.txt";
+            this.chooseOutputFile.Title = "Choose output file...";
+            this.chooseOutputFile.FileOk += new System.ComponentModel.CancelEventHandler(this.chooseOutputFile_FileOk);
+            // 
+            // serialPort1
+            // 
+            this.serialPort1.WriteBufferSize = 2;
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
             // Form1
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(831, 561);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(719, 542);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -1799,8 +1511,11 @@ namespace IEBus_Studio
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ShowIcon = false;
             this.Text = "IEBus Studio";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -1810,12 +1525,6 @@ namespace IEBus_Studio
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.MessageTableTabs.ResumeLayout(false);
-            this.RawMessageTableTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RawMessageTable)).EndInit();
-            this.ParsedMessageTableTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).EndInit();
-            this.terminalTab.ResumeLayout(false);
-            this.terminalTab.PerformLayout();
             this.eventDiscoveryTab.ResumeLayout(false);
             this.eventDiscoveryTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventDiscoveryTable)).EndInit();
@@ -1824,10 +1533,14 @@ namespace IEBus_Studio
             ((System.ComponentModel.ISupportInitialize)(this.devicesTable)).EndInit();
             this.eventsTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.eventsTable)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.BottomTabs.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.liveMessages.ResumeLayout(false);
+            this.liveMessages.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1858,18 +1571,6 @@ namespace IEBus_Studio
             DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
             DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:0:0:0:0:%Unknown1");
             DC.CompileDLL(Application.StartupPath + "\\");
-        }
-
-        private void outputBrowse_Click(object sender, EventArgs e)
-        {
-            if (chooseOutputFile.ShowDialog() == DialogResult.OK)
-            {
-                this.outputPath.Text = chooseOutputFile.FileName;
-                Stream saveStream = chooseOutputFile.OpenFile();
-                StreamWriter saveWriter = new StreamWriter(saveStream);
-                saveWriter.Write(serialBuffer);
-                saveWriter.Close();
-            }
         }
 
 
@@ -1929,9 +1630,9 @@ namespace IEBus_Studio
                             parsedArray[5] = parseData(parsedArray);
                             parsedArray = new string[] { parsedArray[0], parsedArray[1], parsedArray[2], parsedArray[3], parsedArray[4], parsedArray[5] };
 
-                            //Populate a new row for each table
-                            RawMessageTable.Rows.Add(rawArray);
-                            ParsedMessageTable.Rows.Add(parsedArray);
+                        //Populate a new row for each table
+                        //RawMessageTable.Rows.Add(rawArray);
+                        ParsedMessageTable.Rows.Add(parsedArray);
 
                             if (eventDiscoverer.discoveryingEvents())
                             {
@@ -2018,6 +1719,12 @@ namespace IEBus_Studio
 
         private void connectComButton_Click(object sender, EventArgs e)
         {
+            if (this.serialPort1.IsOpen)
+            {
+                MessageBox.Show("COM port is already open!");
+                return;
+            }
+
             try
             {
                 this.serialPort1.Close();
@@ -2072,6 +1779,9 @@ namespace IEBus_Studio
                 }
 
                 this.serialPort1.Open();
+                this.ts_connectionStatus.Text = "Connected to " + this.port.Text;
+                this.ParsedMessageTable.Rows.Clear();
+                this.terminal.Clear();
             }
             catch (Exception ex)
             {
@@ -2083,7 +1793,15 @@ namespace IEBus_Studio
 
         private void disconnectComButton_Click(object sender, EventArgs e)
         {
-            this.serialPort1.Close();
+            if (this.serialPort1.IsOpen)
+            {
+                this.serialPort1.Close();
+                this.ts_connectionStatus.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("COM port is not open!");
+            }
         }
 
         private void discoverEvent_Click(object sender, EventArgs e)
