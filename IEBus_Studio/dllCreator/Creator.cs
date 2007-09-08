@@ -66,16 +66,16 @@ namespace dllCreator
             sBuilder.AppendLine("Public Sub DataReceived(ByVal sender As Object, ByVal e As System.IO.Ports.SerialDataReceivedEventArgs) Handles sPort.DataReceived");
             sBuilder.AppendLine("Dim text As String = CType(sender, System.IO.Ports.SerialPort).ReadExisting");
             sBuilder.AppendLine("text = leftovertext + text");
-            sBuilder.AppendLine("If ((text.Contains(\"^\") AndAlso text.Contains(\"~\"))) Then");
-            sBuilder.AppendLine("Dim clearStart As Integer = text.LastIndexOf(\"^\"c) + 1");
-            sBuilder.AppendLine("If (clearStart < text.Length) Then");
-            sBuilder.AppendLine("leftovertext = text.Substring(clearStart)");
-            sBuilder.AppendLine("text = text.Substring(0, clearStart)");
+            sBuilder.AppendLine("Do While (text.IndexOf(\"^\"c) > text.IndexOf(\"~\"c))");
+            sBuilder.AppendLine("If (text.Contains(\"~\")) Then");
+            sBuilder.AppendLine("Dim wrkStart As Integer = text.IndexOf(\"~\"c) + 1");
+            sBuilder.AppendLine("Dim wrkEnd As Integer = text.IndexOf(\"^\"c)");
+            sBuilder.AppendLine("Dim wrkMessage As String = text.Substring(wrkStart, wrkEnd - wrkStart)");
+            sBuilder.AppendLine("Console.WriteLine(wrkMessage)");
+            sBuilder.AppendLine("If (wrkEnd < text.Length) Then");
+            sBuilder.AppendLine("text = text.Substring(wrkEnd + 1)");
             sBuilder.AppendLine("End If");
-            sBuilder.AppendLine("Dim split1() As String = text.Split(\"^\"c)");
-            sBuilder.AppendLine("For i As Integer = 0 To split1.Length - 1");
-            sBuilder.AppendLine("Dim split2() As String = split1(i).Split(\"~\"c)");
-            sBuilder.AppendLine("Dim wrkMessage as string = split2(1)");
+            sBuilder.AppendLine("If Not (wrkMessage.Contains(\"*\")) Then");
             sBuilder.AppendLine("Dim rawArray() As String = wrkMessage.Split(\":\"c)");
             sBuilder.AppendLine("Dim MasterDevice As CarDevice = System.Convert.ToInt32(rawArray(1), 16)");
             sBuilder.AppendLine("Dim SlaveDevice As CarDevice = System.Convert.ToInt32(rawArray(2), 16)");
@@ -95,7 +95,6 @@ namespace dllCreator
                     if (Events[x].Variables[y].StartsWith("%"))
                     {
                         paramsString += ", paramVariables(" + argsCount.ToString() + ")";
-                        //valueString += "Console.WriteLine(RawData(" + y.ToString() + "))" + System.Environment.NewLine;
                         valueString += "paramVariables(" + argsCount.ToString() + ") = System.Convert.ToInt32(RawData(" + y.ToString() + "), 16)" + System.Environment.NewLine;
                         argsCount++;
 
@@ -113,17 +112,17 @@ namespace dllCreator
                 sBuilder.AppendLine("If MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " Then");
                 sBuilder.AppendLine("If BuildWildcard(RawData, New Integer() {" + indicesString + "}).ToLower() = \"" + compareString + "\".ToLower() Then");
                 sBuilder.AppendLine("Array.Copy(rawArray, 5, RawData, 0, DataLength)");
-                sBuilder.AppendLine("Dim paramVariables(" + argsCount +") as Integer");
+                sBuilder.AppendLine("Dim paramVariables(" + argsCount + ") as Integer");
                 sBuilder.AppendLine(valueString);
                 sBuilder.AppendLine("RaiseEvent " + Events[x].Name + "(MasterDevice, SlaveDevice" + paramsString + ")");
                 sBuilder.AppendLine("End If");
                 sBuilder.AppendLine("End If");
             }
 
-            sBuilder.AppendLine("Next");
-            sBuilder.AppendLine("Else");
+            sBuilder.AppendLine("End if");
+            sBuilder.AppendLine("End if");
+            sBuilder.AppendLine("Loop");
             sBuilder.AppendLine("leftovertext = text");
-            sBuilder.AppendLine("End If");
             sBuilder.AppendLine("End Sub");
             sBuilder.AppendLine("Function BuildWildcard(ByVal rData() As String, ByVal Indices() As Integer) As String");
             sBuilder.AppendLine("Dim DataString As String = String.Empty");
@@ -170,7 +169,7 @@ namespace dllCreator
             {
                 foreach (CompilerError cErr in comResults.Errors)
                 {
-                  System.Console.WriteLine(cErr.ErrorNumber + ": " + cErr.ErrorText);
+                    System.Console.WriteLine(cErr.ErrorNumber + ": " + cErr.ErrorText);
                 }
                 MessageBox.Show("Errors occoured", "Errors", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
