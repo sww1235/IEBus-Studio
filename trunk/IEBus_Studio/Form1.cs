@@ -10,12 +10,12 @@ using System.Xml;
 
 namespace IEBus_Studio
 {
-	/// <summary>
-	/// Summary description for Form1.
+    /// <summary>
+    /// Summary description for Form1.
     /// </summary>
 
 
-	public class Form1 : System.Windows.Forms.Form
+    public class Form1 : System.Windows.Forms.Form
     {
         private StatusStrip statusStrip1;
         private ToolStrip toolStrip1;
@@ -159,43 +159,43 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn Event_Data;
         public String serialBuffer = "This is a test.";
 
-		public Form1()
-		{
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
-			//byte[] test = null;
-			//PacketDecoder myDecoder = new PacketDecoder(test);
-			//myDecoder.packet.data
+        public Form1()
+        {
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
+            //byte[] test = null;
+            //PacketDecoder myDecoder = new PacketDecoder(test);
+            //myDecoder.packet.data
 
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
-		}
+            //
+            // TODO: Add any constructor code after InitializeComponent call
+            //
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -1831,7 +1831,7 @@ namespace IEBus_Studio
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
 
         void addEventToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1840,25 +1840,25 @@ namespace IEBus_Studio
             AddEventPopup eventPopup = new AddEventPopup(eventManager);
             eventPopup.Show();
         }
-		#endregion
+        #endregion
 
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		static void Main() 
-		{
-			Application.Run(new Form1());
-		}
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.Run(new Form1());
+        }
 
-		private void Form1_Load(object sender, System.EventArgs e)
+        private void Form1_Load(object sender, System.EventArgs e)
         {
             dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
             DC.DeviceManager.AddDevice(0x131, "Touch Screen", "The touch screen.");
             DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
             DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:0:0:0:0:%Unknown1");
             DC.CompileDLL(Application.StartupPath + "\\");
-		}
+        }
 
         private void outputBrowse_Click(object sender, EventArgs e)
         {
@@ -1875,118 +1875,100 @@ namespace IEBus_Studio
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            SetText(this.serialPort1.ReadExisting());
+            DataReceived(this.serialPort1.ReadExisting());
         }
 
         // This delegate enables asynchronous calls for setting
         // the text property on a TextBox control.
         delegate void SetTextCallback(string text);
-        //delegate void SetTextCallback(string text);
 
-        string packetBuffer;
         string leftOverText = "";
 
-		private void SetText(string text)
-		{
-			// InvokeRequired required compares the thread ID of the
-			// calling thread to the thread ID of the creating thread.
-			// If these threads are different, it returns true.
-            
+        private void DataReceived(string text)
+        {
             if (this.terminal.InvokeRequired)
             {
-                SetTextCallback d = new SetTextCallback(SetText);
+                SetTextCallback terminalDelegate = new SetTextCallback(DataReceived);
                 try
                 {
-                    this.Invoke(d, new object[] { text });
+                    this.Invoke(terminalDelegate, new object[] { text });
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.GetBaseException());
-                    //leftOverText += text;
                 }
             }
             else
             {
                 this.terminal.Text += text;
                 text = leftOverText + text;
-
-                //If there is not a complete packet yet, then come back later
-                if ((text.Contains("^") && text.Contains("~")))
+                while (text.IndexOf('^') > text.IndexOf('~'))
                 {
-                    int clearStart = text.LastIndexOf('^') + 1;
-                    Console.WriteLine("clearStart: " + clearStart);
-                    Console.WriteLine("text.Length: " + text.Length);
-                    if (clearStart < text.Length)
+                    if (text.Contains("~"))
                     {
-                        leftOverText = text.Substring(clearStart);
-                        text = text.Substring(0,clearStart);
-                    }
+                        int wrkStart = text.IndexOf('~') + 1;
+                        int wrkEnd = text.IndexOf('^');
+                        string wrkMessage = text.Substring(wrkStart, wrkEnd - wrkStart);
+                        if (wrkEnd < text.Length)
+                            text = text.Substring(wrkEnd + 1);
 
-                    string[] split1 = text.Split('^');
-                    for (int i = 0; i < split1.Length; i++)
-                    {
-                        Console.WriteLine("i: " + i);
-                        Console.WriteLine("split1.Length: " + split1.Length);
-                        string[] split2 = split1[i].Split('~');
-                        string wrkMessage = split2[1];
-                        string[] rawArray = wrkMessage.Split(':');
-                        string[] parsedArray = wrkMessage.Split(':');
-
-                        //Add 0x format to some raw columns
-                        rawArray[1] = "0x" + rawArray[1];
-                        rawArray[2] = "0x" + rawArray[2];
-                        rawArray[3] = "0x" + rawArray[3];
-
-                        //Prepare parsed record
-                        parsedArray[1] = parseMaster(parsedArray[1]);
-                        parsedArray[2] = parseSlave(parsedArray[2]);
-                        parsedArray[3] = parseControl(parsedArray[3]);
-                        parsedArray[5] = parseData(parsedArray);
-                        parsedArray = new string[] { parsedArray[0], parsedArray[1], parsedArray[2], parsedArray[3], parsedArray[4], parsedArray[5] };
-
-                        //Populate a new row for each table
-                        RawMessageTable.Rows.Add(rawArray);
-                        ParsedMessageTable.Rows.Add(parsedArray);
-
-                        if (eventDiscoverer.discoveryingEvents())
+                        if (!wrkMessage.Contains("*"))
                         {
-                            rawArray = wrkMessage.Split(':');
+                            string[] rawArray = wrkMessage.Split(':');
+                            string[] parsedArray = wrkMessage.Split(':');
 
-                            string broadcast = rawArray[0];
-                            string master_address = rawArray[1]; // HexStringConverter.ToHyphenatedHexString(rawArray[1], 3);
-                            string slave_address = rawArray[2]; // HexStringConverter.ToHyphenatedHexString(rawArray[2], 3);
-                            string control = parsedArray[3];
-                            ushort datasize = (ushort)Convert.ToInt16(parsedArray[4]);
+                            //Add 0x format to some raw columns
+                            rawArray[1] = "0x" + rawArray[1];
+                            rawArray[2] = "0x" + rawArray[2];
+                            rawArray[3] = "0x" + rawArray[3];
 
-                            string data = "";
-                            for (int j = 0; j < 16; j++)
+                            //Prepare parsed record
+                            parsedArray[1] = parseMaster(parsedArray[1]);
+                            parsedArray[2] = parseSlave(parsedArray[2]);
+                            parsedArray[3] = parseControl(parsedArray[3]);
+                            parsedArray[5] = parseData(parsedArray);
+                            parsedArray = new string[] { parsedArray[0], parsedArray[1], parsedArray[2], parsedArray[3], parsedArray[4], parsedArray[5] };
+
+                            //Populate a new row for each table
+                            RawMessageTable.Rows.Add(rawArray);
+                            ParsedMessageTable.Rows.Add(parsedArray);
+
+                            if (eventDiscoverer.discoveryingEvents())
                             {
-                                if (j != 0)
-                                    data += "-";
-                                if ((j + 5) < rawArray.Length)
+                                rawArray = wrkMessage.Split(':');
+
+                                string broadcast = rawArray[0];
+                                string master_address = rawArray[1]; // HexStringConverter.ToHyphenatedHexString(rawArray[1], 3);
+                                string slave_address = rawArray[2]; // HexStringConverter.ToHyphenatedHexString(rawArray[2], 3);
+                                string control = parsedArray[3];
+                                ushort datasize = (ushort)Convert.ToInt16(parsedArray[4]);
+
+                                string data = "";
+                                for (int j = 0; j < 16; j++)
                                 {
-                                    while (rawArray[j + 5].Length < 2) rawArray[j + 5] = "0" + rawArray[j + 5];
-                                    data += rawArray[j + 5];
+                                    if (j != 0)
+                                        data += "-";
+                                    if ((j + 5) < rawArray.Length)
+                                    {
+                                        while (rawArray[j + 5].Length < 2) rawArray[j + 5] = "0" + rawArray[j + 5];
+                                        data += rawArray[j + 5];
+                                    }
+                                    else
+                                        data += "00";
                                 }
-                                else
-                                    data += "00";
+
+
+                                Event discoveredEvent = new Event("", "", broadcast, master_address, slave_address, control, datasize, data);
+                                eventDiscoverer.addEvent(discoveredEvent);
+
+                                displayDiscoveredDeviceList();
                             }
-                            
-
-                            Event discoveredEvent = new Event("", "", broadcast, master_address, slave_address, control, datasize, data);
-                            eventDiscoverer.addEvent(discoveredEvent);
-
-                            displayDiscoveredDeviceList();
                         }
                     }
                 }
-                else
-                {
-                    //If you didn't process anything then carry all over for later
-                    leftOverText = text;
-                }
+                leftOverText = text;
             }
-		}
+        }
 
         private string parseMaster(string pmaster)
         {
@@ -2002,16 +1984,16 @@ namespace IEBus_Studio
 
         private string parseControl(string pcontrol)
         {
-            if (pcontrol == "0") { return "SSR";    }           //Slave status (SSR) read
-            if (pcontrol == "1") { return "Undef";  }           //Undefined
-            if (pcontrol == "2") { return "Undef";  }           //Undefined
-            if (pcontrol == "3") { return "DRL";    }           //Data read and lock
-            if (pcontrol == "4") { return "LARL8";  }           //Lock address read (Lower 8 bits)
-            if (pcontrol == "5") { return "LARU4";  }           //Lock address read (Upper 4 bits)
-            if (pcontrol == "6") { return "SSRU";   }           //Slave status (SSR) read and unlock
+            if (pcontrol == "0") { return "SSR"; }           //Slave status (SSR) read
+            if (pcontrol == "1") { return "Undef"; }           //Undefined
+            if (pcontrol == "2") { return "Undef"; }           //Undefined
+            if (pcontrol == "3") { return "DRL"; }           //Data read and lock
+            if (pcontrol == "4") { return "LARL8"; }           //Lock address read (Lower 8 bits)
+            if (pcontrol == "5") { return "LARU4"; }           //Lock address read (Upper 4 bits)
+            if (pcontrol == "6") { return "SSRU"; }           //Slave status (SSR) read and unlock
             if (pcontrol == "7") { return "DR"; }               //Data read
-            if (pcontrol == "8") { return "Undef";  }           //Undefined
-            if (pcontrol == "9") { return "Undef";  }           //Undefined
+            if (pcontrol == "8") { return "Undef"; }           //Undefined
+            if (pcontrol == "9") { return "Undef"; }           //Undefined
             if (pcontrol == "A") { return "CWL"; }              //Command write and lock
             if (pcontrol == "B") { return "DWL"; }              //Data write and lock
             if (pcontrol == "C") { return "Undef"; }            //Undefined
@@ -2043,9 +2025,9 @@ namespace IEBus_Studio
                 this.serialPort1.PortName = this.port.Text;
                 this.serialPort1.BaudRate = Convert.ToInt16(this.bitsPerSecond.Text);
                 this.serialPort1.DataBits = Convert.ToInt16(this.dataBits.Text);
-               
+
                 // Set the Parity
-                switch(this.parity.SelectedText)
+                switch (this.parity.SelectedText)
                 {
                     case "None":
                         this.serialPort1.Parity = System.IO.Ports.Parity.None;
@@ -2065,7 +2047,7 @@ namespace IEBus_Studio
                 }
 
                 // Set the StopBits
-                switch(this.stopBits.SelectedText)
+                switch (this.stopBits.SelectedText)
                 {
                     case "1":
                         this.serialPort1.StopBits = System.IO.Ports.StopBits.One;
@@ -2088,7 +2070,7 @@ namespace IEBus_Studio
                         this.serialPort1.Handshake = System.IO.Ports.Handshake.None;
                         break;
                 }
-                
+
                 this.serialPort1.Open();
             }
             catch (Exception ex)
@@ -2182,7 +2164,7 @@ namespace IEBus_Studio
             displayDeviceList();
         }
 
-   
+
         // Gets the values from the devicesTable and loads them into memory
         private void saveDeviceChanges(object e, object args)
         {
@@ -2192,10 +2174,10 @@ namespace IEBus_Studio
             // Get devices from dataview and save to memory
             for (int i = 0; i < devicesTable.Rows.Count; i++)
             {
-                byte[] address     = HexStringConverter.ToByteArray((string)devicesTable.Rows[i].Cells[0].Value, false);
-                string name        = (string)devicesTable.Rows[i].Cells[1].Value;
+                byte[] address = HexStringConverter.ToByteArray((string)devicesTable.Rows[i].Cells[0].Value, false);
+                string name = (string)devicesTable.Rows[i].Cells[1].Value;
                 string description = (string)devicesTable.Rows[i].Cells[2].Value;
-                Device device      = new Device(address, name, description);
+                Device device = new Device(address, name, description);
 
                 deviceManager.Devices.Add(device);
             }
@@ -2218,13 +2200,13 @@ namespace IEBus_Studio
                 Event ev = (Event)(eventManager.Events[i]);
 
                 string b = "1";
-                if(!ev.Broadcast) b = "0";
+                if (!ev.Broadcast) b = "0";
 
-            //    string master = deviceManager.GetDeviceName(ev.Master_Address);
-            //    if (master == null) master = ev.Master_Address_String;
+                //    string master = deviceManager.GetDeviceName(ev.Master_Address);
+                //    if (master == null) master = ev.Master_Address_String;
 
-            //    string slave = deviceManager.GetDeviceName(ev.Slave_Address);
-            //    if (slave == null) master = ev.Slave_Address_String;
+                //    string slave = deviceManager.GetDeviceName(ev.Slave_Address);
+                //    if (slave == null) master = ev.Slave_Address_String;
 
                 eventsTable.Rows.Add(ev.Name, ev.Description, b, ev.Master_Address_String, ev.Slave_Address_String, ev.ControlString, ev.DataSize, ev.DataString);
             }
@@ -2252,15 +2234,15 @@ namespace IEBus_Studio
             for (int i = 0; i < eventsTable.Rows.Count; i++)
             {
 
-                string name           = (string)eventsTable.Rows[i].Cells[0].Value;
-                string description    = (string)eventsTable.Rows[i].Cells[1].Value;
-                string broadcast      = (string)eventsTable.Rows[i].Cells[2].Value;
+                string name = (string)eventsTable.Rows[i].Cells[0].Value;
+                string description = (string)eventsTable.Rows[i].Cells[1].Value;
+                string broadcast = (string)eventsTable.Rows[i].Cells[2].Value;
                 string master_address = (string)eventsTable.Rows[i].Cells[3].Value;
-                string slave_address  = (string)eventsTable.Rows[i].Cells[4].Value;
-                string control        = (string)eventsTable.Rows[i].Cells[5].Value;
-                ushort datasize       = 15; //(ushort)eventsTable.Rows[i].Cells[6].Value;  <-- bombs on the cast
-                string data           = (string)eventsTable.Rows[i].Cells[7].Value;
-                  
+                string slave_address = (string)eventsTable.Rows[i].Cells[4].Value;
+                string control = (string)eventsTable.Rows[i].Cells[5].Value;
+                ushort datasize = 15; //(ushort)eventsTable.Rows[i].Cells[6].Value;  <-- bombs on the cast
+                string data = (string)eventsTable.Rows[i].Cells[7].Value;
+
                 // Create the event object with all the data from the table
                 Event ev = new Event(name, description, broadcast, master_address, slave_address, control, datasize, data);
 
@@ -2277,12 +2259,12 @@ namespace IEBus_Studio
         private void chooseOutputFile_FileOk(object sender, CancelEventArgs e)
         {
             // Convert the device and event list to xml
-            string xml = "<root>" + deviceManager.ouputAsXML() + eventManager.ouputAsXML() + "</root>" ;
+            string xml = "<root>" + deviceManager.ouputAsXML() + eventManager.ouputAsXML() + "</root>";
 
             // Open the file to save to
             this.opened_filename = chooseOutputFile.FileName;
             FileStream file = File.Open(this.opened_filename, FileMode.OpenOrCreate);
-            
+
             // Convert xml string bytes and write to file
             System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
             file.Write(encoding.GetBytes(xml), 0, xml.Length);
@@ -2315,8 +2297,8 @@ namespace IEBus_Studio
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-           // Call the menu item click of file->save
-           saveToolStripMenuItem_Click(sender, e);
+            // Call the menu item click of file->save
+            saveToolStripMenuItem_Click(sender, e);
         }
 
         private void scanDevices_Click(object sender, EventArgs e)
@@ -2373,6 +2355,6 @@ namespace IEBus_Studio
             openToolStripMenuItem_Click(sender, e);
         }
 
-        
+
     }
 }
