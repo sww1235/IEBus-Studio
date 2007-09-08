@@ -139,8 +139,8 @@ namespace IEBus_Studio
 
         public Form1()
         {
-            Application.DoEvents();
             Application.EnableVisualStyles();
+            Application.DoEvents();
             //
             // Required for Windows Form Designer support
             //
