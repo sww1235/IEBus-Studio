@@ -1666,7 +1666,8 @@ namespace IEBus_Studio
             }
             else
             {
-                this.ParsedMessageTable.Refresh();
+                //this.ParsedMessageTable.Refresh();
+                this.ParsedMessageTable.Invalidate();
             }
         }
 
@@ -1768,7 +1769,7 @@ namespace IEBus_Studio
                 this.terminal.SelectionStart = terminal.Text.Length;
                 this.terminal.ScrollToCaret();
             }
-            //refreshDataGrids();
+            refreshDataGrids();
         }
 
         private bool isDeviceDefined(int device)
