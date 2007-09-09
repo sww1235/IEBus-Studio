@@ -74,9 +74,6 @@ namespace IEBus_Studio
         private Button addEvent;
         private Button scanDevices;
         private OpenFileDialog openFileDialog1;
-        private DataGridViewTextBoxColumn devices_deviceAddress;
-        private DataGridViewTextBoxColumn devices_name;
-        private DataGridViewTextBoxColumn devices_description;
         private ContextMenuStrip EventActionsMenuStrip;
         private ToolStripMenuItem addEventToolStripMenuItem;
 
@@ -137,6 +134,9 @@ namespace IEBus_Studio
         private ToolStripStatusLabel ts_connectionStatus;
         private ComboBox andOr;
         private CheckBox autoAddDevices;
+        private DataGridViewTextBoxColumn devices_deviceAddress;
+        private DataGridViewTextBoxColumn devices_name;
+        private DataGridViewTextBoxColumn devices_description;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -186,13 +186,13 @@ namespace IEBus_Studio
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_connectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -261,9 +261,6 @@ namespace IEBus_Studio
             this.scanDevices = new System.Windows.Forms.Button();
             this.addDevice = new System.Windows.Forms.Button();
             this.devicesTable = new System.Windows.Forms.DataGridView();
-            this.devices_deviceAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.devices_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.devices_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
@@ -307,6 +304,9 @@ namespace IEBus_Studio
             this.chooseOutputFile = new System.Windows.Forms.SaveFileDialog();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.devices_deviceAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.devices_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.devices_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -1020,29 +1020,6 @@ namespace IEBus_Studio
             this.devicesTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveDeviceChanges);
             this.devicesTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveDeviceChanges);
             // 
-            // devices_deviceAddress
-            // 
-            this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle7;
-            this.devices_deviceAddress.HeaderText = "Address";
-            this.devices_deviceAddress.MaxInputLength = 1024;
-            this.devices_deviceAddress.Name = "devices_deviceAddress";
-            this.devices_deviceAddress.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // devices_name
-            // 
-            this.devices_name.HeaderText = "Name";
-            this.devices_name.Name = "devices_name";
-            this.devices_name.Width = 250;
-            // 
-            // devices_description
-            // 
-            this.devices_description.HeaderText = "Description";
-            this.devices_description.Name = "devices_description";
-            this.devices_description.Width = 450;
-            // 
             // eventsTab
             // 
             this.eventsTab.Controls.Add(this.addEvent);
@@ -1545,6 +1522,30 @@ namespace IEBus_Studio
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // devices_deviceAddress
+            // 
+            this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle7;
+            this.devices_deviceAddress.HeaderText = "Address";
+            this.devices_deviceAddress.MaxInputLength = 1024;
+            this.devices_deviceAddress.MinimumWidth = 60;
+            this.devices_deviceAddress.Name = "devices_deviceAddress";
+            this.devices_deviceAddress.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // devices_name
+            // 
+            this.devices_name.HeaderText = "Name";
+            this.devices_name.Name = "devices_name";
+            this.devices_name.Width = 250;
+            // 
+            // devices_description
+            // 
+            this.devices_description.HeaderText = "Description";
+            this.devices_description.Name = "devices_description";
+            this.devices_description.Width = 450;
             // 
             // Form1
             // 
