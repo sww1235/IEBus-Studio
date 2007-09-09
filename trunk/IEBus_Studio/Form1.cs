@@ -178,19 +178,19 @@ namespace IEBus_Studio
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle75 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_connectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -471,7 +471,7 @@ namespace IEBus_Studio
             this.toolStripSeparator4,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -480,7 +480,7 @@ namespace IEBus_Studio
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.newToolStripMenuItem.Text = "&New";
             // 
             // openToolStripMenuItem
@@ -489,14 +489,14 @@ namespace IEBus_Studio
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(148, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -504,21 +504,21 @@ namespace IEBus_Studio
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(148, 6);
             // 
             // printToolStripMenuItem
             // 
@@ -526,7 +526,7 @@ namespace IEBus_Studio
             this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.printToolStripMenuItem.Text = "&Print";
             // 
             // printPreviewToolStripMenuItem
@@ -534,18 +534,18 @@ namespace IEBus_Studio
             this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
             this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(148, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // editToolStripMenuItem
@@ -557,7 +557,7 @@ namespace IEBus_Studio
             this.toolStripSeparator6,
             this.selectAllToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
             // cutToolStripMenuItem
@@ -566,7 +566,7 @@ namespace IEBus_Studio
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.cutToolStripMenuItem.Text = "Cu&t";
             // 
             // copyToolStripMenuItem
@@ -575,7 +575,7 @@ namespace IEBus_Studio
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.copyToolStripMenuItem.Text = "&Copy";
             // 
             // pasteToolStripMenuItem
@@ -584,18 +584,18 @@ namespace IEBus_Studio
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.pasteToolStripMenuItem.Text = "&Paste";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(147, 6);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.selectAllToolStripMenuItem.Text = "Select &All";
             // 
             // toolsToolStripMenuItem
@@ -603,7 +603,7 @@ namespace IEBus_Studio
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeMessageTableToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // changeMessageTableToolStripMenuItem
@@ -621,36 +621,36 @@ namespace IEBus_Studio
             this.toolStripSeparator7,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // contentsToolStripMenuItem
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.contentsToolStripMenuItem.Text = "&Contents";
             // 
             // indexToolStripMenuItem
             // 
             this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.indexToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.indexToolStripMenuItem.Text = "&Index";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.searchToolStripMenuItem.Text = "&Search";
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(119, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(126, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
             // panel1
@@ -667,6 +667,7 @@ namespace IEBus_Studio
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -677,7 +678,7 @@ namespace IEBus_Studio
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.splitContainer1.Panel2.Controls.Add(this.BottomTabs);
             this.splitContainer1.Size = new System.Drawing.Size(719, 471);
@@ -691,6 +692,7 @@ namespace IEBus_Studio
             this.MessageTableTabs.Controls.Add(this.eventsTab);
             this.MessageTableTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MessageTableTabs.Location = new System.Drawing.Point(0, 0);
+            this.MessageTableTabs.Margin = new System.Windows.Forms.Padding(0);
             this.MessageTableTabs.Name = "MessageTableTabs";
             this.MessageTableTabs.SelectedIndex = 0;
             this.MessageTableTabs.Size = new System.Drawing.Size(719, 287);
@@ -704,10 +706,10 @@ namespace IEBus_Studio
             this.eventDiscoveryTab.Controls.Add(this.eventDiscoveryTable);
             this.eventDiscoveryTab.Controls.Add(this.masterFilter);
             this.eventDiscoveryTab.Controls.Add(this.discoverEvent);
-            this.eventDiscoveryTab.Controls.Add(this.label8);
             this.eventDiscoveryTab.Controls.Add(this.secondsToDiscover);
             this.eventDiscoveryTab.Controls.Add(this.label10);
             this.eventDiscoveryTab.Controls.Add(this.label9);
+            this.eventDiscoveryTab.Controls.Add(this.label8);
             this.eventDiscoveryTab.Location = new System.Drawing.Point(4, 22);
             this.eventDiscoveryTab.Name = "eventDiscoveryTab";
             this.eventDiscoveryTab.Padding = new System.Windows.Forms.Padding(3);
@@ -720,15 +722,14 @@ namespace IEBus_Studio
             // 
             this.variableDataFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.variableDataFilter.AutoSize = true;
-            this.variableDataFilter.Location = new System.Drawing.Point(456, 24);
+            this.variableDataFilter.Location = new System.Drawing.Point(414, 24);
             this.variableDataFilter.Name = "variableDataFilter";
             this.variableDataFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.variableDataFilter.Size = new System.Drawing.Size(129, 17);
+            this.variableDataFilter.Size = new System.Drawing.Size(171, 17);
             this.variableDataFilter.TabIndex = 6;
-            this.variableDataFilter.Text = "Look for variable data";
+            this.variableDataFilter.Text = "Pattern match for variable data";
             this.variableDataFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.variableDataFilter.UseVisualStyleBackColor = true;
-            this.variableDataFilter.CheckedChanged += new System.EventHandler(this.variableDataFilter_CheckedChanged);
             // 
             // comboBox2
             // 
@@ -752,8 +753,8 @@ namespace IEBus_Studio
             // 
             this.eventDiscoveryTable.AllowUserToAddRows = false;
             this.eventDiscoveryTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle66.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle66;
             this.eventDiscoveryTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -801,10 +802,10 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn22
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle67.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle67.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle67;
             this.dataGridViewTextBoxColumn22.HeaderText = "Master";
             this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
@@ -813,9 +814,9 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn23
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle68.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle68.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle68;
             this.dataGridViewTextBoxColumn23.HeaderText = "Slave";
             this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
@@ -824,9 +825,9 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn24
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle4.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle69.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle69.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle69;
             this.dataGridViewTextBoxColumn24.HeaderText = "Control";
             this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
             this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
@@ -836,10 +837,10 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn25
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle70.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle70.Format = "N0";
+            dataGridViewCellStyle70.NullValue = "0";
+            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle70;
             this.dataGridViewTextBoxColumn25.HeaderText = "Size";
             this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
             this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
@@ -860,12 +861,12 @@ namespace IEBus_Studio
             this.EventActionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEventToolStripMenuItem});
             this.EventActionsMenuStrip.Name = "EventActions";
-            this.EventActionsMenuStrip.Size = new System.Drawing.Size(129, 26);
+            this.EventActionsMenuStrip.Size = new System.Drawing.Size(136, 26);
             // 
             // addEventToolStripMenuItem
             // 
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
-            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
             this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
             // 
@@ -963,8 +964,8 @@ namespace IEBus_Studio
             // 
             this.devicesTable.AllowUserToAddRows = false;
             this.devicesTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle71.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle71;
             this.devicesTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -992,9 +993,9 @@ namespace IEBus_Studio
             // devices_deviceAddress
             // 
             this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle72.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle72;
             this.devices_deviceAddress.HeaderText = "Address";
             this.devices_deviceAddress.MaxInputLength = 1024;
             this.devices_deviceAddress.Name = "devices_deviceAddress";
@@ -1036,9 +1037,10 @@ namespace IEBus_Studio
             // 
             // eventsTable
             // 
-            this.eventsTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.eventsTable.AllowUserToAddRows = false;
+            this.eventsTable.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle73.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle73;
             this.eventsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1059,6 +1061,7 @@ namespace IEBus_Studio
             this.eventsTable.Location = new System.Drawing.Point(3, 39);
             this.eventsTable.Margin = new System.Windows.Forms.Padding(0, 50, 0, 0);
             this.eventsTable.Name = "eventsTable";
+            this.eventsTable.ReadOnly = true;
             this.eventsTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Azure;
             this.eventsTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.eventsTable.RowTemplate.Height = 18;
@@ -1072,16 +1075,19 @@ namespace IEBus_Studio
             // 
             this.Event_Name.HeaderText = "Name";
             this.Event_Name.Name = "Event_Name";
+            this.Event_Name.ReadOnly = true;
             // 
             // Event_Description
             // 
             this.Event_Description.HeaderText = "Description";
             this.Event_Description.Name = "Event_Description";
+            this.Event_Description.ReadOnly = true;
             // 
             // Event_Broadcast
             // 
             this.Event_Broadcast.HeaderText = "B";
             this.Event_Broadcast.Name = "Event_Broadcast";
+            this.Event_Broadcast.ReadOnly = true;
             this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Event_Broadcast.ToolTipText = "Broadcast";
             this.Event_Broadcast.Width = 20;
@@ -1090,24 +1096,28 @@ namespace IEBus_Studio
             // 
             this.Event_Master.HeaderText = "Master";
             this.Event_Master.Name = "Event_Master";
+            this.Event_Master.ReadOnly = true;
             this.Event_Master.Width = 115;
             // 
             // event_Slave
             // 
             this.event_Slave.HeaderText = "Slave";
             this.event_Slave.Name = "event_Slave";
+            this.event_Slave.ReadOnly = true;
             this.event_Slave.Width = 115;
             // 
             // Event_Control
             // 
             this.Event_Control.HeaderText = "Control";
             this.Event_Control.Name = "Event_Control";
+            this.Event_Control.ReadOnly = true;
             this.Event_Control.Width = 50;
             // 
             // Event_DataSize
             // 
             this.Event_DataSize.HeaderText = "DataSize";
             this.Event_DataSize.Name = "Event_DataSize";
+            this.Event_DataSize.ReadOnly = true;
             this.Event_DataSize.Width = 75;
             // 
             // Event_Data
@@ -1115,6 +1125,7 @@ namespace IEBus_Studio
             this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Event_Data.HeaderText = "Data";
             this.Event_Data.Name = "Event_Data";
+            this.Event_Data.ReadOnly = true;
             // 
             // BottomTabs
             // 
@@ -1125,6 +1136,7 @@ namespace IEBus_Studio
             this.BottomTabs.Margin = new System.Windows.Forms.Padding(0);
             this.BottomTabs.Name = "BottomTabs";
             this.BottomTabs.SelectedIndex = 0;
+            this.BottomTabs.ShowToolTips = true;
             this.BottomTabs.Size = new System.Drawing.Size(719, 180);
             this.BottomTabs.TabIndex = 21;
             // 
@@ -1142,13 +1154,14 @@ namespace IEBus_Studio
             // 
             // terminal
             // 
-            this.terminal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.terminal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.terminal.Location = new System.Drawing.Point(414, 3);
             this.terminal.Multiline = true;
             this.terminal.Name = "terminal";
             this.terminal.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.terminal.Size = new System.Drawing.Size(294, 138);
+            this.terminal.Size = new System.Drawing.Size(294, 148);
             this.terminal.TabIndex = 0;
             // 
             // groupBox1
@@ -1383,8 +1396,8 @@ namespace IEBus_Studio
             // 
             this.ParsedMessageTable.AllowUserToAddRows = false;
             this.ParsedMessageTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle74.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle74;
             this.ParsedMessageTable.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ParsedMessageTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ParsedMessageTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1398,7 +1411,7 @@ namespace IEBus_Studio
             this.ParsedMessageTable.Cursor = System.Windows.Forms.Cursors.Default;
             this.ParsedMessageTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ParsedMessageTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ParsedMessageTable.Location = new System.Drawing.Point(3, 36);
+            this.ParsedMessageTable.Location = new System.Drawing.Point(3, 26);
             this.ParsedMessageTable.Margin = new System.Windows.Forms.Padding(0);
             this.ParsedMessageTable.Name = "ParsedMessageTable";
             this.ParsedMessageTable.ReadOnly = true;
@@ -1406,7 +1419,7 @@ namespace IEBus_Studio
             this.ParsedMessageTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.ParsedMessageTable.RowTemplate.Height = 18;
             this.ParsedMessageTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ParsedMessageTable.Size = new System.Drawing.Size(705, 115);
+            this.ParsedMessageTable.Size = new System.Drawing.Size(705, 125);
             this.ParsedMessageTable.TabIndex = 4;
             // 
             // Column2
@@ -1421,9 +1434,9 @@ namespace IEBus_Studio
             // 
             // Master
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Master.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle75.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle75.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Master.DefaultCellStyle = dataGridViewCellStyle75;
             this.Master.HeaderText = "Master";
             this.Master.MaxInputLength = 1024;
             this.Master.Name = "Master";
@@ -1432,8 +1445,8 @@ namespace IEBus_Studio
             // 
             // Slave
             // 
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Info;
-            this.Slave.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle76.BackColor = System.Drawing.SystemColors.Info;
+            this.Slave.DefaultCellStyle = dataGridViewCellStyle76;
             this.Slave.HeaderText = "Slave";
             this.Slave.MaxInputLength = 1024;
             this.Slave.Name = "Slave";
@@ -1442,8 +1455,8 @@ namespace IEBus_Studio
             // 
             // Control
             // 
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.AliceBlue;
-            this.Control.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle77.BackColor = System.Drawing.Color.AliceBlue;
+            this.Control.DefaultCellStyle = dataGridViewCellStyle77;
             this.Control.HeaderText = "Control";
             this.Control.MaxInputLength = 50;
             this.Control.Name = "Control";
@@ -1453,10 +1466,10 @@ namespace IEBus_Studio
             // 
             // DataSize
             // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle13.Format = "N0";
-            dataGridViewCellStyle13.NullValue = "0";
-            this.DataSize.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle78.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle78.Format = "N0";
+            dataGridViewCellStyle78.NullValue = "0";
+            this.DataSize.DefaultCellStyle = dataGridViewCellStyle78;
             this.DataSize.HeaderText = "Size";
             this.DataSize.MaxInputLength = 2;
             this.DataSize.Name = "DataSize";
@@ -1573,6 +1586,9 @@ namespace IEBus_Studio
             DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
             DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:0:0:0:0:%Unknown1");
             DC.CompileDLL(Application.StartupPath + "\\");
+
+            this.port.Items.Clear();
+            this.port.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
         }
 
 
@@ -2086,11 +2102,6 @@ namespace IEBus_Studio
         {
             // Call the menu item click of file->save
             openToolStripMenuItem_Click(sender, e);
-        }
-
-        private void variableDataFilter_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
 
