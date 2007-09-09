@@ -79,6 +79,7 @@
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
@@ -116,6 +117,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="treeGrid\TreeGridCell.cs" />
+    <Compile Include="treeGrid\TreeGridEvents.cs" />
+    <Compile Include="treeGrid\TreeGridNode.cs" />
+    <Compile Include="treeGrid\TreeGridNodeCollection.cs" />
+    <Compile Include="treeGrid\TreeGridView.cs" />
     <EmbeddedResource Include="AddEventPopup.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AddEventPopup.cs</DependentUpon>
