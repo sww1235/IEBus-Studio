@@ -6,6 +6,10 @@ namespace IEBus_Studio
 {
     static class HexStringConverter
     {
+        public static int ToInt(string Hexstring)
+        {
+            return Convert.ToInt32(Hexstring, 16);
+        }
 
         public static byte[] ToByteArray(string HexString, bool hyphenated)
         {

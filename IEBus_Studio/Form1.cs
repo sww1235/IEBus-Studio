@@ -1673,9 +1673,9 @@ namespace IEBus_Studio
                             //AutoAdd devices
                             if (this.autoAddDevices.Checked)
                             {
-                                if (!isDeviceDefined(rawArray[1]))
+                                if (!isDeviceDefined(Convert.ToInt32(rawArray[1], 16)))
                                 {
-                                    Device d = new Device(HexStringConverter.ToByteArray(rawArray[1], false), "Unknown", "");
+                                    Device d = new Device(Convert.ToInt32(rawArray[1], 16), "Unknown", "");
                                     this.deviceManager.addDevice(d);
 
                                     // ReRender the device list
@@ -1703,31 +1703,18 @@ namespace IEBus_Studio
                             {
                                 rawArray = wrkMessage.Split(':');
 
-                                string broadcast = rawArray[0];
-                                string master_address = rawArray[1]; // HexStringConverter.ToHyphenatedHexString(rawArray[1], 3);
-                                string slave_address = rawArray[2]; // HexStringConverter.ToHyphenatedHexString(rawArray[2], 3);
-                                string control = parsedArray[3];
+                                char broadcast = rawArray[0][0];
+                                int master_address = Convert.ToInt32(rawArray[1], 16); 
+                                int slave_address = Convert.ToInt32(rawArray[2], 16);
+                                char control = parsedArray[3][0];
                                 ushort datasize = (ushort)Convert.ToInt16(parsedArray[4]);
-
-                                string data = "";
-                                for (int j = 0; j < 16; j++)
-                                {
-                                    if (j != 0)
-                                        data += "-";
-                                    if ((j + 5) < rawArray.Length)
-                                    {
-                                        while (rawArray[j + 5].Length < 2) rawArray[j + 5] = "0" + rawArray[j + 5];
-                                        data += rawArray[j + 5];
-                                    }
-                                    else
-                                        data += "00";
-                                }
+                                string data = parsedArray[5];
 
 
-                                Event discoveredEvent = new Event("", "", broadcast, master_address, slave_address, control, datasize, data);
+                                Event discoveredEvent = new Event("Unkown", "Unkown", broadcast, master_address, slave_address, control, datasize, data);
                                 eventDiscoverer.addEvent(discoveredEvent);
 
-                                displayDiscoveredDeviceList();
+                                displayDiscoveredEventList();
                             }
                         }
                     }
@@ -1736,17 +1723,20 @@ namespace IEBus_Studio
             }
         }
 
-        private bool isDeviceDefined(string device)
+        private bool isDeviceDefined(int device)
         {
             foreach (Device d in this.deviceManager.Devices)
-                if (HexStringConverter.ToHexString(d.Address) == device) { return true; }
+                if (d.Address == device) { return true; }
             return false;
         }
 
         private string parseDeviceAddress(string pmaster)
         {
+            int master_address = Convert.ToInt32(pmaster, 16);
+
             foreach (Device d in this.deviceManager.Devices)
-                if (HexStringConverter.ToHexString(d.Address) == pmaster) { return d.Name; }
+                if (d.Address == master_address) { return d.Name; }
+
             return pmaster;
         }
 
@@ -1898,7 +1888,7 @@ namespace IEBus_Studio
             eventDiscoverer.Start(this, timeLeftLabel);
         }
 
-        private void displayDiscoveredDeviceList()
+        private void displayDiscoveredEventList()
         {
             // Store the devices temporarily
             ArrayList discoveredEventList = new ArrayList(eventDiscoverer.DiscoveredEvents);
@@ -1916,7 +1906,13 @@ namespace IEBus_Studio
             {
                 DiscoveredEvent devent = (DiscoveredEvent)(eventDiscoverer.DiscoveredEvents[i]);
                 Event ev = (Event)devent.TheEvent;
-                eventDiscoveryTable.Rows.Add(devent.NumberOfInstances, ev.BroadcastString, ev.Master_Address_String, ev.Slave_Address_String, ev.ControlString, ev.DataSize, ev.DataString);
+
+                string master = parseDeviceAddress(Convert.ToString(ev.Master, 16));
+                string slave = parseDeviceAddress(Convert.ToString(ev.Slave, 16));
+                string data = "";
+                foreach (string var in ev.Variables)
+                    data += var;
+                eventDiscoveryTable.Rows.Add(devent.NumberOfInstances, ev.Broadcast, master, slave, ev.Control, ev.Size, data);
             }
             eventDiscoveryTable.ResumeLayout();
         }
@@ -1938,7 +1934,7 @@ namespace IEBus_Studio
             for (int i = 0; i < deviceManager.Devices.Count; i++)
             {
                 Device device = (Device)(deviceManager.Devices[i]);
-                devicesTable.Rows.Add(HexStringConverter.ToHexString(device.Address), device.Name, device.Description);
+                devicesTable.Rows.Add(Convert.ToString(device.Address, 16), device.Name, device.Description);
             }
 
             devicesTable.ResumeLayout();
@@ -1947,7 +1943,7 @@ namespace IEBus_Studio
         private void addDevice_Click(object sender, EventArgs e)
         {
             // Create a new device
-            Device device = new Device(new byte[3], "Unkown Name", "Unkown Description");
+            Device device = new Device(-1, "Unkown Name", "Unkown Description");
 
             // Add it to the device list
             deviceManager.addDevice(device);
@@ -1966,7 +1962,7 @@ namespace IEBus_Studio
             // Get devices from dataview and save to memory
             for (int i = 0; i < devicesTable.Rows.Count; i++)
             {
-                byte[] address = HexStringConverter.ToByteArray((string)devicesTable.Rows[i].Cells[0].Value, false);
+                int address = Convert.ToInt32((string)devicesTable.Rows[i].Cells[0].Value, 16);
                 string name = (string)devicesTable.Rows[i].Cells[1].Value;
                 string description = (string)devicesTable.Rows[i].Cells[2].Value;
                 Device device = new Device(address, name, description);
@@ -1994,16 +1990,18 @@ namespace IEBus_Studio
             {
                 Event ev = (Event)(eventManager.Events[i]);
 
-                string b = "1";
-                if (!ev.Broadcast) b = "0";
 
                 //    string master = deviceManager.GetDeviceName(ev.Master_Address);
                 //    if (master == null) master = ev.Master_Address_String;
 
                 //    string slave = deviceManager.GetDeviceName(ev.Slave_Address);
                 //    if (slave == null) master = ev.Slave_Address_String;
-
-                eventsTable.Rows.Add(ev.Name, ev.Description, b, ev.Master_Address_String, ev.Slave_Address_String, ev.ControlString, ev.DataSize, ev.DataString);
+                string master = parseDeviceAddress(Convert.ToString(ev.Master, 16));
+                string slave = parseDeviceAddress(Convert.ToString(ev.Slave, 16));
+                string data = "";
+                foreach (string var in ev.Variables)
+                    data += var;
+                eventsTable.Rows.Add(ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control, ev.Size, data);
             }
 
             // Resume Drawing
@@ -2013,7 +2011,7 @@ namespace IEBus_Studio
         private void addEvent_Click(object sender, EventArgs e)
         {
             // Create the event with default values
-            Event ev = new Event();
+            Event ev = new Event("Unkown", "Unkown", '1', -1, -1, 'F', 0, "");
 
             // Add event to event list
             eventManager.addEvent(ev);
@@ -2034,10 +2032,10 @@ namespace IEBus_Studio
 
                 string name = (string)eventsTable.Rows[i].Cells[0].Value;
                 string description = (string)eventsTable.Rows[i].Cells[1].Value;
-                string broadcast = (string)eventsTable.Rows[i].Cells[2].Value;
-                string master_address = (string)eventsTable.Rows[i].Cells[3].Value;
-                string slave_address = (string)eventsTable.Rows[i].Cells[4].Value;
-                string control = (string)eventsTable.Rows[i].Cells[5].Value;
+                char broadcast = ((string)eventsTable.Rows[i].Cells[2].Value)[0];
+                int master_address = Convert.ToInt32((string)eventsTable.Rows[i].Cells[3].Value, 16);
+                int slave_address = Convert.ToInt32((string)eventsTable.Rows[i].Cells[4].Value, 16);
+                char control = (char)eventsTable.Rows[i].Cells[5].Value;
                 ushort datasize = 15; //(ushort)eventsTable.Rows[i].Cells[6].Value;  <-- bombs on the cast
                 string data = (string)eventsTable.Rows[i].Cells[7].Value;
 
@@ -2137,11 +2135,28 @@ namespace IEBus_Studio
             XmlNodeList events = xDoc.GetElementsByTagName("event");
 
             foreach (XmlNode device in devices)
-                deviceManager.addDevice(new Device(HexStringConverter.ToByteArray(device.ChildNodes[2].FirstChild.Value, false), device.ChildNodes[0].FirstChild.Value, device.ChildNodes[1].FirstChild.Value));
+                deviceManager.addDevice(new Device(Convert.ToInt32(device.ChildNodes[2].FirstChild.Value, 16), device.ChildNodes[0].FirstChild.Value, device.ChildNodes[1].FirstChild.Value));
 
             foreach (XmlNode ev in events)
-                eventManager.addEvent(new Event(ev.ChildNodes[0].FirstChild.Value, ev.ChildNodes[1].FirstChild.Value, ev.ChildNodes[2].FirstChild.Value, ev.ChildNodes[3].FirstChild.Value, ev.ChildNodes[4].FirstChild.Value, ev.ChildNodes[5].FirstChild.Value, (ushort)Convert.ToInt16(ev.ChildNodes[6].FirstChild.Value), ev.ChildNodes[7].FirstChild.Value));
+            {
+                string name = ev.ChildNodes[0].FirstChild.Value;
+                string description = ev.ChildNodes[1].FirstChild.Value;
+                char broadcast = ev.ChildNodes[2].FirstChild.Value[0];
+                int master = Convert.ToInt32(ev.ChildNodes[3].FirstChild.Value, 16);
+                int slave = Convert.ToInt32(ev.ChildNodes[4].FirstChild.Value, 16);
+                char control = ev.ChildNodes[5].FirstChild.Value[0];
+                ushort size = Convert.ToUInt16(ev.ChildNodes[6].FirstChild.Value, 10);
 
+                string data = "";
+                for (int i = 6; i < ev.ChildNodes.Count; i++)
+                {
+                    if (i != 6)
+                        data += ":";
+                    data += ev.ChildNodes[i].FirstChild.Value;
+                }
+                    
+                eventManager.addEvent(new Event(name, description, broadcast, master, slave, control, size, data));
+            }
 
             displayDeviceList();
             displayEventList();
