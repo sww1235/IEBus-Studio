@@ -131,10 +131,12 @@ namespace IEBus_Studio
         private CheckBox checkBox1;
         private CheckBox variableDataFilter;
         private Label label10;
-        private ComboBox comboBox2;
+        private ComboBox slaveFilter;
         private Label label9;
         private ComboBox masterFilter;
         private ToolStripStatusLabel ts_connectionStatus;
+        private ComboBox andOr;
+        private CheckBox autoAddDevices;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -178,19 +180,19 @@ namespace IEBus_Studio
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle75 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_connectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -234,8 +236,9 @@ namespace IEBus_Studio
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.MessageTableTabs = new System.Windows.Forms.TabControl();
             this.eventDiscoveryTab = new System.Windows.Forms.TabPage();
+            this.andOr = new System.Windows.Forms.ComboBox();
             this.variableDataFilter = new System.Windows.Forms.CheckBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.slaveFilter = new System.Windows.Forms.ComboBox();
             this.timeLeftLabel = new System.Windows.Forms.Label();
             this.eventDiscoveryTable = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -249,11 +252,12 @@ namespace IEBus_Studio
             this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterFilter = new System.Windows.Forms.ComboBox();
             this.discoverEvent = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.secondsToDiscover = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.devicesTab = new System.Windows.Forms.TabPage();
+            this.autoAddDevices = new System.Windows.Forms.CheckBox();
             this.scanDevices = new System.Windows.Forms.Button();
             this.addDevice = new System.Windows.Forms.Button();
             this.devicesTable = new System.Windows.Forms.DataGridView();
@@ -329,9 +333,9 @@ namespace IEBus_Studio
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ts_connectionStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 520);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 536);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(719, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(819, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -356,7 +360,7 @@ namespace IEBus_Studio
             this.helpToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(719, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(819, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -453,7 +457,7 @@ namespace IEBus_Studio
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(719, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(819, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -659,7 +663,7 @@ namespace IEBus_Studio
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 49);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(719, 471);
+            this.panel1.Size = new System.Drawing.Size(819, 487);
             this.panel1.TabIndex = 5;
             // 
             // splitContainer1
@@ -681,8 +685,8 @@ namespace IEBus_Studio
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.splitContainer1.Panel2.Controls.Add(this.BottomTabs);
-            this.splitContainer1.Size = new System.Drawing.Size(719, 471);
-            this.splitContainer1.SplitterDistance = 287;
+            this.splitContainer1.Size = new System.Drawing.Size(819, 487);
+            this.splitContainer1.SplitterDistance = 313;
             this.splitContainer1.TabIndex = 0;
             // 
             // MessageTableTabs
@@ -695,13 +699,14 @@ namespace IEBus_Studio
             this.MessageTableTabs.Margin = new System.Windows.Forms.Padding(0);
             this.MessageTableTabs.Name = "MessageTableTabs";
             this.MessageTableTabs.SelectedIndex = 0;
-            this.MessageTableTabs.Size = new System.Drawing.Size(719, 287);
+            this.MessageTableTabs.Size = new System.Drawing.Size(819, 313);
             this.MessageTableTabs.TabIndex = 5;
             // 
             // eventDiscoveryTab
             // 
+            this.eventDiscoveryTab.Controls.Add(this.andOr);
             this.eventDiscoveryTab.Controls.Add(this.variableDataFilter);
-            this.eventDiscoveryTab.Controls.Add(this.comboBox2);
+            this.eventDiscoveryTab.Controls.Add(this.slaveFilter);
             this.eventDiscoveryTab.Controls.Add(this.timeLeftLabel);
             this.eventDiscoveryTab.Controls.Add(this.eventDiscoveryTable);
             this.eventDiscoveryTab.Controls.Add(this.masterFilter);
@@ -713,16 +718,28 @@ namespace IEBus_Studio
             this.eventDiscoveryTab.Location = new System.Drawing.Point(4, 22);
             this.eventDiscoveryTab.Name = "eventDiscoveryTab";
             this.eventDiscoveryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.eventDiscoveryTab.Size = new System.Drawing.Size(711, 261);
+            this.eventDiscoveryTab.Size = new System.Drawing.Size(811, 287);
             this.eventDiscoveryTab.TabIndex = 3;
             this.eventDiscoveryTab.Text = "Event Discovery";
             this.eventDiscoveryTab.UseVisualStyleBackColor = true;
+            // 
+            // andOr
+            // 
+            this.andOr.FormattingEnabled = true;
+            this.andOr.Items.AddRange(new object[] {
+            "And",
+            "Or"});
+            this.andOr.Location = new System.Drawing.Point(211, 22);
+            this.andOr.Name = "andOr";
+            this.andOr.Size = new System.Drawing.Size(59, 21);
+            this.andOr.TabIndex = 7;
+            this.andOr.Text = "And";
             // 
             // variableDataFilter
             // 
             this.variableDataFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.variableDataFilter.AutoSize = true;
-            this.variableDataFilter.Location = new System.Drawing.Point(414, 24);
+            this.variableDataFilter.Location = new System.Drawing.Point(514, 24);
             this.variableDataFilter.Name = "variableDataFilter";
             this.variableDataFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.variableDataFilter.Size = new System.Drawing.Size(171, 17);
@@ -731,20 +748,20 @@ namespace IEBus_Studio
             this.variableDataFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.variableDataFilter.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // slaveFilter
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.slaveFilter.FormattingEnabled = true;
+            this.slaveFilter.Items.AddRange(new object[] {
             "Build from device class"});
-            this.comboBox2.Location = new System.Drawing.Point(200, 22);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(132, 21);
-            this.comboBox2.TabIndex = 4;
+            this.slaveFilter.Location = new System.Drawing.Point(276, 22);
+            this.slaveFilter.Name = "slaveFilter";
+            this.slaveFilter.Size = new System.Drawing.Size(132, 21);
+            this.slaveFilter.TabIndex = 4;
             // 
             // timeLeftLabel
             // 
             this.timeLeftLabel.AutoSize = true;
-            this.timeLeftLabel.Location = new System.Drawing.Point(295, 13);
+            this.timeLeftLabel.Location = new System.Drawing.Point(307, 13);
             this.timeLeftLabel.Name = "timeLeftLabel";
             this.timeLeftLabel.Size = new System.Drawing.Size(0, 13);
             this.timeLeftLabel.TabIndex = 6;
@@ -753,8 +770,8 @@ namespace IEBus_Studio
             // 
             this.eventDiscoveryTable.AllowUserToAddRows = false;
             this.eventDiscoveryTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle66.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle66;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
+            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.eventDiscoveryTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -780,7 +797,7 @@ namespace IEBus_Studio
             this.eventDiscoveryTable.RowTemplate.Height = 18;
             this.eventDiscoveryTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.eventDiscoveryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.eventDiscoveryTable.Size = new System.Drawing.Size(705, 207);
+            this.eventDiscoveryTable.Size = new System.Drawing.Size(805, 233);
             this.eventDiscoveryTable.TabIndex = 5;
             this.eventDiscoveryTable.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.EventDiscoveryTable_RowContextMenuStripNeeded);
             // 
@@ -802,10 +819,10 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn22
             // 
-            dataGridViewCellStyle67.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle67.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle67;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn22.HeaderText = "Master";
             this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
@@ -814,9 +831,9 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn23
             // 
-            dataGridViewCellStyle68.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle68.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle68;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn23.HeaderText = "Slave";
             this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
@@ -825,9 +842,9 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn24
             // 
-            dataGridViewCellStyle69.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle69.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle69;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle4.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn24.HeaderText = "Control";
             this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
             this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
@@ -837,10 +854,10 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn25
             // 
-            dataGridViewCellStyle70.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle70.Format = "N0";
-            dataGridViewCellStyle70.NullValue = "0";
-            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle70;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn25.HeaderText = "Size";
             this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
             this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
@@ -875,7 +892,7 @@ namespace IEBus_Studio
             this.masterFilter.FormattingEnabled = true;
             this.masterFilter.Items.AddRange(new object[] {
             "Build from device class"});
-            this.masterFilter.Location = new System.Drawing.Point(63, 22);
+            this.masterFilter.Location = new System.Drawing.Point(75, 22);
             this.masterFilter.Name = "masterFilter";
             this.masterFilter.Size = new System.Drawing.Size(131, 21);
             this.masterFilter.TabIndex = 2;
@@ -883,22 +900,13 @@ namespace IEBus_Studio
             // discoverEvent
             // 
             this.discoverEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.discoverEvent.Location = new System.Drawing.Point(602, 21);
+            this.discoverEvent.Location = new System.Drawing.Point(702, 21);
             this.discoverEvent.Name = "discoverEvent";
             this.discoverEvent.Size = new System.Drawing.Size(92, 20);
             this.discoverEvent.TabIndex = 2;
             this.discoverEvent.Text = "Discover Event";
             this.discoverEvent.UseVisualStyleBackColor = true;
             this.discoverEvent.Click += new System.EventHandler(this.discoverEvent_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 7);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Seconds:";
             // 
             // secondsToDiscover
             // 
@@ -911,7 +919,7 @@ namespace IEBus_Studio
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(197, 6);
+            this.label10.Location = new System.Drawing.Point(273, 7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 13);
             this.label10.TabIndex = 5;
@@ -920,24 +928,46 @@ namespace IEBus_Studio
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(60, 7);
+            this.label9.Location = new System.Drawing.Point(72, 7);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 13);
             this.label9.TabIndex = 3;
             this.label9.Text = "Master filter:";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(5, 7);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(52, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Seconds:";
+            // 
             // devicesTab
             // 
+            this.devicesTab.Controls.Add(this.autoAddDevices);
             this.devicesTab.Controls.Add(this.scanDevices);
             this.devicesTab.Controls.Add(this.addDevice);
             this.devicesTab.Controls.Add(this.devicesTable);
             this.devicesTab.Location = new System.Drawing.Point(4, 22);
             this.devicesTab.Name = "devicesTab";
             this.devicesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.devicesTab.Size = new System.Drawing.Size(711, 261);
+            this.devicesTab.Size = new System.Drawing.Size(811, 287);
             this.devicesTab.TabIndex = 4;
             this.devicesTab.Text = "Device Discovery";
             this.devicesTab.UseVisualStyleBackColor = true;
+            // 
+            // autoAddDevices
+            // 
+            this.autoAddDevices.AutoSize = true;
+            this.autoAddDevices.Checked = true;
+            this.autoAddDevices.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoAddDevices.Location = new System.Drawing.Point(122, 13);
+            this.autoAddDevices.Name = "autoAddDevices";
+            this.autoAddDevices.Size = new System.Drawing.Size(144, 17);
+            this.autoAddDevices.TabIndex = 9;
+            this.autoAddDevices.Text = "Auto add unique devices";
+            this.autoAddDevices.UseVisualStyleBackColor = true;
             // 
             // scanDevices
             // 
@@ -952,7 +982,7 @@ namespace IEBus_Studio
             // addDevice
             // 
             this.addDevice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addDevice.Location = new System.Drawing.Point(613, 10);
+            this.addDevice.Location = new System.Drawing.Point(713, 10);
             this.addDevice.Name = "addDevice";
             this.addDevice.Size = new System.Drawing.Size(92, 20);
             this.addDevice.TabIndex = 7;
@@ -964,8 +994,8 @@ namespace IEBus_Studio
             // 
             this.devicesTable.AllowUserToAddRows = false;
             this.devicesTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle71.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle71;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Transparent;
+            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.devicesTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -985,7 +1015,7 @@ namespace IEBus_Studio
             this.devicesTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.devicesTable.RowTemplate.Height = 18;
             this.devicesTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.devicesTable.Size = new System.Drawing.Size(705, 219);
+            this.devicesTable.Size = new System.Drawing.Size(805, 245);
             this.devicesTable.TabIndex = 6;
             this.devicesTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveDeviceChanges);
             this.devicesTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveDeviceChanges);
@@ -993,9 +1023,9 @@ namespace IEBus_Studio
             // devices_deviceAddress
             // 
             this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle72.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle72;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle7;
             this.devices_deviceAddress.HeaderText = "Address";
             this.devices_deviceAddress.MaxInputLength = 1024;
             this.devices_deviceAddress.Name = "devices_deviceAddress";
@@ -1020,7 +1050,7 @@ namespace IEBus_Studio
             this.eventsTab.Location = new System.Drawing.Point(4, 22);
             this.eventsTab.Name = "eventsTab";
             this.eventsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.eventsTab.Size = new System.Drawing.Size(711, 261);
+            this.eventsTab.Size = new System.Drawing.Size(811, 287);
             this.eventsTab.TabIndex = 5;
             this.eventsTab.Text = "Defined Events";
             this.eventsTab.UseVisualStyleBackColor = true;
@@ -1039,8 +1069,8 @@ namespace IEBus_Studio
             // 
             this.eventsTable.AllowUserToAddRows = false;
             this.eventsTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle73.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle73;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Transparent;
+            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.eventsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1066,7 +1096,7 @@ namespace IEBus_Studio
             this.eventsTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.eventsTable.RowTemplate.Height = 18;
             this.eventsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.eventsTable.Size = new System.Drawing.Size(705, 219);
+            this.eventsTable.Size = new System.Drawing.Size(805, 245);
             this.eventsTable.TabIndex = 7;
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
@@ -1137,7 +1167,7 @@ namespace IEBus_Studio
             this.BottomTabs.Name = "BottomTabs";
             this.BottomTabs.SelectedIndex = 0;
             this.BottomTabs.ShowToolTips = true;
-            this.BottomTabs.Size = new System.Drawing.Size(719, 180);
+            this.BottomTabs.Size = new System.Drawing.Size(819, 170);
             this.BottomTabs.TabIndex = 21;
             // 
             // tabPage1
@@ -1147,7 +1177,7 @@ namespace IEBus_Studio
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(711, 154);
+            this.tabPage1.Size = new System.Drawing.Size(811, 144);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Serial Port";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1161,7 +1191,7 @@ namespace IEBus_Studio
             this.terminal.Multiline = true;
             this.terminal.Name = "terminal";
             this.terminal.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.terminal.Size = new System.Drawing.Size(294, 148);
+            this.terminal.Size = new System.Drawing.Size(394, 138);
             this.terminal.TabIndex = 0;
             // 
             // groupBox1
@@ -1184,7 +1214,7 @@ namespace IEBus_Studio
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(405, 148);
+            this.groupBox1.Size = new System.Drawing.Size(405, 138);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connection Settings";
@@ -1376,7 +1406,7 @@ namespace IEBus_Studio
             this.liveMessages.Location = new System.Drawing.Point(4, 22);
             this.liveMessages.Name = "liveMessages";
             this.liveMessages.Padding = new System.Windows.Forms.Padding(3);
-            this.liveMessages.Size = new System.Drawing.Size(711, 154);
+            this.liveMessages.Size = new System.Drawing.Size(811, 144);
             this.liveMessages.TabIndex = 1;
             this.liveMessages.Text = "Live Messages";
             this.liveMessages.ToolTipText = "Raw messages currently being transmitted over the COM port connected to parsed in" +
@@ -1396,8 +1426,11 @@ namespace IEBus_Studio
             // 
             this.ParsedMessageTable.AllowUserToAddRows = false;
             this.ParsedMessageTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle74.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle74;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Transparent;
+            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.ParsedMessageTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.ParsedMessageTable.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ParsedMessageTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ParsedMessageTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1409,7 +1442,6 @@ namespace IEBus_Studio
             this.DataSize,
             this.Data1});
             this.ParsedMessageTable.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ParsedMessageTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ParsedMessageTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.ParsedMessageTable.Location = new System.Drawing.Point(3, 26);
             this.ParsedMessageTable.Margin = new System.Windows.Forms.Padding(0);
@@ -1419,7 +1451,7 @@ namespace IEBus_Studio
             this.ParsedMessageTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.ParsedMessageTable.RowTemplate.Height = 18;
             this.ParsedMessageTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ParsedMessageTable.Size = new System.Drawing.Size(705, 125);
+            this.ParsedMessageTable.Size = new System.Drawing.Size(805, 115);
             this.ParsedMessageTable.TabIndex = 4;
             // 
             // Column2
@@ -1434,9 +1466,9 @@ namespace IEBus_Studio
             // 
             // Master
             // 
-            dataGridViewCellStyle75.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle75.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Master.DefaultCellStyle = dataGridViewCellStyle75;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Master.DefaultCellStyle = dataGridViewCellStyle10;
             this.Master.HeaderText = "Master";
             this.Master.MaxInputLength = 1024;
             this.Master.Name = "Master";
@@ -1445,8 +1477,8 @@ namespace IEBus_Studio
             // 
             // Slave
             // 
-            dataGridViewCellStyle76.BackColor = System.Drawing.SystemColors.Info;
-            this.Slave.DefaultCellStyle = dataGridViewCellStyle76;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Info;
+            this.Slave.DefaultCellStyle = dataGridViewCellStyle11;
             this.Slave.HeaderText = "Slave";
             this.Slave.MaxInputLength = 1024;
             this.Slave.Name = "Slave";
@@ -1455,8 +1487,8 @@ namespace IEBus_Studio
             // 
             // Control
             // 
-            dataGridViewCellStyle77.BackColor = System.Drawing.Color.AliceBlue;
-            this.Control.DefaultCellStyle = dataGridViewCellStyle77;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.AliceBlue;
+            this.Control.DefaultCellStyle = dataGridViewCellStyle12;
             this.Control.HeaderText = "Control";
             this.Control.MaxInputLength = 50;
             this.Control.Name = "Control";
@@ -1466,10 +1498,10 @@ namespace IEBus_Studio
             // 
             // DataSize
             // 
-            dataGridViewCellStyle78.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle78.Format = "N0";
-            dataGridViewCellStyle78.NullValue = "0";
-            this.DataSize.DefaultCellStyle = dataGridViewCellStyle78;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle13.Format = "N0";
+            dataGridViewCellStyle13.NullValue = "0";
+            this.DataSize.DefaultCellStyle = dataGridViewCellStyle13;
             this.DataSize.HeaderText = "Size";
             this.DataSize.MaxInputLength = 2;
             this.DataSize.Name = "DataSize";
@@ -1490,7 +1522,7 @@ namespace IEBus_Studio
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
             this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Location = new System.Drawing.Point(570, 6);
+            this.checkBox1.Location = new System.Drawing.Point(670, 6);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(135, 17);
             this.checkBox1.TabIndex = 7;
@@ -1518,7 +1550,7 @@ namespace IEBus_Studio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 542);
+            this.ClientSize = new System.Drawing.Size(819, 558);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -1545,6 +1577,7 @@ namespace IEBus_Studio
             ((System.ComponentModel.ISupportInitialize)(this.eventDiscoveryTable)).EndInit();
             this.EventActionsMenuStrip.ResumeLayout(false);
             this.devicesTab.ResumeLayout(false);
+            this.devicesTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.devicesTable)).EndInit();
             this.eventsTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.eventsTable)).EndInit();
@@ -1636,14 +1669,27 @@ namespace IEBus_Studio
                             string[] rawArray = wrkMessage.Split(':');
                             string[] parsedArray = wrkMessage.Split(':');
 
+                            //AutoAdd devices
+                            if (this.autoAddDevices.Checked)
+                            {
+                                if (!isDeviceDefined(rawArray[1]))
+                                {
+                                    Device d = new Device(HexStringConverter.ToByteArray(rawArray[1], false), "Unknown", "");
+                                    this.deviceManager.addDevice(d);
+
+                                    // ReRender the device list
+                                    displayDeviceList();
+                                }
+                            }
+
                             //Add 0x format to some raw columns
                             rawArray[1] = "0x" + rawArray[1];
                             rawArray[2] = "0x" + rawArray[2];
                             rawArray[3] = "0x" + rawArray[3];
 
                             //Prepare parsed record
-                            parsedArray[1] = parseMaster(parsedArray[1]);
-                            parsedArray[2] = parseSlave(parsedArray[2]);
+                            parsedArray[1] = parseDeviceAddress(parsedArray[1]);
+                            parsedArray[2] = parseDeviceAddress(parsedArray[2]);
                             parsedArray[3] = parseControl(parsedArray[3]);
                             parsedArray[5] = parseData(parsedArray);
                             parsedArray = new string[] { parsedArray[0], parsedArray[1], parsedArray[2], parsedArray[3], parsedArray[4], parsedArray[5] };
@@ -1689,16 +1735,18 @@ namespace IEBus_Studio
             }
         }
 
-        private string parseMaster(string pmaster)
+        private bool isDeviceDefined(string device)
         {
-            //TODO: Tie into the library that the user chooses from the menu
-            return pmaster;
+            foreach (Device d in this.deviceManager.Devices)
+                if (HexStringConverter.ToHexString(d.Address) == device) { return true; }
+            return false;
         }
 
-        private string parseSlave(string pslave)
+        private string parseDeviceAddress(string pmaster)
         {
-            //TODO: Tie into the library that the user chooses from the menu
-            return pslave;
+            foreach (Device d in this.deviceManager.Devices)
+                if (HexStringConverter.ToHexString(d.Address) == pmaster) { return d.Name; }
+            return pmaster;
         }
 
         private string parseControl(string pcontrol)
