@@ -1673,9 +1673,20 @@ namespace IEBus_Studio
                             //AutoAdd devices
                             if (this.autoAddDevices.Checked)
                             {
+                                // AutoAdd Master device
                                 if (!isDeviceDefined(Convert.ToInt32(rawArray[1], 16)))
                                 {
                                     Device d = new Device(Convert.ToInt32(rawArray[1], 16), "Unknown", "");
+                                    this.deviceManager.addDevice(d);
+
+                                    // ReRender the device list
+                                    displayDeviceList();
+                                }
+
+                                // AutoAdd Slave device
+                                if (!isDeviceDefined(Convert.ToInt32(rawArray[2], 16)))
+                                {
+                                    Device d = new Device(Convert.ToInt32(rawArray[2], 16), "Unknown", "");
                                     this.deviceManager.addDevice(d);
 
                                     // ReRender the device list
