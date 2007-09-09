@@ -8,14 +8,14 @@ namespace IEBus_Studio
     {
         private string _name;
         private string _description;
-        private char _broadcast;
+        private string _broadcast;
         private int _master;
         private int _slave;
-        private char _control;
-        private ushort _size;
+        private string _control;
+        private short _size;
         private System.Collections.Generic.List<string> _variables;
 
-        public Event(string Name, string Description, char Broadcast, int Master, int Slave, char Control, ushort size, string Data)
+        public Event(string Name, string Description, string Broadcast, int Master, int Slave, string Control, short size, string Data)
         {
             _variables = new System.Collections.Generic.List<string>();
             _name = Name;
@@ -24,7 +24,7 @@ namespace IEBus_Studio
             _master = Master;
             _slave = Slave;
             _control = Control;
-            _size = 0;
+            _size = size;
 
             string[] strBytes = Data.Split(':');
             for (int x = 0; x < strBytes.Length; x++)
@@ -80,7 +80,7 @@ namespace IEBus_Studio
                 _description = value;
             }
         }
-        public char Broadcast
+        public string Broadcast
         {
             get
             {
@@ -91,7 +91,7 @@ namespace IEBus_Studio
                 _broadcast = value;
             }
         }
-        public char Control
+        public string Control
         {
             get
             {
@@ -102,7 +102,7 @@ namespace IEBus_Studio
                 _control = value;
             }
         }
-        public ushort Size
+        public short Size
         {
             get
             {
@@ -123,19 +123,21 @@ namespace IEBus_Studio
 
             bool variables_match = this._variables.Count == ev.Variables.Count;
 
-            for (int i = 0; i < this._variables.Count; i++)
+            if (variables_match)
             {
-                if (this._variables[i] != ev.Variables[i])
-                    variables_match = false;
-            }
-
+                for (int i = 0; i < this._variables.Count; i++)
+                {
+                    if (this._variables[i] != ev.Variables[i])
+                        variables_match = false;
+                }
             return (this._master == ev.Master) &&
                    (this._slave == ev.Slave) &&
                    (this._control == ev.Control) &&
                    (this._broadcast == ev.Broadcast) &&
                    (this._size == ev.Size) &&
                    (variables_match);
-                    
+            }
+            return false;
         }
     }
 }
