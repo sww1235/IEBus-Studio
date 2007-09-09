@@ -76,12 +76,12 @@ namespace dllCreator
             sBuilder.AppendLine("text = text.Substring(wrkEnd + 1)");
             sBuilder.AppendLine("End If");
             sBuilder.AppendLine("If Not (wrkMessage.Contains(\"*\")) Then");
-            sBuilder.AppendLine("Dim rawArray() As String = wrkMessage.Split(\":\"c)");
-            sBuilder.AppendLine("Dim MasterDevice As CarDevice = System.Convert.ToInt32(rawArray(1), 16)");
-            sBuilder.AppendLine("Dim SlaveDevice As CarDevice = System.Convert.ToInt32(rawArray(2), 16)");
-            sBuilder.AppendLine("Dim DataLength As Integer = rawArray(4)");
+            sBuilder.AppendLine("Dim currentMessageArray() As String = wrkMessage.Split(\":\"c)");
+            sBuilder.AppendLine("Dim MasterDevice As CarDevice = System.Convert.ToInt32(currentMessageArray(1), 16)");
+            sBuilder.AppendLine("Dim SlaveDevice As CarDevice = System.Convert.ToInt32(currentMessageArray(2), 16)");
+            sBuilder.AppendLine("Dim DataLength As Integer = currentMessageArray(4)");
             sBuilder.AppendLine("Dim RawData(DataLength - 1) As String");
-            sBuilder.AppendLine("Array.Copy(rawArray, 5, RawData, 0, DataLength)");
+            sBuilder.AppendLine("Array.Copy(currentMessageArray, 5, RawData, 0, DataLength)");
 
             for (int x = 0; x < Events.Count; x++)
             {
@@ -111,7 +111,7 @@ namespace dllCreator
                 argsCount--;
                 sBuilder.AppendLine("If MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " Then");
                 sBuilder.AppendLine("If BuildWildcard(RawData, New Integer() {" + indicesString + "}).ToLower() = \"" + compareString + "\".ToLower() Then");
-                sBuilder.AppendLine("Array.Copy(rawArray, 5, RawData, 0, DataLength)");
+                sBuilder.AppendLine("Array.Copy(currentMessageArray, 5, RawData, 0, DataLength)");
                 sBuilder.AppendLine("Dim paramVariables(" + argsCount + ") as Integer");
                 sBuilder.AppendLine(valueString);
                 sBuilder.AppendLine("RaiseEvent " + Events[x].Name + "(MasterDevice, SlaveDevice" + paramsString + ")");
