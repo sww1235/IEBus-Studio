@@ -297,7 +297,7 @@ namespace IEBus_Studio
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.exportDLLSaveAsDialog = new System.Windows.Forms.SaveFileDialog();
-<<<<<<< .mine
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -315,7 +315,6 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-=======
 
 
 
@@ -330,10 +329,6 @@ namespace IEBus_Studio
 
 
 
-
-
-
->>>>>>> .theirs
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -840,8 +835,6 @@ namespace IEBus_Studio
             // 
             this.devicesTable.AllowUserToAddRows = false;
             this.devicesTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
-            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.devicesTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -869,9 +862,6 @@ namespace IEBus_Studio
             // devices_deviceAddress
             // 
             this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle2;
             this.devices_deviceAddress.HeaderText = "Address";
             this.devices_deviceAddress.MaxInputLength = 1024;
             this.devices_deviceAddress.MinimumWidth = 60;
@@ -916,8 +906,6 @@ namespace IEBus_Studio
             // 
             this.eventsTable.AllowUserToAddRows = false;
             this.eventsTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Transparent;
-            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.eventsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1275,8 +1263,6 @@ namespace IEBus_Studio
             this.ParsedMessageTable.AllowUserToDeleteRows = false;
             this.ParsedMessageTable.AllowUserToResizeColumns = false;
             this.ParsedMessageTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Transparent;
-            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.ParsedMessageTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1320,9 +1306,6 @@ namespace IEBus_Studio
             // 
             // Master
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Master.DefaultCellStyle = dataGridViewCellStyle5;
             this.Master.HeaderText = "Master";
             this.Master.MaxInputLength = 1024;
             this.Master.Name = "Master";
@@ -1331,8 +1314,6 @@ namespace IEBus_Studio
             // 
             // Slave
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Info;
-            this.Slave.DefaultCellStyle = dataGridViewCellStyle6;
             this.Slave.HeaderText = "Slave";
             this.Slave.MaxInputLength = 1024;
             this.Slave.Name = "Slave";
@@ -1341,8 +1322,6 @@ namespace IEBus_Studio
             // 
             // Control
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.AliceBlue;
-            this.Control.DefaultCellStyle = dataGridViewCellStyle7;
             this.Control.HeaderText = "Control";
             this.Control.MaxInputLength = 50;
             this.Control.Name = "Control";
@@ -1352,10 +1331,6 @@ namespace IEBus_Studio
             // 
             // DataSize
             // 
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.DataSize.DefaultCellStyle = dataGridViewCellStyle8;
             this.DataSize.HeaderText = "Size";
             this.DataSize.MaxInputLength = 2;
             this.DataSize.Name = "DataSize";
@@ -1431,9 +1406,6 @@ namespace IEBus_Studio
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn1.HeaderText = "Address";
             this.dataGridViewTextBoxColumn1.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
@@ -1520,9 +1492,6 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn13
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumn13.HeaderText = "Master";
             this.dataGridViewTextBoxColumn13.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
@@ -1531,8 +1500,6 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn14
             // 
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Info;
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn14.HeaderText = "Slave";
             this.dataGridViewTextBoxColumn14.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
@@ -1541,8 +1508,6 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn15
             // 
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.AliceBlue;
-            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn15.HeaderText = "Control";
             this.dataGridViewTextBoxColumn15.MaxInputLength = 50;
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
@@ -1552,10 +1517,6 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn16
             // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle13.Format = "N0";
-            dataGridViewCellStyle13.NullValue = "0";
-            this.dataGridViewTextBoxColumn16.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxColumn16.HeaderText = "Size";
             this.dataGridViewTextBoxColumn16.MaxInputLength = 2;
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
@@ -2299,6 +2260,16 @@ namespace IEBus_Studio
                 MessageBox.Show(patternGrid.Rows[e.RowIndex].Cells["dataColumn"].Value.ToString());
             }
         }
+        private void exportDLLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.opened_filename == "")
+            {
+                MessageBox.Show("Please save your work first by choosing File->SaveAs");
+                return;
+            }
+            exportDLLSaveAsDialog.ShowDialog();
+        }
+
         private class RowComparer : System.Collections.IComparer
         {
             private static int sortOrderModifier = 1;
