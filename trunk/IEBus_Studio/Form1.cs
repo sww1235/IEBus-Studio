@@ -82,13 +82,6 @@ namespace IEBus_Studio
         private EventDiscovery eventDiscoverer = new EventDiscovery();
         private string opened_filename = "";
         private Label timeLeftLabel;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private DataGridViewTextBoxColumn Event_Name;
         private DataGridViewTextBoxColumn Event_Description;
         private DataGridViewTextBoxColumn Event_Broadcast;
@@ -119,13 +112,7 @@ namespace IEBus_Studio
         private TabPage liveMessages;
         private Label label7;
         private DataGridView ParsedMessageTable;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Master;
-        private DataGridViewTextBoxColumn Slave;
-        private DataGridViewTextBoxColumn Control;
-        private DataGridViewTextBoxColumn DataSize;
-        private DataGridViewTextBoxColumn Data1;
-        private CheckBox checkBox1;
+        private CheckBox lookupDeviceNames;
         private CheckBox variableDataFilter;
         private Label label10;
         private ComboBox slaveFilter;
@@ -137,6 +124,20 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn devices_deviceAddress;
         private DataGridViewTextBoxColumn devices_name;
         private DataGridViewTextBoxColumn devices_description;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Master;
+        private DataGridViewTextBoxColumn Slave;
+        private DataGridViewTextBoxColumn Control;
+        private DataGridViewTextBoxColumn DataSize;
+        private DataGridViewTextBoxColumn Data1;
+        private DataGridViewTextBoxColumn id;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -181,10 +182,6 @@ namespace IEBus_Studio
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -193,6 +190,10 @@ namespace IEBus_Studio
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_connectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -241,13 +242,6 @@ namespace IEBus_Studio
             this.slaveFilter = new System.Windows.Forms.ComboBox();
             this.timeLeftLabel = new System.Windows.Forms.Label();
             this.eventDiscoveryTable = new System.Windows.Forms.DataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EventActionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterFilter = new System.Windows.Forms.ComboBox();
@@ -303,10 +297,18 @@ namespace IEBus_Studio
             this.Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Data1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lookupDeviceNames = new System.Windows.Forms.CheckBox();
             this.chooseOutputFile = new System.Windows.Forms.SaveFileDialog();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -800,78 +802,6 @@ namespace IEBus_Studio
             this.eventDiscoveryTable.Size = new System.Drawing.Size(805, 233);
             this.eventDiscoveryTable.TabIndex = 5;
             this.eventDiscoveryTable.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.EventDiscoveryTable_RowContextMenuStripNeeded);
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Instances";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            this.dataGridViewTextBoxColumn21.HeaderText = "B";
-            this.dataGridViewTextBoxColumn21.MaxInputLength = 1;
-            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            this.dataGridViewTextBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn21.ToolTipText = "Broadcast Bit";
-            this.dataGridViewTextBoxColumn21.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn22.HeaderText = "Master";
-            this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
-            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            this.dataGridViewTextBoxColumn22.ReadOnly = true;
-            this.dataGridViewTextBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn23.HeaderText = "Slave";
-            this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
-            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            this.dataGridViewTextBoxColumn23.ReadOnly = true;
-            this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle4.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewTextBoxColumn24.HeaderText = "Control";
-            this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            this.dataGridViewTextBoxColumn24.ReadOnly = true;
-            this.dataGridViewTextBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn24.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewTextBoxColumn25.HeaderText = "Size";
-            this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
-            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            this.dataGridViewTextBoxColumn25.ReadOnly = true;
-            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn25.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn26.HeaderText = "Data";
-            this.dataGridViewTextBoxColumn26.MaxInputLength = 4;
-            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            this.dataGridViewTextBoxColumn26.ReadOnly = true;
             // 
             // EventActionsMenuStrip
             // 
@@ -1403,7 +1333,7 @@ namespace IEBus_Studio
             // 
             this.liveMessages.Controls.Add(this.label7);
             this.liveMessages.Controls.Add(this.ParsedMessageTable);
-            this.liveMessages.Controls.Add(this.checkBox1);
+            this.liveMessages.Controls.Add(this.lookupDeviceNames);
             this.liveMessages.Location = new System.Drawing.Point(4, 22);
             this.liveMessages.Name = "liveMessages";
             this.liveMessages.Padding = new System.Windows.Forms.Padding(3);
@@ -1441,7 +1371,8 @@ namespace IEBus_Studio
             this.Slave,
             this.Control,
             this.DataSize,
-            this.Data1});
+            this.Data1,
+            this.id});
             this.ParsedMessageTable.Cursor = System.Windows.Forms.Cursors.Default;
             this.ParsedMessageTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.ParsedMessageTable.Location = new System.Drawing.Point(3, 26);
@@ -1518,17 +1449,27 @@ namespace IEBus_Studio
             this.Data1.Name = "Data1";
             this.Data1.ReadOnly = true;
             // 
-            // checkBox1
+            // id
             // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Location = new System.Drawing.Point(670, 6);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(135, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Lookup Device Names";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.id.FillWeight = 2F;
+            this.id.HeaderText = "";
+            this.id.MinimumWidth = 2;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            this.id.Width = 2;
+            // 
+            // lookupDeviceNames
+            // 
+            this.lookupDeviceNames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lookupDeviceNames.AutoSize = true;
+            this.lookupDeviceNames.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lookupDeviceNames.Location = new System.Drawing.Point(670, 6);
+            this.lookupDeviceNames.Name = "lookupDeviceNames";
+            this.lookupDeviceNames.Size = new System.Drawing.Size(135, 17);
+            this.lookupDeviceNames.TabIndex = 7;
+            this.lookupDeviceNames.Text = "Lookup Device Names";
+            this.lookupDeviceNames.UseVisualStyleBackColor = true;
             // 
             // chooseOutputFile
             // 
@@ -1546,6 +1487,78 @@ namespace IEBus_Studio
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Instances";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn21
+            // 
+            this.dataGridViewTextBoxColumn21.HeaderText = "B";
+            this.dataGridViewTextBoxColumn21.MaxInputLength = 1;
+            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            this.dataGridViewTextBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn21.ToolTipText = "Broadcast Bit";
+            this.dataGridViewTextBoxColumn21.Width = 25;
+            // 
+            // dataGridViewTextBoxColumn22
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn22.HeaderText = "Master";
+            this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
+            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            this.dataGridViewTextBoxColumn22.ReadOnly = true;
+            this.dataGridViewTextBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn23
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn23.HeaderText = "Slave";
+            this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.ReadOnly = true;
+            this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle4.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTextBoxColumn24.HeaderText = "Control";
+            this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.ReadOnly = true;
+            this.dataGridViewTextBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn24.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn25
+            // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewTextBoxColumn25.HeaderText = "Size";
+            this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.ReadOnly = true;
+            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn25.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn26
+            // 
+            this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn26.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn26.MaxInputLength = 4;
+            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            this.dataGridViewTextBoxColumn26.ReadOnly = true;
             // 
             // Form1
             // 
@@ -1623,6 +1636,7 @@ namespace IEBus_Studio
 
             this.port.Items.Clear();
             this.port.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
+
         }
 
 
@@ -1634,9 +1648,29 @@ namespace IEBus_Studio
         // This delegate enables asynchronous calls for setting
         // the text property on a TextBox control.
         delegate void SetTextCallback(string text);
+        delegate void DGRefreshCallback();
+
+        private void refreshDataGrids()
+        {
+            if (this.ParsedMessageTable.InvokeRequired)
+            {
+                DGRefreshCallback messageTableDelegate = new DGRefreshCallback(refreshDataGrids);
+                try
+                {
+                    this.Invoke(messageTableDelegate);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.GetBaseException());
+                }
+            }
+            else
+            {
+                this.ParsedMessageTable.Refresh();
+            }
+        }
 
         string leftOverText = "";
-
         private void DataReceived(string text)
         {
             if (this.terminal.InvokeRequired)
@@ -1667,16 +1701,15 @@ namespace IEBus_Studio
 
                         if (!wrkMessage.Contains("*"))
                         {
-                            string[] rawArray = wrkMessage.Split(':');
-                            string[] parsedArray = wrkMessage.Split(':');
+                            string[] currentMessageArray = wrkMessage.Split(':');
 
                             //AutoAdd devices
                             if (this.autoAddDevices.Checked)
                             {
                                 // AutoAdd Master device
-                                if (!isDeviceDefined(Convert.ToInt32(rawArray[1], 16)))
+                                if (!isDeviceDefined(Convert.ToInt32(currentMessageArray[1], 16)))
                                 {
-                                    Device d = new Device(Convert.ToInt32(rawArray[1], 16), "Unknown", "");
+                                    Device d = new Device(Convert.ToInt32(currentMessageArray[1], 16), "Undefined", "Describe me.");
                                     this.deviceManager.addDevice(d);
 
                                     // ReRender the device list
@@ -1684,9 +1717,9 @@ namespace IEBus_Studio
                                 }
 
                                 // AutoAdd Slave device
-                                if (!isDeviceDefined(Convert.ToInt32(rawArray[2], 16)))
+                                if (!isDeviceDefined(Convert.ToInt32(currentMessageArray[2], 16)))
                                 {
-                                    Device d = new Device(Convert.ToInt32(rawArray[2], 16), "Unknown", "");
+                                    Device d = new Device(Convert.ToInt32(currentMessageArray[2], 16), "Undefined", "Describe me.");
                                     this.deviceManager.addDevice(d);
 
                                     // ReRender the device list
@@ -1694,35 +1727,34 @@ namespace IEBus_Studio
                                 }
                             }
 
-                            //Add 0x format to some raw columns
-                            rawArray[1] = "0x" + rawArray[1];
-                            rawArray[2] = "0x" + rawArray[2];
-                            rawArray[3] = "0x" + rawArray[3];
+                            //Prepare message record
+                            if (this.lookupDeviceNames.Checked)
+                            {
+                                currentMessageArray[1] = parseDeviceAddress(currentMessageArray[1]);
+                                currentMessageArray[2] = parseDeviceAddress(currentMessageArray[2]);
+                                currentMessageArray[3] = parseControl(currentMessageArray[3]);
+                                currentMessageArray[5] = parseData(currentMessageArray);
+                            }
+                            else
+                            {
+                                currentMessageArray[1] = "0x" + currentMessageArray[1];
+                                currentMessageArray[2] = "0x" + currentMessageArray[2];
+                                currentMessageArray[3] = "0x" + currentMessageArray[3];
+                                currentMessageArray[5] = parseData(currentMessageArray);
+                            }
 
-                            //Prepare parsed record
-                            parsedArray[1] = parseDeviceAddress(parsedArray[1]);
-                            parsedArray[2] = parseDeviceAddress(parsedArray[2]);
-                            parsedArray[3] = parseControl(parsedArray[3]);
-                            parsedArray[5] = parseData(parsedArray);
-                            parsedArray = new string[] { parsedArray[0], parsedArray[1], parsedArray[2], parsedArray[3], parsedArray[4], parsedArray[5] };
-
-                        //Populate a new row for each table
-                        //RawMessageTable.Rows.Add(rawArray);
-                        ParsedMessageTable.Rows.Add(parsedArray);
+                            ParsedMessageTable.Rows.Add(currentMessageArray[0], currentMessageArray[1], currentMessageArray[2], currentMessageArray[3], currentMessageArray[4], currentMessageArray[5], this.ParsedMessageTable.RowCount );
 
                             if (eventDiscoverer.discoveryingEvents())
                             {
-                                rawArray = wrkMessage.Split(':');
+                                char broadcast = currentMessageArray[0][0];
+                                int master_address = Convert.ToInt32(currentMessageArray[1], 16); 
+                                int slave_address = Convert.ToInt32(currentMessageArray[2], 16);
+                                char control = currentMessageArray[3][0];
+                                ushort datasize = (ushort)Convert.ToInt16(currentMessageArray[4]);
+                                string data = currentMessageArray[5];
 
-                                char broadcast = rawArray[0][0];
-                                int master_address = Convert.ToInt32(rawArray[1], 16); 
-                                int slave_address = Convert.ToInt32(rawArray[2], 16);
-                                char control = rawArray[3][0];
-                                ushort datasize = (ushort)Convert.ToInt16(parsedArray[4]);
-                                string data = parsedArray[5];
-
-
-                                Event discoveredEvent = new Event("Unkown", "Unkown", broadcast, master_address, slave_address, control, datasize, data);
+                                Event discoveredEvent = new Event("Undefined", "Undefined", broadcast, master_address, slave_address, control, datasize, data);
                                 eventDiscoverer.addEvent(discoveredEvent);
 
                                 displayDiscoveredEventList();
@@ -1731,7 +1763,10 @@ namespace IEBus_Studio
                     }
                 }
                 leftOverText = text;
+
+                this.ParsedMessageTable.Sort(this.ParsedMessageTable.Columns[6], ListSortDirection.Descending);
             }
+            //refreshDataGrids();
         }
 
         private bool isDeviceDefined(int device)
@@ -1746,9 +1781,18 @@ namespace IEBus_Studio
             int master_address = Convert.ToInt32(pmaster, 16);
 
             foreach (Device d in this.deviceManager.Devices)
-                if (d.Address == master_address) { return d.Name; }
+            {
+                if (d.Address == master_address)
+                {
+                    if (d.Name == "Undefined")
+                    {
+                        return "0x" + pmaster;
+                    }
+                    return d.Name;
+                }
+            }
 
-            return pmaster;
+            return "0x" + pmaster;
         }
 
         private string parseControl(string pcontrol)
