@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
+using dllCreator;
+
 namespace IEBus_Studio
 {
     class DiscoveredEvent

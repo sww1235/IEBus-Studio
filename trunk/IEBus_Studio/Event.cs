@@ -6,270 +6,128 @@ namespace IEBus_Studio
 {
     public class Event
     {
-        string name;
-        string description;
-        protected bool				broadcast;		// Broadcast bit		[ 1 bit ]
-	    protected byte[]			master_address;	// Master Address		[12 bits]
-	    protected byte[]		    slave_address;	// Slave Address		[12 bits]
-        protected byte         		control;		// Control				[ 4 bits]
-        protected ushort            datasize;       // Data byte count		[ 8 bits]
-        protected byte[]            data;			// Data					[128 bits]
+        private string _name;
+        private string _description;
+        private char _broadcast;
+        private int _master;
+        private int _slave;
+        private char _control;
+        private ushort _size;
+        private System.Collections.Generic.List<string> _variables;
 
-        public Event()
+        public Event(string Name, string Description, char Broadcast, int Master, int Slave, char Control, ushort size, string Data)
         {
-            name           = "Unkown Name";
-            description    = "Unkown Description";
-            broadcast      = true;
-            master_address = new byte[3];
-            slave_address  = new byte[3];
-            control        = 0x7F;
-            datasize       = 0x00;
-            data           = new byte[16];
-        }
+            _variables = new System.Collections.Generic.List<string>();
+            _name = Name;
+            _description = Description;
+            _broadcast = Broadcast;
+            _master = Master;
+            _slave = Slave;
+            _control = Control;
+            _size = 0;
 
-        public Event(string name, string description, bool broadcast, byte[] master_address, byte[] slave_address, byte control, ushort datasize, byte[] data)
-        {
-            this.name           = name;
-            this.description    = description;
-            this.broadcast      = broadcast;
-            this.master_address = master_address;
-            this.slave_address  = slave_address;
-            this.control        = control;
-            this.datasize       = datasize;
-            this.Data           = data;
+            string[] strBytes = Data.Split(':');
+            for (int x = 0; x < strBytes.Length; x++)
+            {
+                    _variables.Add(strBytes[x]);
+            }
         }
-
-        
-        public Event(string name, string description, string broadcast, string master_address, string slave_address, string control, ushort datasize, string data)
+        public System.Collections.Generic.List<string> Variables
         {
-            this.name                  = name;
-            this.Description           = description;
-            this.BroadcastString       = broadcast;
-            this.Master_Address_String = master_address;
-            this.Slave_Address_String  = slave_address;
-            this.ControlString         = control;
-            this.datasize              = datasize;
-            this.DataString            = data;
+            get { return _variables;}
         }
-        
+        public int Master
+        {
+            get
+            {
+                return _master;
+            }
+            set
+            {
+                _master = value;
+            }
+        }
+        public int Slave
+        {
+            get
+            {
+                return _slave;
+            }
+            set
+            {
+                _slave = value;
+            }
+        }
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
         }
-
         public string Description
         {
-            get { return description; }
-            set { description = value; }
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = value;
+            }
         }
-
-        public bool Broadcast
-        {
-            get { return broadcast; }
-            set { broadcast = value; }
-        }
-
-        public string BroadcastString
+        public char Broadcast
         {
             get
             {
-                if (!broadcast)
-                    return "0";
-                return "1";
+                return _broadcast;
             }
             set
             {
-                if (value == "0")
-                    broadcast = false;
-                broadcast = true;
+                _broadcast = value;
             }
         }
-
-        
-        public byte[] Master_Address
-        {
-            get { return master_address; }
-            set { master_address = value; }
-        }
-
-        
-        public string Master_Address_String
+        public char Control
         {
             get
             {
-                string hexString = "";
-                foreach (byte abyte in master_address)
-                {
-                    string temp = Convert.ToString(abyte);
-                    if (temp.Length == 1) temp = "0" + temp;
-                    hexString += temp;
-                }
-
-                while (hexString.Length != 0 && hexString[0] == '0') hexString = hexString.Substring(1, hexString.Length - 1);
-                if (hexString.Length == 0) hexString = "0";
-
-                return hexString;
-                
-                //return System.BitConverter.ToString(master_address);
+                return _control;
             }
             set
             {
-                
-                // If invalid address is typed use static address
-                if (!Validator.validate_address(value))
-                {
-                    value = "000000";
-                }
-                master_address = HexStringConverter.ToByteArray(value, false);
+                _control = value;
             }
         }
-        
-
-        public byte[] Slave_Address
-        {
-            get { return slave_address; }
-            set { slave_address = value; }
-        }
-
-        public string Slave_Address_String
+        public ushort Size
         {
             get
             {
-                string hexString = "";
-                foreach (byte abyte in slave_address)
-                {
-                    string temp = Convert.ToString(abyte);
-                    if (temp.Length == 1) temp = "0" + temp;
-                    hexString += temp;
-                }
-
-                while (hexString.Length != 0 && hexString[0] == '0') hexString = hexString.Substring(1, hexString.Length - 1);
-                if (hexString.Length == 0) hexString = "0";
-
-                return hexString;
-                //return System.BitConverter.ToString(slave_address);
+                return _size;
             }
             set
             {
-                // If invalid address is typed use static address
-                if (!Validator.validate_address(value))
-                {
-                    value = "000000";
-                }
-                slave_address = HexStringConverter.ToByteArray(value, false);
+                _size = value;
             }
         }
-
-        public byte Control
-        {
-            get { return control; }
-            set { control = value; }
-        }
-
-        public string ControlString
-        {
-            get 
-            { 
-                return Convert.ToString(control, 16); 
-            }
-            set
-            {
-                if (!Validator.validate_control(value))
-                {
-                    value = "F";
-                }
-                control = Convert.ToByte(value, 16);
-            }
-        }
-
-        public ushort DataSize
-        {
-            get { return datasize; }
-            set { datasize = value; }
-        }
-
-        public byte[] Data
-        {
-            get { return data; }
-            set {
-                // if data is too large
-                if (value.Length > 20)
-                {
-                    // Only take first 20 bytes
-                    data = new byte[20];
-                    for (int i = 0; i < 20; i++)
-                        data[i] = value[i];
-                }
-                // if data is too small, pad with 00s
-                else if (value.Length < 20)
-                {
-                    data = new byte[20];
-                    for (int i = 0; i < 20; i++)
-                    {
-                        if (i >= value.Length)
-                            data[i] = 0x00;
-                        else
-                            data[i] = value[i];
-                    }
-                }
-                else
-                {
-                    data = value; 
-                }
-            }
-        }
-
-        public string DataString
-        {
-            get 
-            { 
-                return System.BitConverter.ToString(data); 
-            }
-            set 
-            {
-                if (!Validator.validate_data(value))
-                {
-                    value = "00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00";
-                }
-
-                // Convert hex string to byte array
-                data = HexStringConverter.ToByteArray(value, true);
-            }
-        }
-
-        private bool compare_byte_array(byte[] ar1, byte[] ar2)
-        {
-            if (ar1.Length != ar2.Length) return false;
-
-            for (int i = 0; i < ar1.Length; i++)
-            {
-                if (ar1[i] != ar2[i])
-                    return false;
-            }
-
-            return true;
-        }
-
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
-
-            if (this.GetType() != obj.GetType()) return false;
-
+            if (obj == null)
+                return false;
+            if (this.GetType() != obj.GetType())
+                return false;
             Event ev = (Event)obj;
 
-
-            // Return true if the fields match (other than name/description):
-            return 
-                (broadcast == ev.Broadcast) &&
-                compare_byte_array(master_address, ev.Master_Address) &&
-                compare_byte_array(slave_address, ev.Slave_Address) &&
-                (control == ev.Control) &&
-                (datasize == ev.DataSize) &&
-                compare_byte_array(data, ev.Data);
+            return (this._master == ev.Master) &&
+                   (this._slave == ev.Slave) &&
+                   (this._control == ev.Control) &&
+                   (this._broadcast == ev.Broadcast) &&
+                   (this._size == ev.Slave) &&
+                   (this.Variables.Equals(ev.Variables));
+                    
         }
-
-        
     }
 }

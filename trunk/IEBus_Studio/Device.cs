@@ -1,28 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace IEBus_Studio
 {
-    class Device
+    public class Device
     {
-        private byte[] _address;
+        private int _address;
         private string _name;
         private string _description;
-
         public Device()
         {
-            _address = new byte[3];
+            _address = -1;
             _name = string.Empty;
             _description = string.Empty;
         }
-        public Device(byte[] address, string name, string description)
+        public Device(int address, string name, string description)
         {
             _address = address;
             _name = name;
             _description = description;
         }
-        public byte[] Address
+        public int Address
         {
             get
             {

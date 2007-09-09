@@ -33,28 +33,28 @@ namespace IEBus_Studio
                 Event ev = (Event)events[i];
 
                 xml += "    <event>\r\n";
-                xml += "        <name>"           + ev.Name                  + "</name>\r\n";
-                xml += "        <description>"    + ev.Description           + "</description>\r\n";
-                xml += "        <broadcast>"      + ev.BroadcastString       + "</broadcast>\r\n";
-                xml += "        <master_address>" + ev.Master_Address_String + "</master_address>\r\n";
-                xml += "        <slave_address>"  + ev.Slave_Address_String  + "</slave_address>\r\n";
-                xml += "        <control>"        + ev.ControlString         + "</control>\r\n";
-                xml += "        <datasize>"       + ev.DataSize              + "</datasize>\r\n";
-                for(int j = 0; j < ev.Data.Length; j++)
-                    xml += "        <data>" + Convert.ToString(ev.Data[j]) + "</data>\r\n";
+                xml += "        <name>"           + ev.Name         + "</name>\r\n";
+                xml += "        <description>"    + ev.Description  + "</description>\r\n";
+                xml += "        <broadcast>"      + ev.Broadcast    + "</broadcast>\r\n";
+                xml += "        <master_address>" + ev.Master       + "</master_address>\r\n";
+                xml += "        <slave_address>"  + ev.Slave        + "</slave_address>\r\n";
+                xml += "        <control>"        + ev.Control      + "</control>\r\n";
+                xml += "        <datasize>"       + ev.Size         + "</datasize>\r\n";
+                foreach (string var in ev.Variables)
+                    xml += "        <data>" + var + "</data>\r\n";
                 xml += "    </event>\r\n";
             }
             xml += "</events>\r\n";
             return xml;
         }
 
-        public ArrayList GetDeviceEvents(byte[] master_address)
+        public ArrayList GetDeviceEvents(int master_address)
         {
             ArrayList deviceEvents = new ArrayList();
             
             foreach(Event ev in events)
             {
-                if (ev.Master_Address == master_address)
+                if (ev.Master == master_address)
                     deviceEvents.Add(ev);
             }
 
