@@ -18,7 +18,11 @@
         <master_address>0</master_address>
         <slave_address>0</slave_address>
         <control>f</control>
-        <datasize>15</datasize>
+        <datasize>0</datasize>
+        <data>0</data>
+        <data>0</data>
+        <data>0</data>
+        <data>15</data>
         <data>0</data>
         <data>0</data>
         <data>0</data>
