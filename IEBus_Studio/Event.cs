@@ -121,12 +121,20 @@ namespace IEBus_Studio
                 return false;
             Event ev = (Event)obj;
 
+            bool variables_match = this._variables.Count == ev.Variables.Count;
+
+            for (int i = 0; i < this._variables.Count; i++)
+            {
+                if (this._variables[i] != ev.Variables[i])
+                    variables_match = false;
+            }
+
             return (this._master == ev.Master) &&
                    (this._slave == ev.Slave) &&
                    (this._control == ev.Control) &&
                    (this._broadcast == ev.Broadcast) &&
-                   (this._size == ev.Slave) &&
-                   (this.Variables.Equals(ev.Variables));
+                   (this._size == ev.Size) &&
+                   (variables_match);
                     
         }
     }
