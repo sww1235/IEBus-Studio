@@ -186,13 +186,13 @@ namespace IEBus_Studio
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_connectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -261,6 +261,9 @@ namespace IEBus_Studio
             this.scanDevices = new System.Windows.Forms.Button();
             this.addDevice = new System.Windows.Forms.Button();
             this.devicesTable = new System.Windows.Forms.DataGridView();
+            this.devices_deviceAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.devices_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.devices_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
@@ -304,9 +307,6 @@ namespace IEBus_Studio
             this.chooseOutputFile = new System.Windows.Forms.SaveFileDialog();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.devices_deviceAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.devices_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.devices_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -761,7 +761,7 @@ namespace IEBus_Studio
             // timeLeftLabel
             // 
             this.timeLeftLabel.AutoSize = true;
-            this.timeLeftLabel.Location = new System.Drawing.Point(307, 13);
+            this.timeLeftLabel.Location = new System.Drawing.Point(430, 26);
             this.timeLeftLabel.Name = "timeLeftLabel";
             this.timeLeftLabel.Size = new System.Drawing.Size(0, 13);
             this.timeLeftLabel.TabIndex = 6;
@@ -1019,6 +1019,30 @@ namespace IEBus_Studio
             this.devicesTable.TabIndex = 6;
             this.devicesTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveDeviceChanges);
             this.devicesTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveDeviceChanges);
+            // 
+            // devices_deviceAddress
+            // 
+            this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle7;
+            this.devices_deviceAddress.HeaderText = "Address";
+            this.devices_deviceAddress.MaxInputLength = 1024;
+            this.devices_deviceAddress.MinimumWidth = 60;
+            this.devices_deviceAddress.Name = "devices_deviceAddress";
+            this.devices_deviceAddress.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // devices_name
+            // 
+            this.devices_name.HeaderText = "Name";
+            this.devices_name.Name = "devices_name";
+            this.devices_name.Width = 250;
+            // 
+            // devices_description
+            // 
+            this.devices_description.HeaderText = "Description";
+            this.devices_description.Name = "devices_description";
+            this.devices_description.Width = 450;
             // 
             // eventsTab
             // 
@@ -1523,30 +1547,6 @@ namespace IEBus_Studio
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // devices_deviceAddress
-            // 
-            this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle7;
-            this.devices_deviceAddress.HeaderText = "Address";
-            this.devices_deviceAddress.MaxInputLength = 1024;
-            this.devices_deviceAddress.MinimumWidth = 60;
-            this.devices_deviceAddress.Name = "devices_deviceAddress";
-            this.devices_deviceAddress.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // devices_name
-            // 
-            this.devices_name.HeaderText = "Name";
-            this.devices_name.Name = "devices_name";
-            this.devices_name.Width = 250;
-            // 
-            // devices_description
-            // 
-            this.devices_description.HeaderText = "Description";
-            this.devices_description.Name = "devices_description";
-            this.devices_description.Width = 450;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1706,7 +1706,7 @@ namespace IEBus_Studio
                                 char broadcast = rawArray[0][0];
                                 int master_address = Convert.ToInt32(rawArray[1], 16); 
                                 int slave_address = Convert.ToInt32(rawArray[2], 16);
-                                char control = parsedArray[3][0];
+                                char control = rawArray[3][0];
                                 ushort datasize = (ushort)Convert.ToInt16(parsedArray[4]);
                                 string data = parsedArray[5];
 
@@ -1943,7 +1943,7 @@ namespace IEBus_Studio
         private void addDevice_Click(object sender, EventArgs e)
         {
             // Create a new device
-            Device device = new Device(-1, "Unkown Name", "Unkown Description");
+            Device device = new Device(0, "Unkown Name", "Unkown Description");
 
             // Add it to the device list
             deviceManager.addDevice(device);
@@ -2011,7 +2011,7 @@ namespace IEBus_Studio
         private void addEvent_Click(object sender, EventArgs e)
         {
             // Create the event with default values
-            Event ev = new Event("Unkown", "Unkown", '1', -1, -1, 'F', 0, "");
+            Event ev = new Event("Unkown", "Unkown", '1', 0, 0, 'F', 0, "");
 
             // Add event to event list
             eventManager.addEvent(ev);
