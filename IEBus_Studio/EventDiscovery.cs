@@ -123,45 +123,45 @@ namespace IEBus_Studio
 
         public void addEvent(Event theEvent)
         {
-            bool eventAdded = false;
+            //bool eventAdded = false;
 
-            for (int i = 0; i < discoveredEvents.Count; i++)
-            {
-                DiscoveredEvent discoveredEvent = (DiscoveredEvent)discoveredEvents[i];
+            //for (int i = 0; i < discoveredEvents.Count; i++)
+            //{
+            //    DiscoveredEvent discoveredEvent = (DiscoveredEvent)discoveredEvents[i];
 
-                // If the event has already happened since discovery begain
-                if (discoveredEvent.TheEvent.Equals(theEvent))
-                {
-                    // increment the number of instances found for that evnet
-                    discoveredEvent.addInstance();
+            //    // If the event has already happened since discovery begain
+            //    if (discoveredEvent.TheEvent.Equals(theEvent))
+            //    {
+            //        // increment the number of instances found for that evnet
+            //        discoveredEvent.addInstance();
 
-                    // while the discovered event is not the first one in the list
-                    // and it has been found more than the event above it
-                    int j = i;
-                    while (j != 0 && ((DiscoveredEvent)discoveredEvents[j]).NumberOfInstances > ((DiscoveredEvent)discoveredEvents[j - 1]).NumberOfInstances)
-                    {
-                        // move the the discovered event higher up in the list
-                        DiscoveredEvent temp = (DiscoveredEvent)discoveredEvents[j];
-                        discoveredEvents[j] = discoveredEvents[j - 1];
-                        discoveredEvents[j - 1] = temp;
+            //        // while the discovered event is not the first one in the list
+            //        // and it has been found more than the event above it
+            //        int j = i;
+            //        while (j != 0 && ((DiscoveredEvent)discoveredEvents[j]).NumberOfInstances > ((DiscoveredEvent)discoveredEvents[j - 1]).NumberOfInstances)
+            //        {
+            //            // move the the discovered event higher up in the list
+            //            DiscoveredEvent temp = (DiscoveredEvent)discoveredEvents[j];
+            //            discoveredEvents[j] = discoveredEvents[j - 1];
+            //            discoveredEvents[j - 1] = temp;
 
-                        // and compare this event with the one above that
-                        j--;
-                    }
+            //            // and compare this event with the one above that
+            //            j--;
+            //        }
 
 
-                    // set the boolean that the event has been added
-                    eventAdded = true;
-                }
-            }
+            //        // set the boolean that the event has been added
+            //        eventAdded = true;
+            //    }
+            //}
 
-            // if the event wasn't added because it wasn't 
-            // already in the list of discovered events
-            if (!eventAdded)
-            {
-                // add it to the list of discovered events
+            //// if the event wasn't added because it wasn't 
+            //// already in the list of discovered events
+            //if (!eventAdded)
+            //{
+                //// add it to the list of discovered events
                 discoveredEvents.Add(new DiscoveredEvent(theEvent));
-            }
+           // }
 
 
         }
