@@ -1765,6 +1765,8 @@ namespace IEBus_Studio
                 leftOverText = text;
 
                 this.ParsedMessageTable.Sort(this.ParsedMessageTable.Columns[6], ListSortDirection.Descending);
+                this.terminal.SelectionStart = terminal.Text.Length;
+                this.terminal.ScrollToCaret();
             }
             //refreshDataGrids();
         }
