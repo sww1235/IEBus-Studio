@@ -19,38 +19,20 @@ namespace IEBus_Studio
     {
         private StatusStrip statusStrip1;
         private ToolStrip toolStrip1;
-        private ToolStripButton newToolStripButton;
         private ToolStripButton openToolStripButton;
         private ToolStripButton saveToolStripButton;
-        private ToolStripButton printToolStripButton;
         private ToolStripSeparator toolStripSeparator;
-        private ToolStripButton cutToolStripButton;
-        private ToolStripButton copyToolStripButton;
-        private ToolStripButton pasteToolStripButton;
-        private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton helpToolStripButton;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem newToolStripMenuItem;
         private ToolStripMenuItem openToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem saveAsToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator3;
-        private ToolStripMenuItem printToolStripMenuItem;
-        private ToolStripMenuItem printPreviewToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private ToolStripMenuItem editToolStripMenuItem;
-        private ToolStripMenuItem cutToolStripMenuItem;
-        private ToolStripMenuItem copyToolStripMenuItem;
-        private ToolStripMenuItem pasteToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator6;
-        private ToolStripMenuItem selectAllToolStripMenuItem;
         private ToolStripMenuItem toolsToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
-        private ToolStripMenuItem contentsToolStripMenuItem;
-        private ToolStripMenuItem indexToolStripMenuItem;
         private ToolStripMenuItem searchToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator7;
         private ToolStripMenuItem aboutToolStripMenuItem;
@@ -72,7 +54,6 @@ namespace IEBus_Studio
         private TabPage eventsTab;
         private DataGridView eventsTable;
         private Button addEvent;
-        private Button scanDevices;
         private OpenFileDialog openFileDialog1;
         private ContextMenuStrip EventActionsMenuStrip;
         private ToolStripMenuItem addEventToolStripMenuItem;
@@ -138,6 +119,9 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private ToolStripMenuItem exportDLLToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem1;
+        private SaveFileDialog exportDLLSaveAsDialog;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -181,55 +165,39 @@ namespace IEBus_Studio
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_connectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.printToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportDLLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeMessageTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -259,7 +227,6 @@ namespace IEBus_Studio
             this.label8 = new System.Windows.Forms.Label();
             this.devicesTab = new System.Windows.Forms.TabPage();
             this.autoAddDevices = new System.Windows.Forms.CheckBox();
-            this.scanDevices = new System.Windows.Forms.Button();
             this.addDevice = new System.Windows.Forms.Button();
             this.devicesTable = new System.Windows.Forms.DataGridView();
             this.devices_deviceAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -309,6 +276,7 @@ namespace IEBus_Studio
             this.chooseOutputFile = new System.Windows.Forms.SaveFileDialog();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.exportDLLSaveAsDialog = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -335,9 +303,9 @@ namespace IEBus_Studio
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ts_connectionStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 536);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 476);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(819, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(813, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -350,30 +318,15 @@ namespace IEBus_Studio
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripButton,
             this.openToolStripButton,
             this.saveToolStripButton,
-            this.printToolStripButton,
             this.toolStripSeparator,
-            this.cutToolStripButton,
-            this.copyToolStripButton,
-            this.pasteToolStripButton,
-            this.toolStripSeparator1,
             this.helpToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(819, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(813, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // newToolStripButton
-            // 
-            this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
-            this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.newToolStripButton.Text = "&New";
             // 
             // openToolStripButton
             // 
@@ -395,51 +348,10 @@ namespace IEBus_Studio
             this.saveToolStripButton.Text = "&Save";
             this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
             // 
-            // printToolStripButton
-            // 
-            this.printToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.printToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripButton.Image")));
-            this.printToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripButton.Name = "printToolStripButton";
-            this.printToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.printToolStripButton.Text = "&Print";
-            // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cutToolStripButton
-            // 
-            this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
-            this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripButton.Name = "cutToolStripButton";
-            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.cutToolStripButton.Text = "C&ut";
-            // 
-            // copyToolStripButton
-            // 
-            this.copyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
-            this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripButton.Name = "copyToolStripButton";
-            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.copyToolStripButton.Text = "&Copy";
-            // 
-            // pasteToolStripButton
-            // 
-            this.pasteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pasteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton.Image")));
-            this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pasteToolStripButton.Name = "pasteToolStripButton";
-            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.pasteToolStripButton.Text = "&Paste";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // helpToolStripButton
             // 
@@ -454,40 +366,28 @@ namespace IEBus_Studio
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(819, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(813, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.toolStripSeparator2,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.toolStripSeparator3,
-            this.printToolStripMenuItem,
-            this.printPreviewToolStripMenuItem,
-            this.toolStripSeparator4,
+            this.exportDLLToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-            this.newToolStripMenuItem.Text = "&New";
             // 
             // openToolStripMenuItem
             // 
@@ -526,83 +426,23 @@ namespace IEBus_Studio
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(148, 6);
             // 
-            // printToolStripMenuItem
+            // exportDLLToolStripMenuItem
             // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
-            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-            this.printToolStripMenuItem.Text = "&Print";
+            this.exportDLLToolStripMenuItem.Name = "exportDLLToolStripMenuItem";
+            this.exportDLLToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exportDLLToolStripMenuItem.Text = "&Export DLL";
+            this.exportDLLToolStripMenuItem.Click += new System.EventHandler(this.exportDLLToolStripMenuItem_Click);
             // 
-            // printPreviewToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
-            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-            this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(148, 6);
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cutToolStripMenuItem,
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem,
-            this.toolStripSeparator6,
-            this.selectAllToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.editToolStripMenuItem.Text = "&Edit";
-            // 
-            // cutToolStripMenuItem
-            // 
-            this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
-            this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.cutToolStripMenuItem.Text = "Cu&t";
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
-            this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.copyToolStripMenuItem.Text = "&Copy";
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
-            this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.pasteToolStripMenuItem.Text = "&Paste";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(147, 6);
-            // 
-            // selectAllToolStripMenuItem
-            // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.selectAllToolStripMenuItem.Text = "Select &All";
             // 
             // toolsToolStripMenuItem
             // 
@@ -621,8 +461,6 @@ namespace IEBus_Studio
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contentsToolStripMenuItem,
-            this.indexToolStripMenuItem,
             this.searchToolStripMenuItem,
             this.toolStripSeparator7,
             this.aboutToolStripMenuItem});
@@ -630,23 +468,11 @@ namespace IEBus_Studio
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
-            // contentsToolStripMenuItem
-            // 
-            this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.contentsToolStripMenuItem.Text = "&Contents";
-            // 
-            // indexToolStripMenuItem
-            // 
-            this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.indexToolStripMenuItem.Text = "&Index";
-            // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             this.searchToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.searchToolStripMenuItem.Text = "&Search";
+            this.searchToolStripMenuItem.Text = "&Contents";
             // 
             // toolStripSeparator7
             // 
@@ -665,7 +491,7 @@ namespace IEBus_Studio
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 49);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(819, 487);
+            this.panel1.Size = new System.Drawing.Size(813, 427);
             this.panel1.TabIndex = 5;
             // 
             // splitContainer1
@@ -687,8 +513,8 @@ namespace IEBus_Studio
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.splitContainer1.Panel2.Controls.Add(this.BottomTabs);
-            this.splitContainer1.Size = new System.Drawing.Size(819, 487);
-            this.splitContainer1.SplitterDistance = 313;
+            this.splitContainer1.Size = new System.Drawing.Size(813, 427);
+            this.splitContainer1.SplitterDistance = 251;
             this.splitContainer1.TabIndex = 0;
             // 
             // MessageTableTabs
@@ -701,7 +527,7 @@ namespace IEBus_Studio
             this.MessageTableTabs.Margin = new System.Windows.Forms.Padding(0);
             this.MessageTableTabs.Name = "MessageTableTabs";
             this.MessageTableTabs.SelectedIndex = 0;
-            this.MessageTableTabs.Size = new System.Drawing.Size(819, 313);
+            this.MessageTableTabs.Size = new System.Drawing.Size(813, 251);
             this.MessageTableTabs.TabIndex = 5;
             // 
             // eventDiscoveryTab
@@ -720,7 +546,7 @@ namespace IEBus_Studio
             this.eventDiscoveryTab.Location = new System.Drawing.Point(4, 22);
             this.eventDiscoveryTab.Name = "eventDiscoveryTab";
             this.eventDiscoveryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.eventDiscoveryTab.Size = new System.Drawing.Size(811, 287);
+            this.eventDiscoveryTab.Size = new System.Drawing.Size(805, 225);
             this.eventDiscoveryTab.TabIndex = 3;
             this.eventDiscoveryTab.Text = "Event Discovery";
             this.eventDiscoveryTab.UseVisualStyleBackColor = true;
@@ -741,7 +567,7 @@ namespace IEBus_Studio
             // 
             this.variableDataFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.variableDataFilter.AutoSize = true;
-            this.variableDataFilter.Location = new System.Drawing.Point(514, 24);
+            this.variableDataFilter.Location = new System.Drawing.Point(508, 24);
             this.variableDataFilter.Name = "variableDataFilter";
             this.variableDataFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.variableDataFilter.Size = new System.Drawing.Size(171, 17);
@@ -772,8 +598,8 @@ namespace IEBus_Studio
             // 
             this.eventDiscoveryTable.AllowUserToAddRows = false;
             this.eventDiscoveryTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
-            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.Transparent;
+            this.eventDiscoveryTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle42;
             this.eventDiscoveryTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -799,7 +625,7 @@ namespace IEBus_Studio
             this.eventDiscoveryTable.RowTemplate.Height = 18;
             this.eventDiscoveryTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.eventDiscoveryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.eventDiscoveryTable.Size = new System.Drawing.Size(805, 233);
+            this.eventDiscoveryTable.Size = new System.Drawing.Size(799, 173);
             this.eventDiscoveryTable.TabIndex = 5;
             this.eventDiscoveryTable.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.EventDiscoveryTable_RowContextMenuStripNeeded);
             // 
@@ -821,10 +647,10 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn22
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle43;
             this.dataGridViewTextBoxColumn22.HeaderText = "Master";
             this.dataGridViewTextBoxColumn22.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
@@ -833,9 +659,9 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn23
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle44.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle44;
             this.dataGridViewTextBoxColumn23.HeaderText = "Slave";
             this.dataGridViewTextBoxColumn23.MaxInputLength = 1024;
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
@@ -844,9 +670,9 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn24
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle4.Format = "\"0x\"0000";
-            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle45.Format = "\"0x\"0000";
+            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle45;
             this.dataGridViewTextBoxColumn24.HeaderText = "Control";
             this.dataGridViewTextBoxColumn24.MaxInputLength = 50;
             this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
@@ -856,10 +682,10 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn25
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle46.Format = "N0";
+            dataGridViewCellStyle46.NullValue = "0";
+            this.dataGridViewTextBoxColumn25.DefaultCellStyle = dataGridViewCellStyle46;
             this.dataGridViewTextBoxColumn25.HeaderText = "Size";
             this.dataGridViewTextBoxColumn25.MaxInputLength = 2;
             this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
@@ -902,7 +728,7 @@ namespace IEBus_Studio
             // discoverEvent
             // 
             this.discoverEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.discoverEvent.Location = new System.Drawing.Point(702, 21);
+            this.discoverEvent.Location = new System.Drawing.Point(696, 21);
             this.discoverEvent.Name = "discoverEvent";
             this.discoverEvent.Size = new System.Drawing.Size(92, 20);
             this.discoverEvent.TabIndex = 2;
@@ -948,13 +774,12 @@ namespace IEBus_Studio
             // devicesTab
             // 
             this.devicesTab.Controls.Add(this.autoAddDevices);
-            this.devicesTab.Controls.Add(this.scanDevices);
             this.devicesTab.Controls.Add(this.addDevice);
             this.devicesTab.Controls.Add(this.devicesTable);
             this.devicesTab.Location = new System.Drawing.Point(4, 22);
             this.devicesTab.Name = "devicesTab";
             this.devicesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.devicesTab.Size = new System.Drawing.Size(811, 287);
+            this.devicesTab.Size = new System.Drawing.Size(805, 225);
             this.devicesTab.TabIndex = 4;
             this.devicesTab.Text = "Device Discovery";
             this.devicesTab.UseVisualStyleBackColor = true;
@@ -964,27 +789,17 @@ namespace IEBus_Studio
             this.autoAddDevices.AutoSize = true;
             this.autoAddDevices.Checked = true;
             this.autoAddDevices.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoAddDevices.Location = new System.Drawing.Point(122, 13);
+            this.autoAddDevices.Location = new System.Drawing.Point(119, 13);
             this.autoAddDevices.Name = "autoAddDevices";
             this.autoAddDevices.Size = new System.Drawing.Size(144, 17);
             this.autoAddDevices.TabIndex = 9;
             this.autoAddDevices.Text = "Auto add unique devices";
             this.autoAddDevices.UseVisualStyleBackColor = true;
             // 
-            // scanDevices
-            // 
-            this.scanDevices.Location = new System.Drawing.Point(8, 10);
-            this.scanDevices.Name = "scanDevices";
-            this.scanDevices.Size = new System.Drawing.Size(92, 20);
-            this.scanDevices.TabIndex = 8;
-            this.scanDevices.Text = "Scan Devices";
-            this.scanDevices.UseVisualStyleBackColor = true;
-            this.scanDevices.Click += new System.EventHandler(this.scanDevices_Click);
-            // 
             // addDevice
             // 
             this.addDevice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addDevice.Location = new System.Drawing.Point(713, 10);
+            this.addDevice.Location = new System.Drawing.Point(8, 10);
             this.addDevice.Name = "addDevice";
             this.addDevice.Size = new System.Drawing.Size(92, 20);
             this.addDevice.TabIndex = 7;
@@ -996,8 +811,8 @@ namespace IEBus_Studio
             // 
             this.devicesTable.AllowUserToAddRows = false;
             this.devicesTable.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Transparent;
-            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.Transparent;
+            this.devicesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle40;
             this.devicesTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1017,7 +832,7 @@ namespace IEBus_Studio
             this.devicesTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.devicesTable.RowTemplate.Height = 18;
             this.devicesTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.devicesTable.Size = new System.Drawing.Size(805, 245);
+            this.devicesTable.Size = new System.Drawing.Size(799, 183);
             this.devicesTable.TabIndex = 6;
             this.devicesTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveDeviceChanges);
             this.devicesTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveDeviceChanges);
@@ -1025,9 +840,9 @@ namespace IEBus_Studio
             // devices_deviceAddress
             // 
             this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.devices_deviceAddress.DefaultCellStyle = dataGridViewCellStyle41;
             this.devices_deviceAddress.HeaderText = "Address";
             this.devices_deviceAddress.MaxInputLength = 1024;
             this.devices_deviceAddress.MinimumWidth = 60;
@@ -1053,7 +868,7 @@ namespace IEBus_Studio
             this.eventsTab.Location = new System.Drawing.Point(4, 22);
             this.eventsTab.Name = "eventsTab";
             this.eventsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.eventsTab.Size = new System.Drawing.Size(811, 287);
+            this.eventsTab.Size = new System.Drawing.Size(805, 225);
             this.eventsTab.TabIndex = 5;
             this.eventsTab.Text = "Defined Events";
             this.eventsTab.UseVisualStyleBackColor = true;
@@ -1072,8 +887,8 @@ namespace IEBus_Studio
             // 
             this.eventsTable.AllowUserToAddRows = false;
             this.eventsTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Transparent;
-            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle47.BackColor = System.Drawing.Color.Transparent;
+            this.eventsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle47;
             this.eventsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1099,7 +914,7 @@ namespace IEBus_Studio
             this.eventsTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.eventsTable.RowTemplate.Height = 18;
             this.eventsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.eventsTable.Size = new System.Drawing.Size(805, 245);
+            this.eventsTable.Size = new System.Drawing.Size(799, 183);
             this.eventsTable.TabIndex = 7;
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
@@ -1170,7 +985,7 @@ namespace IEBus_Studio
             this.BottomTabs.Name = "BottomTabs";
             this.BottomTabs.SelectedIndex = 0;
             this.BottomTabs.ShowToolTips = true;
-            this.BottomTabs.Size = new System.Drawing.Size(819, 170);
+            this.BottomTabs.Size = new System.Drawing.Size(813, 172);
             this.BottomTabs.TabIndex = 21;
             // 
             // tabPage1
@@ -1180,7 +995,7 @@ namespace IEBus_Studio
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(811, 144);
+            this.tabPage1.Size = new System.Drawing.Size(805, 146);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Serial Port";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1194,7 +1009,7 @@ namespace IEBus_Studio
             this.terminal.Multiline = true;
             this.terminal.Name = "terminal";
             this.terminal.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.terminal.Size = new System.Drawing.Size(394, 138);
+            this.terminal.Size = new System.Drawing.Size(388, 138);
             this.terminal.TabIndex = 0;
             // 
             // groupBox1
@@ -1217,7 +1032,7 @@ namespace IEBus_Studio
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(405, 138);
+            this.groupBox1.Size = new System.Drawing.Size(405, 140);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connection Settings";
@@ -1409,7 +1224,7 @@ namespace IEBus_Studio
             this.liveMessages.Location = new System.Drawing.Point(4, 22);
             this.liveMessages.Name = "liveMessages";
             this.liveMessages.Padding = new System.Windows.Forms.Padding(3);
-            this.liveMessages.Size = new System.Drawing.Size(811, 144);
+            this.liveMessages.Size = new System.Drawing.Size(805, 146);
             this.liveMessages.TabIndex = 1;
             this.liveMessages.Text = "Live Messages";
             this.liveMessages.ToolTipText = "Raw messages currently being transmitted over the COM port connected to parsed in" +
@@ -1431,8 +1246,8 @@ namespace IEBus_Studio
             this.ParsedMessageTable.AllowUserToDeleteRows = false;
             this.ParsedMessageTable.AllowUserToResizeColumns = false;
             this.ParsedMessageTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Transparent;
-            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.Transparent;
+            this.ParsedMessageTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle48;
             this.ParsedMessageTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -1476,9 +1291,9 @@ namespace IEBus_Studio
             // 
             // Master
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Master.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle49.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle49.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Master.DefaultCellStyle = dataGridViewCellStyle49;
             this.Master.HeaderText = "Master";
             this.Master.MaxInputLength = 1024;
             this.Master.Name = "Master";
@@ -1487,8 +1302,8 @@ namespace IEBus_Studio
             // 
             // Slave
             // 
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Info;
-            this.Slave.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Info;
+            this.Slave.DefaultCellStyle = dataGridViewCellStyle50;
             this.Slave.HeaderText = "Slave";
             this.Slave.MaxInputLength = 1024;
             this.Slave.Name = "Slave";
@@ -1497,8 +1312,8 @@ namespace IEBus_Studio
             // 
             // Control
             // 
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.AliceBlue;
-            this.Control.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle51.BackColor = System.Drawing.Color.AliceBlue;
+            this.Control.DefaultCellStyle = dataGridViewCellStyle51;
             this.Control.HeaderText = "Control";
             this.Control.MaxInputLength = 50;
             this.Control.Name = "Control";
@@ -1508,10 +1323,10 @@ namespace IEBus_Studio
             // 
             // DataSize
             // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle13.Format = "N0";
-            dataGridViewCellStyle13.NullValue = "0";
-            this.DataSize.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle52.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle52.Format = "N0";
+            dataGridViewCellStyle52.NullValue = "0";
+            this.DataSize.DefaultCellStyle = dataGridViewCellStyle52;
             this.DataSize.HeaderText = "Size";
             this.DataSize.MaxInputLength = 2;
             this.DataSize.Name = "DataSize";
@@ -1554,8 +1369,8 @@ namespace IEBus_Studio
             // chooseOutputFile
             // 
             this.chooseOutputFile.DefaultExt = "txt";
-            this.chooseOutputFile.Filter = "XML|*.xml|Text Files|*.txt";
-            this.chooseOutputFile.Title = "Choose output file...";
+            this.chooseOutputFile.Filter = "IEBus Studio Files|*.ieb";
+            this.chooseOutputFile.Title = "Save Event Library As...";
             this.chooseOutputFile.FileOk += new System.ComponentModel.CancelEventHandler(this.chooseOutputFile_FileOk);
             // 
             // serialPort1
@@ -1566,13 +1381,20 @@ namespace IEBus_Studio
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "IEBus Studio Files|*.ieb";
+            this.openFileDialog1.Title = "Open An Event Library...";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // exportDLLSaveAsDialog
+            // 
+            this.exportDLLSaveAsDialog.Title = "Choose an export path...";
+            this.exportDLLSaveAsDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.exportDLLSaveAsDialog_FileOk);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 558);
+            this.ClientSize = new System.Drawing.Size(813, 498);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -1636,15 +1458,8 @@ namespace IEBus_Studio
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
-            DC.DeviceManager.AddDevice(0x131, "Touch Screen", "The touch screen.");
-            DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
-            DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:0:0:0:0:%Unknown1");
-            DC.CompileDLL(Application.StartupPath + "\\");
-
             this.port.Items.Clear();
             this.port.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
-
         }
 
 
@@ -2189,6 +2004,8 @@ namespace IEBus_Studio
         {
             // Open the xml file
             this.opened_filename = openFileDialog1.FileName;
+            this.Text = "IEBus Studio - " + System.IO.Path.GetFileName(openFileDialog1.FileName);
+            
             XmlDocument xDoc = new XmlDocument();
             xDoc.Load(this.opened_filename);
 
@@ -2226,12 +2043,39 @@ namespace IEBus_Studio
 
             displayDeviceList();
             displayEventList();
+
+            this.MessageTableTabs.SelectedTab = this.MessageTableTabs.TabPages["eventsTab"];
         }
 
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
             // Call the menu item click of file->save
             openToolStripMenuItem_Click(sender, e);
+        }
+
+        private void exportDLLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.opened_filename == "")
+            {
+                MessageBox.Show("Please save your work first by choosing File->SaveAs");
+                return;
+            }
+            exportDLLSaveAsDialog.ShowDialog();
+        }
+
+        private void exportDLLSaveAsDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            string dllPath = exportDLLSaveAsDialog.FileName;
+            
+            /*
+            dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
+            DC.DeviceManager.AddDevice(0x131, "Touch Screen", "The touch screen.");
+            DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
+            DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:0:0:0:0:%Unknown1");
+            DC.CompileDLL(Application.StartupPath + "\\");
+            */
+
+            MessageBox.Show("Your DLL has been created. Would you like to also produce a starter VB.Net project that uses the DLL?");
         }
 
 
