@@ -14,6 +14,7 @@ namespace dllCreator
         private System.Collections.Generic.List<Event> _events;
         private string CreateCode()
         {
+            _events.Sort();
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.AppendLine("Imports System");
             sBuilder.AppendLine("Imports System.Windows.Forms");
@@ -107,17 +108,24 @@ namespace dllCreator
                     }
                 }
                 compareString = compareString.Substring(0, compareString.Length - 1);
-                indicesString = indicesString.Substring(0, indicesString.Length - 2);
+                if (indicesString != string.Empty)
+                    indicesString = indicesString.Substring(0, indicesString.Length - 2);
                 argsCount--;
-                sBuilder.AppendLine("If MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " Then");
+                if (x == 0)
+                    sBuilder.AppendLine("If MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " Then");
+                else
+                    sBuilder.AppendLine("ElseIf MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " Then");
                 sBuilder.AppendLine("If BuildWildcard(RawData, New Integer() {" + indicesString + "}).ToLower() = \"" + compareString + "\".ToLower() Then");
                 sBuilder.AppendLine("Array.Copy(currentMessageArray, 5, RawData, 0, DataLength)");
-                sBuilder.AppendLine("Dim paramVariables(" + argsCount + ") as Integer");
-                sBuilder.AppendLine(valueString);
+                if (valueString != string.Empty)
+                {
+                    sBuilder.AppendLine("Dim paramVariables(" + argsCount + ") as Integer");
+                    sBuilder.AppendLine(valueString);
+                }
                 sBuilder.AppendLine("RaiseEvent " + Events[x].Name + "(MasterDevice, SlaveDevice" + paramsString + ")");
                 sBuilder.AppendLine("End If");
-                sBuilder.AppendLine("End If");
             }
+            sBuilder.AppendLine("End If");
 
             sBuilder.AppendLine("End if");
             sBuilder.AppendLine("End if");

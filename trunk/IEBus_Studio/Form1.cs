@@ -1578,6 +1578,17 @@ namespace IEBus_Studio
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
+            dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
+            DC.DeviceManager.AddDevice(0x131, "Touch Screen", "The touch screen.");
+            DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
+            DC.AddEvent("TouchScreenDown", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:0:0:0:0:%Unknown1");
+            DC.AddEvent("TouchScreenUp", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:0:0:0:0:0:0:0:0:82");
+            DC.AddEvent("SomthingElse", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:%Unk4:0:1:3:%X:%Y:0:%Unk3:0:%Unk2:0:0:%Unknown1");
+            DC.AddEvent("SmallerPattern", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:0");
+            DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 0x131, 0x183, "37:31:D:0:1:3:%X:%Y:0:0:%Unknown1");
+            DC.CompileDLL(Application.StartupPath + "\\");
+
+
             this.port.Items.Clear();
             this.port.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
         }
