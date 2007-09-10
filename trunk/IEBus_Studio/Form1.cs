@@ -1578,9 +1578,20 @@ namespace IEBus_Studio
         {
             Application.Run(new Form1());
         }
-
         private void Form1_Load(object sender, System.EventArgs e)
         {
+            
+
+            dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
+            DC.DeviceManager.AddDevice(0x131, "Touch Screen", "The touch screen.");
+            DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
+            DC.AddEvent("TouchScreenDown", "Triggers when the touch screen is well... touched!", 1, 0x131, 0x183, ControlByte.DataWrite, "37:31:D:0:1:3:%X:%Y:0:0:0:0:0:0:%Unknown1");
+            DC.AddEvent("TouchScreenUp", "Triggers when the touch screen is well... touched!", 1, 0x131, 0x183,  ControlByte.DataWrite, "37:31:D:0:1:3:0:0:0:0:0:0:0:0:82");
+            DC.AddEvent("SomthingElse", "Triggers when the touch screen is well... touched!", 1, 0x131, 0x183, ControlByte.DataWrite, "37:31:%Unk4:0:1:3:%X:%Y:0:%Unk3:0:%Unk2:0:0:%Unknown1");
+            DC.AddEvent("SmallerPattern", "Triggers when the touch screen is well... touched!",1, 0x131, 0x183, ControlByte.DataWrite, "37:31:D:0:1:3:%X:%Y:0:0:0");
+            DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 1, 0x131, 0x183, ControlByte.DataWrite, "37:31:D:0:1:3:%X:%Y:0:0:%Unknown1");
+            DC.CompileDLL(Application.StartupPath + "\\" + DC.PrefferedFilename);
+
             this.port.Items.Clear();
             this.port.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
             this.port.SelectedIndex = 0;
@@ -1695,13 +1706,12 @@ namespace IEBus_Studio
 
                             if (eventDiscoverer.discoveryingEvents())
                             {
-                                string broadcast = currentMessageArray[0];
+                                int broadcast =  Convert.ToInt32(currentMessageArray[0]);
                                 int master_address = Convert.ToInt32(currentMessageArray[1], 16);
                                 int slave_address = Convert.ToInt32(currentMessageArray[2], 16);
-                                string control = currentMessageArray[3];
-                                short datasize = Convert.ToInt16(currentMessageArray[4]);
-                                string data = currentMessageArray[5];
-                                Event discoveredEvent = new Event("Undefined", "Undefined", broadcast, master_address, slave_address, control, datasize, data);
+                                ControlByte  control =(ControlByte)Convert.ToInt32(currentMessageArray[3]);
+                                string data =currentMessageArray[5];
+                                Event discoveredEvent = new Event("Undefined", "Undefined", broadcast, master_address, slave_address, control, data);
                                 eventDiscoverer.addEvent(discoveredEvent);
                                 patternMatch();
                             }
@@ -1771,7 +1781,7 @@ namespace IEBus_Studio
                 AdvancedDataGridView.TreeGridNode node = patternGrid.Nodes.Add("Define", cMatches, tempEvent.Broadcast.ToString(), tempEvent.Master.ToString(), tempEvent.Slave.ToString(), tempEvent.Control.ToString(), tempEvent.Size.ToString(), cPattern);
                 for (int i = 0; i < Patterns.Values[x].Count; i++)
                 {
-                    Event origEvent =eventDiscoverer.DiscoveredEvents[(int)(Patterns.Values[x][i])];
+                    Event origEvent = eventDiscoverer.DiscoveredEvents[(int)(Patterns.Values[x][i])];
 
                     string DataString = String.Empty;
                     for (int v = 0; v < origEvent.Variables.Count; v++)
@@ -1786,7 +1796,7 @@ namespace IEBus_Studio
                 }
             }
             //patternGrid.ort(matchesColumn, ListSortDirection.Descending);
-            patternGrid.Sort(new RowComparer( SortOrder.Descending));
+            patternGrid.Sort(new RowComparer(SortOrder.Descending));
             patternGrid.ResumeLayout();
         }
         public string BuildWildcard(string[] rData, int[] Indices)
@@ -2092,7 +2102,7 @@ namespace IEBus_Studio
         private void addEvent_Click(object sender, EventArgs e)
         {
             // Create the event with default values
-            Event ev = new Event("Unkown", "Unkown", "1", 0, 0, "F", 0, "");
+            Event ev = new Event("Unkown", "Unkown", 1, 0, 0, ControlByte.DataWrite , "");
 
             // Add event to event list
             eventManager.addEvent(ev);
@@ -2113,15 +2123,14 @@ namespace IEBus_Studio
 
                 string name = (string)eventsTable.Rows[i].Cells[0].Value;
                 string description = (string)eventsTable.Rows[i].Cells[1].Value;
-                string broadcast = ((string)eventsTable.Rows[i].Cells[2].Value);
+                int broadcast = Convert.ToInt32((string)eventsTable.Rows[i].Cells[2].Value);
                 int master_address = Convert.ToInt32((string)eventsTable.Rows[i].Cells[3].Value, 16);
                 int slave_address = Convert.ToInt32((string)eventsTable.Rows[i].Cells[4].Value, 16);
-                string control = (string)eventsTable.Rows[i].Cells[5].Value;
-                short datasize = (short)eventsTable.Rows[i].Cells[6].Value; // <-- bombs on the cast
+                ControlByte  control = (ControlByte)Convert.ToInt32((string)eventsTable.Rows[i].Cells[5].Value);
                 string data = (string)eventsTable.Rows[i].Cells[7].Value;
 
                 // Create the event object with all the data from the table
-                Event ev = new Event(name, description, broadcast, master_address, slave_address, control, datasize, data);
+                Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data);
 
                 // Add the event to the event manager list
                 eventManager.Events.Add(ev);
@@ -2193,7 +2202,7 @@ namespace IEBus_Studio
             // Open the xml file
             this.opened_filename = openFileDialog1.FileName;
             this.Text = "IEBus Studio - " + System.IO.Path.GetFileName(openFileDialog1.FileName);
-            
+
             XmlDocument xDoc = new XmlDocument();
             xDoc.Load(this.opened_filename);
 
@@ -2212,11 +2221,10 @@ namespace IEBus_Studio
             {
                 string name = ev.ChildNodes[0].FirstChild.Value;
                 string description = ev.ChildNodes[1].FirstChild.Value;
-                string broadcast = ev.ChildNodes[2].FirstChild.Value;
+                int broadcast = Convert.ToInt32(ev.ChildNodes[2].FirstChild.Value);
                 int master = Convert.ToInt32(ev.ChildNodes[3].FirstChild.Value, 16);
                 int slave = Convert.ToInt32(ev.ChildNodes[4].FirstChild.Value, 16);
-                string control = ev.ChildNodes[5].FirstChild.Value;
-                short size = Convert.ToInt16(ev.ChildNodes[6].FirstChild.Value, 10);
+                ControlByte  control = (ControlByte)Convert.ToInt32(ev.ChildNodes[5].FirstChild.Value);
 
                 string data = "";
                 for (int i = 6; i < ev.ChildNodes.Count; i++)
@@ -2226,7 +2234,7 @@ namespace IEBus_Studio
                     data += ev.ChildNodes[i].FirstChild.Value;
                 }
 
-                eventManager.addEvent(new Event(name, description, broadcast, master, slave, control, size, data));
+                eventManager.addEvent(new Event(name, description, broadcast, master, slave, control,  data));
             }
 
             displayDeviceList();
@@ -2308,7 +2316,7 @@ namespace IEBus_Studio
                 }
             }
 
-            public int Compare(object x, object y) 
+            public int Compare(object x, object y)
             {
                 DataGridViewRow DataGridViewRow1 = (DataGridViewRow)x;
                 DataGridViewRow DataGridViewRow2 = (DataGridViewRow)y;
@@ -2324,7 +2332,7 @@ namespace IEBus_Studio
                     CompareResult = 1;
                 else if (C1 == C2)
                     CompareResult = 0;
-                else 
+                else
                     CompareResult = -1;
                 // If the Matches are equal, sort based on the Pattern.
                 if (CompareResult == 0)

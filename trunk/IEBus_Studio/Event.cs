@@ -8,14 +8,13 @@ namespace IEBus_Studio
     {
         private string _name;
         private string _description;
-        private string _broadcast;
+        private int _broadcast;
         private int _master;
         private int _slave;
-        private string _control;
-        private short _size;
+        private IEBus_Studio.ControlByte _control;
         private System.Collections.Generic.List<string> _variables;
 
-        public Event(string Name, string Description, string Broadcast, int Master, int Slave, string Control, short size, string Data)
+        public Event(string Name, string Description, int Broadcast, int Master, int Slave, IEBus_Studio.ControlByte Control,  string Data)
         {
             _variables = new System.Collections.Generic.List<string>();
             _name = Name;
@@ -24,7 +23,6 @@ namespace IEBus_Studio
             _master = Master;
             _slave = Slave;
             _control = Control;
-            _size = size;
 
             string[] strBytes = Data.Split(':');
             for (int x = 0; x < strBytes.Length; x++)
@@ -80,7 +78,7 @@ namespace IEBus_Studio
                 _description = value;
             }
         }
-        public string Broadcast
+        public int Broadcast
         {
             get
             {
@@ -91,7 +89,7 @@ namespace IEBus_Studio
                 _broadcast = value;
             }
         }
-        public string Control
+        public IEBus_Studio.ControlByte Control
         {
             get
             {
@@ -102,15 +100,11 @@ namespace IEBus_Studio
                 _control = value;
             }
         }
-        public short Size
+        public int Size
         {
             get
             {
-                return _size;
-            }
-            set
-            {
-                _size = value;
+                return _variables.Count;
             }
         }
         public int DynamicVariableCount
