@@ -6,7 +6,7 @@
     <ProjectGuid>{4696D963-7FE2-44B5-8730-7B157F5F722A}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>App.ico</ApplicationIcon>
+    <ApplicationIcon>Misc\App.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>IEBus Studio</AssemblyName>
@@ -91,24 +91,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.ico" />
-    <Compile Include="Device.cs" />
-    <Compile Include="DeviceManager.cs" />
+    <Content Include="Misc\App.ico" />
+    <Compile Include="Devices\Device.cs" />
+    <Compile Include="Devices\DeviceManager.cs" />
     <Compile Include="dllCreator\Creator.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="EventDiscovery.cs" />
-    <Compile Include="EventManager.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Misc\AssemblyInfo.cs" />
+    <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\EventDiscovery.cs" />
+    <Compile Include="Events\EventManager.cs" />
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddEventPopup.cs">
+    <Compile Include="Forms\AddEventPopup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddEventPopup.Designer.cs">
+    <Compile Include="Forms\AddEventPopup.Designer.cs">
       <DependentUpon>AddEventPopup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc.cs" />
+    <Compile Include="Misc\Misc.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,11 +119,11 @@
     <Compile Include="treeGrid\TreeGridNode.cs" />
     <Compile Include="treeGrid\TreeGridNodeCollection.cs" />
     <Compile Include="treeGrid\TreeGridView.cs" />
-    <EmbeddedResource Include="AddEventPopup.resx">
+    <EmbeddedResource Include="Forms\AddEventPopup.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AddEventPopup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
