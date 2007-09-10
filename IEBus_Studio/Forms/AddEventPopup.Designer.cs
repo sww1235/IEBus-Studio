@@ -62,7 +62,7 @@ namespace IEBus_Studio
             // eventName
             // 
             this.eventName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.eventName.Location = new System.Drawing.Point(12, 71);
+            this.eventName.Location = new System.Drawing.Point(12, 70);
             this.eventName.Name = "eventName";
             this.eventName.Size = new System.Drawing.Size(268, 20);
             this.eventName.TabIndex = 2;
@@ -72,7 +72,7 @@ namespace IEBus_Studio
             this.eventDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.eventDescription.Location = new System.Drawing.Point(12, 110);
+            this.eventDescription.Location = new System.Drawing.Point(12, 117);
             this.eventDescription.Multiline = true;
             this.eventDescription.Name = "eventDescription";
             this.eventDescription.Size = new System.Drawing.Size(268, 97);
@@ -81,7 +81,7 @@ namespace IEBus_Studio
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 94);
+            this.label1.Location = new System.Drawing.Point(12, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 4;
@@ -90,7 +90,7 @@ namespace IEBus_Studio
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 55);
+            this.label2.Location = new System.Drawing.Point(12, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
