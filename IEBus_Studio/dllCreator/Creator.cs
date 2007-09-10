@@ -213,5 +213,9 @@ namespace dllCreator
             Event newEvent = new Event(Name, Description, Master, Slave, Data);
             _events.Add(newEvent);
         }
+        public void AddEvent(Event ev)
+        {
+            _events.Add(ev);
+        }
     }
 }
