@@ -1,64 +1,92 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Collections;
-
-namespace IEBus_Studio
-{
-    class DeviceManager
+    public class DeviceManager
     {
-        protected ArrayList devices;
-
+        private System.Collections.Generic.List<IEBus_Studio.Device> _devices;
         public DeviceManager()
         {
-            devices = new ArrayList();
+            _devices = new System.Collections.Generic.List<IEBus_Studio.Device>();
         }
-
-        public ArrayList Devices
+        public IEBus_Studio.Device this[string Name]
         {
-            get { return devices; }
-            set { devices = value; }
-        }
-
-        public void addDevice(Device device)
-        {
-            devices.Add(device);
-        }
-
-        public string ouputAsXML()
-        {
-            string xml = "<devices>\r\n";
-            for (int i = 0; i < devices.Count; i++)
+            get
             {
-                Device device = (Device)devices[i];
-
-                xml += "    <device>\r\n";
-                xml += "        <name>" + device.Name + "</name>\r\n";
-                xml += "        <description>" + device.Description + "</description>\r\n";
-                xml += "        <address>" + Convert.ToString(device.Address, 16) + "</address>\r\n";
-                xml += "    </device>\r\n";
+                foreach (IEBus_Studio.Device dev in _devices)
+                {
+                    if (dev.Name == Name)
+                        return dev;
+                }
+                return null;
             }
-            xml += "</devices>\r\n";
-            return xml;
+            set
+            {
+                foreach (IEBus_Studio.Device dev in _devices)
+                {
+                    if (dev.Name == Name)
+                        _devices[_devices.IndexOf(dev)] = value;
+                }
+            }
         }
-
+        public IEBus_Studio.Device this[int Index]
+        {
+            get
+            {
+                if (_devices.Count > Index)
+                    return _devices[Index];
+                else
+                    return null;
+            }
+            set
+            {
+                if (_devices.Count > Index)
+                    _devices[Index] = value;
+            }
+        }
+        public System.Collections.Generic.List<IEBus_Studio.Device> Devices
+        {
+            get
+            {
+                return _devices;
+            }
+            set
+            {
+                _devices = value;
+            }
+        }
+        public void AddDevice(IEBus_Studio.Device Device)
+        {
+            _devices.Add(Device);
+        }
+        public void AddDevice(int Address, string Name, string Description)
+        {
+            _devices.Add(new IEBus_Studio.Device(Address, Name, Description));
+        }
+        public void RemoveDevice(IEBus_Studio.Device Device)
+        {
+            if (_devices.Contains(Device))
+                _devices.Remove(Device);
+        }
         public string GetDeviceName(int address)
         {
-            foreach (Device device in devices)
+            foreach (IEBus_Studio.Device device in _devices)
             {
                 if (device.Address == address)
                     return device.Name;
             }
 
-            return null;
+            return string.Empty;
         }
-
-        static public ArrayList ScanDevices()
+        public string OuputAsXML()
         {
-            //TODO: send command to COM to scan devices
-            //TODO: get response
-            ArrayList devicesFound = new ArrayList();
-            return devicesFound;
+            string xml = "<devices>\r\n";
+            for (int i = 0; i < _devices.Count; i++)
+            {
+                xml += "    <device>\r\n";
+                xml += "        <name>" +  _devices[i].Name + "</name>\r\n";
+                xml += "        <description>" +  _devices[i].Description + "</description>\r\n";
+                xml += "        <address>" + System.Convert.ToString( _devices[i].Address, 16) + "</address>\r\n";
+                xml += "    </device>\r\n";
+            }
+            xml += "</devices>\r\n";
+            return xml;
         }
     }
-}
