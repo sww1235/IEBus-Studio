@@ -13,7 +13,10 @@ namespace IEBus_Studio
         private int _slave;
         private IEBus_Studio.ControlByte _control;
         private System.Collections.Generic.List<string> _variables;
-
+        public Event()
+        {
+            _variables = new System.Collections.Generic.List<string>();
+        }
         public Event(string Name, string Description, int Broadcast, int Master, int Slave, IEBus_Studio.ControlByte Control,  string Data)
         {
             _variables = new System.Collections.Generic.List<string>();

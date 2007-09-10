@@ -2,63 +2,58 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace IEBus_Studio
 {
     public class EventManager
     {
-        protected System.Collections.Generic.List<IEBus_Studio.Event> events;
+        private System.Collections.Generic.List<IEBus_Studio.Event> _events;
 
         public EventManager()
         {
-            events = new System.Collections.Generic.List<IEBus_Studio.Event>();
+            _events = new System.Collections.Generic.List<IEBus_Studio.Event>();
         }
 
         public System.Collections.Generic.List<IEBus_Studio.Event> Events
         {
-            get { return events; }
-            set { events = value; }
+            get { return _events; }
+            set { _events = value; }
         }
 
         public void addEvent(Event ev)
         {
-            events.Add(ev);
-        }
-
-        public string ouputAsXML()
-        {
-            string xml = "<events>\r\n";
-            for (int i = 0; i < events.Count; i++)
-            {
-                Event ev = (Event)events[i];
-
-                xml += "    <event>\r\n";
-                xml += "        <name>"           + ev.Name         + "</name>\r\n";
-                xml += "        <description>"    + ev.Description  + "</description>\r\n";
-                xml += "        <broadcast>"      + ev.Broadcast    + "</broadcast>\r\n";
-                xml += "        <master_address>" + ev.Master       + "</master_address>\r\n";
-                xml += "        <slave_address>"  + ev.Slave        + "</slave_address>\r\n";
-                xml += "        <control>"        + ev.Control      + "</control>\r\n";
-                xml += "        <datasize>"       + ev.Size         + "</datasize>\r\n";
-                foreach (string var in ev.Variables)
-                    xml += "        <data>" + var + "</data>\r\n";
-                xml += "    </event>\r\n";
-            }
-            xml += "</events>\r\n";
-            return xml;
+            _events.Add(ev);
         }
 
         public ArrayList GetDeviceEvents(int master_address)
         {
             ArrayList deviceEvents = new ArrayList();
             
-            foreach(Event ev in events)
+            foreach(Event ev in _events)
             {
                 if (ev.Master == master_address)
                     deviceEvents.Add(ev);
             }
 
             return deviceEvents;
+        }
+        public Stream Save()
+        {
+            Stream stream = new MemoryStream(); ;
+
+            XmlSerializer serializer = new XmlSerializer(typeof(EventManager));
+            serializer.Serialize(stream, this);
+            stream.Position = 0;
+            return stream;
+        }
+
+        public static EventManager Load(byte[] bArray)
+        {
+            Stream stream = new MemoryStream(bArray);
+            XmlSerializer serializer = new XmlSerializer(typeof(EventManager));
+            return (EventManager)serializer.Deserialize(stream);
         }
     }
 }
