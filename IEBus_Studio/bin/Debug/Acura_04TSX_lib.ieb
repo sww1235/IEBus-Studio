@@ -5,9 +5,14 @@
         <address>183</address>
     </device>
     <device>
+        <name>Touchscreen</name>
+        <description>The touchscreen controller in the navigation screen.</description>
+        <address>131</address>
+    </device>
+    <device>
         <name>Head Unit</name>
         <description>The dashboard unit including the screen and all of the dashboard buttons.</description>
-        <address>131</address>
+        <address>100</address>
     </device>
 </devices>
 <events>
@@ -19,6 +24,7 @@
         <slave_address>0</slave_address>
         <control>f</control>
         <datasize>0</datasize>
+        <data>0</data>
         <data>0</data>
         <data>0</data>
         <data>0</data>
@@ -41,4 +47,4 @@
         <data>0</data>
     </event>
 </events>
-</root>
+</root>root>
