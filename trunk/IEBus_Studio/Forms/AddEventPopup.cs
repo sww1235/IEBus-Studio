@@ -10,14 +10,16 @@ namespace IEBus_Studio
 {
     public partial class AddEventPopup : Form
     {
+        private DeviceManager _deviceManager;
         private EventManager _eventManager;
         private Event _event;
-        private Form _mainForm;
+        private Form1 _mainForm;
 
-        public AddEventPopup(EventManager eventManager, Event theEvent, Form callerForm)
+        public AddEventPopup(DeviceManager deviceManager, EventManager eventManager, Event theEvent, Form1 callerForm)
         {
             InitializeComponent();
-            _eventManager = eventManager;
+            _deviceManager = deviceManager;
+            _eventManager = eventManager;           
             _event = theEvent;
             _mainForm = callerForm;
         }
@@ -29,6 +31,20 @@ namespace IEBus_Studio
             _event.Description = eventDescription.Text;
 
             _eventManager.addEvent(_event);
+
+            // Create the master device of the event doesnt already exists
+            if (!_mainForm.isDeviceDefined(_event.Master))
+            {
+                Device device = new Device(_event.Master, _mainForm.parseDeviceAddress(Convert.ToString(_event.Master, 16)), "");
+                _deviceManager.AddDevice(device);
+            }
+
+            // Create the slave device of the event doesnt already exists
+            if (!_mainForm.isDeviceDefined(_event.Slave))
+            {
+                Device device = new Device(_event.Slave, _mainForm.parseDeviceAddress(Convert.ToString(_event.Slave, 16)), "");
+                _deviceManager.AddDevice(device);
+            }
 
             this.Hide();
             _mainForm.Enabled = true;

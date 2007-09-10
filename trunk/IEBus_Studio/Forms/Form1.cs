@@ -136,7 +136,7 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn Event_Name;
         private DataGridViewTextBoxColumn Event_Description;
         private DataGridViewTextBoxColumn Event_Broadcast;
-        private DataGridViewTextBoxColumn Event_Master;
+        private DataGridViewComboBoxColumn Event_Master;
         private DataGridViewTextBoxColumn event_Slave;
         private DataGridViewComboBoxColumn Event_Control;
         private DataGridViewTextBoxColumn Event_Size;
@@ -300,7 +300,7 @@ namespace IEBus_Studio
             this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Master = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Control = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Event_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1518,6 +1518,7 @@ namespace IEBus_Studio
             this.Event_Master.HeaderText = "Master";
             this.Event_Master.Name = "Event_Master";
             this.Event_Master.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Event_Master.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Event_Master.Width = 115;
             // 
             // event_Slave
@@ -1885,14 +1886,14 @@ namespace IEBus_Studio
             }
             return DataString;
         }
-        private bool isDeviceDefined(int device)
+        public bool isDeviceDefined(int device)
         {
             foreach (Device d in this.deviceManager.Devices)
                 if (d.Address == device) { return true; }
             return false;
         }
 
-        private string parseDeviceAddress(string pmaster)
+        public string parseDeviceAddress(string pmaster)
         {
             int master_address = Convert.ToInt32(pmaster, 16);
 
@@ -1911,7 +1912,7 @@ namespace IEBus_Studio
             return "0x" + pmaster;
         }
 
-        private string parseControl(string pcontrol)
+        public string parseControl(string pcontrol)
         {
             if (pcontrol == "0") { return "Slave status read"; }                  //Slave status (SSR) read
             if (pcontrol == "1") { return "Undefined"; }                          //Undefined
@@ -1932,7 +1933,7 @@ namespace IEBus_Studio
             return "Undefined";                                                   //Undefined
         }
 
-        private string parseControlAbreviated(string pcontrol)
+        public string parseControlAbreviated(string pcontrol)
         {
             if (pcontrol == "0") { return "SSR"; }           //Slave status (SSR) read
             if (pcontrol == "1") { return "Undef"; }           //Undefined
@@ -1953,7 +1954,7 @@ namespace IEBus_Studio
             return "Undef";                                     //Undefined
         }
 
-        private string parseData(string[] pdata)
+        public string parseData(string[] pdata)
         {
             //Learn how to parse different packet types
             string result = "";
@@ -2096,7 +2097,8 @@ namespace IEBus_Studio
             // Display each devices info as a row
             for (int i = 0; i < deviceManager.Devices.Count; i++)
             {
-                devicesTable.Rows.Add(Convert.ToString(deviceManager.Devices[i].Address, 16), deviceManager.Devices[i].Name, deviceManager.Devices[i].Description);
+                devicesTable.Rows.Add(Convert.ToString(deviceManager[i].Address, 16), deviceManager[i].Name, deviceManager[i].Description);
+                
             }
 
             devicesTable.ResumeLayout();
@@ -2133,8 +2135,20 @@ namespace IEBus_Studio
             }
         }
 
+        private void updateDeviceComboBoxes()
+        {
+            // Remove all existing devices from the list of devices in the events table
+            Event_Master.Items.Clear();
+
+            // Go through each device and add to combo box
+            foreach (Device device in deviceManager.Devices)
+                Event_Master.Items.Add(device.Name);
+        }
+
         private void displayEventList()
         {
+            updateDeviceComboBoxes();
+
             // Store the devices temporarily
             System.Collections.Generic.List<IEBus_Studio.Event> eventList = new System.Collections.Generic.List<IEBus_Studio.Event>(eventManager.Events);
 
@@ -2158,7 +2172,7 @@ namespace IEBus_Studio
                 string data = "";
                 foreach (string var in ev.Variables)
                     data += var;
-                
+
                 eventsTable.Rows.Add(ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control.ToString(), ev.Size, data, ev.Master, ev.Slave, ev.Control);
             }
 
@@ -2173,6 +2187,20 @@ namespace IEBus_Studio
 
             // Add event to event list
             eventManager.addEvent(ev);
+
+            // Create the master device of the event doesnt already exists
+            if (!isDeviceDefined(ev.Master))
+            {
+                Device device = new Device(ev.Master, parseDeviceAddress(Convert.ToString(ev.Master, 16)), "");
+                deviceManager.AddDevice(device);
+            }
+
+            // Create the slave device of the event doesnt already exists
+            if (!isDeviceDefined(ev.Slave))
+            {
+                Device device = new Device(ev.Slave, parseDeviceAddress(Convert.ToString(ev.Slave, 16)), "");
+                deviceManager.AddDevice(device);
+            }
 
             //ReRender event list
             displayEventList();
@@ -2191,9 +2219,12 @@ namespace IEBus_Studio
                 string name = (string)eventsTable.Rows[i].Cells["Event_Name"].Value;
                 string description = (string)eventsTable.Rows[i].Cells["Event_Description"].Value;
                 int broadcast = (int)eventsTable.Rows[i].Cells["Event_Broadcast"].Value;
-                int master_address = (int)eventsTable.Rows[i].Cells["Event_RawMaster"].Value;
+                //int master_address = (int)eventsTable.Rows[i].Cells["Event_RawMaster"].Value;
                 int slave_address = (int)eventsTable.Rows[i].Cells["Event_RawSlave"].Value;
                 string data = (string)eventsTable.Rows[i].Cells["Event_Data"].Value;
+
+                Device masterDevice = deviceManager.GetDeviceByName((string)eventsTable.Rows[i].Cells["Event_Master"].Value);
+                int master_address = masterDevice.Address;
 
                 // Get the control byte from the combo box
                 ControlByte control;
@@ -2242,7 +2273,7 @@ namespace IEBus_Studio
                 Event theEvent = new Event("", "", broadcast, master, slave, control, data);
 
                 // Create the popup giving it the eventManager and the event
-                AddEventPopup addEventPopup = new AddEventPopup(eventManager, theEvent, this);
+                AddEventPopup addEventPopup = new AddEventPopup(deviceManager, eventManager, theEvent, this);
 
                 // Lock the main form and show the popup
                 this.Enabled = false;

@@ -77,7 +77,26 @@ using System.Xml.Serialization;
 
             return string.Empty;
         }
+        public IEBus_Studio.Device GetDeviceByName(string name)
+        {
+            foreach (IEBus_Studio.Device device in _devices)
+            {
+                if (device.Name == name)
+                    return device;
+            }
 
+            return null;
+        }
+        public IEBus_Studio.Device GetDeviceByAddress(int address)
+        {
+            foreach (IEBus_Studio.Device device in _devices)
+            {
+                if (device.Address == address)
+                    return device;
+            }
+
+            return null;
+        }
         public Stream Save()
         {
             Stream stream = new MemoryStream(); ;
