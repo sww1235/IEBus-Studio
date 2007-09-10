@@ -550,6 +550,7 @@ namespace IEBus_Studio
             this.MessageTableTabs.SelectedIndex = 0;
             this.MessageTableTabs.Size = new System.Drawing.Size(813, 302);
             this.MessageTableTabs.TabIndex = 5;
+            this.MessageTableTabs.Selected += new TabControlEventHandler(MessageTableTabs_Selected);
             // 
             // eventDiscoveryTab
             // 
@@ -1557,6 +1558,12 @@ namespace IEBus_Studio
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        void MessageTableTabs_Selected(object sender, TabControlEventArgs e)
+        {
+            displayDeviceList();
+            displayEventList();
         }
 
         #endregion
