@@ -2180,6 +2180,8 @@ namespace IEBus_Studio
                 SFD.Filter = "IEBus Data File|*.ieb";
                 if (SFD.ShowDialog() == DialogResult.OK)
                 {
+                    openedFilename = SFD.FileName; 
+                    this.Text = "IEBus Studio - " + System.IO.Path.GetFileName(SFD.FileName);
                     IEBFile saveFile = new IEBFile();
                     saveFile.Save(SFD.FileName, eventManager, deviceManager);
                 }
