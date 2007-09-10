@@ -2221,7 +2221,7 @@ namespace IEBus_Studio
                 int broadcast = Convert.ToInt32(ev.ChildNodes[2].FirstChild.Value);
                 int master = Convert.ToInt32(ev.ChildNodes[3].FirstChild.Value, 16);
                 int slave = Convert.ToInt32(ev.ChildNodes[4].FirstChild.Value, 16);
-                ControlByte  control = (ControlByte)Convert.ToInt32(ev.ChildNodes[5].FirstChild.Value);
+                ControlByte  control = (ControlByte)Convert.ToInt32(ev.ChildNodes[5].FirstChild.Value, 16);
 
                 string data = "";
                 for (int i = 6; i < ev.ChildNodes.Count; i++)
