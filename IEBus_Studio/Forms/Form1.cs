@@ -120,14 +120,6 @@ namespace IEBus_Studio
         private ToolStripMenuItem exportDLLToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem1;
         private SaveFileDialog exportDLLSaveAsDialog;
-        private DataGridViewTextBoxColumn Event_Name;
-        private DataGridViewTextBoxColumn Event_Description;
-        private DataGridViewTextBoxColumn Event_Broadcast;
-        private DataGridViewTextBoxColumn Event_Master;
-        private DataGridViewTextBoxColumn event_Slave;
-        private DataGridViewTextBoxColumn Event_Control;
-        private DataGridViewTextBoxColumn Event_DataSize;
-        private DataGridViewTextBoxColumn Event_Data;
         private DataGridViewButtonColumn defineColumn;
         private AdvancedDataGridView.TreeGridColumn matchesColumn;
         private DataGridViewTextBoxColumn broadcastColumn;
@@ -139,6 +131,17 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn rawMasterColumn;
         private DataGridViewTextBoxColumn rawSlaveColumn;
         private DataGridViewTextBoxColumn rawControlColumn;
+        private DataGridViewTextBoxColumn Event_Name;
+        private DataGridViewTextBoxColumn Event_Description;
+        private DataGridViewTextBoxColumn Event_Broadcast;
+        private DataGridViewTextBoxColumn Event_Master;
+        private DataGridViewTextBoxColumn event_Slave;
+        private DataGridViewTextBoxColumn Event_Control;
+        private DataGridViewTextBoxColumn Event_DataSize;
+        private DataGridViewTextBoxColumn Event_Data;
+        private DataGridViewTextBoxColumn Event_RawMaster;
+        private DataGridViewTextBoxColumn Event_RawSlave;
+        private DataGridViewTextBoxColumn Event_RawControl;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -216,6 +219,17 @@ namespace IEBus_Studio
             this.masterFilter = new System.Windows.Forms.ComboBox();
             this.discoverEvent = new System.Windows.Forms.Button();
             this.patternGrid = new AdvancedDataGridView.TreeGridView();
+            this.defineColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.matchesColumn = new AdvancedDataGridView.TreeGridColumn();
+            this.broadcastColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.masterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.slaveColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.controlColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rawMasterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rawSlaveColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rawControlColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.secondsToDiscover = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -230,14 +244,6 @@ namespace IEBus_Studio
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
-            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BottomTabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.terminal = new System.Windows.Forms.TextBox();
@@ -287,17 +293,17 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.defineColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.matchesColumn = new AdvancedDataGridView.TreeGridColumn();
-            this.broadcastColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.masterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slaveColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.controlColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rawMasterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rawSlaveColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rawControlColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_RawMaster = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_RawSlave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_RawControl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -550,7 +556,7 @@ namespace IEBus_Studio
             this.MessageTableTabs.SelectedIndex = 0;
             this.MessageTableTabs.Size = new System.Drawing.Size(813, 302);
             this.MessageTableTabs.TabIndex = 5;
-            this.MessageTableTabs.Selected += new TabControlEventHandler(MessageTableTabs_Selected);
+            this.MessageTableTabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.MessageTableTabs_Selected);
             // 
             // eventDiscoveryTab
             // 
@@ -670,6 +676,100 @@ namespace IEBus_Studio
             this.patternGrid.Size = new System.Drawing.Size(799, 218);
             this.patternGrid.TabIndex = 8;
             this.patternGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cellClick);
+            // 
+            // defineColumn
+            // 
+            this.defineColumn.HeaderText = "Define";
+            this.defineColumn.Name = "defineColumn";
+            this.defineColumn.ReadOnly = true;
+            this.defineColumn.Width = 44;
+            // 
+            // matchesColumn
+            // 
+            this.matchesColumn.DefaultNodeImage = null;
+            this.matchesColumn.HeaderText = "Matches";
+            this.matchesColumn.MinimumWidth = 75;
+            this.matchesColumn.Name = "matchesColumn";
+            this.matchesColumn.ReadOnly = true;
+            this.matchesColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.matchesColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.matchesColumn.Width = 75;
+            // 
+            // broadcastColumn
+            // 
+            this.broadcastColumn.HeaderText = "Broadcast";
+            this.broadcastColumn.Name = "broadcastColumn";
+            this.broadcastColumn.ReadOnly = true;
+            this.broadcastColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.broadcastColumn.Width = 61;
+            // 
+            // masterColumn
+            // 
+            this.masterColumn.HeaderText = "Master";
+            this.masterColumn.Name = "masterColumn";
+            this.masterColumn.ReadOnly = true;
+            this.masterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.masterColumn.Width = 45;
+            // 
+            // slaveColumn
+            // 
+            this.slaveColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.slaveColumn.HeaderText = "Slave";
+            this.slaveColumn.Name = "slaveColumn";
+            this.slaveColumn.ReadOnly = true;
+            this.slaveColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.slaveColumn.Width = 45;
+            // 
+            // controlColumn
+            // 
+            this.controlColumn.HeaderText = "Control";
+            this.controlColumn.Name = "controlColumn";
+            this.controlColumn.ReadOnly = true;
+            this.controlColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.controlColumn.Width = 46;
+            // 
+            // sizeColumn
+            // 
+            this.sizeColumn.HeaderText = "Size";
+            this.sizeColumn.Name = "sizeColumn";
+            this.sizeColumn.ReadOnly = true;
+            this.sizeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.sizeColumn.Width = 33;
+            // 
+            // dataColumn
+            // 
+            this.dataColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataColumn.HeaderText = "Data";
+            this.dataColumn.Name = "dataColumn";
+            this.dataColumn.ReadOnly = true;
+            this.dataColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // rawMasterColumn
+            // 
+            this.rawMasterColumn.HeaderText = "RawMaster";
+            this.rawMasterColumn.Name = "rawMasterColumn";
+            this.rawMasterColumn.ReadOnly = true;
+            this.rawMasterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.rawMasterColumn.Visible = false;
+            this.rawMasterColumn.Width = 67;
+            // 
+            // rawSlaveColumn
+            // 
+            this.rawSlaveColumn.HeaderText = "RawSlave";
+            this.rawSlaveColumn.Name = "rawSlaveColumn";
+            this.rawSlaveColumn.ReadOnly = true;
+            this.rawSlaveColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.rawSlaveColumn.Visible = false;
+            this.rawSlaveColumn.Width = 62;
+            // 
+            // rawControlColumn
+            // 
+            this.rawControlColumn.HeaderText = "RawControl";
+            this.rawControlColumn.Name = "rawControlColumn";
+            this.rawControlColumn.ReadOnly = true;
+            this.rawControlColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.rawControlColumn.Visible = false;
+            this.rawControlColumn.Width = 68;
             // 
             // secondsToDiscover
             // 
@@ -830,7 +930,10 @@ namespace IEBus_Studio
             this.event_Slave,
             this.Event_Control,
             this.Event_DataSize,
-            this.Event_Data});
+            this.Event_Data,
+            this.Event_RawMaster,
+            this.Event_RawSlave,
+            this.Event_RawControl});
             this.eventsTable.Cursor = System.Windows.Forms.Cursors.Default;
             this.eventsTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.eventsTable.Location = new System.Drawing.Point(3, 39);
@@ -845,62 +948,6 @@ namespace IEBus_Studio
             this.eventsTable.TabIndex = 7;
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
-            // 
-            // Event_Name
-            // 
-            this.Event_Name.HeaderText = "Name";
-            this.Event_Name.Name = "Event_Name";
-            this.Event_Name.ReadOnly = true;
-            // 
-            // Event_Description
-            // 
-            this.Event_Description.HeaderText = "Description";
-            this.Event_Description.Name = "Event_Description";
-            this.Event_Description.ReadOnly = true;
-            // 
-            // Event_Broadcast
-            // 
-            this.Event_Broadcast.HeaderText = "B";
-            this.Event_Broadcast.Name = "Event_Broadcast";
-            this.Event_Broadcast.ReadOnly = true;
-            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Event_Broadcast.ToolTipText = "Broadcast";
-            this.Event_Broadcast.Width = 20;
-            // 
-            // Event_Master
-            // 
-            this.Event_Master.HeaderText = "Master";
-            this.Event_Master.Name = "Event_Master";
-            this.Event_Master.ReadOnly = true;
-            this.Event_Master.Width = 115;
-            // 
-            // event_Slave
-            // 
-            this.event_Slave.HeaderText = "Slave";
-            this.event_Slave.Name = "event_Slave";
-            this.event_Slave.ReadOnly = true;
-            this.event_Slave.Width = 115;
-            // 
-            // Event_Control
-            // 
-            this.Event_Control.HeaderText = "Control";
-            this.Event_Control.Name = "Event_Control";
-            this.Event_Control.ReadOnly = true;
-            this.Event_Control.Width = 75;
-            // 
-            // Event_DataSize
-            // 
-            this.Event_DataSize.HeaderText = "Size";
-            this.Event_DataSize.Name = "Event_DataSize";
-            this.Event_DataSize.ReadOnly = true;
-            this.Event_DataSize.Width = 35;
-            // 
-            // Event_Data
-            // 
-            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Event_Data.HeaderText = "Data";
-            this.Event_Data.Name = "Event_Data";
-            this.Event_Data.ReadOnly = true;
             // 
             // BottomTabs
             // 
@@ -1418,99 +1465,82 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn18.Visible = false;
             this.dataGridViewTextBoxColumn18.Width = 2;
             // 
-            // defineColumn
+            // Event_Name
             // 
-            this.defineColumn.HeaderText = "Define";
-            this.defineColumn.Name = "defineColumn";
-            this.defineColumn.ReadOnly = true;
-            this.defineColumn.Width = 44;
+            this.Event_Name.HeaderText = "Name";
+            this.Event_Name.Name = "Event_Name";
+            this.Event_Name.ReadOnly = true;
             // 
-            // matchesColumn
+            // Event_Description
             // 
-            this.matchesColumn.DefaultNodeImage = null;
-            this.matchesColumn.HeaderText = "Matches";
-            this.matchesColumn.MinimumWidth = 75;
-            this.matchesColumn.Name = "matchesColumn";
-            this.matchesColumn.ReadOnly = true;
-            this.matchesColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.matchesColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.matchesColumn.Width = 75;
+            this.Event_Description.HeaderText = "Description";
+            this.Event_Description.Name = "Event_Description";
+            this.Event_Description.ReadOnly = true;
             // 
-            // broadcastColumn
+            // Event_Broadcast
             // 
-            this.broadcastColumn.HeaderText = "Broadcast";
-            this.broadcastColumn.Name = "broadcastColumn";
-            this.broadcastColumn.ReadOnly = true;
-            this.broadcastColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.broadcastColumn.Width = 61;
+            this.Event_Broadcast.HeaderText = "B";
+            this.Event_Broadcast.Name = "Event_Broadcast";
+            this.Event_Broadcast.ReadOnly = true;
+            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Event_Broadcast.ToolTipText = "Broadcast";
+            this.Event_Broadcast.Width = 20;
             // 
-            // masterColumn
+            // Event_Master
             // 
-            this.masterColumn.HeaderText = "Master";
-            this.masterColumn.Name = "masterColumn";
-            this.masterColumn.ReadOnly = true;
-            this.masterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.masterColumn.Width = 45;
+            this.Event_Master.HeaderText = "Master";
+            this.Event_Master.Name = "Event_Master";
+            this.Event_Master.ReadOnly = true;
+            this.Event_Master.Width = 115;
             // 
-            // slaveColumn
+            // event_Slave
             // 
-            this.slaveColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.slaveColumn.HeaderText = "Slave";
-            this.slaveColumn.Name = "slaveColumn";
-            this.slaveColumn.ReadOnly = true;
-            this.slaveColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.slaveColumn.Width = 45;
+            this.event_Slave.HeaderText = "Slave";
+            this.event_Slave.Name = "event_Slave";
+            this.event_Slave.ReadOnly = true;
+            this.event_Slave.Width = 115;
             // 
-            // controlColumn
+            // Event_Control
             // 
-            this.controlColumn.HeaderText = "Control";
-            this.controlColumn.Name = "controlColumn";
-            this.controlColumn.ReadOnly = true;
-            this.controlColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.controlColumn.Width = 46;
+            this.Event_Control.HeaderText = "Control";
+            this.Event_Control.Name = "Event_Control";
+            this.Event_Control.ReadOnly = true;
+            this.Event_Control.Width = 75;
             // 
-            // sizeColumn
+            // Event_DataSize
             // 
-            this.sizeColumn.HeaderText = "Size";
-            this.sizeColumn.Name = "sizeColumn";
-            this.sizeColumn.ReadOnly = true;
-            this.sizeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.sizeColumn.Width = 33;
+            this.Event_DataSize.HeaderText = "Size";
+            this.Event_DataSize.Name = "Event_DataSize";
+            this.Event_DataSize.ReadOnly = true;
+            this.Event_DataSize.Width = 35;
             // 
-            // dataColumn
+            // Event_Data
             // 
-            this.dataColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataColumn.HeaderText = "Data";
-            this.dataColumn.Name = "dataColumn";
-            this.dataColumn.ReadOnly = true;
-            this.dataColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Event_Data.HeaderText = "Data";
+            this.Event_Data.Name = "Event_Data";
+            this.Event_Data.ReadOnly = true;
             // 
-            // rawMasterColumn
+            // Event_RawMaster
             // 
-            this.rawMasterColumn.HeaderText = "RawMaster";
-            this.rawMasterColumn.Name = "rawMasterColumn";
-            this.rawMasterColumn.ReadOnly = true;
-            this.rawMasterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.rawMasterColumn.Visible = false;
-            this.rawMasterColumn.Width = 67;
+            this.Event_RawMaster.HeaderText = "RawMaster";
+            this.Event_RawMaster.Name = "Event_RawMaster";
+            this.Event_RawMaster.ReadOnly = true;
+            this.Event_RawMaster.Visible = false;
             // 
-            // rawSlaveColumn
+            // Event_RawSlave
             // 
-            this.rawSlaveColumn.HeaderText = "RawSlave";
-            this.rawSlaveColumn.Name = "rawSlaveColumn";
-            this.rawSlaveColumn.ReadOnly = true;
-            this.rawSlaveColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.rawSlaveColumn.Visible = false;
-            this.rawSlaveColumn.Width = 62;
+            this.Event_RawSlave.HeaderText = "RawSlave";
+            this.Event_RawSlave.Name = "Event_RawSlave";
+            this.Event_RawSlave.ReadOnly = true;
+            this.Event_RawSlave.Visible = false;
             // 
-            // rawControlColumn
+            // Event_RawControl
             // 
-            this.rawControlColumn.HeaderText = "RawControl";
-            this.rawControlColumn.Name = "rawControlColumn";
-            this.rawControlColumn.ReadOnly = true;
-            this.rawControlColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.rawControlColumn.Visible = false;
-            this.rawControlColumn.Width = 68;
+            this.Event_RawControl.HeaderText = "RawControl";
+            this.Event_RawControl.Name = "Event_RawControl";
+            this.Event_RawControl.ReadOnly = true;
+            this.Event_RawControl.Visible = false;
             // 
             // Form1
             // 
@@ -2092,7 +2122,7 @@ namespace IEBus_Studio
                 string data = "";
                 foreach (string var in ev.Variables)
                     data += var;
-                eventsTable.Rows.Add(ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control, ev.Size, data);
+                eventsTable.Rows.Add(ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control, ev.Size, data, ev.Master, ev.Slave, ev.Control);
             }
 
             // Resume Drawing
@@ -2121,13 +2151,13 @@ namespace IEBus_Studio
             for (int i = 0; i < eventsTable.Rows.Count; i++)
             {
 
-                string name = (string)eventsTable.Rows[i].Cells[0].Value;
-                string description = (string)eventsTable.Rows[i].Cells[1].Value;
-                int broadcast = Convert.ToInt32((string)eventsTable.Rows[i].Cells[2].Value);
-                int master_address = Convert.ToInt32((string)eventsTable.Rows[i].Cells[3].Value, 16);
-                int slave_address = Convert.ToInt32((string)eventsTable.Rows[i].Cells[4].Value, 16);
-                ControlByte control = (ControlByte)Convert.ToInt32((string)eventsTable.Rows[i].Cells[5].Value, 16);
-                string data = (string)eventsTable.Rows[i].Cells[7].Value;
+                string name = (string)eventsTable.Rows[i].Cells["Event_Name"].Value;
+                string description = (string)eventsTable.Rows[i].Cells["Event_Description"].Value;
+                int broadcast = Convert.ToInt32((string)eventsTable.Rows[i].Cells["Event_Broadcast"].Value);
+                int master_address = (int)eventsTable.Rows[i].Cells["Event_RawMaster"].Value;
+                int slave_address = (int)eventsTable.Rows[i].Cells["Event_RawSlave"].Value;
+                ControlByte control = (ControlByte)eventsTable.Rows[i].Cells["Event_RawControl"].Value;
+                string data = (string)eventsTable.Rows[i].Cells["Event_Data"].Value;
 
                 // Create the event object with all the data from the table
                 Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data);
