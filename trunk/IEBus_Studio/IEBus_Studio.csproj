@@ -108,7 +108,9 @@
     <Compile Include="Forms\AddEventPopup.Designer.cs">
       <DependentUpon>AddEventPopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\IEBFile.cs" />
     <Compile Include="Misc\Misc.cs" />
+    <Compile Include="Misc\RowComparer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -38,7 +38,6 @@ namespace IEBus_Studio
         private ToolStripMenuItem aboutToolStripMenuItem;
         private Panel panel1;
         private SplitContainer splitContainer1;
-        private SaveFileDialog chooseOutputFile;
         private System.IO.Ports.SerialPort serialPort1;
         private IContainer components;
         private ToolStripMenuItem changeMessageTableToolStripMenuItem;
@@ -53,14 +52,13 @@ namespace IEBus_Studio
         private TabPage eventsTab;
         private DataGridView eventsTable;
         private Button addEvent;
-        private OpenFileDialog openFileDialog1;
         private ContextMenuStrip EventActionsMenuStrip;
         private ToolStripMenuItem addEventToolStripMenuItem;
 
         private EventManager eventManager = new EventManager();
         private DeviceManager deviceManager = new DeviceManager();
         private EventDiscovery eventDiscoverer = new EventDiscovery();
-        private string opened_filename = "";
+        private string openedFilename = string.Empty ;
         private Label timeLeftLabel;
         private TabControl BottomTabs;
         private TabPage tabPage1;
@@ -278,9 +276,7 @@ namespace IEBus_Studio
             this.lookupDeviceNames = new System.Windows.Forms.CheckBox();
             this.EventActionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chooseOutputFile = new System.Windows.Forms.SaveFileDialog();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.exportDLLSaveAsDialog = new System.Windows.Forms.SaveFileDialog();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1350,24 +1346,10 @@ namespace IEBus_Studio
             this.addEventToolStripMenuItem.Text = "Add Event";
             this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
             // 
-            // chooseOutputFile
-            // 
-            this.chooseOutputFile.DefaultExt = "txt";
-            this.chooseOutputFile.Filter = "IEBus Studio Files|*.ieb";
-            this.chooseOutputFile.Title = "Save Event Library As...";
-            this.chooseOutputFile.FileOk += new System.ComponentModel.CancelEventHandler(this.chooseOutputFile_FileOk);
-            // 
             // serialPort1
             // 
             this.serialPort1.WriteBufferSize = 2;
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "IEBus Studio Files|*.ieb";
-            this.openFileDialog1.Title = "Open An Event Library...";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // exportDLLSaveAsDialog
             // 
@@ -1580,8 +1562,8 @@ namespace IEBus_Studio
         }
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            
 
+            /*
             dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
             DC.DeviceManager.AddDevice(0x131, "Touch Screen", "The touch screen.");
             DC.DeviceManager.AddDevice(0x183, "Navigation Unit", "The big black box in the back.");
@@ -1591,7 +1573,7 @@ namespace IEBus_Studio
             DC.AddEvent("SmallerPattern", "Triggers when the touch screen is well... touched!",1, 0x131, 0x183, ControlByte.DataWrite, "37:31:D:0:1:3:%X:%Y:0:0:0");
             DC.AddEvent("TouchScreenPress", "Triggers when the touch screen is well... touched!", 1, 0x131, 0x183, ControlByte.DataWrite, "37:31:D:0:1:3:%X:%Y:0:0:%Unknown1");
             DC.CompileDLL(Application.StartupPath + "\\" + DC.PrefferedFilename);
-
+            */
             this.port.Items.Clear();
             this.port.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
             this.port.SelectedIndex = 0;
@@ -1685,14 +1667,14 @@ namespace IEBus_Studio
                                     displayDeviceList();
                                 }
                             }
-                            
-                                currentMessageArray[5] = parseData(currentMessageArray);
+
+                            currentMessageArray[5] = parseData(currentMessageArray);
 
                             //Prepare message record
                             if (this.lookupDeviceNames.Checked)
                             {
                                 //currentMessageArray[3] = parseControl(currentMessageArray[3]);
-                            ParsedMessageTable.Rows.Add(currentMessageArray[0], parseDeviceAddress(currentMessageArray[1]), parseDeviceAddress(currentMessageArray[2]), currentMessageArray[3], currentMessageArray[4], currentMessageArray[5], this.ParsedMessageTable.RowCount);
+                                ParsedMessageTable.Rows.Add(currentMessageArray[0], parseDeviceAddress(currentMessageArray[1]), parseDeviceAddress(currentMessageArray[2]), currentMessageArray[3], currentMessageArray[4], currentMessageArray[5], this.ParsedMessageTable.RowCount);
 
                             }
                             else
@@ -1703,11 +1685,11 @@ namespace IEBus_Studio
 
                             if (eventDiscoverer.discoveryingEvents())
                             {
-                                int broadcast =  Convert.ToInt32(currentMessageArray[0]);
+                                int broadcast = Convert.ToInt32(currentMessageArray[0]);
                                 int master_address = Convert.ToInt32(currentMessageArray[1], 16);
                                 int slave_address = Convert.ToInt32(currentMessageArray[2], 16);
-                                ControlByte control =(ControlByte)Convert.ToInt32(currentMessageArray[3],16);
-                                string data =currentMessageArray[5];
+                                ControlByte control = (ControlByte)Convert.ToInt32(currentMessageArray[3], 16);
+                                string data = currentMessageArray[5];
                                 Event discoveredEvent = new Event("Undefined", "Undefined", broadcast, master_address, slave_address, control, data);
                                 eventDiscoverer.addEvent(discoveredEvent);
                                 patternMatch();
@@ -1793,7 +1775,7 @@ namespace IEBus_Studio
                 }
             }
             //patternGrid.ort(matchesColumn, ListSortDirection.Descending);
-            patternGrid.Sort(new RowComparer(SortOrder.Descending));
+            patternGrid.Sort(new IEBus_Studio.RowComparer(SortOrder.Descending));
             patternGrid.ResumeLayout();
         }
         public string BuildWildcard(string[] rData, int[] Indices)
@@ -2099,7 +2081,7 @@ namespace IEBus_Studio
         private void addEvent_Click(object sender, EventArgs e)
         {
             // Create the event with default values
-            Event ev = new Event("Unkown", "Unkown", 1, 0, 0, ControlByte.DataWrite , "");
+            Event ev = new Event("Unkown", "Unkown", 1, 0, 0, ControlByte.DataWrite, "");
 
             // Add event to event list
             eventManager.addEvent(ev);
@@ -2123,7 +2105,7 @@ namespace IEBus_Studio
                 int broadcast = Convert.ToInt32((string)eventsTable.Rows[i].Cells[2].Value);
                 int master_address = Convert.ToInt32((string)eventsTable.Rows[i].Cells[3].Value, 16);
                 int slave_address = Convert.ToInt32((string)eventsTable.Rows[i].Cells[4].Value, 16);
-                ControlByte  control = (ControlByte)Convert.ToInt32((string)eventsTable.Rows[i].Cells[5].Value);
+                ControlByte control = (ControlByte)Convert.ToInt32((string)eventsTable.Rows[i].Cells[5].Value);
                 string data = (string)eventsTable.Rows[i].Cells[7].Value;
 
                 // Create the event object with all the data from the table
@@ -2134,117 +2116,6 @@ namespace IEBus_Studio
             }
         }
 
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            chooseOutputFile.ShowDialog();
-        }
-
-        private void chooseOutputFile_FileOk(object sender, CancelEventArgs e)
-        {
-            // Convert the device and event list to xml
-            string xml = "<root>" + deviceManager.OuputAsXML() + eventManager.ouputAsXML() + "</root>";
-
-            // Open the file to save to
-            this.opened_filename = chooseOutputFile.FileName;
-            FileStream file = File.Open(this.opened_filename, FileMode.Create);
-
-            // Convert xml string bytes and write to file
-            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-            file.Write(encoding.GetBytes(xml), 0, xml.Length);
-
-            file.Close();
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // If no file is currently opened
-            if (this.opened_filename == "")
-            {
-                // Let the user select a file to save to
-                chooseOutputFile.ShowDialog();
-                return;
-            }
-
-            // Convert the device and event list to xml
-            string xml = "<root>" + deviceManager.OuputAsXML() + eventManager.ouputAsXML() + "</root>";
-
-            // Open the file to save to
-            FileStream file = File.Open(this.opened_filename, FileMode.OpenOrCreate);
-
-            // Convert xml string bytes and write to file
-            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-            file.Write(encoding.GetBytes(xml), 0, xml.Length);
-
-            file.Close();
-        }
-
-        private void saveToolStripButton_Click(object sender, EventArgs e)
-        {
-            // Call the menu item click of file->save
-            saveToolStripMenuItem_Click(sender, e);
-        }
-
-        private void scanDevices_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.ShowDialog();
-        }
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-            // Open the xml file
-            this.opened_filename = openFileDialog1.FileName;
-            this.Text = "IEBus Studio - " + System.IO.Path.GetFileName(openFileDialog1.FileName);
-
-            XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(this.opened_filename);
-
-            // Remove the existing devices and events
-            deviceManager.Devices.Clear();
-            eventManager.Events.Clear();
-
-
-            XmlNodeList devices = xDoc.GetElementsByTagName("device");
-            XmlNodeList events = xDoc.GetElementsByTagName("event");
-
-            foreach (XmlNode device in devices)
-                deviceManager.AddDevice(new Device(Convert.ToInt32(device.ChildNodes[2].FirstChild.Value, 16), device.ChildNodes[0].FirstChild.Value, device.ChildNodes[1].FirstChild.Value));
-
-            foreach (XmlNode ev in events)
-            {
-                string name = ev.ChildNodes[0].FirstChild.Value;
-                string description = ev.ChildNodes[1].FirstChild.Value;
-                int broadcast = Convert.ToInt32(ev.ChildNodes[2].FirstChild.Value);
-                int master = Convert.ToInt32(ev.ChildNodes[3].FirstChild.Value, 16);
-                int slave = Convert.ToInt32(ev.ChildNodes[4].FirstChild.Value, 16);
-                ControlByte  control = (ControlByte)Convert.ToInt32(ev.ChildNodes[5].FirstChild.Value, 16);
-
-                string data = "";
-                for (int i = 6; i < ev.ChildNodes.Count; i++)
-                {
-                    if (i != 6)
-                        data += ":";
-                    data += ev.ChildNodes[i].FirstChild.Value;
-                }
-
-                eventManager.addEvent(new Event(name, description, broadcast, master, slave, control,  data));
-            }
-
-            displayDeviceList();
-            displayEventList();
-
-            this.MessageTableTabs.SelectedTab = this.MessageTableTabs.TabPages["eventsTab"];
-        }
-
-        private void openToolStripButton_Click(object sender, EventArgs e)
-        {
-            // Call the menu item click of file->save
-            openToolStripMenuItem_Click(sender, e);
-        }
 
         private void cellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -2255,7 +2126,7 @@ namespace IEBus_Studio
         }
         private void exportDLLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.opened_filename == "")
+            if (this.openedFilename == "")
             {
                 MessageBox.Show("Please save your work first by choosing File->SaveAs or open an existing library.");
                 return;
@@ -2266,7 +2137,6 @@ namespace IEBus_Studio
             dc = null;
             exportDLLSaveAsDialog.ShowDialog();
         }
-
         private void exportDLLSaveAsDialog_FileOk(object sender, CancelEventArgs e)
         {
             //exportDLLSaveAsDialog.FileName;
@@ -2296,52 +2166,65 @@ namespace IEBus_Studio
             */
 
         }
-
-        private class RowComparer : System.Collections.IComparer
+        #region "Saving and Loading"
+        private void SaveIEB(bool SaveAs)
         {
-            private static int sortOrderModifier = 1;
-
-            public RowComparer(SortOrder sortOrder)
+            if (openedFilename != string.Empty && !SaveAs)
             {
-                if (sortOrder == SortOrder.Descending)
-                {
-                    sortOrderModifier = -1;
-                }
-                else if (sortOrder == SortOrder.Ascending)
-                {
-                    sortOrderModifier = 1;
-                }
+                IEBFile saveFile = new IEBFile();
+                saveFile.Save(openedFilename, eventManager, deviceManager);
             }
-
-            public int Compare(object x, object y)
+            else
             {
-                DataGridViewRow DataGridViewRow1 = (DataGridViewRow)x;
-                DataGridViewRow DataGridViewRow2 = (DataGridViewRow)y;
-
-                // Try to sort based on the Matches column.
-                int CompareResult = System.String.Compare(
-                    DataGridViewRow1.Cells["matchesColumn"].Value.ToString(),
-                    DataGridViewRow2.Cells["matchesColumn"].Value.ToString());
-                int C1 = System.Convert.ToInt32(DataGridViewRow1.Cells["matchesColumn"].Value.ToString());
-                int C2 = System.Convert.ToInt32(DataGridViewRow2.Cells["matchesColumn"].Value.ToString());
-
-                if (C1 > C2)
-                    CompareResult = 1;
-                else if (C1 == C2)
-                    CompareResult = 0;
-                else
-                    CompareResult = -1;
-                // If the Matches are equal, sort based on the Pattern.
-                if (CompareResult == 0)
+                SaveFileDialog SFD = new SaveFileDialog();
+                SFD.Filter = "IEBus Data File|*.ieb";
+                if (SFD.ShowDialog() == DialogResult.OK)
                 {
-                    CompareResult = System.String.Compare(
-                        DataGridViewRow1.Cells["matchesColumn"].Value.ToString(),
-                        DataGridViewRow2.Cells["matchesColumn"].Value.ToString());
+                    IEBFile saveFile = new IEBFile();
+                    saveFile.Save(SFD.FileName, eventManager, deviceManager);
                 }
-                return CompareResult * sortOrderModifier;
             }
         }
+        private void LoadIEB()
+        {
+            OpenFileDialog OFD = new OpenFileDialog();
+            OFD.Filter = "IEBus Data File|*.ieb";
+            if (OFD.ShowDialog() == DialogResult.OK)
+            {
+                openedFilename = OFD.FileName; 
+                this.Text = "IEBus Studio - " + System.IO.Path.GetFileName(OFD.FileName);
 
+                IEBFile openFile = new IEBFile();
+                openFile.Load(OFD.FileName);
+                eventManager = openFile.EventManager;
+                deviceManager = openFile.DeviceManager;
+
+                displayDeviceList();
+                displayEventList();
+                this.MessageTableTabs.SelectedTab = this.MessageTableTabs.TabPages["eventsTab"];
+            }
+        }
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveIEB(true);
+        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveIEB(false);
+        }
+        private void saveToolStripButton_Click(object sender, EventArgs e)
+        {
+            SaveIEB(false);
+        }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadIEB();
+        }
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            LoadIEB();
+        }
+        #endregion
     }
 
 }
