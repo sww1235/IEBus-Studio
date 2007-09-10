@@ -62,14 +62,6 @@ namespace IEBus_Studio
         private EventDiscovery eventDiscoverer = new EventDiscovery();
         private string opened_filename = "";
         private Label timeLeftLabel;
-        private DataGridViewTextBoxColumn Event_Name;
-        private DataGridViewTextBoxColumn Event_Description;
-        private DataGridViewTextBoxColumn Event_Broadcast;
-        private DataGridViewTextBoxColumn Event_Master;
-        private DataGridViewTextBoxColumn event_Slave;
-        private DataGridViewTextBoxColumn Event_Control;
-        private DataGridViewTextBoxColumn Event_DataSize;
-        private DataGridViewTextBoxColumn Event_Data;
         private TabControl BottomTabs;
         private TabPage tabPage1;
         private TextBox terminal;
@@ -140,6 +132,14 @@ namespace IEBus_Studio
         private ToolStripMenuItem exportDLLToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem1;
         private SaveFileDialog exportDLLSaveAsDialog;
+        private DataGridViewTextBoxColumn Event_Name;
+        private DataGridViewTextBoxColumn Event_Description;
+        private DataGridViewTextBoxColumn Event_Broadcast;
+        private DataGridViewTextBoxColumn Event_Master;
+        private DataGridViewTextBoxColumn event_Slave;
+        private DataGridViewTextBoxColumn Event_Control;
+        private DataGridViewTextBoxColumn Event_DataSize;
+        private DataGridViewTextBoxColumn Event_Data;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -239,14 +239,6 @@ namespace IEBus_Studio
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
-            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BottomTabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.terminal = new System.Windows.Forms.TextBox();
@@ -300,6 +292,14 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -913,62 +913,6 @@ namespace IEBus_Studio
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
             // 
-            // Event_Name
-            // 
-            this.Event_Name.HeaderText = "Name";
-            this.Event_Name.Name = "Event_Name";
-            this.Event_Name.ReadOnly = true;
-            // 
-            // Event_Description
-            // 
-            this.Event_Description.HeaderText = "Description";
-            this.Event_Description.Name = "Event_Description";
-            this.Event_Description.ReadOnly = true;
-            // 
-            // Event_Broadcast
-            // 
-            this.Event_Broadcast.HeaderText = "B";
-            this.Event_Broadcast.Name = "Event_Broadcast";
-            this.Event_Broadcast.ReadOnly = true;
-            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Event_Broadcast.ToolTipText = "Broadcast";
-            this.Event_Broadcast.Width = 20;
-            // 
-            // Event_Master
-            // 
-            this.Event_Master.HeaderText = "Master";
-            this.Event_Master.Name = "Event_Master";
-            this.Event_Master.ReadOnly = true;
-            this.Event_Master.Width = 115;
-            // 
-            // event_Slave
-            // 
-            this.event_Slave.HeaderText = "Slave";
-            this.event_Slave.Name = "event_Slave";
-            this.event_Slave.ReadOnly = true;
-            this.event_Slave.Width = 115;
-            // 
-            // Event_Control
-            // 
-            this.Event_Control.HeaderText = "Control";
-            this.Event_Control.Name = "Event_Control";
-            this.Event_Control.ReadOnly = true;
-            this.Event_Control.Width = 50;
-            // 
-            // Event_DataSize
-            // 
-            this.Event_DataSize.HeaderText = "DataSize";
-            this.Event_DataSize.Name = "Event_DataSize";
-            this.Event_DataSize.ReadOnly = true;
-            this.Event_DataSize.Width = 75;
-            // 
-            // Event_Data
-            // 
-            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Event_Data.HeaderText = "Data";
-            this.Event_Data.Name = "Event_Data";
-            this.Event_Data.ReadOnly = true;
-            // 
             // BottomTabs
             // 
             this.BottomTabs.Controls.Add(this.tabPage1);
@@ -1509,6 +1453,62 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn18.Visible = false;
             this.dataGridViewTextBoxColumn18.Width = 2;
             // 
+            // Event_Name
+            // 
+            this.Event_Name.HeaderText = "Name";
+            this.Event_Name.Name = "Event_Name";
+            this.Event_Name.ReadOnly = true;
+            // 
+            // Event_Description
+            // 
+            this.Event_Description.HeaderText = "Description";
+            this.Event_Description.Name = "Event_Description";
+            this.Event_Description.ReadOnly = true;
+            // 
+            // Event_Broadcast
+            // 
+            this.Event_Broadcast.HeaderText = "B";
+            this.Event_Broadcast.Name = "Event_Broadcast";
+            this.Event_Broadcast.ReadOnly = true;
+            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Event_Broadcast.ToolTipText = "Broadcast";
+            this.Event_Broadcast.Width = 20;
+            // 
+            // Event_Master
+            // 
+            this.Event_Master.HeaderText = "Master";
+            this.Event_Master.Name = "Event_Master";
+            this.Event_Master.ReadOnly = true;
+            this.Event_Master.Width = 115;
+            // 
+            // event_Slave
+            // 
+            this.event_Slave.HeaderText = "Slave";
+            this.event_Slave.Name = "event_Slave";
+            this.event_Slave.ReadOnly = true;
+            this.event_Slave.Width = 115;
+            // 
+            // Event_Control
+            // 
+            this.Event_Control.HeaderText = "Control";
+            this.Event_Control.Name = "Event_Control";
+            this.Event_Control.ReadOnly = true;
+            this.Event_Control.Width = 75;
+            // 
+            // Event_DataSize
+            // 
+            this.Event_DataSize.HeaderText = "Size";
+            this.Event_DataSize.Name = "Event_DataSize";
+            this.Event_DataSize.ReadOnly = true;
+            this.Event_DataSize.Width = 35;
+            // 
+            // Event_Data
+            // 
+            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Event_Data.HeaderText = "Data";
+            this.Event_Data.Name = "Event_Data";
+            this.Event_Data.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1831,6 +1831,27 @@ namespace IEBus_Studio
         }
 
         private string parseControl(string pcontrol)
+        {
+            if (pcontrol == "0") { return "Slave status read"; }                  //Slave status (SSR) read
+            if (pcontrol == "1") { return "Undefined"; }                          //Undefined
+            if (pcontrol == "2") { return "Undefined"; }                          //Undefined
+            if (pcontrol == "3") { return "Data read and lock"; }                 //Data read and lock
+            if (pcontrol == "4") { return "Lock address read (Lower 8 bits)"; }   //Lock address read (Lower 8 bits)
+            if (pcontrol == "5") { return "Lock address read (Upper 4 bits)"; }   //Lock address read (Upper 4 bits)
+            if (pcontrol == "6") { return "Slave status (SSR) read and unlock"; } //Slave status (SSR) read and unlock
+            if (pcontrol == "7") { return "Data read"; }                          //Data read
+            if (pcontrol == "8") { return "Undefined"; }                          //Undefined
+            if (pcontrol == "9") { return "Undefined"; }                          //Undefined
+            if (pcontrol == "A") { return "Command write and lock"; }             //Command write and lock
+            if (pcontrol == "B") { return "Data write and lock"; }                //Data write and lock
+            if (pcontrol == "C") { return "Undefined"; }                          //Undefined
+            if (pcontrol == "D") { return "Undefined"; }                          //Undefined
+            if (pcontrol == "E") { return "Command write"; }                      //Command write
+            if (pcontrol == "F") { return "Data write"; }                         //Data write
+            return "Undefined";                                                   //Undefined
+        }
+
+        private string parseControlAbreviated(string pcontrol)
         {
             if (pcontrol == "0") { return "SSR"; }           //Slave status (SSR) read
             if (pcontrol == "1") { return "Undef"; }           //Undefined
