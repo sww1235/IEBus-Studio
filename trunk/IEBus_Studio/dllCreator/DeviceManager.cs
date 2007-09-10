@@ -3,16 +3,16 @@ namespace dllCreator
 {
     public class DeviceManager
     {
-        private ArrayList _devices;
+        private System.Collections.Generic.List<IEBus_Studio.Device> _devices;
         public DeviceManager()
         {
-            _devices = new ArrayList();
+            _devices = new System.Collections.Generic.List<IEBus_Studio.Device>();
         }
-        public Device this[string Name]
+        public IEBus_Studio.Device this[string Name]
         {
             get
             {
-                foreach (Device dev in _devices)
+                foreach (IEBus_Studio.Device dev in _devices)
                 {
                     if (dev.Name == Name)
                         return dev;
@@ -21,19 +21,19 @@ namespace dllCreator
             }
             set
             {
-                foreach (Device dev in _devices)
+                foreach (IEBus_Studio.Device dev in _devices)
                 {
                     if (dev.Name == Name)
                         _devices[_devices.IndexOf(dev)] = value;
                 }
             }
         }
-        public Device this[int Index]
+        public IEBus_Studio.Device this[int Index]
         {
             get
             {
                 if (_devices.Count > Index)
-                    return (Device)_devices[Index];
+                    return _devices[Index];
                 else
                     return null;
             }
@@ -43,7 +43,7 @@ namespace dllCreator
                     _devices[Index] = value;
             }
         }
-        public ArrayList Devices
+        public System.Collections.Generic.List<IEBus_Studio.Device> Devices
         {
             get
             {
@@ -54,18 +54,42 @@ namespace dllCreator
                 _devices = value;
             }
         }
-        public void AddDevice(Device Device)
+        public void AddDevice(IEBus_Studio.Device Device)
         {
             _devices.Add(Device);
         }
         public void AddDevice(int Address, string Name, string Description)
         {
-            _devices.Add(new Device(Address, Name, Description));
+            _devices.Add(new IEBus_Studio.Device(Address, Name, Description));
         }
-        public void RemoveDevice(Device Device)
+        public void RemoveDevice(IEBus_Studio.Device Device)
         {
             if (_devices.Contains(Device))
                 _devices.Remove(Device);
+        }
+        public string GetDeviceName(int address)
+        {
+            foreach (IEBus_Studio.Device device in _devices)
+            {
+                if (device.Address == address)
+                    return device.Name;
+            }
+
+            return string.Empty;
+        }
+        public string OuputAsXML()
+        {
+            string xml = "<devices>\r\n";
+            for (int i = 0; i < _devices.Count; i++)
+            {
+                xml += "    <device>\r\n";
+                xml += "        <name>" +  _devices[i].Name + "</name>\r\n";
+                xml += "        <description>" +  _devices[i].Description + "</description>\r\n";
+                xml += "        <address>" + System.Convert.ToString( _devices[i].Address, 16) + "</address>\r\n";
+                xml += "    </device>\r\n";
+            }
+            xml += "</devices>\r\n";
+            return xml;
         }
     }
 }

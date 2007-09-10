@@ -128,9 +128,9 @@ namespace IEBus_Studio
         }
         public int CompareTo(object obj)
         {
-            if (obj is dllCreator.Event)
+            if (obj is Event)
             {
-                dllCreator.Event temp = (dllCreator.Event)obj;
+                Event temp = (Event)obj;
                 int CompareResult = 0;
 
                 int C1 = this.Variables.Count;
@@ -171,32 +171,6 @@ namespace IEBus_Studio
                 return CompareResult;
             }
             throw new ArgumentException("object is not an Event");
-        }
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-            if (this.GetType() != obj.GetType())
-                return false;
-            Event ev = (Event)obj;
-
-            bool variables_match = this._variables.Count == ev.Variables.Count;
-
-            if (variables_match)
-            {
-                for (int i = 0; i < this._variables.Count; i++)
-                {
-                    if (this._variables[i] != ev.Variables[i])
-                        variables_match = false;
-                }
-            return (this._master == ev.Master) &&
-                   (this._slave == ev.Slave) &&
-                   (this._control == ev.Control) &&
-                   (this._broadcast == ev.Broadcast) &&
-                   (this._size == ev.Size) &&
-                   (variables_match);
-            }
-            return false;
         }
     }
 }
