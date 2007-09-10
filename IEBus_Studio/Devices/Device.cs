@@ -50,5 +50,10 @@ namespace IEBus_Studio
                 _description = value;
             }
         }
+
+        public override string ToString()
+        {
+            return _name;
+        }
     }
 }
