@@ -4,6 +4,26 @@ using System.Text;
 
 namespace IEBus_Studio
 {
+
+    public enum ControlByte : int
+    {
+        SlaveStatusRead,
+        Undefined1,
+        Undefined2,
+        DataReadAndLock,
+        LockAddressRead_Lower8Bits,
+        LockAddressRead_Upper4Bits,
+        SlaveStatusReadAndUnlock,
+        DataRead,
+        Undefined3,
+        Undefined4,
+        CommandWriteAndLock,
+        DataWriteAndLock,
+        Undefined5,
+        Undefined6,
+        CommandWrite,
+        DataWrite,
+    }
     static class HexStringConverter
     {
         public static int ToInt(string Hexstring)

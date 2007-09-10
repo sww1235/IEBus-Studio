@@ -80,6 +80,8 @@ namespace dllCreator
             sBuilder.AppendLine("Dim currentMessageArray() As String = wrkMessage.Split(\":\"c)");
             sBuilder.AppendLine("Dim MasterDevice As CarDevice = System.Convert.ToInt32(currentMessageArray(1), 16)");
             sBuilder.AppendLine("Dim SlaveDevice As CarDevice = System.Convert.ToInt32(currentMessageArray(2), 16)");
+            sBuilder.AppendLine("Dim ControlByte As Integer = currentMessageArray(3)");
+            sBuilder.AppendLine("Dim Broadcast As Integer = currentMessageArray(1)");
             sBuilder.AppendLine("Dim DataLength As Integer = currentMessageArray(4)");
             sBuilder.AppendLine("Dim RawData(DataLength - 1) As String");
             sBuilder.AppendLine("Array.Copy(currentMessageArray, 5, RawData, 0, DataLength)");
@@ -112,9 +114,9 @@ namespace dllCreator
                     indicesString = indicesString.Substring(0, indicesString.Length - 2);
                 argsCount--;
                 if (x == 0)
-                    sBuilder.AppendLine("If MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " Then");
+                    sBuilder.AppendLine("If MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " And ControlByte = " + (int)Events[x].Control + " And Broadcast = " + Events[x].Broadcast + " Then");
                 else
-                    sBuilder.AppendLine("ElseIf MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " Then");
+                    sBuilder.AppendLine("ElseIf MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " And ControlByte = " +(int)Events[x].Control + " And Broadcast = " + Events[x].Broadcast + " Then");
                 sBuilder.AppendLine("If BuildWildcard(RawData, New Integer() {" + indicesString + "}).ToLower() = \"" + compareString + "\".ToLower() Then");
                 sBuilder.AppendLine("Array.Copy(currentMessageArray, 5, RawData, 0, DataLength)");
                 if (valueString != string.Empty)
@@ -182,7 +184,6 @@ namespace dllCreator
                 MessageBox.Show("Errors occoured", "Errors", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public Creator(string Make, string Model, int Year)
         {
             _Make = Make;
@@ -208,9 +209,9 @@ namespace dllCreator
             string dynamicCode = CreateCode();
             CompileCode(dynamicCode, OutputFolder);
         }
-        public void AddEvent(string Name, string Description, string Broadcast, int Master, int Slave,string Control,short Size, string Data)
+        public void AddEvent(string Name, string Description, int Broadcast, int Master, int Slave, IEBus_Studio.ControlByte Control, string Data)
         {
-            IEBus_Studio.Event newEvent = new IEBus_Studio.Event(Name, Description,Broadcast,  Master, Slave, Control,Size, Data);
+            IEBus_Studio.Event newEvent = new IEBus_Studio.Event(Name, Description,Broadcast,  Master, Slave, Control, Data);
             _events.Add(newEvent);
         }
         public void AddEvent(IEBus_Studio.Event ev)
