@@ -1721,13 +1721,11 @@ namespace IEBus_Studio
             System.Collections.Generic.SortedList<string, ArrayList> Patterns = new SortedList<string, ArrayList>();
             for (int i = 0; i < eventDiscoverer.DiscoveredEvents.Count; i++)
             {
-                DiscoveredEvent devent = (DiscoveredEvent)(eventDiscoverer.DiscoveredEvents[i]);
-                Event origEvent = devent.TheEvent;
+                Event origEvent = eventDiscoverer.DiscoveredEvents[i];
                 for (int k = 0; k < eventDiscoverer.DiscoveredEvents.Count; k++)
                 {
                     string pattern = string.Empty;
-                    DiscoveredEvent devent2 = (DiscoveredEvent)(eventDiscoverer.DiscoveredEvents[k]);
-                    Event compareEvent = devent2.TheEvent;
+                    Event compareEvent = eventDiscoverer.DiscoveredEvents[k];
 
                     if ((origEvent.Master == compareEvent.Master) &&
                      (origEvent.Slave == compareEvent.Slave) &&
@@ -1768,13 +1766,11 @@ namespace IEBus_Studio
                 string cPattern = Patterns.Keys[x];
                 string cMatches = Patterns.Values[x].Count.ToString();
 
-                DiscoveredEvent tempdEvent = (DiscoveredEvent)(eventDiscoverer.DiscoveredEvents[(int)(Patterns.Values[x][0])]);
-                Event tempEvent = tempdEvent.TheEvent;
+                Event tempEvent = eventDiscoverer.DiscoveredEvents[(int)(Patterns.Values[x][0])];
                 AdvancedDataGridView.TreeGridNode node = patternGrid.Nodes.Add("Define", cMatches, tempEvent.Broadcast.ToString(), tempEvent.Master.ToString(), tempEvent.Slave.ToString(), tempEvent.Control.ToString(), tempEvent.Size.ToString(), cPattern);
                 for (int i = 0; i < Patterns.Values[x].Count; i++)
                 {
-                    DiscoveredEvent devent = (DiscoveredEvent)(eventDiscoverer.DiscoveredEvents[(int)(Patterns.Values[x][i])]);
-                    Event origEvent = devent.TheEvent;
+                    Event origEvent =eventDiscoverer.DiscoveredEvents[(int)(Patterns.Values[x][i])];
 
                     string DataString = String.Empty;
                     for (int v = 0; v < origEvent.Variables.Count; v++)
@@ -2271,12 +2267,12 @@ namespace IEBus_Studio
             //exportDLLSaveAsDialog.FileName;
             dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
 
-            foreach (dllCreator.Device curDevice in deviceManager.Devices)
+            foreach (Device curDevice in deviceManager.Devices)
             {
                 DC.DeviceManager.AddDevice(curDevice);
             }
 
-            foreach (dllCreator.Event curEvent in eventManager.Events)
+            foreach (Event curEvent in eventManager.Events)
             {
                 DC.AddEvent(curEvent);
             }

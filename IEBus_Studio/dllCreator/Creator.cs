@@ -11,7 +11,7 @@ namespace dllCreator
         private string _Model;
         private int _Year;
         private DeviceManager _dm;
-        private System.Collections.Generic.List<Event> _events;
+        private System.Collections.Generic.List<IEBus_Studio.Event> _events;
         private string CreateCode()
         {
             _events.Sort();
@@ -189,7 +189,7 @@ namespace dllCreator
             _Model = Model;
             _Year = Year;
             _dm = new DeviceManager();
-            _events = new System.Collections.Generic.List<Event>();
+            _events = new System.Collections.Generic.List<IEBus_Studio.Event>();
         }
         public DeviceManager DeviceManager
         {
@@ -199,7 +199,7 @@ namespace dllCreator
         {
             get {return _Make + "." + _Model + "." + _Year + ".dll"; }
         }
-        public System.Collections.Generic.List<Event> Events
+        public System.Collections.Generic.List<IEBus_Studio.Event> Events
         {
             get { return _events; }
         }
@@ -208,12 +208,12 @@ namespace dllCreator
             string dynamicCode = CreateCode();
             CompileCode(dynamicCode, OutputFolder);
         }
-        public void AddEvent(string Name, string Description, int Master, int Slave, string Data)
+        public void AddEvent(string Name, string Description, string Broadcast, int Master, int Slave,string Control,short Size, string Data)
         {
-            Event newEvent = new Event(Name, Description, Master, Slave, Data);
+            IEBus_Studio.Event newEvent = new IEBus_Studio.Event(Name, Description,Broadcast,  Master, Slave, Control,Size, Data);
             _events.Add(newEvent);
         }
-        public void AddEvent(Event ev)
+        public void AddEvent(IEBus_Studio.Event ev)
         {
             _events.Add(ev);
         }
