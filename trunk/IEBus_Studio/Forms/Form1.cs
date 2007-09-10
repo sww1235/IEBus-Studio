@@ -52,8 +52,6 @@ namespace IEBus_Studio
         private TabPage eventsTab;
         private DataGridView eventsTable;
         private Button addEvent;
-        private ContextMenuStrip EventActionsMenuStrip;
-        private ToolStripMenuItem addEventToolStripMenuItem;
 
         private EventManager eventManager = new EventManager();
         private DeviceManager deviceManager = new DeviceManager();
@@ -269,8 +267,6 @@ namespace IEBus_Studio
             this.Data1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lookupDeviceNames = new System.Windows.Forms.CheckBox();
-            this.EventActionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.exportDLLSaveAsDialog = new System.Windows.Forms.SaveFileDialog();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -321,7 +317,6 @@ namespace IEBus_Studio
             this.groupBox1.SuspendLayout();
             this.liveMessages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).BeginInit();
-            this.EventActionsMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -1274,20 +1269,6 @@ namespace IEBus_Studio
             this.lookupDeviceNames.Text = "Lookup Device Names";
             this.lookupDeviceNames.UseVisualStyleBackColor = true;
             // 
-            // EventActionsMenuStrip
-            // 
-            this.EventActionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addEventToolStripMenuItem});
-            this.EventActionsMenuStrip.Name = "EventActions";
-            this.EventActionsMenuStrip.Size = new System.Drawing.Size(136, 26);
-            // 
-            // addEventToolStripMenuItem
-            // 
-            this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
-            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.addEventToolStripMenuItem.Text = "Add Event";
-            this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
-            // 
             // serialPort1
             // 
             this.serialPort1.WriteBufferSize = 2;
@@ -1573,19 +1554,11 @@ namespace IEBus_Studio
             this.liveMessages.ResumeLayout(false);
             this.liveMessages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).EndInit();
-            this.EventActionsMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        void addEventToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ToolStripDropDownItem addEventItem = (ToolStripDropDownItem)sender;
-
-            AddEventPopup eventPopup = new AddEventPopup(eventManager, null, null);
-            eventPopup.Show();
-        }
         #endregion
 
         /// <summary>
