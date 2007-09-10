@@ -131,13 +131,15 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn rawMasterColumn;
         private DataGridViewTextBoxColumn rawSlaveColumn;
         private DataGridViewTextBoxColumn rawControlColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private DataGridViewTextBoxColumn Event_Name;
         private DataGridViewTextBoxColumn Event_Description;
         private DataGridViewTextBoxColumn Event_Broadcast;
         private DataGridViewTextBoxColumn Event_Master;
         private DataGridViewTextBoxColumn event_Slave;
-        private DataGridViewTextBoxColumn Event_Control;
-        private DataGridViewTextBoxColumn Event_DataSize;
+        private DataGridViewComboBoxColumn Event_Control;
+        private DataGridViewTextBoxColumn Event_Size;
         private DataGridViewTextBoxColumn Event_Data;
         private DataGridViewTextBoxColumn Event_RawMaster;
         private DataGridViewTextBoxColumn Event_RawSlave;
@@ -293,13 +295,15 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Control = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Event_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_RawMaster = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_RawSlave = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -928,7 +932,7 @@ namespace IEBus_Studio
             this.Event_Master,
             this.event_Slave,
             this.Event_Control,
-            this.Event_DataSize,
+            this.Event_Size,
             this.Event_Data,
             this.Event_RawMaster,
             this.Event_RawSlave,
@@ -1371,6 +1375,7 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn7.HeaderText = "Master";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn7.Width = 115;
             // 
             // dataGridViewTextBoxColumn8
@@ -1389,10 +1394,10 @@ namespace IEBus_Studio
             // 
             // dataGridViewTextBoxColumn10
             // 
+            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn10.HeaderText = "DataSize";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 75;
             // 
             // dataGridViewTextBoxColumn11
             // 
@@ -1400,6 +1405,7 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn11.HeaderText = "Data";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Visible = false;
             // 
             // dataGridViewTextBoxColumn12
             // 
@@ -1409,6 +1415,7 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
             this.dataGridViewTextBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn12.ToolTipText = "Broadcast Bit";
+            this.dataGridViewTextBoxColumn12.Visible = false;
             this.dataGridViewTextBoxColumn12.Width = 20;
             // 
             // dataGridViewTextBoxColumn13
@@ -1418,6 +1425,7 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             this.dataGridViewTextBoxColumn13.ReadOnly = true;
             this.dataGridViewTextBoxColumn13.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn13.Visible = false;
             // 
             // dataGridViewTextBoxColumn14
             // 
@@ -1426,6 +1434,8 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
             this.dataGridViewTextBoxColumn14.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn14.ToolTipText = "Broadcast Bit";
+            this.dataGridViewTextBoxColumn14.Width = 20;
             // 
             // dataGridViewTextBoxColumn15
             // 
@@ -1452,16 +1462,37 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn17.MaxInputLength = 4;
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
             this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            this.dataGridViewTextBoxColumn17.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // dataGridViewTextBoxColumn18
             // 
             this.dataGridViewTextBoxColumn18.FillWeight = 2F;
             this.dataGridViewTextBoxColumn18.HeaderText = "";
+            this.dataGridViewTextBoxColumn18.MaxInputLength = 2;
             this.dataGridViewTextBoxColumn18.MinimumWidth = 2;
             this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
             this.dataGridViewTextBoxColumn18.ReadOnly = true;
+            this.dataGridViewTextBoxColumn18.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn18.Visible = false;
             this.dataGridViewTextBoxColumn18.Width = 2;
+            // 
+            // dataGridViewTextBoxColumn19
+            // 
+            this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn19.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn19.MaxInputLength = 4;
+            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            this.dataGridViewTextBoxColumn19.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn20
+            // 
+            this.dataGridViewTextBoxColumn20.FillWeight = 2F;
+            this.dataGridViewTextBoxColumn20.HeaderText = "";
+            this.dataGridViewTextBoxColumn20.MinimumWidth = 2;
+            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.ReadOnly = true;
+            this.dataGridViewTextBoxColumn20.Visible = false;
+            this.dataGridViewTextBoxColumn20.Width = 2;
             // 
             // Event_Name
             // 
@@ -1486,7 +1517,7 @@ namespace IEBus_Studio
             // 
             this.Event_Master.HeaderText = "Master";
             this.Event_Master.Name = "Event_Master";
-            this.Event_Master.ReadOnly = true;
+            this.Event_Master.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Event_Master.Width = 115;
             // 
             // event_Slave
@@ -1499,16 +1530,34 @@ namespace IEBus_Studio
             // Event_Control
             // 
             this.Event_Control.HeaderText = "Control";
+            this.Event_Control.Items.AddRange(new object[] {
+            "SlaveStatusRead",
+            "Undefined1",
+            "Undefined2",
+            "DataReadAndLock",
+            "LockAddressRead_Lower8Bit",
+            "LockAddressRead_Upper4Bits",
+            "SlaveStatusReadAndUnlock",
+            "DataRead",
+            "Undefined3",
+            "Undefined4",
+            "CommandWriteAndLock",
+            "DataWriteAndLock",
+            "Undefined5",
+            "Undefined6",
+            "CommandWrite",
+            "DataWrite"});
             this.Event_Control.Name = "Event_Control";
-            this.Event_Control.ReadOnly = true;
-            this.Event_Control.Width = 75;
+            this.Event_Control.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Event_Control.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Event_Control.Width = 140;
             // 
-            // Event_DataSize
+            // Event_Size
             // 
-            this.Event_DataSize.HeaderText = "Size";
-            this.Event_DataSize.Name = "Event_DataSize";
-            this.Event_DataSize.ReadOnly = true;
-            this.Event_DataSize.Width = 35;
+            this.Event_Size.HeaderText = "Size";
+            this.Event_Size.Name = "Event_Size";
+            this.Event_Size.ReadOnly = true;
+            this.Event_Size.Width = 35;
             // 
             // Event_Data
             // 
@@ -2104,17 +2153,13 @@ namespace IEBus_Studio
                 Event ev = (Event)(eventManager.Events[i]);
 
 
-                //    string master = deviceManager.GetDeviceName(ev.Master_Address);
-                //    if (master == null) master = ev.Master_Address_String;
-
-                //    string slave = deviceManager.GetDeviceName(ev.Slave_Address);
-                //    if (slave == null) master = ev.Slave_Address_String;
                 string master = parseDeviceAddress(Convert.ToString(ev.Master, 16));
                 string slave = parseDeviceAddress(Convert.ToString(ev.Slave, 16));
                 string data = "";
                 foreach (string var in ev.Variables)
                     data += var;
-                eventsTable.Rows.Add(ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control, ev.Size, data, ev.Master, ev.Slave, ev.Control);
+                
+                eventsTable.Rows.Add(ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control.ToString(), ev.Size, data, ev.Master, ev.Slave, ev.Control);
             }
 
             // Resume Drawing
@@ -2148,8 +2193,30 @@ namespace IEBus_Studio
                 int broadcast = (int)eventsTable.Rows[i].Cells["Event_Broadcast"].Value;
                 int master_address = (int)eventsTable.Rows[i].Cells["Event_RawMaster"].Value;
                 int slave_address = (int)eventsTable.Rows[i].Cells["Event_RawSlave"].Value;
-                ControlByte control = (ControlByte)eventsTable.Rows[i].Cells["Event_RawControl"].Value;
                 string data = (string)eventsTable.Rows[i].Cells["Event_Data"].Value;
+
+                // Get the control byte from the combo box
+                ControlByte control;
+                switch ((string)eventsTable.Rows[i].Cells["Event_Control"].Value)
+                {
+                    case "SlaveStatusRead": control = (ControlByte)0x00; break;
+                    case "Undefined1": control = (ControlByte)0x01; break;
+                    case "Undefined2": control = (ControlByte)0x02; break;
+                    case "DataReadAndLock": control = (ControlByte)0x03; break;
+                    case "LockAddressRead_Lower8Bit": control = (ControlByte)0x04; break;
+                    case "LockAddressRead_Upper4Bits": control = (ControlByte)0x05; break;
+                    case "SlaveStatusReadAndUnlock": control = (ControlByte)0x06; break;
+                    case "DataRead": control = (ControlByte)0x07; break;
+                    case "Undefined3": control = (ControlByte)0x08; break;
+                    case "Undefined4": control = (ControlByte)0x09; break;
+                    case "CommandWriteAndLock": control = (ControlByte)0x0A; break;
+                    case "DataWriteAndLock": control = (ControlByte)0x0B; break;
+                    case "Undefined5": control = (ControlByte)0x0C; break;
+                    case "Undefined6": control = (ControlByte)0x0D; break;
+                    case "CommandWrite": control = (ControlByte)0x0E; break;
+                    case "DataWrite": control = (ControlByte)0x0F; break;
+                    default: control = (ControlByte)0x0F; break;
+                }
 
                 // Create the event object with all the data from the table
                 Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data);
