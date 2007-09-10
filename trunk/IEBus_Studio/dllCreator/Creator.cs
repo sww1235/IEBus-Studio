@@ -151,11 +151,11 @@ namespace dllCreator
             System.Console.WriteLine(sBuilder.ToString());
             return sBuilder.ToString();
         }
-        private void CompileCode(string strCode, string OutputFolder)
+        private void CompileCode(string strCode, string OutputFile)
         {
             VBCodeProvider vbCP = new VBCodeProvider();
             CompilerParameters comParams = new CompilerParameters();
-            comParams.OutputAssembly = OutputFolder + "\\" + _Make + "." + _Model + "." + _Year + ".dll";
+            comParams.OutputAssembly = OutputFile;
             comParams.ReferencedAssemblies.Add("System.dll");
             comParams.ReferencedAssemblies.Add("System.Data.dll");
             comParams.ReferencedAssemblies.Add("System.Xml.dll");
@@ -194,6 +194,10 @@ namespace dllCreator
         public DeviceManager DeviceManager
         {
             get { return _dm; }
+        }
+        public string PrefferedFilename
+        {
+            get {return _Make + "." + _Model + "." + _Year + ".dll"; }
         }
         public System.Collections.Generic.List<Event> Events
         {
