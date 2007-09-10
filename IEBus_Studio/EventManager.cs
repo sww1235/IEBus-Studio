@@ -7,14 +7,14 @@ namespace IEBus_Studio
 {
     public class EventManager
     {
-        protected ArrayList events;
+        protected System.Collections.Generic.List<IEBus_Studio.Event> events;
 
         public EventManager()
         {
-            events = new ArrayList();
+            events = new System.Collections.Generic.List<IEBus_Studio.Event>();
         }
 
-        public ArrayList Events
+        public System.Collections.Generic.List<IEBus_Studio.Event> Events
         {
             get { return events; }
             set { events = value; }

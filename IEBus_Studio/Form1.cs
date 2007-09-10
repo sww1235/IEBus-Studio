@@ -409,7 +409,7 @@ namespace IEBus_Studio
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // openToolStripMenuItem
@@ -418,14 +418,14 @@ namespace IEBus_Studio
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -433,38 +433,38 @@ namespace IEBus_Studio
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(143, 6);
             // 
             // exportDLLToolStripMenuItem
             // 
             this.exportDLLToolStripMenuItem.Name = "exportDLLToolStripMenuItem";
-            this.exportDLLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportDLLToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exportDLLToolStripMenuItem.Text = "&Export DLL";
             this.exportDLLToolStripMenuItem.Click += new System.EventHandler(this.exportDLLToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // toolsToolStripMenuItem
@@ -472,7 +472,7 @@ namespace IEBus_Studio
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeMessageTableToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // changeMessageTableToolStripMenuItem
@@ -488,24 +488,24 @@ namespace IEBus_Studio
             this.toolStripSeparator7,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.searchToolStripMenuItem.Text = "&Contents";
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(126, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(119, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
             // panel1
@@ -675,7 +675,7 @@ namespace IEBus_Studio
             this.defineColumn.HeaderText = "Define";
             this.defineColumn.Name = "defineColumn";
             this.defineColumn.ReadOnly = true;
-            this.defineColumn.Width = 42;
+            this.defineColumn.Width = 44;
             // 
             // matchesColumn
             // 
@@ -694,7 +694,7 @@ namespace IEBus_Studio
             this.broadcastColumn.Name = "broadcastColumn";
             this.broadcastColumn.ReadOnly = true;
             this.broadcastColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.broadcastColumn.Width = 59;
+            this.broadcastColumn.Width = 61;
             // 
             // masterColumn
             // 
@@ -702,7 +702,7 @@ namespace IEBus_Studio
             this.masterColumn.Name = "masterColumn";
             this.masterColumn.ReadOnly = true;
             this.masterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.masterColumn.Width = 43;
+            this.masterColumn.Width = 45;
             // 
             // slaveColumn
             // 
@@ -719,7 +719,7 @@ namespace IEBus_Studio
             this.controlColumn.Name = "controlColumn";
             this.controlColumn.ReadOnly = true;
             this.controlColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.controlColumn.Width = 44;
+            this.controlColumn.Width = 46;
             // 
             // sizeColumn
             // 
@@ -727,7 +727,7 @@ namespace IEBus_Studio
             this.sizeColumn.Name = "sizeColumn";
             this.sizeColumn.ReadOnly = true;
             this.sizeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.sizeColumn.Width = 31;
+            this.sizeColumn.Width = 33;
             // 
             // dataColumn
             // 
@@ -1062,6 +1062,7 @@ namespace IEBus_Studio
             // 
             // port
             // 
+            this.port.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.port.FormattingEnabled = true;
             this.port.Items.AddRange(new object[] {
             "COM4",
@@ -1072,7 +1073,6 @@ namespace IEBus_Studio
             this.port.Name = "port";
             this.port.Size = new System.Drawing.Size(132, 21);
             this.port.TabIndex = 17;
-            this.port.Text = "COM4";
             // 
             // label5
             // 
@@ -1341,12 +1341,12 @@ namespace IEBus_Studio
             this.EventActionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEventToolStripMenuItem});
             this.EventActionsMenuStrip.Name = "EventActions";
-            this.EventActionsMenuStrip.Size = new System.Drawing.Size(136, 26);
+            this.EventActionsMenuStrip.Size = new System.Drawing.Size(129, 26);
             // 
             // addEventToolStripMenuItem
             // 
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
-            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
             this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
             // 
@@ -1583,6 +1583,7 @@ namespace IEBus_Studio
         {
             this.port.Items.Clear();
             this.port.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
+            this.port.SelectedIndex = 0;
         }
 
 
@@ -1657,7 +1658,7 @@ namespace IEBus_Studio
                                 if (!isDeviceDefined(Convert.ToInt32(currentMessageArray[1], 16)))
                                 {
                                     Device d = new Device(Convert.ToInt32(currentMessageArray[1], 16), "Undefined", "Describe me.");
-                                    this.deviceManager.addDevice(d);
+                                    this.deviceManager.AddDevice(d);
 
                                     // ReRender the device list
                                     displayDeviceList();
@@ -1667,7 +1668,7 @@ namespace IEBus_Studio
                                 if (!isDeviceDefined(Convert.ToInt32(currentMessageArray[2], 16)))
                                 {
                                     Device d = new Device(Convert.ToInt32(currentMessageArray[2], 16), "Undefined", "Describe me.");
-                                    this.deviceManager.addDevice(d);
+                                    this.deviceManager.AddDevice(d);
 
                                     // ReRender the device list
                                     displayDeviceList();
@@ -2001,7 +2002,7 @@ namespace IEBus_Studio
         private void displayDeviceList()
         {
             // Store the devices temporarily
-            ArrayList deviceList = new ArrayList(deviceManager.Devices);
+            System.Collections.Generic.List<IEBus_Studio.Device> deviceList = new System.Collections.Generic.List<IEBus_Studio.Device>(deviceManager.Devices);
 
             devicesTable.SuspendLayout();
 
@@ -2014,8 +2015,7 @@ namespace IEBus_Studio
             // Display each devices info as a row
             for (int i = 0; i < deviceManager.Devices.Count; i++)
             {
-                Device device = (Device)(deviceManager.Devices[i]);
-                devicesTable.Rows.Add(Convert.ToString(device.Address, 16), device.Name, device.Description);
+                devicesTable.Rows.Add(Convert.ToString(deviceManager.Devices[i].Address, 16), deviceManager.Devices[i].Name, deviceManager.Devices[i].Description);
             }
 
             devicesTable.ResumeLayout();
@@ -2027,7 +2027,7 @@ namespace IEBus_Studio
             Device device = new Device(0, "Unkown Name", "Unkown Description");
 
             // Add it to the device list
-            deviceManager.addDevice(device);
+            deviceManager.AddDevice(device);
 
             // ReRender the device list
             displayDeviceList();
@@ -2055,7 +2055,7 @@ namespace IEBus_Studio
         private void displayEventList()
         {
             // Store the devices temporarily
-            ArrayList eventList = new ArrayList(eventManager.Events);
+            System.Collections.Generic.List<IEBus_Studio.Event> eventList = new System.Collections.Generic.List<IEBus_Studio.Event>(eventManager.Events);
 
             // Pause drawing for a sec (speed boost)
             eventsTable.SuspendLayout();
@@ -2136,7 +2136,7 @@ namespace IEBus_Studio
         private void chooseOutputFile_FileOk(object sender, CancelEventArgs e)
         {
             // Convert the device and event list to xml
-            string xml = "<root>" + deviceManager.ouputAsXML() + eventManager.ouputAsXML() + "</root>";
+            string xml = "<root>" + deviceManager.OuputAsXML() + eventManager.ouputAsXML() + "</root>";
 
             // Open the file to save to
             this.opened_filename = chooseOutputFile.FileName;
@@ -2160,7 +2160,7 @@ namespace IEBus_Studio
             }
 
             // Convert the device and event list to xml
-            string xml = "<root>" + deviceManager.ouputAsXML() + eventManager.ouputAsXML() + "</root>";
+            string xml = "<root>" + deviceManager.OuputAsXML() + eventManager.ouputAsXML() + "</root>";
 
             // Open the file to save to
             FileStream file = File.Open(this.opened_filename, FileMode.OpenOrCreate);
@@ -2206,7 +2206,7 @@ namespace IEBus_Studio
             XmlNodeList events = xDoc.GetElementsByTagName("event");
 
             foreach (XmlNode device in devices)
-                deviceManager.addDevice(new Device(Convert.ToInt32(device.ChildNodes[2].FirstChild.Value, 16), device.ChildNodes[0].FirstChild.Value, device.ChildNodes[1].FirstChild.Value));
+                deviceManager.AddDevice(new Device(Convert.ToInt32(device.ChildNodes[2].FirstChild.Value, 16), device.ChildNodes[0].FirstChild.Value, device.ChildNodes[1].FirstChild.Value));
 
             foreach (XmlNode ev in events)
             {
