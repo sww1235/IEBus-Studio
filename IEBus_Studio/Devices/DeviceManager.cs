@@ -1,4 +1,6 @@
 using System.Collections;
+using System.IO;
+using System.Xml.Serialization;
     public class DeviceManager
     {
         private System.Collections.Generic.List<IEBus_Studio.Device> _devices;
@@ -75,18 +77,21 @@ using System.Collections;
 
             return string.Empty;
         }
-        public string OuputAsXML()
+
+        public Stream Save()
         {
-            string xml = "<devices>\r\n";
-            for (int i = 0; i < _devices.Count; i++)
-            {
-                xml += "    <device>\r\n";
-                xml += "        <name>" +  _devices[i].Name + "</name>\r\n";
-                xml += "        <description>" +  _devices[i].Description + "</description>\r\n";
-                xml += "        <address>" + System.Convert.ToString( _devices[i].Address, 16) + "</address>\r\n";
-                xml += "    </device>\r\n";
-            }
-            xml += "</devices>\r\n";
-            return xml;
+            Stream stream = new MemoryStream(); ;
+
+            XmlSerializer serializer = new XmlSerializer(typeof(DeviceManager ));
+            serializer.Serialize(stream, this);
+            stream.Position = 0;
+            return stream;
+        }
+
+        public static DeviceManager Load(byte[] bArray)
+        {
+            Stream stream = new MemoryStream(bArray);
+            XmlSerializer serializer = new XmlSerializer(typeof(DeviceManager));
+            return (DeviceManager)serializer.Deserialize(stream);
         }
     }
