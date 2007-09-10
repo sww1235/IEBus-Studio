@@ -1685,31 +1685,28 @@ namespace IEBus_Studio
                                     displayDeviceList();
                                 }
                             }
+                            
+                                currentMessageArray[5] = parseData(currentMessageArray);
 
                             //Prepare message record
                             if (this.lookupDeviceNames.Checked)
                             {
-                                currentMessageArray[1] = parseDeviceAddress(currentMessageArray[1]);
-                                currentMessageArray[2] = parseDeviceAddress(currentMessageArray[2]);
-                                currentMessageArray[3] = parseControl(currentMessageArray[3]);
-                                currentMessageArray[5] = parseData(currentMessageArray);
+                                //currentMessageArray[3] = parseControl(currentMessageArray[3]);
+                            ParsedMessageTable.Rows.Add(currentMessageArray[0], parseDeviceAddress(currentMessageArray[1]), parseDeviceAddress(currentMessageArray[2]), currentMessageArray[3], currentMessageArray[4], currentMessageArray[5], this.ParsedMessageTable.RowCount);
+
                             }
                             else
                             {
-                                currentMessageArray[1] = "0x" + currentMessageArray[1];
-                                currentMessageArray[2] = "0x" + currentMessageArray[2];
-                                currentMessageArray[3] = "0x" + currentMessageArray[3];
-                                currentMessageArray[5] = parseData(currentMessageArray);
+                                //currentMessageArray[3] = "0x" + currentMessageArray[3];
+                                ParsedMessageTable.Rows.Add(currentMessageArray[0], "0x" + currentMessageArray[1], "0x" + currentMessageArray[2], currentMessageArray[3], currentMessageArray[4], currentMessageArray[5], this.ParsedMessageTable.RowCount);
                             }
-
-                            ParsedMessageTable.Rows.Add(currentMessageArray[0], currentMessageArray[1], currentMessageArray[2], currentMessageArray[3], currentMessageArray[4], currentMessageArray[5], this.ParsedMessageTable.RowCount);
 
                             if (eventDiscoverer.discoveryingEvents())
                             {
                                 int broadcast =  Convert.ToInt32(currentMessageArray[0]);
                                 int master_address = Convert.ToInt32(currentMessageArray[1], 16);
                                 int slave_address = Convert.ToInt32(currentMessageArray[2], 16);
-                                ControlByte  control =(ControlByte)Convert.ToInt32(currentMessageArray[3]);
+                                ControlByte control =(ControlByte)Convert.ToInt32(currentMessageArray[3],16);
                                 string data =currentMessageArray[5];
                                 Event discoveredEvent = new Event("Undefined", "Undefined", broadcast, master_address, slave_address, control, data);
                                 eventDiscoverer.addEvent(discoveredEvent);
