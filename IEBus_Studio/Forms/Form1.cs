@@ -1757,7 +1757,11 @@ namespace IEBus_Studio
                 string cMatches = Patterns.Values[x].Count.ToString();
 
                 Event tempEvent = eventDiscoverer.DiscoveredEvents[(int)(Patterns.Values[x][0])];
-                AdvancedDataGridView.TreeGridNode node = patternGrid.Nodes.Add("Define", cMatches, tempEvent.Broadcast.ToString(), tempEvent.Master.ToString(), tempEvent.Slave.ToString(), tempEvent.Control.ToString(), tempEvent.Size.ToString(), cPattern);
+
+                string master = parseDeviceAddress(Convert.ToString(tempEvent.Master, 16));
+                string slave = parseDeviceAddress(Convert.ToString(tempEvent.Slave, 16));
+
+                AdvancedDataGridView.TreeGridNode node = patternGrid.Nodes.Add("Define", cMatches, tempEvent.Broadcast.ToString(), master, slave, tempEvent.Control.ToString(), tempEvent.Size.ToString(), cPattern);
                 for (int i = 0; i < Patterns.Values[x].Count; i++)
                 {
                     Event origEvent = eventDiscoverer.DiscoveredEvents[(int)(Patterns.Values[x][i])];
