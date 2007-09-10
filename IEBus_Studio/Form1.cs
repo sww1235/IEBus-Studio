@@ -239,6 +239,14 @@ namespace IEBus_Studio
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
+            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BottomTabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.terminal = new System.Windows.Forms.TextBox();
@@ -292,14 +300,6 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_DataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -418,14 +418,14 @@ namespace IEBus_Studio
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -433,38 +433,38 @@ namespace IEBus_Studio
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // exportDLLToolStripMenuItem
             // 
             this.exportDLLToolStripMenuItem.Name = "exportDLLToolStripMenuItem";
-            this.exportDLLToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exportDLLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportDLLToolStripMenuItem.Text = "&Export DLL";
             this.exportDLLToolStripMenuItem.Click += new System.EventHandler(this.exportDLLToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // toolsToolStripMenuItem
@@ -913,6 +913,62 @@ namespace IEBus_Studio
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
             // 
+            // Event_Name
+            // 
+            this.Event_Name.HeaderText = "Name";
+            this.Event_Name.Name = "Event_Name";
+            this.Event_Name.ReadOnly = true;
+            // 
+            // Event_Description
+            // 
+            this.Event_Description.HeaderText = "Description";
+            this.Event_Description.Name = "Event_Description";
+            this.Event_Description.ReadOnly = true;
+            // 
+            // Event_Broadcast
+            // 
+            this.Event_Broadcast.HeaderText = "B";
+            this.Event_Broadcast.Name = "Event_Broadcast";
+            this.Event_Broadcast.ReadOnly = true;
+            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Event_Broadcast.ToolTipText = "Broadcast";
+            this.Event_Broadcast.Width = 20;
+            // 
+            // Event_Master
+            // 
+            this.Event_Master.HeaderText = "Master";
+            this.Event_Master.Name = "Event_Master";
+            this.Event_Master.ReadOnly = true;
+            this.Event_Master.Width = 115;
+            // 
+            // event_Slave
+            // 
+            this.event_Slave.HeaderText = "Slave";
+            this.event_Slave.Name = "event_Slave";
+            this.event_Slave.ReadOnly = true;
+            this.event_Slave.Width = 115;
+            // 
+            // Event_Control
+            // 
+            this.Event_Control.HeaderText = "Control";
+            this.Event_Control.Name = "Event_Control";
+            this.Event_Control.ReadOnly = true;
+            this.Event_Control.Width = 75;
+            // 
+            // Event_DataSize
+            // 
+            this.Event_DataSize.HeaderText = "Size";
+            this.Event_DataSize.Name = "Event_DataSize";
+            this.Event_DataSize.ReadOnly = true;
+            this.Event_DataSize.Width = 35;
+            // 
+            // Event_Data
+            // 
+            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Event_Data.HeaderText = "Data";
+            this.Event_Data.Name = "Event_Data";
+            this.Event_Data.ReadOnly = true;
+            // 
             // BottomTabs
             // 
             this.BottomTabs.Controls.Add(this.tabPage1);
@@ -1314,6 +1370,10 @@ namespace IEBus_Studio
             this.openFileDialog1.Title = "Open An Event Library...";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // exportDLLSaveAsDialog
+            // 
+            this.exportDLLSaveAsDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.exportDLLSaveAsDialog_FileOk);
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -1452,62 +1512,6 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn18.ReadOnly = true;
             this.dataGridViewTextBoxColumn18.Visible = false;
             this.dataGridViewTextBoxColumn18.Width = 2;
-            // 
-            // Event_Name
-            // 
-            this.Event_Name.HeaderText = "Name";
-            this.Event_Name.Name = "Event_Name";
-            this.Event_Name.ReadOnly = true;
-            // 
-            // Event_Description
-            // 
-            this.Event_Description.HeaderText = "Description";
-            this.Event_Description.Name = "Event_Description";
-            this.Event_Description.ReadOnly = true;
-            // 
-            // Event_Broadcast
-            // 
-            this.Event_Broadcast.HeaderText = "B";
-            this.Event_Broadcast.Name = "Event_Broadcast";
-            this.Event_Broadcast.ReadOnly = true;
-            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Event_Broadcast.ToolTipText = "Broadcast";
-            this.Event_Broadcast.Width = 20;
-            // 
-            // Event_Master
-            // 
-            this.Event_Master.HeaderText = "Master";
-            this.Event_Master.Name = "Event_Master";
-            this.Event_Master.ReadOnly = true;
-            this.Event_Master.Width = 115;
-            // 
-            // event_Slave
-            // 
-            this.event_Slave.HeaderText = "Slave";
-            this.event_Slave.Name = "event_Slave";
-            this.event_Slave.ReadOnly = true;
-            this.event_Slave.Width = 115;
-            // 
-            // Event_Control
-            // 
-            this.Event_Control.HeaderText = "Control";
-            this.Event_Control.Name = "Event_Control";
-            this.Event_Control.ReadOnly = true;
-            this.Event_Control.Width = 75;
-            // 
-            // Event_DataSize
-            // 
-            this.Event_DataSize.HeaderText = "Size";
-            this.Event_DataSize.Name = "Event_DataSize";
-            this.Event_DataSize.ReadOnly = true;
-            this.Event_DataSize.Width = 35;
-            // 
-            // Event_Data
-            // 
-            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Event_Data.HeaderText = "Data";
-            this.Event_Data.Name = "Event_Data";
-            this.Event_Data.ReadOnly = true;
             // 
             // Form1
             // 
@@ -2264,10 +2268,18 @@ namespace IEBus_Studio
         {
             if (this.opened_filename == "")
             {
-                MessageBox.Show("Please save your work first by choosing File->SaveAs");
+                MessageBox.Show("Please save your work first by choosing File->SaveAs or open an existing library.");
                 return;
             }
+            exportDLLSaveAsDialog.FileName = "";
             exportDLLSaveAsDialog.ShowDialog();
+        }
+
+        private void exportDLLSaveAsDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            //exportDLLSaveAsDialog.FileName;
+            dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
+
         }
 
         private class RowComparer : System.Collections.IComparer
@@ -2313,11 +2325,6 @@ namespace IEBus_Studio
                 }
                 return CompareResult * sortOrderModifier;
             }
-        }
-
-        private void devicesTab_Click(object sender, EventArgs e)
-        {
-
         }
 
     }
