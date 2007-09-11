@@ -137,13 +137,10 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn Event_Description;
         private DataGridViewTextBoxColumn Event_Broadcast;
         private DataGridViewComboBoxColumn Event_Master;
-        private DataGridViewTextBoxColumn event_Slave;
+        private DataGridViewComboBoxColumn event_Slave;
         private DataGridViewComboBoxColumn Event_Control;
         private DataGridViewTextBoxColumn Event_Size;
         private DataGridViewTextBoxColumn Event_Data;
-        private DataGridViewTextBoxColumn Event_RawMaster;
-        private DataGridViewTextBoxColumn Event_RawSlave;
-        private DataGridViewTextBoxColumn Event_RawControl;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -301,13 +298,10 @@ namespace IEBus_Studio
             this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Master = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.event_Slave = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Event_Control = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Event_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_RawMaster = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_RawSlave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_RawControl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -933,10 +927,7 @@ namespace IEBus_Studio
             this.event_Slave,
             this.Event_Control,
             this.Event_Size,
-            this.Event_Data,
-            this.Event_RawMaster,
-            this.Event_RawSlave,
-            this.Event_RawControl});
+            this.Event_Data});
             this.eventsTable.Cursor = System.Windows.Forms.Cursors.Default;
             this.eventsTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.eventsTable.Location = new System.Drawing.Point(3, 39);
@@ -1525,7 +1516,8 @@ namespace IEBus_Studio
             // 
             this.event_Slave.HeaderText = "Slave";
             this.event_Slave.Name = "event_Slave";
-            this.event_Slave.ReadOnly = true;
+            this.event_Slave.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.event_Slave.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.event_Slave.Width = 115;
             // 
             // Event_Control
@@ -1565,24 +1557,6 @@ namespace IEBus_Studio
             this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Event_Data.HeaderText = "Data";
             this.Event_Data.Name = "Event_Data";
-            // 
-            // Event_RawMaster
-            // 
-            this.Event_RawMaster.HeaderText = "RawMaster";
-            this.Event_RawMaster.Name = "Event_RawMaster";
-            this.Event_RawMaster.Visible = false;
-            // 
-            // Event_RawSlave
-            // 
-            this.Event_RawSlave.HeaderText = "RawSlave";
-            this.Event_RawSlave.Name = "Event_RawSlave";
-            this.Event_RawSlave.Visible = false;
-            // 
-            // Event_RawControl
-            // 
-            this.Event_RawControl.HeaderText = "RawControl";
-            this.Event_RawControl.Name = "Event_RawControl";
-            this.Event_RawControl.Visible = false;
             // 
             // Form1
             // 
@@ -2139,10 +2113,14 @@ namespace IEBus_Studio
         {
             // Remove all existing devices from the list of devices in the events table
             Event_Master.Items.Clear();
+            event_Slave.Items.Clear();
 
             // Go through each device and add to combo box
             foreach (Device device in deviceManager.Devices)
+            {
                 Event_Master.Items.Add(device.Name);
+                event_Slave.Items.Add(device.Name);
+            }
         }
 
         private void displayEventList()
@@ -2219,12 +2197,13 @@ namespace IEBus_Studio
                 string name = (string)eventsTable.Rows[i].Cells["Event_Name"].Value;
                 string description = (string)eventsTable.Rows[i].Cells["Event_Description"].Value;
                 int broadcast = (int)eventsTable.Rows[i].Cells["Event_Broadcast"].Value;
-                //int master_address = (int)eventsTable.Rows[i].Cells["Event_RawMaster"].Value;
-                int slave_address = (int)eventsTable.Rows[i].Cells["Event_RawSlave"].Value;
                 string data = (string)eventsTable.Rows[i].Cells["Event_Data"].Value;
 
                 Device masterDevice = deviceManager.GetDeviceByName((string)eventsTable.Rows[i].Cells["Event_Master"].Value);
                 int master_address = masterDevice.Address;
+
+                Device slaveDevice = deviceManager.GetDeviceByName((string)eventsTable.Rows[i].Cells["event_Slave"].Value);
+                int slave_address = slaveDevice.Address;
 
                 // Get the control byte from the combo box
                 ControlByte control;
