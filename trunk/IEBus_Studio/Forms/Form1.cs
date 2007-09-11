@@ -2193,34 +2193,16 @@ namespace IEBus_Studio
                 int broadcast = (int)eventsTable.Rows[i].Cells["Event_Broadcast"].Value;
                 string data = (string)eventsTable.Rows[i].Cells["Event_Data"].Value;
 
+                // Get the master address from the master name
                 Device masterDevice = deviceManager.GetDeviceByName((string)eventsTable.Rows[i].Cells["Event_Master"].Value);
                 int master_address = masterDevice.Address;
 
+                // Get the slave address from the slave name
                 Device slaveDevice = deviceManager.GetDeviceByName((string)eventsTable.Rows[i].Cells["event_Slave"].Value);
                 int slave_address = slaveDevice.Address;
 
                 // Get the control byte from the combo box
-                ControlByte control;
-                switch ((string)eventsTable.Rows[i].Cells["Event_Control"].Value)
-                {
-                    case "SlaveStatusRead": control = (ControlByte)0x00; break;
-                    case "Undefined1": control = (ControlByte)0x01; break;
-                    case "Undefined2": control = (ControlByte)0x02; break;
-                    case "DataReadAndLock": control = (ControlByte)0x03; break;
-                    case "LockAddressRead_Lower8Bit": control = (ControlByte)0x04; break;
-                    case "LockAddressRead_Upper4Bits": control = (ControlByte)0x05; break;
-                    case "SlaveStatusReadAndUnlock": control = (ControlByte)0x06; break;
-                    case "DataRead": control = (ControlByte)0x07; break;
-                    case "Undefined3": control = (ControlByte)0x08; break;
-                    case "Undefined4": control = (ControlByte)0x09; break;
-                    case "CommandWriteAndLock": control = (ControlByte)0x0A; break;
-                    case "DataWriteAndLock": control = (ControlByte)0x0B; break;
-                    case "Undefined5": control = (ControlByte)0x0C; break;
-                    case "Undefined6": control = (ControlByte)0x0D; break;
-                    case "CommandWrite": control = (ControlByte)0x0E; break;
-                    case "DataWrite": control = (ControlByte)0x0F; break;
-                    default: control = (ControlByte)0x0F; break;
-                }
+                ControlByte control = (ControlByte)System.Enum.Parse(typeof(ControlByte),(string)eventsTable.Rows[i].Cells["Event_Control"].Value);             
 
                 // Create the event object with all the data from the table
                 Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data);
