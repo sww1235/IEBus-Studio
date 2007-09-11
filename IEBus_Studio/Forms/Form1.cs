@@ -1712,7 +1712,7 @@ namespace IEBus_Studio
                                 // AutoAdd Master device
                                 if (!isDeviceDefined(Convert.ToInt32(currentMessageArray[1], 16)))
                                 {
-                                    Device d = new Device(Convert.ToInt32(currentMessageArray[1], 16), "Undefined", "Describe me.");
+                                    Device d = new Device(Convert.ToInt32(currentMessageArray[1], 16), "0x"+currentMessageArray[1], "Describe me.");
                                     this.deviceManager.AddDevice(d);
 
                                     // ReRender the device list
@@ -1722,7 +1722,7 @@ namespace IEBus_Studio
                                 // AutoAdd Slave device
                                 if (!isDeviceDefined(Convert.ToInt32(currentMessageArray[2], 16)))
                                 {
-                                    Device d = new Device(Convert.ToInt32(currentMessageArray[2], 16), "Undefined", "Describe me.");
+                                    Device d = new Device(Convert.ToInt32(currentMessageArray[2], 16), "0x"+currentMessageArray[2], "Describe me.");
                                     this.deviceManager.AddDevice(d);
 
                                     // ReRender the device list
@@ -1874,13 +1874,7 @@ namespace IEBus_Studio
             foreach (Device d in this.deviceManager.Devices)
             {
                 if (d.Address == master_address)
-                {
-                    if (d.Name == "Undefined")
-                    {
-                        return "0x" + pmaster;
-                    }
                     return d.Name;
-                }
             }
 
             return "0x" + pmaster;
