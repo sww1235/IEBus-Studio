@@ -1639,6 +1639,10 @@ namespace IEBus_Studio
             this.port.Items.Clear();
             this.port.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
             this.port.SelectedIndex = 0;
+
+            updateDeviceComboBoxes();
+            masterFilter.SelectedIndex = 0;
+            slaveFilter.SelectedIndex = 0;
         }
 
 
@@ -2051,6 +2055,8 @@ namespace IEBus_Studio
 
         private void displayDeviceList()
         {
+            updateDeviceComboBoxes();
+
             // Store the devices temporarily
             System.Collections.Generic.List<IEBus_Studio.Device> deviceList = new System.Collections.Generic.List<IEBus_Studio.Device>(deviceManager.Devices);
 
@@ -2108,12 +2114,19 @@ namespace IEBus_Studio
             // Remove all existing devices from the list of devices in the events table
             Event_Master.Items.Clear();
             event_Slave.Items.Clear();
+            masterFilter.Items.Clear();
+            slaveFilter.Items.Clear();
+
+            masterFilter.Items.Add("All");
+            slaveFilter.Items.Add("All");
 
             // Go through each device and add to combo box
             foreach (Device device in deviceManager.Devices)
             {
                 Event_Master.Items.Add(device.Name);
                 event_Slave.Items.Add(device.Name);
+                masterFilter.Items.Add(device.Name);
+                slaveFilter.Items.Add(device.Name);
             }
         }
 
@@ -2332,10 +2345,12 @@ namespace IEBus_Studio
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadIEB();
+            updateDeviceComboBoxes();
         }
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
             LoadIEB();
+            updateDeviceComboBoxes();
         }
         #endregion
     }
