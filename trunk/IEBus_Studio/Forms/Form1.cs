@@ -2151,6 +2151,20 @@ namespace IEBus_Studio
             {
                 Event ev = (Event)(eventManager.Events[i]);
 
+                // Create the master device of the event doesnt already exists
+                if (!isDeviceDefined(ev.Master))
+                {
+                    Device device = new Device(ev.Master, parseDeviceAddress(Convert.ToString(ev.Master, 16)), "");
+                    deviceManager.AddDevice(device);
+                }
+
+                // Create the slave device of the event doesnt already exists
+                if (!isDeviceDefined(ev.Slave))
+                {
+                    Device device = new Device(ev.Slave, parseDeviceAddress(Convert.ToString(ev.Slave, 16)), "");
+                    deviceManager.AddDevice(device);
+                }
+
 
                 string master = parseDeviceAddress(Convert.ToString(ev.Master, 16));
                 string slave = parseDeviceAddress(Convert.ToString(ev.Slave, 16));
