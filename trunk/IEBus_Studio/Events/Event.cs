@@ -27,10 +27,13 @@ namespace IEBus_Studio
             _slave = Slave;
             _control = Control;
 
-            string[] strBytes = Data.Split(':');
-            for (int x = 0; x < strBytes.Length; x++)
+            if (Data != "")
             {
+                string[] strBytes = Data.Split(':');
+                for (int x = 0; x < strBytes.Length; x++)
+                {
                     _variables.Add(strBytes[x]);
+                }
             }
         }
         public System.Collections.Generic.List<string> Variables
