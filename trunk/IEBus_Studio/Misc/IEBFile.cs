@@ -14,7 +14,8 @@ namespace IEBus_Studio
         public void Load(string Filename)
         {
             FileStream fStream = new FileStream(Filename, FileMode.Open );
-            BinaryReader bReader = new BinaryReader(fStream);
+            DeflateStream zipStream = new DeflateStream(fStream, CompressionMode.Decompress);
+            BinaryReader bReader = new BinaryReader(zipStream);
 
             int eLen = bReader.ReadInt32();
             int dLen = bReader.ReadInt32();
@@ -34,7 +35,8 @@ namespace IEBus_Studio
             BinaryReader dReader = new BinaryReader(dStream);
 
             FileStream fStream = new FileStream(Filename, FileMode.Create);
-            BinaryWriter bWriter = new BinaryWriter(fStream);
+            DeflateStream zipStream = new DeflateStream(fStream, CompressionMode.Compress);
+            BinaryWriter bWriter = new BinaryWriter(zipStream);
             bWriter.Write((int)eStream.Length);
             bWriter.Write((int)dStream.Length);
             bWriter.Write(eReader.ReadBytes((int)eReader.BaseStream.Length));
