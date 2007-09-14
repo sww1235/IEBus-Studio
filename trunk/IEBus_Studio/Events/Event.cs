@@ -27,7 +27,7 @@ namespace IEBus_Studio
             _slave = Slave;
             _control = Control;
 
-            if (Data != "")
+            if (Data != "" && Data != null)
             {
                 string[] strBytes = Data.Split(':');
                 for (int x = 0; x < strBytes.Length; x++)
