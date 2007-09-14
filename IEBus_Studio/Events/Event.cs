@@ -4,6 +4,8 @@ using System.Text;
 
 namespace IEBus_Studio
 {
+
+    [Serializable]
     public class Event : IComparable
     {
         private string _name;

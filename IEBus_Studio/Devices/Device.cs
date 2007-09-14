@@ -1,5 +1,8 @@
+using System;
 namespace IEBus_Studio
 {
+
+    [Serializable]
     public class Device
     {
         private int _address;

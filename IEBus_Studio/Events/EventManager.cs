@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 
 namespace IEBus_Studio
 {
+[Serializable]
     public class EventManager
     {
         private System.Collections.Generic.List<IEBus_Studio.Event> _events;
@@ -38,22 +39,6 @@ namespace IEBus_Studio
             }
 
             return deviceEvents;
-        }
-        public Stream Save()
-        {
-            Stream stream = new MemoryStream(); ;
-
-            XmlSerializer serializer = new XmlSerializer(typeof(EventManager));
-            serializer.Serialize(stream, this);
-            stream.Position = 0;
-            return stream;
-        }
-
-        public static EventManager Load(byte[] bArray)
-        {
-            Stream stream = new MemoryStream(bArray);
-            XmlSerializer serializer = new XmlSerializer(typeof(EventManager));
-            return (EventManager)serializer.Deserialize(stream);
         }
     }
 }
