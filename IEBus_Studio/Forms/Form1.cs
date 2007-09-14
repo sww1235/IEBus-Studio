@@ -2180,8 +2180,12 @@ namespace IEBus_Studio
                 string master = parseDeviceAddress(Convert.ToString(ev.Master, 16));
                 string slave = parseDeviceAddress(Convert.ToString(ev.Slave, 16));
                 string data = "";
-                foreach (string var in ev.Variables)
-                    data += var;
+
+                for(int j = 0; j < ev.Variables.Count; j++)
+                { 
+                    if(j != 0) data += ":";
+                    data += ev.Variables[j];
+                }
 
                 eventsTable.Rows.Add(ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control.ToString(), ev.Size, data, ev.Master, ev.Slave, ev.Control);
             }
