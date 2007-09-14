@@ -2167,6 +2167,7 @@ namespace IEBus_Studio
                 {
                     Device device = new Device(ev.Master, parseDeviceAddress(Convert.ToString(ev.Master, 16)), "");
                     deviceManager.AddDevice(device);
+                    updateDeviceComboBoxes();
                 }
 
                 // Create the slave device of the event doesnt already exists
@@ -2174,6 +2175,7 @@ namespace IEBus_Studio
                 {
                     Device device = new Device(ev.Slave, parseDeviceAddress(Convert.ToString(ev.Slave, 16)), "");
                     deviceManager.AddDevice(device);
+                    updateDeviceComboBoxes();
                 }
 
 
