@@ -88,9 +88,6 @@ namespace IEBus_Studio
         private ToolStripStatusLabel ts_connectionStatus;
         private ComboBox andOr;
         private CheckBox autoAddDevices;
-        private DataGridViewTextBoxColumn devices_deviceAddress;
-        private DataGridViewTextBoxColumn devices_name;
-        private DataGridViewTextBoxColumn devices_description;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Master;
         private DataGridViewTextBoxColumn Slave;
@@ -141,6 +138,9 @@ namespace IEBus_Studio
         private DataGridViewComboBoxColumn Event_Control;
         private DataGridViewTextBoxColumn Event_Size;
         private DataGridViewTextBoxColumn Event_Data;
+        private DataGridViewTextBoxColumn devices_deviceAddress;
+        private DataGridViewTextBoxColumn devices_name;
+        private DataGridViewTextBoxColumn devices_description;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -237,12 +237,17 @@ namespace IEBus_Studio
             this.autoAddDevices = new System.Windows.Forms.CheckBox();
             this.addDevice = new System.Windows.Forms.Button();
             this.devicesTable = new System.Windows.Forms.DataGridView();
-            this.devices_deviceAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.devices_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.devices_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
+            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Master = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.event_Slave = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Event_Control = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Event_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BottomTabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.terminal = new System.Windows.Forms.TextBox();
@@ -294,14 +299,9 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Master = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.event_Slave = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Event_Control = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Event_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.devices_deviceAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.devices_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.devices_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -867,27 +867,6 @@ namespace IEBus_Studio
             this.devicesTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveDeviceChanges);
             this.devicesTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveDeviceChanges);
             // 
-            // devices_deviceAddress
-            // 
-            this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.devices_deviceAddress.HeaderText = "Address";
-            this.devices_deviceAddress.MaxInputLength = 1024;
-            this.devices_deviceAddress.MinimumWidth = 60;
-            this.devices_deviceAddress.Name = "devices_deviceAddress";
-            this.devices_deviceAddress.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // devices_name
-            // 
-            this.devices_name.HeaderText = "Name";
-            this.devices_name.Name = "devices_name";
-            this.devices_name.Width = 250;
-            // 
-            // devices_description
-            // 
-            this.devices_description.HeaderText = "Description";
-            this.devices_description.Name = "devices_description";
-            this.devices_description.Width = 450;
-            // 
             // eventsTab
             // 
             this.eventsTab.BackColor = System.Drawing.SystemColors.Control;
@@ -941,6 +920,79 @@ namespace IEBus_Studio
             this.eventsTable.TabIndex = 7;
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
+            // 
+            // Event_Name
+            // 
+            this.Event_Name.HeaderText = "Name";
+            this.Event_Name.Name = "Event_Name";
+            // 
+            // Event_Description
+            // 
+            this.Event_Description.HeaderText = "Description";
+            this.Event_Description.Name = "Event_Description";
+            // 
+            // Event_Broadcast
+            // 
+            this.Event_Broadcast.HeaderText = "B";
+            this.Event_Broadcast.Name = "Event_Broadcast";
+            this.Event_Broadcast.ReadOnly = true;
+            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Event_Broadcast.ToolTipText = "Broadcast";
+            this.Event_Broadcast.Width = 20;
+            // 
+            // Event_Master
+            // 
+            this.Event_Master.HeaderText = "Master";
+            this.Event_Master.Name = "Event_Master";
+            this.Event_Master.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Event_Master.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Event_Master.Width = 115;
+            // 
+            // event_Slave
+            // 
+            this.event_Slave.HeaderText = "Slave";
+            this.event_Slave.Name = "event_Slave";
+            this.event_Slave.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.event_Slave.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.event_Slave.Width = 115;
+            // 
+            // Event_Control
+            // 
+            this.Event_Control.HeaderText = "Control";
+            this.Event_Control.Items.AddRange(new object[] {
+            "SlaveStatusRead",
+            "Undefined1",
+            "Undefined2",
+            "DataReadAndLock",
+            "LockAddressRead_Lower8Bit",
+            "LockAddressRead_Upper4Bits",
+            "SlaveStatusReadAndUnlock",
+            "DataRead",
+            "Undefined3",
+            "Undefined4",
+            "CommandWriteAndLock",
+            "DataWriteAndLock",
+            "Undefined5",
+            "Undefined6",
+            "CommandWrite",
+            "DataWrite"});
+            this.Event_Control.Name = "Event_Control";
+            this.Event_Control.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Event_Control.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Event_Control.Width = 140;
+            // 
+            // Event_Size
+            // 
+            this.Event_Size.HeaderText = "Size";
+            this.Event_Size.Name = "Event_Size";
+            this.Event_Size.ReadOnly = true;
+            this.Event_Size.Width = 35;
+            // 
+            // Event_Data
+            // 
+            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Event_Data.HeaderText = "Data";
+            this.Event_Data.Name = "Event_Data";
             // 
             // BottomTabs
             // 
@@ -1485,78 +1537,27 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn20.Visible = false;
             this.dataGridViewTextBoxColumn20.Width = 2;
             // 
-            // Event_Name
+            // devices_deviceAddress
             // 
-            this.Event_Name.HeaderText = "Name";
-            this.Event_Name.Name = "Event_Name";
+            this.devices_deviceAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.devices_deviceAddress.HeaderText = "Address";
+            this.devices_deviceAddress.MaxInputLength = 1024;
+            this.devices_deviceAddress.MinimumWidth = 60;
+            this.devices_deviceAddress.Name = "devices_deviceAddress";
+            this.devices_deviceAddress.ReadOnly = true;
+            this.devices_deviceAddress.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // Event_Description
+            // devices_name
             // 
-            this.Event_Description.HeaderText = "Description";
-            this.Event_Description.Name = "Event_Description";
+            this.devices_name.HeaderText = "Name";
+            this.devices_name.Name = "devices_name";
+            this.devices_name.Width = 250;
             // 
-            // Event_Broadcast
+            // devices_description
             // 
-            this.Event_Broadcast.HeaderText = "B";
-            this.Event_Broadcast.Name = "Event_Broadcast";
-            this.Event_Broadcast.ReadOnly = true;
-            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Event_Broadcast.ToolTipText = "Broadcast";
-            this.Event_Broadcast.Width = 20;
-            // 
-            // Event_Master
-            // 
-            this.Event_Master.HeaderText = "Master";
-            this.Event_Master.Name = "Event_Master";
-            this.Event_Master.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Event_Master.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Event_Master.Width = 115;
-            // 
-            // event_Slave
-            // 
-            this.event_Slave.HeaderText = "Slave";
-            this.event_Slave.Name = "event_Slave";
-            this.event_Slave.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.event_Slave.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.event_Slave.Width = 115;
-            // 
-            // Event_Control
-            // 
-            this.Event_Control.HeaderText = "Control";
-            this.Event_Control.Items.AddRange(new object[] {
-            "SlaveStatusRead",
-            "Undefined1",
-            "Undefined2",
-            "DataReadAndLock",
-            "LockAddressRead_Lower8Bit",
-            "LockAddressRead_Upper4Bits",
-            "SlaveStatusReadAndUnlock",
-            "DataRead",
-            "Undefined3",
-            "Undefined4",
-            "CommandWriteAndLock",
-            "DataWriteAndLock",
-            "Undefined5",
-            "Undefined6",
-            "CommandWrite",
-            "DataWrite"});
-            this.Event_Control.Name = "Event_Control";
-            this.Event_Control.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Event_Control.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Event_Control.Width = 140;
-            // 
-            // Event_Size
-            // 
-            this.Event_Size.HeaderText = "Size";
-            this.Event_Size.Name = "Event_Size";
-            this.Event_Size.ReadOnly = true;
-            this.Event_Size.Width = 35;
-            // 
-            // Event_Data
-            // 
-            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Event_Data.HeaderText = "Data";
-            this.Event_Data.Name = "Event_Data";
+            this.devices_description.HeaderText = "Description";
+            this.devices_description.Name = "devices_description";
+            this.devices_description.Width = 450;
             // 
             // Form1
             // 
@@ -2053,7 +2054,7 @@ namespace IEBus_Studio
         }
 
 
-        private void displayDeviceList()
+        public void displayDeviceList()
         {
             updateDeviceComboBoxes();
 
@@ -2080,6 +2081,15 @@ namespace IEBus_Studio
 
         private void addDevice_Click(object sender, EventArgs e)
         {
+            // Create the device popup and give it the device manager
+            AddDevicePopup addDevicePopup = new AddDevicePopup(deviceManager, this);
+
+            // Lock the main form and show the popup
+            this.Enabled = false;
+            addDevicePopup.Show();
+
+
+            /*
             // Create a new device
             Device device = new Device(0, "Unkown Name", "Unkown Description");
 
@@ -2088,6 +2098,7 @@ namespace IEBus_Studio
 
             // ReRender the device list
             displayDeviceList();
+            */
         }
 
 

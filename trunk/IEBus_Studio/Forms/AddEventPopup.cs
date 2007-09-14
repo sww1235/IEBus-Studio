@@ -48,6 +48,7 @@ namespace IEBus_Studio
 
             this.Hide();
             _mainForm.Enabled = true;
+            _mainForm.Focus();
         }
 
         private void cancelDiscoveredEvent_Click(object sender, EventArgs e)

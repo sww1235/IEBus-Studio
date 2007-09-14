@@ -61,7 +61,8 @@ namespace IEBus_Studio
             // 
             // eventName
             // 
-            this.eventName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.eventName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.eventName.Location = new System.Drawing.Point(12, 70);
             this.eventName.Name = "eventName";
             this.eventName.Size = new System.Drawing.Size(268, 20);
