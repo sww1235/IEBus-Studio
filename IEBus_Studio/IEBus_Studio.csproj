@@ -95,6 +95,12 @@
     <Compile Include="Devices\Device.cs" />
     <Compile Include="Devices\DeviceManager.cs" />
     <Compile Include="dllCreator\Creator.cs" />
+    <Compile Include="Forms\AddDevicePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddDevicePopup.Designer.cs">
+      <DependentUpon>AddDevicePopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\AssemblyInfo.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\EventDiscovery.cs" />
@@ -121,6 +127,10 @@
     <Compile Include="treeGrid\TreeGridNode.cs" />
     <Compile Include="treeGrid\TreeGridNodeCollection.cs" />
     <Compile Include="treeGrid\TreeGridView.cs" />
+    <EmbeddedResource Include="Forms\AddDevicePopup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AddDevicePopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddEventPopup.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AddEventPopup.cs</DependentUpon>
