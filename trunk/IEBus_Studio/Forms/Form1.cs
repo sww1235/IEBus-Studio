@@ -1625,7 +1625,6 @@ namespace IEBus_Studio
         }
         private void Form1_Load(object sender, System.EventArgs e)
         {
-
             /*
             dllCreator.Creator DC = new dllCreator.Creator("Acura", "TSX", 2004);
             DC.DeviceManager.AddDevice(0x131, "Touch Screen", "The touch screen.");

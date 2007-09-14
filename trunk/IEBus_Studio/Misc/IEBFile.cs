@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO.Compression;
 
 namespace IEBus_Studio
 {
@@ -17,17 +19,18 @@ namespace IEBus_Studio
             int eLen = bReader.ReadInt32();
             int dLen = bReader.ReadInt32();
 
-            eManager = EventManager.Load(bReader.ReadBytes(eLen));
-            dManager = DeviceManager.Load(bReader.ReadBytes(dLen));
+            eManager = (EventManager)Deserialize(bReader.ReadBytes(eLen),typeof(EventManager));
+            dManager = (DeviceManager)Deserialize(bReader.ReadBytes(dLen), typeof(DeviceManager));
 
             bReader.Close();
             bReader = null;
+            
         }
         public void Save(string Filename, EventManager EventManager, DeviceManager DeviceManager)
         {
-            Stream eStream = EventManager.Save();
+            Stream eStream = Serialize(EventManager);
             BinaryReader  eReader = new BinaryReader(eStream);
-            Stream dStream = DeviceManager.Save();
+            Stream dStream = Serialize(DeviceManager);
             BinaryReader dReader = new BinaryReader(dStream);
 
             FileStream fStream = new FileStream(Filename, FileMode.Create);
@@ -45,6 +48,21 @@ namespace IEBus_Studio
             bWriter = null;
             eReader = null;
             dReader = null;
+        }
+        public Stream Serialize(Object obj)
+        {
+            Stream stream = new MemoryStream(); ;
+            BinaryFormatter binFormatter = new BinaryFormatter();
+            binFormatter.Serialize(stream , obj);
+            stream.Position = 0;
+            return stream;
+        }
+        public static Object Deserialize(byte[] bArray, Type type)
+        {
+            Stream stream = new MemoryStream(bArray);
+            BinaryFormatter binFormatter = new BinaryFormatter();
+            stream.Position = 0;
+            return binFormatter.Deserialize(stream);
         }
         public EventManager EventManager
         {
