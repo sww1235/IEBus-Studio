@@ -56,5 +56,12 @@ namespace IEBus_Studio
             this.Hide();
             _mainForm.Enabled = true;
         }
+
+        void AddEventPopup_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.Hide();
+            _mainForm.Enabled = true;
+        }
+
     }
 }
