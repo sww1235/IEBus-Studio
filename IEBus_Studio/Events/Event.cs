@@ -174,22 +174,22 @@ namespace IEBus_Studio
             }
             throw new ArgumentException("object is not an Event");
         }
-        public void perform(System.IO.Ports.SerialPort serialPort)
+        public bool perform(System.IO.Ports.SerialPort serialPort)
         {
-            if (!serialPort.IsOpen) return;
+            if (!serialPort.IsOpen) return false;
 
             // formulate the data string
             string data = "~";
             data += _broadcast.ToString() + ":";
             data += Convert.ToString(_master, 16) + ":";
             data += Convert.ToString(_slave, 16) + ":";
-            data += _control.ToString() + ":";
+            data += Convert.ToString((int)_control, 16)[0] + ":";
             data += _variables.Count + ":";
 
             foreach (string var in _variables)
                 data += var + ":";
 
-            data.Remove(data.Length - 1);
+            data.Remove(data.Length - 2);
             data += "^";
 
             try
@@ -198,8 +198,10 @@ namespace IEBus_Studio
             }
             catch (Exception ex)
             { 
-                return;
+                return false;
             }
+
+            return true;
         }
     }
 }
