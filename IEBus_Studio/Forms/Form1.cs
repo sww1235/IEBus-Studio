@@ -1645,7 +1645,7 @@ namespace IEBus_Studio
 
                 if (ev.DynamicVariableCount > 0)
                 {
-                    TestEventPopup testEventPopup = new TestEventPopup(this);
+                    TestEventPopup testEventPopup = new TestEventPopup(this, ev);
                     this.Enabled = false;
                     testEventPopup.Show();
                 }
@@ -2328,10 +2328,13 @@ namespace IEBus_Studio
                     newData += data.Substring(lastIndex, nextIndex - lastIndex);
                     newData += "%Unknown" + numVarsFound;
                     lastIndex = nextIndex+1;
-                    if (lastIndex > (data.Length - 1))
+                    if (lastIndex >= (data.Length - 1))
+                    {
                         lastIndex = data.Length - 1;
+                        break;
+                    }
                 }
-                newData += data.Substring(lastIndex, newData.Length - lastIndex - 1);
+                newData += data.Substring(lastIndex, data.Length - lastIndex - 1);
 
                 // Create an event from the data
                 Event theEvent = new Event("", "", broadcast, master, slave, control, newData);
