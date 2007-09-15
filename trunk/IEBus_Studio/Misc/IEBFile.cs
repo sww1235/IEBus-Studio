@@ -51,7 +51,7 @@ namespace IEBus_Studio
             eReader = null;
             dReader = null;
         }
-        public Stream Serialize(Object obj)
+        public static Stream Serialize(Object obj)
         {
             Stream stream = new MemoryStream(); ;
             BinaryFormatter binFormatter = new BinaryFormatter();
