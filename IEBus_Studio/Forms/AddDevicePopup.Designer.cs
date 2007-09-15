@@ -106,11 +106,11 @@ namespace IEBus_Studio
             this.Controls.Add(this.label1);
             this.Name = "AddDevicePopup";
             this.Text = "Add Device";
+            this.Closing += new System.ComponentModel.CancelEventHandler(AddDevicePopup_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-
         #endregion
 
         private System.Windows.Forms.Label label1;

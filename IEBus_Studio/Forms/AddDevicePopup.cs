@@ -85,5 +85,13 @@ namespace IEBus_Studio
             _mainForm.Focus();
             _mainForm.displayDeviceList();
         }
+
+        void AddDevicePopup_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.Hide();
+            _mainForm.Enabled = true;
+            _mainForm.Focus();
+        }
+
     }
 }

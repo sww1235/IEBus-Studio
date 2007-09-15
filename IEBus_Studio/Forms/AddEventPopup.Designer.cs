@@ -123,6 +123,7 @@ namespace IEBus_Studio
             this.Name = "AddEventPopup";
             this.ShowIcon = false;
             this.Text = "Add Event";
+            this.Closing += new System.ComponentModel.CancelEventHandler(AddEventPopup_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
