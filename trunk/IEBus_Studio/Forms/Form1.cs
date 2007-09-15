@@ -1643,6 +1643,13 @@ namespace IEBus_Studio
                 // Create the event object with all the data from the table
                 Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data);
 
+                if (ev.DynamicVariableCount > 0)
+                {
+                    TestEventPopup testEventPopup = new TestEventPopup(this);
+                    this.Enabled = false;
+                    testEventPopup.Show();
+                }
+
                 // Test the event
                 if(!ev.perform(serialPort1))
                     MessageBox.Show("COM Port is not open!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
