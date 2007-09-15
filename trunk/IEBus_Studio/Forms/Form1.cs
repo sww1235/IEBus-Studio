@@ -1993,7 +1993,7 @@ namespace IEBus_Studio
         {
             if (this.serialPort1.IsOpen)
             {
-                MessageBox.Show("COM port is already open!");
+                MessageBox.Show("COM port is already open!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -2072,7 +2072,7 @@ namespace IEBus_Studio
             }
             else
             {
-                MessageBox.Show("COM port is not open!");
+                MessageBox.Show("COM port is not open!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -2317,8 +2317,24 @@ namespace IEBus_Studio
                 ControlByte control = (ControlByte)patternGrid.Rows[e.RowIndex].Cells["rawControlColumn"].Value;
                 string data = (string)patternGrid.Rows[e.RowIndex].Cells["dataColumn"].Value;
 
+                // Replace the '*' that represent discovered variable data with %UnkownX
+                string newData = "";
+                int nextIndex = 0;
+                int lastIndex = 0;
+                int numVarsFound = 0;
+                while ((nextIndex = data.IndexOf('*', lastIndex)) != -1)
+                {
+                    numVarsFound++;
+                    newData += data.Substring(lastIndex, nextIndex - lastIndex);
+                    newData += "%Unknown" + numVarsFound;
+                    lastIndex = nextIndex+1;
+                    if (lastIndex > (data.Length - 1))
+                        lastIndex = data.Length - 1;
+                }
+                newData += data.Substring(lastIndex, newData.Length - lastIndex - 1);
+
                 // Create an event from the data
-                Event theEvent = new Event("", "", broadcast, master, slave, control, data);
+                Event theEvent = new Event("", "", broadcast, master, slave, control, newData);
 
                 // Create the popup giving it the eventManager and the event
                 AddEventPopup addEventPopup = new AddEventPopup(deviceManager, eventManager, theEvent, this);
