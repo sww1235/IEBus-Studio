@@ -174,5 +174,32 @@ namespace IEBus_Studio
             }
             throw new ArgumentException("object is not an Event");
         }
+        public void perform(System.IO.Ports.SerialPort serialPort)
+        {
+            if (!serialPort.IsOpen) return;
+
+            // formulate the data string
+            string data = "~";
+            data += _broadcast.ToString() + ":";
+            data += Convert.ToString(_master, 16) + ":";
+            data += Convert.ToString(_slave, 16) + ":";
+            data += _control.ToString() + ":";
+            data += _variables.Count + ":";
+
+            foreach (string var in _variables)
+                data += var + ":";
+
+            data.Remove(data.Length - 1);
+            data += "^";
+
+            try
+            {
+                serialPort.WriteLine(data);
+            }
+            catch (Exception ex)
+            { 
+                return;
+            }
+        }
     }
 }
