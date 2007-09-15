@@ -128,6 +128,21 @@ namespace IEBus_Studio
                 return vCount;
             }
         }
+        public List<string> DynamicVariables
+        {
+            get
+            {
+                List<string> dynamicVariables = new List<string>();
+
+                for (int i = 0; i < _variables.Count; i++)
+                {
+                    if (_variables[i].Contains("%"))
+                        dynamicVariables.Add(_variables[i]);
+                }
+
+                return dynamicVariables;
+            }
+        }
         public int CompareTo(object obj)
         {
             if (obj is Event)
