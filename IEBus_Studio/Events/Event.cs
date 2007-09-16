@@ -245,6 +245,7 @@ namespace IEBus_Studio
             try
             {
                 serialPort.WriteLine(data);
+                Console.WriteLine(data);
             }
             catch (Exception ex)
             {
