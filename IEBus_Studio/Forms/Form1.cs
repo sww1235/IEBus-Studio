@@ -1926,8 +1926,9 @@ namespace IEBus_Studio
                         else
                             DataString += origEvent.Variables[v].ToString() + ":";
                     }
-                    node.Nodes.Add("Define", "1", origEvent.Broadcast.ToString(), origEvent.Master.ToString(), origEvent.Slave.ToString(), origEvent.Control.ToString(), origEvent.Size.ToString(), DataString).ContextMenuStrip = EventActionsMenuStrip;
-
+                    AdvancedDataGridView.TreeGridNode tnode = node.Nodes.Add("Define", "1", origEvent.Broadcast.ToString(), origEvent.Master.ToString(), origEvent.Slave.ToString(), origEvent.Control.ToString(), origEvent.Size.ToString(), DataString);
+                    tnode.ContextMenuStrip = EventActionsMenuStrip;
+                    
                 }
             }
             //patternGrid.ort(matchesColumn, ListSortDirection.Descending);
