@@ -245,7 +245,7 @@ namespace IEBus_Studio
             try
             {
                 serialPort.WriteLine(data);
-                Console.WriteLine(data);
+                Console.WriteLine("Sending: " + data);
             }
             catch (Exception ex)
             {
