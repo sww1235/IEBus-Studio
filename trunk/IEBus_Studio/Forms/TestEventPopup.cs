@@ -12,14 +12,16 @@ namespace IEBus_Studio
     {
         private Form1 _mainForm;
         private Event _theEvent;
+        private System.IO.Ports.SerialPort _serialPort;
         private TextBox[] _variables;
         private Label[] _variableLabels;
 
-        public TestEventPopup(Form1 mainForm, Event theEvent)
+        public TestEventPopup(Form1 mainForm, Event theEvent, System.IO.Ports.SerialPort serialPort)
         {
             InitializeComponent();
             _mainForm = mainForm;
             _theEvent = theEvent;
+            _serialPort = serialPort;
 
             _variables = new TextBox[_theEvent.DynamicVariables.Count];
             _variableLabels = new Label[_theEvent.DynamicVariables.Count];
@@ -65,6 +67,9 @@ namespace IEBus_Studio
                 string varName = _variableLabels[i].Text.Substring(0, _variableLabels[i].Text.Length - 1);
                 string varValue = _variables[i].Text;
             }
+
+            _theEvent.perform(_serialPort);
+
             this.Hide();
             _mainForm.Enabled = true;
             _mainForm.Focus();

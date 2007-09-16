@@ -1645,7 +1645,7 @@ namespace IEBus_Studio
 
                 if (ev.DynamicVariableCount > 0)
                 {
-                    TestEventPopup testEventPopup = new TestEventPopup(this, ev);
+                    TestEventPopup testEventPopup = new TestEventPopup(this, ev, serialPort1);
                     this.Enabled = false;
                     testEventPopup.Show();
                 }
