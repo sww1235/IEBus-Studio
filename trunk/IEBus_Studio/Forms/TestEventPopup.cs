@@ -62,13 +62,16 @@ namespace IEBus_Studio
 
         private void testButton_Click(object sender, EventArgs e)
         {
+            List<string> varNames = new List<string>();
+            List<string> varValues = new List<string>();
+
             for(int i = 0; i < _variables.Length; i++)
             {
-                string varName = _variableLabels[i].Text.Substring(0, _variableLabels[i].Text.Length - 1);
-                string varValue = _variables[i].Text;
+                varNames.Add(_variableLabels[i].Text.Substring(0, _variableLabels[i].Text.Length - 1));
+                varValues.Add(_variables[i].Text);
             }
 
-            _theEvent.perform(_serialPort);
+            _theEvent.perform(_serialPort, varNames, varValues);
 
             this.Hide();
             _mainForm.Enabled = true;

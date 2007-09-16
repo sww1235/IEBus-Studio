@@ -218,5 +218,40 @@ namespace IEBus_Studio
 
             return true;
         }
+
+        public bool perform(System.IO.Ports.SerialPort serialPort, List<string> varNames, List<string> varValues)
+        {
+            if (!serialPort.IsOpen) return false;
+
+            if(varNames.Count != varValues.Count) return false;
+
+            // formulate the data string
+            string data = "~";
+            data += _broadcast.ToString() + ":";
+            data += Convert.ToString(_master, 16) + ":";
+            data += Convert.ToString(_slave, 16) + ":";
+            data += Convert.ToString((int)_control, 16)[0] + ":";
+            data += _variables.Count + ":";
+
+            foreach (string var in _variables)
+                data += var + ":";
+
+            for (int i = 0; i < varNames.Count; i++)
+                data.Replace(varNames[i], varValues[i]);
+
+            data.Remove(data.Length - 2);
+            data += "^";
+
+            try
+            {
+                serialPort.WriteLine(data);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
