@@ -188,7 +188,7 @@ namespace IEBus_Studio
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_connectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -234,6 +234,9 @@ namespace IEBus_Studio
             this.rawMasterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rawSlaveColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rawControlColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventActionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.secondsToDiscover = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -308,9 +311,6 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventActionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -321,6 +321,7 @@ namespace IEBus_Studio
             this.MessageTableTabs.SuspendLayout();
             this.eventDiscoveryTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patternGrid)).BeginInit();
+            this.EventActionsMenuStrip.SuspendLayout();
             this.devicesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.devicesTable)).BeginInit();
             this.eventsTab.SuspendLayout();
@@ -330,7 +331,6 @@ namespace IEBus_Studio
             this.groupBox1.SuspendLayout();
             this.liveMessages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).BeginInit();
-            this.EventActionsMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -781,6 +781,26 @@ namespace IEBus_Studio
             this.rawControlColumn.Visible = false;
             this.rawControlColumn.Width = 68;
             // 
+            // EventActionsMenuStrip
+            // 
+            this.EventActionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addEventToolStripMenuItem,
+            this.testEventToolStripMenuItem});
+            this.EventActionsMenuStrip.Name = "contextMenuStrip1";
+            this.EventActionsMenuStrip.Size = new System.Drawing.Size(138, 48);
+            // 
+            // addEventToolStripMenuItem
+            // 
+            this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
+            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.addEventToolStripMenuItem.Text = "Add Event";
+            // 
+            // testEventToolStripMenuItem
+            // 
+            this.testEventToolStripMenuItem.Name = "testEventToolStripMenuItem";
+            this.testEventToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.testEventToolStripMenuItem.Text = "Test Event";
+            // 
             // secondsToDiscover
             // 
             this.secondsToDiscover.Location = new System.Drawing.Point(8, 23);
@@ -892,8 +912,8 @@ namespace IEBus_Studio
             // 
             // devices_name
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.devices_name.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.devices_name.DefaultCellStyle = dataGridViewCellStyle1;
             this.devices_name.HeaderText = "Name";
             this.devices_name.Name = "devices_name";
             this.devices_name.Width = 250;
@@ -1307,6 +1327,7 @@ namespace IEBus_Studio
             this.ParsedMessageTable.Margin = new System.Windows.Forms.Padding(0);
             this.ParsedMessageTable.MultiSelect = false;
             this.ParsedMessageTable.Name = "ParsedMessageTable";
+            this.ParsedMessageTable.RowTemplate.ContextMenuStrip = this.EventActionsMenuStrip;
             this.ParsedMessageTable.ReadOnly = true;
             this.ParsedMessageTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.ParsedMessageTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Azure;
@@ -1315,6 +1336,7 @@ namespace IEBus_Studio
             this.ParsedMessageTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ParsedMessageTable.Size = new System.Drawing.Size(799, 114);
             this.ParsedMessageTable.TabIndex = 4;
+            this.ParsedMessageTable.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.patternGrid_RowContextMenuStripNeeded);
             // 
             // Column2
             // 
@@ -1579,26 +1601,6 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn20.Visible = false;
             this.dataGridViewTextBoxColumn20.Width = 2;
             // 
-            // EventActionsMenuStrip
-            // 
-            this.EventActionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addEventToolStripMenuItem,
-            this.testEventToolStripMenuItem});
-            this.EventActionsMenuStrip.Name = "contextMenuStrip1";
-            this.EventActionsMenuStrip.Size = new System.Drawing.Size(153, 70);
-            // 
-            // addEventToolStripMenuItem
-            // 
-            this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
-            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addEventToolStripMenuItem.Text = "Add Event";
-            // 
-            // testEventToolStripMenuItem
-            // 
-            this.testEventToolStripMenuItem.Name = "testEventToolStripMenuItem";
-            this.testEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.testEventToolStripMenuItem.Text = "Test Event";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1629,6 +1631,7 @@ namespace IEBus_Studio
             this.eventDiscoveryTab.ResumeLayout(false);
             this.eventDiscoveryTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patternGrid)).EndInit();
+            this.EventActionsMenuStrip.ResumeLayout(false);
             this.devicesTab.ResumeLayout(false);
             this.devicesTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.devicesTable)).EndInit();
@@ -1642,7 +1645,6 @@ namespace IEBus_Studio
             this.liveMessages.ResumeLayout(false);
             this.liveMessages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ParsedMessageTable)).EndInit();
-            this.EventActionsMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2449,7 +2451,7 @@ namespace IEBus_Studio
                 this.Text = "IEBus Studio - " + System.IO.Path.GetFileName(OFD.FileName);
 
                 IEBFile openFile = new IEBFile();
-                openFile.Load(OFD.FileName);
+                openFile.Load(OFD.FileName); 
                 eventManager = openFile.EventManager;
                 deviceManager = openFile.DeviceManager;
 
