@@ -2258,7 +2258,7 @@ namespace IEBus_Studio
             }
         }
 
-        private void displayEventList()
+        public void displayEventList()
         {
             updateDeviceComboBoxes();
 
@@ -2315,6 +2315,14 @@ namespace IEBus_Studio
 
         private void addEvent_Click(object sender, EventArgs e)
         {
+            // Create the device popup and give it the device manager
+            AddEventPopup addEventPopup = new AddEventPopup(deviceManager, eventManager, this);
+
+            // Lock the main form and show the popup
+            this.Enabled = false;
+            addEventPopup.Show();
+
+            /*
             // Create the event with default values
             Event ev = new Event("Unkown", "Unkown", 1, 0, 0, ControlByte.DataWrite, "");
 
@@ -2337,6 +2345,7 @@ namespace IEBus_Studio
 
             //ReRender event list
             displayEventList(); 
+            */
         }
 
         // Gets the values from the eventsTable and loads them into memory

@@ -17,6 +17,7 @@ namespace IEBus_Studio
         public AddEventPopup(DeviceManager deviceManager, EventManager eventManager, Form1 mainForm)
         {
             InitializeComponent();
+            controlCombo.SelectedIndex = 15;
             _deviceManager = deviceManager;
             _eventManager = eventManager;
             _mainForm = mainForm;
@@ -40,9 +41,13 @@ namespace IEBus_Studio
             {
                 // Display an error
                 masterErrorLabel.Text = "Address must be a hex string starting with 0x";
-                this.Width = masterErrorLabel.Width + 10;
-                if (this.Width < 195) this.Width = 195;
+                this.Width = 135 + masterErrorLabel.Width + 10;
+                if (this.Width < 265) this.Width = 265;
                 return;
+            }
+            else
+            {
+                masterErrorLabel.Text = "";
             }
 
             // if the slave address string doesnt start with 0x
@@ -50,9 +55,13 @@ namespace IEBus_Studio
             {
                 // Display an error
                 slaveErrorLabel.Text = "Address must be a hex string starting with 0x";
-                this.Width = slaveErrorLabel.Width + 10;
-                if (this.Width < 195) this.Width = 195;
+                this.Width = 135 + slaveErrorLabel.Width + 10;
+                if (this.Width < 265) this.Width = 265;
                 return;
+            }
+            else
+            {
+                slaveErrorLabel.Text = "";
             }
 
 
@@ -61,9 +70,13 @@ namespace IEBus_Studio
             {
                 // Display an error
                 masterErrorLabel.Text = "Address too long, maximum length is 3 bytes.";
-                this.Width = masterErrorLabel.Width + 10;
-                if (this.Width < 195) this.Width = 195;
+                this.Width = 135 + masterErrorLabel.Width + 10;
+                if (this.Width < 265) this.Width = 265;
                 return;
+            }
+            else
+            {
+                masterErrorLabel.Text = "";
             }
 
             // if the slave address string is too long
@@ -71,9 +84,13 @@ namespace IEBus_Studio
             {
                 // Display an error
                 slaveErrorLabel.Text = "Address too long, maximum length is 3 bytes.";
-                this.Width = slaveErrorLabel.Width + 10;
-                if (this.Width < 195) this.Width = 195;
+                this.Width = 135 + slaveErrorLabel.Width + 10;
+                if (this.Width < 265) this.Width = 265;
                 return;
+            }
+            else
+            {
+                slaveErrorLabel.Text = "";
             }
 
             int master_address = -1;
@@ -88,10 +105,13 @@ namespace IEBus_Studio
             {
                 // if it fails, display an error stating that its an invalid hex string
                 masterErrorLabel.Text = "Address must be a valid hex string starting with 0x";
-                this.Width = masterErrorLabel.Width + 10;
-                if (this.Width < 195) this.Width = 195;
+                this.Width = 135 + masterErrorLabel.Width + 10;
+                if (this.Width < 265) this.Width = 265;
                 return;
             }
+
+            // if the conversion of master address from string to integer was a success, remove an error messages
+            masterErrorLabel.Text = "";
 
             // try to convert the slave address string to an integer
             try
@@ -102,10 +122,13 @@ namespace IEBus_Studio
             {
                 // if it fails, display an error stating that its an invalid hex string
                 slaveErrorLabel.Text = "Address must be a valid hex string starting with 0x";
-                this.Width = slaveErrorLabel.Width + 10;
-                if (this.Width < 195) this.Width = 195;
+                this.Width = 135 + slaveErrorLabel.Width + 10;
+                if (this.Width < 265) this.Width = 265;
                 return;
             }
+
+            // if the conversion of slave address from string to integer was a success, remove an error messages
+            slaveErrorLabel.Text = "";
 
             // if the master device isn't already defined, create and define it
             if (!_mainForm.isDeviceDefined(master_address))
@@ -121,9 +144,15 @@ namespace IEBus_Studio
                 _deviceManager.AddDevice(device);
             }
 
-            // add the device to the device list
+            // get the control
+            ControlByte control = (ControlByte)System.Enum.Parse(typeof(ControlByte), (string)controlCombo.SelectedItem);
+
+            // get the broadcast bit
             int broadcast = 1;
-            ControlByte control = (ControlByte)0xF;
+            if (!broadcastCheckbox.Checked)
+                broadcast = 0;
+
+            // create the event and add it to the event list
             Event ev = new Event("Unkown", "Describe me.", broadcast, master_address, slave_address, control, "");
             _eventManager.addEvent(ev);
 
@@ -131,6 +160,7 @@ namespace IEBus_Studio
             _mainForm.Enabled = true;
             _mainForm.Focus();
             _mainForm.displayDeviceList();
+            _mainForm.displayEventList();
         }
     }
 }
