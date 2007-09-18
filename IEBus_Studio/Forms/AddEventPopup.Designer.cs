@@ -28,102 +28,117 @@ namespace IEBus_Studio
         /// </summary>
         private void InitializeComponent()
         {
-            this.cancelDiscoveredEvent = new System.Windows.Forms.Button();
-            this.addDiscoveredEvent = new System.Windows.Forms.Button();
-            this.eventName = new System.Windows.Forms.TextBox();
-            this.eventDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.masterAddress = new System.Windows.Forms.TextBox();
+            this.slaveAddress = new System.Windows.Forms.TextBox();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.masterErrorLabel = new System.Windows.Forms.Label();
+            this.slaveErrorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // cancelDiscoveredEvent
-            // 
-            this.cancelDiscoveredEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelDiscoveredEvent.Location = new System.Drawing.Point(205, 228);
-            this.cancelDiscoveredEvent.Name = "cancelDiscoveredEvent";
-            this.cancelDiscoveredEvent.Size = new System.Drawing.Size(75, 23);
-            this.cancelDiscoveredEvent.TabIndex = 0;
-            this.cancelDiscoveredEvent.Text = "Cancel";
-            this.cancelDiscoveredEvent.UseVisualStyleBackColor = true;
-            this.cancelDiscoveredEvent.Click += new System.EventHandler(this.cancelDiscoveredEvent_Click);
-            // 
-            // addDiscoveredEvent
-            // 
-            this.addDiscoveredEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addDiscoveredEvent.Location = new System.Drawing.Point(124, 228);
-            this.addDiscoveredEvent.Name = "addDiscoveredEvent";
-            this.addDiscoveredEvent.Size = new System.Drawing.Size(75, 23);
-            this.addDiscoveredEvent.TabIndex = 1;
-            this.addDiscoveredEvent.Text = "Add";
-            this.addDiscoveredEvent.UseVisualStyleBackColor = true;
-            this.addDiscoveredEvent.Click += new System.EventHandler(this.addDiscoveredEvent_Click);
-            // 
-            // eventName
-            // 
-            this.eventName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.eventName.Location = new System.Drawing.Point(12, 70);
-            this.eventName.Name = "eventName";
-            this.eventName.Size = new System.Drawing.Size(268, 20);
-            this.eventName.TabIndex = 2;
-            // 
-            // eventDescription
-            // 
-            this.eventDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.eventDescription.Location = new System.Drawing.Point(12, 117);
-            this.eventDescription.Multiline = true;
-            this.eventDescription.Name = "eventDescription";
-            this.eventDescription.Size = new System.Drawing.Size(268, 97);
-            this.eventDescription.TabIndex = 3;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 99);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Description";
+            this.label1.Size = new System.Drawing.Size(236, 33);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Give the device a master address and a slave address in a hex string format. (ie." +
+                " 0x131)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 53);
+            this.label2.Location = new System.Drawing.Point(11, 71);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Name";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Master Address:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 19);
+            this.label3.Location = new System.Drawing.Point(11, 111);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(208, 26);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Please provide the following information to \r\nidentify your event.";
+            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Slave Address:";
+            // 
+            // masterAddress
+            // 
+            this.masterAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.masterAddress.Location = new System.Drawing.Point(134, 68);
+            this.masterAddress.Name = "masterAddress";
+            this.masterAddress.Size = new System.Drawing.Size(100, 20);
+            this.masterAddress.TabIndex = 3;
+            // 
+            // slaveAddress
+            // 
+            this.slaveAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.slaveAddress.Location = new System.Drawing.Point(134, 108);
+            this.slaveAddress.Name = "slaveAddress";
+            this.slaveAddress.Size = new System.Drawing.Size(100, 20);
+            this.slaveAddress.TabIndex = 4;
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.Location = new System.Drawing.Point(171, 154);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 5;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
+            // addButton
+            // 
+            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addButton.Location = new System.Drawing.Point(90, 154);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.TabIndex = 6;
+            this.addButton.Text = "Add Event";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // masterErrorLabel
+            // 
+            this.masterErrorLabel.AutoSize = true;
+            this.masterErrorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.masterErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.masterErrorLabel.Location = new System.Drawing.Point(131, 52);
+            this.masterErrorLabel.Name = "masterErrorLabel";
+            this.masterErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.masterErrorLabel.TabIndex = 7;
+            // 
+            // slaveErrorLabel
+            // 
+            this.slaveErrorLabel.AutoSize = true;
+            this.slaveErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.slaveErrorLabel.Location = new System.Drawing.Point(131, 92);
+            this.slaveErrorLabel.Name = "slaveErrorLabel";
+            this.slaveErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.slaveErrorLabel.TabIndex = 8;
             // 
             // AddEventPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(258, 189);
+            this.Controls.Add(this.slaveErrorLabel);
+            this.Controls.Add(this.masterErrorLabel);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.slaveAddress);
+            this.Controls.Add(this.masterAddress);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.eventDescription);
-            this.Controls.Add(this.eventName);
-            this.Controls.Add(this.addDiscoveredEvent);
-            this.Controls.Add(this.cancelDiscoveredEvent);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "AddEventPopup";
-            this.ShowIcon = false;
-            this.Text = "Add Event";
-            this.Closing += new System.ComponentModel.CancelEventHandler(AddEventPopup_Closing);
+            this.Text = "AddEventPopup";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,12 +146,14 @@ namespace IEBus_Studio
 
         #endregion
 
-        private System.Windows.Forms.Button cancelDiscoveredEvent;
-        private System.Windows.Forms.Button addDiscoveredEvent;
-        private System.Windows.Forms.TextBox eventName;
-        private System.Windows.Forms.TextBox eventDescription;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox masterAddress;
+        private System.Windows.Forms.TextBox slaveAddress;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Label masterErrorLabel;
+        private System.Windows.Forms.Label slaveErrorLabel;
     }
 }

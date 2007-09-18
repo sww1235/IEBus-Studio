@@ -1975,7 +1975,7 @@ namespace IEBus_Studio
             Event theEvent = new Event("", "", broadcast, master, slave, control, newData);
 
             // Create the popup giving it the eventManager and the event
-            AddEventPopup addEventPopup = new AddEventPopup(deviceManager, eventManager, theEvent, this);
+            DefineEventPopup addEventPopup = new DefineEventPopup(deviceManager, eventManager, theEvent, this);
 
             // Lock the main form and show the popup
             this.Enabled = false;
@@ -2408,7 +2408,7 @@ namespace IEBus_Studio
                 Event theEvent = new Event("", "", broadcast, master, slave, control, newData);
 
                 // Create the popup giving it the eventManager and the event
-                AddEventPopup addEventPopup = new AddEventPopup(deviceManager, eventManager, theEvent, this);
+                DefineEventPopup addEventPopup = new DefineEventPopup(deviceManager, eventManager, theEvent, this);
 
                 // Lock the main form and show the popup
                 this.Enabled = false;
