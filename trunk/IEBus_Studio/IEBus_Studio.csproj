@@ -101,6 +101,12 @@
     <Compile Include="Forms\AddDevicePopup.Designer.cs">
       <DependentUpon>AddDevicePopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddEventPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddEventPopup.Designer.cs">
+      <DependentUpon>AddEventPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TestEventPopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,11 +120,11 @@
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddEventPopup.cs">
+    <Compile Include="Forms\DefineEventPopup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddEventPopup.Designer.cs">
-      <DependentUpon>AddEventPopup.cs</DependentUpon>
+    <Compile Include="Forms\DefineEventPopup.Designer.cs">
+      <DependentUpon>DefineEventPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\IEBFile.cs" />
     <Compile Include="Misc\Misc.cs" />
@@ -140,6 +146,10 @@
     <EmbeddedResource Include="Forms\AddEventPopup.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AddEventPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineEventPopup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DefineEventPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
