@@ -1684,6 +1684,10 @@ namespace IEBus_Studio
                     testEventPopup.Show();
                 }
 
+                //AngryCamel:
+                //It appears that after the testEventPopup.Show() is called the code below it continues
+                //to execute. The test event below gets executed before the popup even finishes rendering.
+
                 // Test the event
                 if(!ev.perform(serialPort1))
                     MessageBox.Show("COM Port is not open!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
