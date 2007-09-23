@@ -15,6 +15,7 @@ namespace IEBus_Studio
         private System.IO.Ports.SerialPort _serialPort;
         private TextBox[] _variables;
         private Label[] _variableLabels;
+        private ToolTip[] _variableTooltips;
 
         public TestEventPopup(Form1 mainForm, Event theEvent, System.IO.Ports.SerialPort serialPort)
         {
@@ -25,19 +26,32 @@ namespace IEBus_Studio
 
             _variables = new TextBox[_theEvent.DynamicVariables.Count];
             _variableLabels = new Label[_theEvent.DynamicVariables.Count];
+            _variableTooltips = new ToolTip[_theEvent.DynamicVariables.Count];
+
+            this.Text = "Test: "+theEvent.Name;
+            this.EventDescription.Text = theEvent.Description;
+            this.label1.Text = theEvent.Name;
+
+            int dynTop = 112;
 
             // Create the labels and textboxes for all the variables
             for (int i = 0; i < _variables.Length; i++)
             {
+
                 // Create the label for the variable
                 _variableLabels[i] = new Label();
                 _variableLabels[i].Name = "variable" + i + "Label";
-                _variableLabels[i].Text = _theEvent.DynamicVariables[i] + ": ";
+                _variableLabels[i].Text = _theEvent.DynamicVariables[i].Replace("%", "") + ": ";
                 _variableLabels[i].Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                _variableLabels[i].Top = 50 + 35 * i;
-                _variableLabels[i].Left = 10;
+                _variableLabels[i].Top = dynTop + 3 + (26 * i);
+                _variableLabels[i].Left = 25;
                 _variableLabels[i].AutoSize = true;
+                _variableLabels[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.Controls.Add(_variableLabels[i]);
+
+                // Create the tooltip for the label
+                _variableTooltips[i] = new ToolTip();
+                _variableTooltips[i].SetToolTip(_variableLabels[i], "Variable data for the "+_theEvent.DynamicVariables[i].Replace("%", "")+" field.");
 
                 // Create the textbox for the variable
                 _variables[i] = new TextBox();
@@ -45,12 +59,12 @@ namespace IEBus_Studio
                 _variables[i].Text = "0";
                 _variables[i].Anchor = AnchorStyles.Top | AnchorStyles.Right;
                 _variables[i].Width = 100;
-                _variables[i].Top = 50 + 35 * i;
-                _variables[i].Left = this.Width - 110;
+                _variables[i].Top = dynTop + (26 * i);
+                _variables[i].Left = this.Width - 120;
                 this.Controls.Add(_variables[i]);
             }
 
-            this.Height = _theEvent.DynamicVariables.Count * 35 + 125;
+            this.Height = _theEvent.DynamicVariables.Count * 26 + 188;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -84,5 +98,6 @@ namespace IEBus_Studio
             _mainForm.Enabled = true;
             _mainForm.Focus();
         }
+
     }
 }
