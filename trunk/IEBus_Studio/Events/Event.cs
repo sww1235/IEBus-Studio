@@ -252,7 +252,11 @@ namespace IEBus_Studio
                 serialPort.Write(BitConverter.GetBytes(_slave), 0, 2);
                 serialPort.Write(BitConverter.GetBytes((int)_control), 0, 1);
                 serialPort.Write(BitConverter.GetBytes(_variables.Count), 0, 1);
-
+                foreach (string var in _variables)
+                {
+                    serialPort.Write(var.ToCharArray(), 0, 1);
+                    //serialPort.Write(System.Convert.ToByte(var, 16), 0, 1);
+                }
                 serialPort.Write("^");
             }
             catch (Exception ex)
