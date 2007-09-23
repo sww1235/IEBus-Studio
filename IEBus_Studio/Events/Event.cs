@@ -195,11 +195,11 @@ namespace IEBus_Studio
 
             // formulate the data string
             string data = "~";
-            data += _broadcast.ToString() + ":";
-            data += Convert.ToString(_master, 16) + ":";
-            data += Convert.ToString(_slave, 16) + ":";
-            data += Convert.ToString((int)_control, 16)[0] + ":";
-            data += _variables.Count + ":";
+            data += _broadcast.ToString();
+            data += Convert.ToString(_master, 16);
+            data += Convert.ToString(_slave, 16);
+            data += Convert.ToString((int)_control, 16)[0];
+            data += _variables.Count;
 
             foreach (string var in _variables)
                 data += var + ":";
@@ -225,27 +225,35 @@ namespace IEBus_Studio
 
             if(varNames.Count != varValues.Count) return false;
 
+            /*
             // formulate the data string
             string data = "~";
-            data += _broadcast.ToString() + ":";
-            data += Convert.ToString(_master, 16) + ":";
-            data += Convert.ToString(_slave, 16) + ":";
-            data += Convert.ToString((int)_control, 16)[0] + ":";
-            data += _variables.Count + ":";
+            data += _broadcast.ToString();
+            data += Convert.ToString(_master, 16);
+            data += Convert.ToString(_slave, 16);
+            data += Convert.ToString((int)_control, 16)[0];
+            data += _variables.Count;
 
             foreach (string var in _variables)
-                data += var + ":";
+                data += var;
 
             for (int i = 0; i < varNames.Count; i++)
                 data.Replace(varNames[i], varValues[i]);
 
             data.Remove(data.Length - 2);
             data += "^";
+            */
 
             try
             {
-                serialPort.WriteLine(data);
-                Console.WriteLine("Sending: " + data);
+                serialPort.Write("~");
+                serialPort.Write(BitConverter.GetBytes(_broadcast), 0, 1);
+                serialPort.Write(BitConverter.GetBytes(_master), 0, 2);
+                serialPort.Write(BitConverter.GetBytes(_slave), 0, 2);
+                serialPort.Write(BitConverter.GetBytes((int)_control), 0, 1);
+                serialPort.Write(BitConverter.GetBytes(_variables.Count), 0, 1);
+
+                serialPort.Write("^");
             }
             catch (Exception ex)
             {
