@@ -193,26 +193,24 @@ namespace IEBus_Studio
         {
             if (!serialPort.IsOpen) return false;
 
-            // formulate the data string
-            string data = "~";
-            data += _broadcast.ToString();
-            data += Convert.ToString(_master, 16);
-            data += Convert.ToString(_slave, 16);
-            data += Convert.ToString((int)_control, 16)[0];
-            data += _variables.Count;
-
-            foreach (string var in _variables)
-                data += var + ":";
-
-            data.Remove(data.Length - 2);
-            data += "^";
-
+            Console.WriteLine("Testing event...");
             try
             {
-                serialPort.WriteLine(data);
+                serialPort.Write("~");
+                serialPort.Write(BitConverter.GetBytes(_broadcast), 0, 1);
+                serialPort.Write(BitConverter.GetBytes(_master), 0, 2);
+                serialPort.Write(BitConverter.GetBytes(_slave), 0, 2);
+                serialPort.Write(BitConverter.GetBytes((int)_control), 0, 1);
+                serialPort.Write(BitConverter.GetBytes(_variables.Count), 0, 1);
+                int replaceIndex = 0;
+                foreach (string var in _variables)
+                {
+                    serialPort.Write(new byte[] { System.Convert.ToByte(var, 16) }, 0, 1);
+                }
+                serialPort.Write("^");
             }
             catch (Exception ex)
-            { 
+            {
                 return false;
             }
 
@@ -222,7 +220,7 @@ namespace IEBus_Studio
         public bool perform(System.IO.Ports.SerialPort serialPort, List<string> varNames, List<string> varValues)
         {
             if (!serialPort.IsOpen) return false;
-
+            Console.WriteLine("Testing event...");
             if(varNames.Count != varValues.Count) return false;
 
             /*
@@ -252,13 +250,20 @@ namespace IEBus_Studio
                 serialPort.Write(BitConverter.GetBytes(_slave), 0, 2);
                 serialPort.Write(BitConverter.GetBytes((int)_control), 0, 1);
                 serialPort.Write(BitConverter.GetBytes(_variables.Count), 0, 1);
+                int replaceIndex = 0;
                 foreach (string var in _variables)
                 {
                     if (var.Contains("%"))
-                        serialPort.Write(BitConverter.GetBytes(0), 0, 1);
+                    {
+                        int replaceValue = Convert.ToInt32(varValues[replaceIndex]);
+                        Console.WriteLine("ReplaceValue: " + replaceValue.ToString());
+                        serialPort.Write(BitConverter.GetBytes(replaceValue), 0, 1);
+                        replaceIndex++;
+                    }
                     else
-                        serialPort.Write(System.Convert.ToByte(var, 16));
-                    //serialPort.Write(System.Convert.ToByte(var, 16), 0, 1);
+                    {
+                        serialPort.Write(new byte[] { System.Convert.ToByte(var, 16) }, 0, 1);
+                    }
                 }
                 serialPort.Write("^");
             }

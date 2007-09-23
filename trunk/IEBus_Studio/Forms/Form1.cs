@@ -1689,8 +1689,8 @@ namespace IEBus_Studio
                 //to execute. The test event below gets executed before the popup even finishes rendering.
 
                 // Test the event
-                if(!ev.perform(serialPort1))
-                    MessageBox.Show("COM Port is not open!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //if(!ev.perform(serialPort1))
+                    //MessageBox.Show("COM Port is not open!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }  
         }
