@@ -254,7 +254,10 @@ namespace IEBus_Studio
                 serialPort.Write(BitConverter.GetBytes(_variables.Count), 0, 1);
                 foreach (string var in _variables)
                 {
-                    serialPort.Write(var.ToCharArray(), 0, 1);
+                    if (var.Contains("%"))
+                        serialPort.Write(BitConverter.GetBytes(0), 0, 1);
+                    else
+                        serialPort.Write(System.Convert.ToByte(var, 16));
                     //serialPort.Write(System.Convert.ToByte(var, 16), 0, 1);
                 }
                 serialPort.Write("^");
