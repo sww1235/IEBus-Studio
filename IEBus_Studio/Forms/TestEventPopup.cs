@@ -75,18 +75,33 @@ namespace IEBus_Studio
                     {
                         if ( _theEvent.ChecksumCalc.Contains(_theEvent.DynamicVariables[k]) )
                         {
-                            parsedChecksumCalc = parsedChecksumCalc.Replace(_theEvent.DynamicVariables[k], "_theEvent.DynamicVariables[" + k + "]");
+                            parsedChecksumCalc = parsedChecksumCalc.Replace(_theEvent.DynamicVariables[k], "$_theEvent.DynamicVariables(" + k + ")");
                         }
                     }
                     Console.WriteLine(parsedChecksumCalc);
 
-                    ExpressionEval eval = new ExpressionEval();
+                    ExpressionEval expr = new ExpressionEval(parsedChecksumCalc);
+                    expr.AdditionalFunctionEventHandler +=
+                        new AdditionalFunctionEventHandler(expr_AdditionalFunctionEventHandler);
+                    object eval = expr.Evaluate();
                 }
 
                 this.Controls.Add(_variables[i]);
             }
 
             this.Height = _theEvent.DynamicVariables.Count * 26 + 188;
+        }
+
+
+        private void expr_AdditionalFunctionEventHandler(object sender, AdditionalFunctionEventArgs e)
+        {
+            object[] parameters = e.GetParameters();
+            switch (e.Name)
+            {
+                case "_theEvent.DynamicVariables":
+                    e.ReturnValue = _theEvent.DynamicVariables[int.Parse(parameters[0].ToString())];
+                    break;
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
