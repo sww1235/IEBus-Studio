@@ -17,11 +17,15 @@ namespace IEBus_Studio
         private TextBox[] _variables;
         private Label[] _variableLabels;
         private ToolTip[] _variableTooltips;
+        private int checksumFieldIndex;
 
         public string parsedChecksumCalc;
+        public ExpressionEval expr = new ExpressionEval();
 
         public TestEventPopup(Form1 mainForm, Event theEvent, System.IO.Ports.SerialPort serialPort)
         {
+            expr.AdditionalFunctionEventHandler += new AdditionalFunctionEventHandler(expr_AdditionalFunctionEventHandler);
+
             InitializeComponent();
             _mainForm = mainForm;
             _theEvent = theEvent;
@@ -63,42 +67,41 @@ namespace IEBus_Studio
                 _variables[i].Width = 100;
                 _variables[i].Top = dynTop + (26 * i);
                 _variables[i].Left = this.Width - 120;
+                _variables[i].TextChanged += new System.EventHandler(this.updateChecksumValue);
 
                 //Makes use of the ExpressionEval project by railerb
                 //Found at http://www.codeproject.com/csharp/expressionevaluator.asp
                 if ((!_theEvent.ChecksumCalc.Equals("")) && ((_theEvent.DynamicVariables[i].ToLower()).Contains("checksum")))
                 {
+                    checksumFieldIndex = i;
                     parsedChecksumCalc = _theEvent.ChecksumCalc;
-                    Console.WriteLine(parsedChecksumCalc);
                     //Replace the named variables with actual variable references
                     for (int k = 0; k < _variables.Length; k++)
                     {
                         if ( _theEvent.ChecksumCalc.Contains(_theEvent.DynamicVariables[k]) )
                         {
-                            parsedChecksumCalc = parsedChecksumCalc.Replace(_theEvent.DynamicVariables[k], "$_theEvent.DynamicVariables(" + k + ")");
+                            parsedChecksumCalc = parsedChecksumCalc.Replace(_theEvent.DynamicVariables[k], "$variables(" + k + ")");
                         }
                     }
-                    Console.WriteLine(parsedChecksumCalc);
-
-                    ExpressionEval expr = new ExpressionEval(parsedChecksumCalc);
-                    expr.AdditionalFunctionEventHandler +=
-                        new AdditionalFunctionEventHandler(expr_AdditionalFunctionEventHandler);
-                    object eval = expr.Evaluate();
+                    expr.Expression = parsedChecksumCalc;
                 }
-
                 this.Controls.Add(_variables[i]);
             }
 
             this.Height = _theEvent.DynamicVariables.Count * 26 + 188;
         }
 
+        private void updateChecksumValue()
+        {
+            _variables[checksumFieldIndex].Text = expr.Evaluate().ToString();
+        }
 
         private void expr_AdditionalFunctionEventHandler(object sender, AdditionalFunctionEventArgs e)
         {
             object[] parameters = e.GetParameters();
             switch (e.Name)
             {
-                case "_theEvent.DynamicVariables":
+                case "variables":
                     e.ReturnValue = _theEvent.DynamicVariables[int.Parse(parameters[0].ToString())];
                     break;
             }
