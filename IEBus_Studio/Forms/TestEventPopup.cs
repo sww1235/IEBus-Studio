@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using ExpressionEvaluation;
 
 namespace IEBus_Studio
 {
@@ -16,6 +17,8 @@ namespace IEBus_Studio
         private TextBox[] _variables;
         private Label[] _variableLabels;
         private ToolTip[] _variableTooltips;
+
+        public string parsedChecksumCalc;
 
         public TestEventPopup(Form1 mainForm, Event theEvent, System.IO.Ports.SerialPort serialPort)
         {
@@ -65,12 +68,19 @@ namespace IEBus_Studio
                 //Found at http://www.codeproject.com/csharp/expressionevaluator.asp
                 if ((!_theEvent.ChecksumCalc.Equals("")) && ((_theEvent.DynamicVariables[i].ToLower()).Contains("checksum")))
                 {
+                    parsedChecksumCalc = _theEvent.ChecksumCalc;
+                    Console.WriteLine(parsedChecksumCalc);
                     //Replace the named variables with actual variable references
                     for (int k = 0; k < _variables.Length; k++)
                     {
-                        _theEvent.ChecksumCalc.Replace(_theEvent.DynamicVariables[k], "_theEvent.DynamicVariables[" + k + "]");
+                        if ( _theEvent.ChecksumCalc.Contains(_theEvent.DynamicVariables[k]) )
+                        {
+                            parsedChecksumCalc = parsedChecksumCalc.Replace(_theEvent.DynamicVariables[k], "_theEvent.DynamicVariables[" + k + "]");
+                        }
                     }
-                    Console.WriteLine(_theEvent.ChecksumCalc);
+                    Console.WriteLine(parsedChecksumCalc);
+
+                    ExpressionEval eval = new ExpressionEval();
                 }
 
                 this.Controls.Add(_variables[i]);
