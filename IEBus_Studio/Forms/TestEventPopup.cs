@@ -91,7 +91,7 @@ namespace IEBus_Studio
             this.Height = _theEvent.DynamicVariables.Count * 26 + 188;
         }
 
-        private void updateChecksumValue()
+        private void updateChecksumValue(object sender, EventArgs e)
         {
             _variables[checksumFieldIndex].Text = expr.Evaluate().ToString();
         }
