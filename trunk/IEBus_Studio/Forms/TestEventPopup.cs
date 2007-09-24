@@ -99,11 +99,14 @@ namespace IEBus_Studio
         private void expr_AdditionalFunctionEventHandler(object sender, AdditionalFunctionEventArgs e)
         {
             object[] parameters = e.GetParameters();
-            switch (e.Name)
+            if (!parameters[0].ToString().Equals(""))
             {
-                case "variables":
-                    e.ReturnValue = _theEvent.DynamicVariables[int.Parse(parameters[0].ToString())];
-                    break;
+                switch (e.Name)
+                {
+                    case "variables":
+                        e.ReturnValue = Convert.ToInt32(_variables[Convert.ToInt32(parameters[0].ToString())].Text);
+                        break;
+                }
             }
         }
 
