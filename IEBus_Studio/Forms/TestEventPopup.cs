@@ -37,7 +37,6 @@ namespace IEBus_Studio
             // Create the labels and textboxes for all the variables
             for (int i = 0; i < _variables.Length; i++)
             {
-
                 // Create the label for the variable
                 _variableLabels[i] = new Label();
                 _variableLabels[i].Name = "variable" + i + "Label";
@@ -61,6 +60,19 @@ namespace IEBus_Studio
                 _variables[i].Width = 100;
                 _variables[i].Top = dynTop + (26 * i);
                 _variables[i].Left = this.Width - 120;
+
+                //Makes use of the ExpressionEval project by railerb
+                //Found at http://www.codeproject.com/csharp/expressionevaluator.asp
+                if ((!_theEvent.ChecksumCalc.Equals("")) && ((_theEvent.DynamicVariables[i].ToLower()).Contains("checksum")))
+                {
+                    //Replace the named variables with actual variable references
+                    for (int k = 0; k < _variables.Length; k++)
+                    {
+                        _theEvent.ChecksumCalc.Replace(_theEvent.DynamicVariables[k], "_theEvent.DynamicVariables[" + k + "]");
+                    }
+                    Console.WriteLine(_theEvent.ChecksumCalc);
+                }
+
                 this.Controls.Add(_variables[i]);
             }
 

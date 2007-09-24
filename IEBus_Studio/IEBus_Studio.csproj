@@ -165,6 +165,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExpressionEval\ExpressionEval.csproj">
+      <Project>{72101D3B-77A6-45A6-A74B-1183ED85FD73}</Project>
+      <Name>ExpressionEval</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
