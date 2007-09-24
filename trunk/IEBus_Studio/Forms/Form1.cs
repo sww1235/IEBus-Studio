@@ -133,6 +133,9 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn devices_deviceAddress;
         private DataGridViewTextBoxColumn devices_name;
         private DataGridViewTextBoxColumn devices_description;
+        private ContextMenuStrip EventActionsMenuStrip;
+        private ToolStripMenuItem addEventToolStripMenuItem;
+        private ToolStripMenuItem testEventToolStripMenuItem;
         private DataGridViewButtonColumn Event_Test;
         private DataGridViewTextBoxColumn Event_Name;
         private DataGridViewTextBoxColumn Event_Description;
@@ -142,9 +145,7 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn Event_Control;
         private DataGridViewTextBoxColumn Event_Size;
         private DataGridViewTextBoxColumn Event_Data;
-        private ContextMenuStrip EventActionsMenuStrip;
-        private ToolStripMenuItem addEventToolStripMenuItem;
-        private ToolStripMenuItem testEventToolStripMenuItem;
+        private DataGridViewTextBoxColumn Event_ChecksumCalc;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -249,15 +250,6 @@ namespace IEBus_Studio
             this.eventsTab = new System.Windows.Forms.TabPage();
             this.addEvent = new System.Windows.Forms.Button();
             this.eventsTable = new System.Windows.Forms.DataGridView();
-            this.Event_Test = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BottomTabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.terminal = new System.Windows.Forms.TextBox();
@@ -312,6 +304,16 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Test = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Event_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Broadcast = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.event_Slave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event_ChecksumCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -943,7 +945,8 @@ namespace IEBus_Studio
             this.event_Slave,
             this.Event_Control,
             this.Event_Size,
-            this.Event_Data});
+            this.Event_Data,
+            this.Event_ChecksumCalc});
             this.eventsTable.Cursor = System.Windows.Forms.Cursors.Default;
             this.eventsTable.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.eventsTable.Location = new System.Drawing.Point(3, 39);
@@ -958,70 +961,6 @@ namespace IEBus_Studio
             this.eventsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.eventsTable_CellClick);
             this.eventsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.saveEventChanges);
             this.eventsTable.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.saveEventChanges);
-            // 
-            // Event_Test
-            // 
-            this.Event_Test.HeaderText = "Test";
-            this.Event_Test.Name = "Event_Test";
-            this.Event_Test.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Event_Test.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Event_Test.Width = 50;
-            // 
-            // Event_Name
-            // 
-            this.Event_Name.HeaderText = "Name";
-            this.Event_Name.Name = "Event_Name";
-            // 
-            // Event_Description
-            // 
-            this.Event_Description.HeaderText = "Description";
-            this.Event_Description.Name = "Event_Description";
-            // 
-            // Event_Broadcast
-            // 
-            this.Event_Broadcast.HeaderText = "B";
-            this.Event_Broadcast.Name = "Event_Broadcast";
-            this.Event_Broadcast.ReadOnly = true;
-            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Event_Broadcast.ToolTipText = "Broadcast";
-            this.Event_Broadcast.Width = 20;
-            // 
-            // Event_Master
-            // 
-            this.Event_Master.HeaderText = "Master";
-            this.Event_Master.Name = "Event_Master";
-            this.Event_Master.ReadOnly = true;
-            this.Event_Master.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Event_Master.Width = 115;
-            // 
-            // event_Slave
-            // 
-            this.event_Slave.HeaderText = "Slave";
-            this.event_Slave.Name = "event_Slave";
-            this.event_Slave.ReadOnly = true;
-            this.event_Slave.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.event_Slave.Width = 115;
-            // 
-            // Event_Control
-            // 
-            this.Event_Control.HeaderText = "Control";
-            this.Event_Control.Name = "Event_Control";
-            this.Event_Control.ReadOnly = true;
-            this.Event_Control.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Event_Control.Width = 75;
-            // 
-            // Event_Size
-            // 
-            this.Event_Size.HeaderText = "Size";
-            this.Event_Size.Name = "Event_Size";
-            this.Event_Size.ReadOnly = true;
-            this.Event_Size.Width = 35;
-            // 
-            // Event_Data
-            // 
-            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Event_Data.HeaderText = "Data";
-            this.Event_Data.Name = "Event_Data";
             // 
             // BottomTabs
             // 
@@ -1385,19 +1324,19 @@ namespace IEBus_Studio
             this.addEventToolStripMenuItem,
             this.testEventToolStripMenuItem});
             this.EventActionsMenuStrip.Name = "contextMenuStrip1";
-            this.EventActionsMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.EventActionsMenuStrip.Size = new System.Drawing.Size(138, 48);
             // 
             // addEventToolStripMenuItem
             // 
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
-            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
             this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
             // 
             // testEventToolStripMenuItem
             // 
             this.testEventToolStripMenuItem.Name = "testEventToolStripMenuItem";
-            this.testEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testEventToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.testEventToolStripMenuItem.Text = "Test Event";
             // 
             // lookupDeviceNames
@@ -1604,6 +1543,75 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn20.Visible = false;
             this.dataGridViewTextBoxColumn20.Width = 2;
             // 
+            // Event_Test
+            // 
+            this.Event_Test.HeaderText = "Test";
+            this.Event_Test.Name = "Event_Test";
+            this.Event_Test.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Event_Test.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Event_Test.Width = 50;
+            // 
+            // Event_Name
+            // 
+            this.Event_Name.HeaderText = "Name";
+            this.Event_Name.Name = "Event_Name";
+            // 
+            // Event_Description
+            // 
+            this.Event_Description.HeaderText = "Description";
+            this.Event_Description.Name = "Event_Description";
+            // 
+            // Event_Broadcast
+            // 
+            this.Event_Broadcast.HeaderText = "B";
+            this.Event_Broadcast.Name = "Event_Broadcast";
+            this.Event_Broadcast.ReadOnly = true;
+            this.Event_Broadcast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Event_Broadcast.ToolTipText = "Broadcast";
+            this.Event_Broadcast.Width = 20;
+            // 
+            // Event_Master
+            // 
+            this.Event_Master.HeaderText = "Master";
+            this.Event_Master.Name = "Event_Master";
+            this.Event_Master.ReadOnly = true;
+            this.Event_Master.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Event_Master.Width = 115;
+            // 
+            // event_Slave
+            // 
+            this.event_Slave.HeaderText = "Slave";
+            this.event_Slave.Name = "event_Slave";
+            this.event_Slave.ReadOnly = true;
+            this.event_Slave.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.event_Slave.Width = 115;
+            // 
+            // Event_Control
+            // 
+            this.Event_Control.HeaderText = "Control";
+            this.Event_Control.Name = "Event_Control";
+            this.Event_Control.ReadOnly = true;
+            this.Event_Control.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Event_Control.Width = 75;
+            // 
+            // Event_Size
+            // 
+            this.Event_Size.HeaderText = "Size";
+            this.Event_Size.Name = "Event_Size";
+            this.Event_Size.ReadOnly = true;
+            this.Event_Size.Width = 35;
+            // 
+            // Event_Data
+            // 
+            this.Event_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Event_Data.HeaderText = "Data";
+            this.Event_Data.Name = "Event_Data";
+            // 
+            // Event_ChecksumCalc
+            // 
+            this.Event_ChecksumCalc.HeaderText = "Check Calc";
+            this.Event_ChecksumCalc.Name = "Event_ChecksumCalc";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1662,7 +1670,8 @@ namespace IEBus_Studio
                 string description = (string)eventsTable.Rows[e.RowIndex].Cells["Event_Description"].Value;
                 int broadcast = (int)eventsTable.Rows[e.RowIndex].Cells["Event_Broadcast"].Value;
                 string data = (string)eventsTable.Rows[e.RowIndex].Cells["Event_Data"].Value;
-
+                string checksumCalc = (string)eventsTable.Rows[e.RowIndex].Cells["Event_ChecksumCalc"].Value;
+                 
                 // Get the master address from the master name
                 Device masterDevice = deviceManager.GetDeviceByName((string)eventsTable.Rows[e.RowIndex].Cells["Event_Master"].Value);
                 int master_address = masterDevice.Address;
@@ -1675,7 +1684,7 @@ namespace IEBus_Studio
                 ControlByte control = (ControlByte)System.Enum.Parse(typeof(ControlByte), (string)eventsTable.Rows[e.RowIndex].Cells["Event_Control"].Value);
 
                 // Create the event object with all the data from the table
-                Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data);
+                Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data, "Checksum Calc");
 
                 if (ev.DynamicVariableCount > 0)
                 {
@@ -1683,15 +1692,6 @@ namespace IEBus_Studio
                     this.Enabled = false;
                     testEventPopup.Show();
                 }
-
-                //AngryCamel:
-                //It appears that after the testEventPopup.Show() is called the code below it continues
-                //to execute. The test event below gets executed before the popup even finishes rendering.
-
-                // Test the event
-                //if(!ev.perform(serialPort1))
-                    //MessageBox.Show("COM Port is not open!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             }  
         }
 
@@ -1833,7 +1833,7 @@ namespace IEBus_Studio
                                 int slave_address = Convert.ToInt32(currentMessageArray[2], 16);
                                 ControlByte control = (ControlByte)Convert.ToInt32(currentMessageArray[3], 16);
                                 string data = currentMessageArray[5];
-                                Event discoveredEvent = new Event("Undefined", "Undefined", broadcast, master_address, slave_address, control, data);
+                                Event discoveredEvent = new Event("Undefined", "Undefined", broadcast, master_address, slave_address, control, data, "Checksum Calc");
                                 eventDiscoverer.addEvent(discoveredEvent);
                                 patternMatch();
                             }
@@ -1976,7 +1976,7 @@ namespace IEBus_Studio
             newData += data.Substring(lastIndex, data.Length - lastIndex - 1);
 
             // Create an event from the data
-            Event theEvent = new Event("", "", broadcast, master, slave, control, newData);
+            Event theEvent = new Event("", "", broadcast, master, slave, control, newData, "Checksum Calc");
 
             // Create the popup giving it the eventManager and the event
             DefineEventPopup addEventPopup = new DefineEventPopup(deviceManager, eventManager, theEvent, this);
@@ -2310,7 +2310,7 @@ namespace IEBus_Studio
                     data += ev.Variables[j];
                 }
 
-                eventsTable.Rows.Add("Test", ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control.ToString(), ev.Size, data, ev.Master, ev.Slave, ev.Control);
+                eventsTable.Rows.Add("Test", ev.Name, ev.Description, ev.Broadcast, master, slave, ev.Control.ToString(), ev.Size, data, ev.ChecksumCalc);
             }
 
             // Resume Drawing
@@ -2366,6 +2366,7 @@ namespace IEBus_Studio
                 string description = (string)eventsTable.Rows[i].Cells["Event_Description"].Value;
                 int broadcast = (int)eventsTable.Rows[i].Cells["Event_Broadcast"].Value;
                 string data = (string)eventsTable.Rows[i].Cells["Event_Data"].Value;
+                string checksumCalc = (string)eventsTable.Rows[i].Cells["Event_ChecksumCalc"].Value;
 
                 // Get the master address from the master name
                 Device masterDevice = deviceManager.GetDeviceByName((string)eventsTable.Rows[i].Cells["Event_Master"].Value);
@@ -2379,7 +2380,7 @@ namespace IEBus_Studio
                 ControlByte control = (ControlByte)System.Enum.Parse(typeof(ControlByte),(string)eventsTable.Rows[i].Cells["Event_Control"].Value);             
 
                 // Create the event object with all the data from the table
-                Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data);
+                Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data, checksumCalc);
 
                 // Add the event to the event manager list
                 eventManager.Events.Add(ev);
@@ -2418,7 +2419,7 @@ namespace IEBus_Studio
                 newData += data.Substring(lastIndex, data.Length - lastIndex - 1);
 
                 // Create an event from the data
-                Event theEvent = new Event("", "", broadcast, master, slave, control, newData);
+                Event theEvent = new Event("", "", broadcast, master, slave, control, newData, "Checksum Calc");
 
                 // Create the popup giving it the eventManager and the event
                 DefineEventPopup addEventPopup = new DefineEventPopup(deviceManager, eventManager, theEvent, this);

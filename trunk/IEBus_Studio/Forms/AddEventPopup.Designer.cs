@@ -54,7 +54,7 @@ namespace IEBus_Studio
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 71);
+            this.label2.Location = new System.Drawing.Point(12, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 1;
@@ -63,7 +63,7 @@ namespace IEBus_Studio
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 111);
+            this.label3.Location = new System.Drawing.Point(12, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 13);
             this.label3.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace IEBus_Studio
             // 
             this.masterAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.masterAddress.Location = new System.Drawing.Point(134, 68);
+            this.masterAddress.Location = new System.Drawing.Point(134, 74);
             this.masterAddress.Name = "masterAddress";
             this.masterAddress.Size = new System.Drawing.Size(99, 20);
             this.masterAddress.TabIndex = 3;
@@ -82,7 +82,7 @@ namespace IEBus_Studio
             // 
             this.slaveAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.slaveAddress.Location = new System.Drawing.Point(134, 108);
+            this.slaveAddress.Location = new System.Drawing.Point(134, 100);
             this.slaveAddress.Name = "slaveAddress";
             this.slaveAddress.Size = new System.Drawing.Size(99, 20);
             this.slaveAddress.TabIndex = 4;
@@ -90,7 +90,7 @@ namespace IEBus_Studio
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(170, 226);
+            this.cancelButton.Location = new System.Drawing.Point(170, 162);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 5;
@@ -101,7 +101,7 @@ namespace IEBus_Studio
             // addButton
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(89, 226);
+            this.addButton.Location = new System.Drawing.Point(89, 162);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 6;
@@ -123,7 +123,7 @@ namespace IEBus_Studio
             // 
             this.slaveErrorLabel.AutoSize = true;
             this.slaveErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.slaveErrorLabel.Location = new System.Drawing.Point(131, 91);
+            this.slaveErrorLabel.Location = new System.Drawing.Point(131, 118);
             this.slaveErrorLabel.Name = "slaveErrorLabel";
             this.slaveErrorLabel.Size = new System.Drawing.Size(0, 13);
             this.slaveErrorLabel.TabIndex = 8;
@@ -132,7 +132,7 @@ namespace IEBus_Studio
             // 
             this.broadcastCheckbox.AutoSize = true;
             this.broadcastCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.broadcastCheckbox.Location = new System.Drawing.Point(12, 185);
+            this.broadcastCheckbox.Location = new System.Drawing.Point(12, 50);
             this.broadcastCheckbox.Name = "broadcastCheckbox";
             this.broadcastCheckbox.Size = new System.Drawing.Size(74, 17);
             this.broadcastCheckbox.TabIndex = 10;
@@ -161,15 +161,15 @@ namespace IEBus_Studio
             "Undefined6",
             "CommandWrite",
             "DataWrite"});
-            this.controlCombo.Location = new System.Drawing.Point(134, 149);
+            this.controlCombo.Location = new System.Drawing.Point(134, 126);
             this.controlCombo.Name = "controlCombo";
-            this.controlCombo.Size = new System.Drawing.Size(121, 21);
+            this.controlCombo.Size = new System.Drawing.Size(99, 21);
             this.controlCombo.TabIndex = 11;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 152);
+            this.label4.Location = new System.Drawing.Point(12, 129);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 12;
@@ -179,7 +179,7 @@ namespace IEBus_Studio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(257, 261);
+            this.ClientSize = new System.Drawing.Size(257, 197);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.controlCombo);
             this.Controls.Add(this.broadcastCheckbox);
@@ -193,7 +193,7 @@ namespace IEBus_Studio
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AddEventPopup";
-            this.Text = "AddEventPopup";
+            this.Text = "Add Event";
             this.ResumeLayout(false);
             this.PerformLayout();
 

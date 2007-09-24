@@ -15,11 +15,12 @@ namespace IEBus_Studio
         private int _slave;
         private IEBus_Studio.ControlByte _control;
         private System.Collections.Generic.List<string> _variables;
+        private string _checksumCalc;
         public Event()
         {
             _variables = new System.Collections.Generic.List<string>();
         }
-        public Event(string Name, string Description, int Broadcast, int Master, int Slave, IEBus_Studio.ControlByte Control,  string Data)
+        public Event(string Name, string Description, int Broadcast, int Master, int Slave, IEBus_Studio.ControlByte Control,  string Data, string checksumCalc)
         {
             _variables = new System.Collections.Generic.List<string>();
             _name = Name;
@@ -28,6 +29,7 @@ namespace IEBus_Studio
             _master = Master;
             _slave = Slave;
             _control = Control;
+            _checksumCalc = checksumCalc;
 
             if (Data != "" && Data != null)
             {
@@ -115,6 +117,13 @@ namespace IEBus_Studio
                 return _variables.Count;
             }
         }
+        public string ChecksumCalc
+        {
+            get
+            {
+                return _checksumCalc;
+            }
+        }
         public int DynamicVariableCount
         {
             get
@@ -187,13 +196,12 @@ namespace IEBus_Studio
                 }
                 return CompareResult;
             }
-            throw new ArgumentException("object is not an Event");
+            throw new ArgumentException("Object is not an Event");
         }
         public bool perform(System.IO.Ports.SerialPort serialPort)
         {
             if (!serialPort.IsOpen) return false;
 
-            Console.WriteLine("Testing event...");
             try
             {
                 serialPort.Write("~");
@@ -202,7 +210,6 @@ namespace IEBus_Studio
                 serialPort.Write(BitConverter.GetBytes(_slave), 0, 2);
                 serialPort.Write(BitConverter.GetBytes((int)_control), 0, 1);
                 serialPort.Write(BitConverter.GetBytes(_variables.Count), 0, 1);
-                int replaceIndex = 0;
                 foreach (string var in _variables)
                 {
                     serialPort.Write(new byte[] { System.Convert.ToByte(var, 16) }, 0, 1);
@@ -220,27 +227,7 @@ namespace IEBus_Studio
         public bool perform(System.IO.Ports.SerialPort serialPort, List<string> varNames, List<string> varValues)
         {
             if (!serialPort.IsOpen) return false;
-            Console.WriteLine("Testing event...");
             if(varNames.Count != varValues.Count) return false;
-
-            /*
-            // formulate the data string
-            string data = "~";
-            data += _broadcast.ToString();
-            data += Convert.ToString(_master, 16);
-            data += Convert.ToString(_slave, 16);
-            data += Convert.ToString((int)_control, 16)[0];
-            data += _variables.Count;
-
-            foreach (string var in _variables)
-                data += var;
-
-            for (int i = 0; i < varNames.Count; i++)
-                data.Replace(varNames[i], varValues[i]);
-
-            data.Remove(data.Length - 2);
-            data += "^";
-            */
 
             try
             {
@@ -256,7 +243,6 @@ namespace IEBus_Studio
                     if (var.Contains("%"))
                     {
                         int replaceValue = Convert.ToInt32(varValues[replaceIndex]);
-                        Console.WriteLine("ReplaceValue: " + replaceValue.ToString());
                         serialPort.Write(BitConverter.GetBytes(replaceValue), 0, 1);
                         replaceIndex++;
                     }
