@@ -153,7 +153,7 @@ namespace IEBus_Studio
                 broadcast = 0;
 
             // create the event and add it to the event list
-            Event ev = new Event("Unkown", "Describe me.", broadcast, master_address, slave_address, control, "");
+            Event ev = new Event("Unkown", "Describe me.", broadcast, master_address, slave_address, control, "", "");
             _eventManager.addEvent(ev);
 
             this.Hide();

@@ -209,9 +209,9 @@ namespace dllCreator
             string dynamicCode = CreateCode();
             CompileCode(dynamicCode, OutputFolder);
         }
-        public void AddEvent(string Name, string Description, int Broadcast, int Master, int Slave, IEBus_Studio.ControlByte Control, string Data)
+        public void AddEvent(string Name, string Description, int Broadcast, int Master, int Slave, IEBus_Studio.ControlByte Control, string Data, string checksumCalc)
         {
-            IEBus_Studio.Event newEvent = new IEBus_Studio.Event(Name, Description,Broadcast,  Master, Slave, Control, Data);
+            IEBus_Studio.Event newEvent = new IEBus_Studio.Event(Name, Description, Broadcast, Master, Slave, Control, Data, checksumCalc);
             _events.Add(newEvent);
         }
         public void AddEvent(IEBus_Studio.Event ev)
