@@ -16,6 +16,7 @@ namespace IEBus_Studio
         private System.IO.Ports.SerialPort _serialPort;
         private TextBox[] _variables;
         private Label[] _variableLabels;
+        private Label[] _variableHexLabels;
         private ToolTip[] _variableTooltips;
         private int checksumFieldIndex;
 
@@ -33,6 +34,7 @@ namespace IEBus_Studio
 
             _variables = new TextBox[_theEvent.DynamicVariables.Count];
             _variableLabels = new Label[_theEvent.DynamicVariables.Count];
+            _variableHexLabels = new Label[_theEvent.DynamicVariables.Count];
             _variableTooltips = new ToolTip[_theEvent.DynamicVariables.Count];
 
             this.Text = "Test: "+theEvent.Name;
@@ -49,7 +51,7 @@ namespace IEBus_Studio
                 _variableLabels[i].Name = "variable" + i + "Label";
                 _variableLabels[i].Text = _theEvent.DynamicVariables[i].Replace("%", "") + ": ";
                 _variableLabels[i].Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                _variableLabels[i].Top = dynTop + 3 + (26 * i);
+                _variableLabels[i].Top = dynTop + 4 + (26 * i);
                 _variableLabels[i].Left = 25;
                 _variableLabels[i].AutoSize = true;
                 _variableLabels[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -68,6 +70,19 @@ namespace IEBus_Studio
                 _variables[i].Top = dynTop + (26 * i);
                 _variables[i].Left = this.Width - 120;
                 _variables[i].TextChanged += new System.EventHandler(this.updateChecksumValue);
+
+                // Create the hex label for the variable
+                _variableHexLabels[i] = new Label();
+                _variableHexLabels[i].Name = "variable" + i + "HexLabel";
+                _variableHexLabels[i].Text = "0x0";
+                _variableHexLabels[i].Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                _variableHexLabels[i].Width = 50;
+                _variableHexLabels[i].Top = dynTop  + (26 * i);
+                _variableHexLabels[i].Left = _variables[i].Left - 55;
+                _variableHexLabels[i].TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                _variableHexLabels[i].AutoSize = false;
+                _variableHexLabels[i].RightToLeft = RightToLeft.No;
+                this.Controls.Add(_variableHexLabels[i]);
 
                 //Makes use of the ExpressionEval project by railerb
                 //Found at http://www.codeproject.com/csharp/expressionevaluator.asp
@@ -91,14 +106,32 @@ namespace IEBus_Studio
             this.Height = _theEvent.DynamicVariables.Count * 26 + 188;
         }
 
+        private bool IsNumeric(string s)
+        {
+            try
+            {
+                Int32.Parse(s);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
         private void updateChecksumValue(object sender, EventArgs e)
         {
             TextBox tempBox = (TextBox)sender;
-            if (tempBox.Text == "")
+            if ((tempBox.Text == "") || (!IsNumeric(tempBox.Text)))
             {
                 tempBox.Text = "0";
             }
             _variables[checksumFieldIndex].Text = expr.Evaluate().ToString();
+            
+            for (int i = 0; i < _variables.Length; i++)
+            {
+                _variableHexLabels[i].Text = String.Format("0x{0:X}", Convert.ToInt32(_variables[i].Text));
+            }
         }
 
         private void expr_AdditionalFunctionEventHandler(object sender, AdditionalFunctionEventArgs e)
