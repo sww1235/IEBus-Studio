@@ -93,20 +93,22 @@ namespace IEBus_Studio
 
         private void updateChecksumValue(object sender, EventArgs e)
         {
+            TextBox tempBox = (TextBox)sender;
+            if (tempBox.Text == "")
+            {
+                tempBox.Text = "0";
+            }
             _variables[checksumFieldIndex].Text = expr.Evaluate().ToString();
         }
 
         private void expr_AdditionalFunctionEventHandler(object sender, AdditionalFunctionEventArgs e)
         {
             object[] parameters = e.GetParameters();
-            if (!parameters[0].ToString().Equals(""))
+            switch (e.Name)
             {
-                switch (e.Name)
-                {
-                    case "variables":
-                        e.ReturnValue = Convert.ToInt32(_variables[Convert.ToInt32(parameters[0].ToString())].Text);
-                        break;
-                }
+                case "variables":
+                    e.ReturnValue = Convert.ToInt32(_variables[Convert.ToInt32(parameters[0].ToString())].Text);
+                    break;
             }
         }
 
