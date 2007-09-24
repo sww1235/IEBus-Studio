@@ -1684,7 +1684,7 @@ namespace IEBus_Studio
                 ControlByte control = (ControlByte)System.Enum.Parse(typeof(ControlByte), (string)eventsTable.Rows[e.RowIndex].Cells["Event_Control"].Value);
 
                 // Create the event object with all the data from the table
-                Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data, "Checksum Calc");
+                Event ev = new Event(name, description, broadcast, master_address, slave_address, control, data, checksumCalc);
 
                 if (ev.DynamicVariableCount > 0)
                 {
