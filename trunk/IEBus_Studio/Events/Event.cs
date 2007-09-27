@@ -20,6 +20,7 @@ namespace IEBus_Studio
         {
             _variables = new System.Collections.Generic.List<string>();
         }
+
         public Event(string Name, string Description, int Broadcast, int Master, int Slave, IEBus_Studio.ControlByte Control,  string Data, string checksumCalc)
         {
             _variables = new System.Collections.Generic.List<string>();
@@ -42,7 +43,7 @@ namespace IEBus_Studio
         }
         public System.Collections.Generic.List<string> Variables
         {
-            get { return _variables;}
+            get { return _variables; }
         }
         public int Master
         {
@@ -227,7 +228,7 @@ namespace IEBus_Studio
         public bool perform(System.IO.Ports.SerialPort serialPort, List<string> varNames, List<string> varValues)
         {
             if (!serialPort.IsOpen) return false;
-            if(varNames.Count != varValues.Count) return false;
+            if (varNames.Count != varValues.Count) return false;
 
             try
             {
@@ -237,6 +238,7 @@ namespace IEBus_Studio
                 serialPort.Write(BitConverter.GetBytes(_slave), 0, 2);
                 serialPort.Write(BitConverter.GetBytes((int)_control), 0, 1);
                 serialPort.Write(BitConverter.GetBytes(_variables.Count), 0, 1);
+
                 int replaceIndex = 0;
                 foreach (string var in _variables)
                 {
@@ -247,10 +249,10 @@ namespace IEBus_Studio
                         replaceIndex++;
                     }
                     else
-                    {
-                        serialPort.Write(new byte[] { System.Convert.ToByte(var, 16) }, 0, 1);
-                    }
+                        serialPort.Write(new byte[]{System.Convert.ToByte(var, 16)},0,1);
+
                 }
+
                 serialPort.Write("^");
             }
             catch (Exception ex)
