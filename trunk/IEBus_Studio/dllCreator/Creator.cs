@@ -32,7 +32,7 @@ namespace dllCreator
                 string args = string.Empty;
                 for (int y = 0; y < Events[x].Variables.Count; y++)
                 {
-                    if (Events[x].Variables[y].StartsWith("%"))
+                    if (Events[x].Variables[y].StartsWith("%") && !Events[x].Variables[y].ToLower().Equals("%checksum"))
                         args += ", ByVal " + Events[x].Variables[y].Remove(0, 1) + " as Integer";
                 }
                 sBuilder.AppendLine("Public Event " + Events[x].Name.Replace(' ', '_') + "(ByVal Master as CarDevice, ByVal Slave as CarDevice" + args + ")");
@@ -97,12 +97,17 @@ namespace dllCreator
                 int argsCount = 0;
                 for (int y = 0; y < Events[x].Variables.Count; y++)
                 {
-                    if (Events[x].Variables[y].StartsWith("%"))
+                    if (Events[x].Variables[y].StartsWith("%") & !Events[x].Variables[y].ToLower().Equals("%checksum"))
                     {
                         paramsString += ", paramVariables(" + argsCount.ToString() + ")";
                         valueString += "paramVariables(" + argsCount.ToString() + ") = System.Convert.ToInt32(RawData(" + y.ToString() + "), 16)" + System.Environment.NewLine;
                         argsCount++;
 
+                        compareString += "*:";
+                        indicesString += y.ToString() + ", ";
+                    }
+                    else if (Events[x].Variables[y].ToLower().Equals("%checksum"))
+                    {
                         compareString += "*:";
                         indicesString += y.ToString() + ", ";
                     }
