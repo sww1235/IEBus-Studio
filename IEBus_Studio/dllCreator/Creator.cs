@@ -191,9 +191,10 @@ namespace dllCreator
                             param += "mCalc.evaluate(" + parsedChecksumCalc.Replace("%", "").Replace("0x", "&H") + "), ";
                         }
                         else
+                        {
                             param += Events[x].Variables[y].Remove(0, 1) + ", ";
-
-                        args += "ByVal " + Events[x].Variables[y].Remove(0, 1) + " as Integer, ";
+                            args += "ByVal " + Events[x].Variables[y].Remove(0, 1) + " as Integer, ";
+                        }
                         varString += "{" + count.ToString() + "}:";
                         count++;
                     }

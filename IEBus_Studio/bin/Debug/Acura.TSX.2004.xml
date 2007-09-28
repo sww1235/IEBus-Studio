@@ -1,0 +1,43 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Acura.TSX.2004
+</name>
+</assembly>
+<members>
+<member name="E:Acura.TSX_2004.Volume_Change">
+	<summary>
+ This event will change the volume to the value passed as a parameter. It has a checksum for the last (14th) byte of the data block. The checksum is calculated as the volume level plus the 0 value for volume level (A9).
+ </summary>
+</member><member name="E:Acura.TSX_2004.Touch_Event">
+	<summary>
+ Dynamic event received when a user touches somewhere on the navigation screen.
+ </summary>
+</member><member name="F:Acura.TSX_2004.CarDevice.Touchscreen">
+	<summary>
+ The touchscreen controller in the navigation screen.
+ </summary>
+</member><member name="F:Acura.TSX_2004.CarDevice.Navigation">
+	<summary>
+ The navigation unit in the trunk.
+ </summary>
+</member><member name="F:Acura.TSX_2004.CarDevice.Head_Unit">
+	<summary>
+ The dashboard unit including the screen and all of the dashboard buttons.
+ </summary>
+</member><member name="T:Acura.TSX_2004.CarDevice">
+	<summary>
+ Specific devices for this car.
+ </summary>
+</member><member name="M:Acura.TSX_2004.Send_Volume_Change(System.Int32)">
+	<summary>
+ Emulates This event will change the volume to the value passed as a parameter. It has a checksum for the last (14th) byte of the data block. The checksum is calculated as the volume level plus the 0 value for volume level (A9).
+ </summary>
+</member><member name="M:Acura.TSX_2004.Send_Touch_Event(System.Int32,System.Int32)">
+	<summary>
+ Emulates Dynamic event received when a user touches somewhere on the navigation screen.
+ </summary>
+</member>
+</members>
+</doc>
