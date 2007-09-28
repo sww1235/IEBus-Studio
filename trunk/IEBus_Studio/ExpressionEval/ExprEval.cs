@@ -468,7 +468,6 @@ namespace ExpressionEvaluation
             string msg = "";
             for (int x = 1; x < list.Count; x += 2)
             {
-                bool bError = false;
                 if (list[x] is BinaryOp)
                 {
                     if (x + 1 == list.Count)
