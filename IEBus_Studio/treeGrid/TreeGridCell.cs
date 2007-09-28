@@ -27,7 +27,6 @@ namespace AdvancedDataGridView
 		internal bool IsSited;
 		private Padding _previousPadding;
 		private int _imageWidth = 0, _imageHeight = 0, _imageHeightOffset = 0;
-		private Rectangle _lastKnownGlyphRect;
 
 		public TreeGridCell()
 		{			
