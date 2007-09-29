@@ -69,24 +69,29 @@ namespace dllCreator
             sBuilder.AppendLine("Public Sub DataReceived(ByVal sender As Object, ByVal e As System.IO.Ports.SerialDataReceivedEventArgs) Handles sPort.DataReceived");
             sBuilder.AppendLine("Dim text As String = CType(sender, System.IO.Ports.SerialPort).ReadExisting");
             sBuilder.AppendLine("text = leftovertext + text");
-            sBuilder.AppendLine("Do While (text.IndexOf(\"^\"c) > text.IndexOf(\"~\"c))");
+
+            sBuilder.AppendLine("if text.IndexOf(\"~\"c) > -1 then");
+            sBuilder.AppendLine("Do While (text.IndexOf(\"~\"c,text.IndexOf(\"~\"c)+1) > text.IndexOf(\"~\"c))");
             sBuilder.AppendLine("If (text.Contains(\"~\")) Then");
             sBuilder.AppendLine("Dim wrkStart As Integer = text.IndexOf(\"~\"c) + 1");
-            sBuilder.AppendLine("Dim wrkEnd As Integer = text.IndexOf(\"^\"c)");
+            sBuilder.AppendLine("Dim wrkEnd As Integer = text.IndexOf(\"~\"c, wrkStart)");
             sBuilder.AppendLine("Dim wrkMessage As String = text.Substring(wrkStart, wrkEnd - wrkStart)");
-            sBuilder.AppendLine("Console.WriteLine(wrkMessage)");
             sBuilder.AppendLine("If (wrkEnd < text.Length) Then");
-            sBuilder.AppendLine("text = text.Substring(wrkEnd + 1)");
+            sBuilder.AppendLine("text = text.Substring(wrkEnd)");
             sBuilder.AppendLine("End If");
             sBuilder.AppendLine("If Not (wrkMessage.Contains(\"*\")) Then");
-            sBuilder.AppendLine("Dim currentMessageArray() As String = wrkMessage.Split(\":\"c)");
-            sBuilder.AppendLine("Dim MasterDevice As CarDevice = System.Convert.ToInt32(currentMessageArray(1), 16)");
-            sBuilder.AppendLine("Dim SlaveDevice As CarDevice = System.Convert.ToInt32(currentMessageArray(2), 16)");
-            sBuilder.AppendLine("Dim ControlByte As Integer = currentMessageArray(3)");
-            sBuilder.AppendLine("Dim Broadcast As Integer = currentMessageArray(1)");
-            sBuilder.AppendLine("Dim DataLength As Integer = currentMessageArray(4)");
+
+            sBuilder.AppendLine("Dim Broadcast As Integer =Convert.ToInt32(wrkMessage.Substring(0, 2), 16)");
+            sBuilder.AppendLine("Dim MasterDevice As CarDevice = Convert.ToInt32(wrkMessage.Substring(2, 4), 16)");
+            sBuilder.AppendLine("Dim SlaveDevice As CarDevice = Convert.ToInt32(wrkMessage.Substring(6, 4), 16)");
+            sBuilder.AppendLine("Dim ControlByte As Integer = Convert.ToInt32(wrkMessage.Substring(10, 2), 16)");
+            sBuilder.AppendLine("Dim DataLength As Integer =Convert.ToInt32(wrkMessage.Substring(12, 2))");
             sBuilder.AppendLine("Dim RawData(DataLength - 1) As String");
-            sBuilder.AppendLine("Array.Copy(currentMessageArray, 5, RawData, 0, DataLength)");
+            sBuilder.AppendLine("Console.WriteLine(wrkMessage)");
+            sBuilder.AppendLine("Console.WriteLine(DataLength)");
+            sBuilder.AppendLine("for x as integer = 0 to Datalength-1");
+            sBuilder.AppendLine("RawData(x) = wrkMessage.Substring(14 + (x*2), 2)");
+            sBuilder.AppendLine("next");
 
             for (int x = 0; x < Events.Count; x++)
             {
@@ -103,20 +108,19 @@ namespace dllCreator
                         valueString += "paramVariables(" + argsCount.ToString() + ") = System.Convert.ToInt32(RawData(" + y.ToString() + "), 16)" + System.Environment.NewLine;
                         argsCount++;
 
-                        compareString += "*:";
+                        compareString += "*";
                         indicesString += y.ToString() + ", ";
                     }
                     else if (Events[x].Variables[y].ToLower().Equals("%checksum"))
                     {
-                        compareString += "*:";
+                        compareString += "*";
                         indicesString += y.ToString() + ", ";
                     }
                     else
                     {
-                        compareString += Events[x].Variables[y] + ":";
+                        compareString += Events[x].Variables[y].PadLeft(2, '0');
                     }
                 }
-                compareString = compareString.Substring(0, compareString.Length - 1);
                 if (indicesString != string.Empty)
                     indicesString = indicesString.Substring(0, indicesString.Length - 2);
                 argsCount--;
@@ -125,7 +129,10 @@ namespace dllCreator
                 else
                     sBuilder.AppendLine("ElseIf MasterDevice = " + Events[x].Master + " And SlaveDevice = " + Events[x].Slave + " And DataLength = " + Events[x].Variables.Count + " And ControlByte = " + (int)Events[x].Control + " And Broadcast = " + Events[x].Broadcast + " Then");
                 sBuilder.AppendLine("If BuildWildcard(RawData, New Integer() {" + indicesString + "}).ToLower() = \"" + compareString + "\".ToLower() Then");
-                sBuilder.AppendLine("Array.Copy(currentMessageArray, 5, RawData, 0, DataLength)");
+
+                sBuilder.AppendLine("for x as integer = 0 to Datalength-1");
+                sBuilder.AppendLine("RawData(x) = wrkMessage.Substring(14 + (x*2), 2)");
+                sBuilder.AppendLine("next");
                 if (valueString != string.Empty)
                 {
                     sBuilder.AppendLine("Dim paramVariables(" + argsCount + ") as Integer");
@@ -139,6 +146,7 @@ namespace dllCreator
             sBuilder.AppendLine("End if");
             sBuilder.AppendLine("End if");
             sBuilder.AppendLine("Loop");
+            sBuilder.AppendLine("End if");
             sBuilder.AppendLine("leftovertext = text");
             sBuilder.AppendLine("End Sub");
             sBuilder.AppendLine("Function BuildWildcard(ByVal rData() As String, ByVal Indices() As Integer) As String");
@@ -147,12 +155,9 @@ namespace dllCreator
             sBuilder.AppendLine("rData(Indices(x)) = \"*\"");
             sBuilder.AppendLine("Next");
             sBuilder.AppendLine("For x As Integer = 0 To rData.Length - 1");
-            sBuilder.AppendLine("If x = rData.Length - 1 Then");
             sBuilder.AppendLine("DataString &= rData(x).ToString");
-            sBuilder.AppendLine("Else");
-            sBuilder.AppendLine("DataString &= rData(x).ToString & \":\"");
-            sBuilder.AppendLine("End If");
             sBuilder.AppendLine("Next");
+            sBuilder.AppendLine("Console.WriteLine(DataString)");
             sBuilder.AppendLine("Return DataString");
             sBuilder.AppendLine("End Function");
 
@@ -168,9 +173,10 @@ namespace dllCreator
                 varString += Events[x].Broadcast.ToString("X1") + ":";
                 varString += Events[x].Master.ToString("X1") + ":";
                 varString += Events[x].Slave.ToString("X1") + ":";
-                int cByte = (int)System.Enum.Parse(typeof(IEBus_Studio.ControlByte), Events[x].Control.ToString());
+                int cByte = (int)Events[x].Control;
                 varString += cByte.ToString("X1") + ":";
-                varString += Events[x].Size.ToString("X1") + ":";
+                varString += Events[x].Size.ToString() + ":";
+               
                 for (int y = 0; y < Events[x].Variables.Count; y++)
                 {
                     if (Events[x].Variables[y].StartsWith("%"))

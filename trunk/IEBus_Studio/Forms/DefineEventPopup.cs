@@ -33,16 +33,16 @@ namespace IEBus_Studio
             _eventManager.addEvent(_event);
 
             // Create the master device of the event doesnt already exists
-            if (!_mainForm.isDeviceDefined(_event.Master))
+            if (!_mainForm.DeviceManager.isDeviceDefined(_event.Master))
             {
-                Device device = new Device(_event.Master, _mainForm.parseDeviceAddress(Convert.ToString(_event.Master, 16)), "");
+                Device device = new Device(_event.Master, _mainForm.DeviceManager.parseDeviceAddress(Convert.ToString(_event.Master, 16)), "");
                 _deviceManager.AddDevice(device);
             }
 
             // Create the slave device of the event doesnt already exists
-            if (!_mainForm.isDeviceDefined(_event.Slave))
+            if (!_mainForm.DeviceManager.isDeviceDefined(_event.Slave))
             {
-                Device device = new Device(_event.Slave, _mainForm.parseDeviceAddress(Convert.ToString(_event.Slave, 16)), "");
+                Device device = new Device(_event.Slave, _mainForm.DeviceManager.parseDeviceAddress(Convert.ToString(_event.Slave, 16)), "");
                 _deviceManager.AddDevice(device);
             }
 

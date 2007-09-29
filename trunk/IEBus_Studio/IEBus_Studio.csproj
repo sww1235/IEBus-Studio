@@ -132,6 +132,9 @@
       <DependentUpon>DefineEventPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\IEBFile.cs" />
+    <Compile Include="Misc\IEBusPort.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Misc\Misc.cs" />
     <Compile Include="Misc\RowComparer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

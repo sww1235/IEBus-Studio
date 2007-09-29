@@ -41,9 +41,22 @@ namespace IEBus_Studio
                 }
             }
         }
+        public string DataString
+        {
+            get 
+            {
+                string data = string.Empty ;
+                for (int x = 0; x < _variables.Count; x++)
+                {
+                    data += _variables[x] + ":";
+                }
+                return data.TrimEnd(':');
+            }
+        }
         public System.Collections.Generic.List<string> Variables
         {
             get { return _variables; }
+            set { _variables = value; }
         }
         public int Master
         {

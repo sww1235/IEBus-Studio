@@ -89,6 +89,7 @@ using System;
 
             return null;
         }
+
         public IEBus_Studio.Device GetDeviceByAddress(int address)
         {
             foreach (IEBus_Studio.Device device in _devices)
@@ -98,5 +99,25 @@ using System;
             }
 
             return null;
+        }
+
+        public bool isDeviceDefined(int device)
+        {
+            foreach (IEBus_Studio.Device d in _devices)
+                if (d.Address == device) { return true; }
+            return false;
+        }
+
+        public string parseDeviceAddress(string pmaster)
+        {
+            int master_address = Convert.ToInt32(pmaster, 16);
+
+            foreach (IEBus_Studio.Device d in _devices)
+            {
+                if (d.Address == master_address)
+                    return d.Name;
+            }
+
+            return "0x" + pmaster;
         }
     }
