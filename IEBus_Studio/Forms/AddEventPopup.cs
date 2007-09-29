@@ -131,16 +131,16 @@ namespace IEBus_Studio
             slaveErrorLabel.Text = "";
 
             // if the master device isn't already defined, create and define it
-            if (!_mainForm.isDeviceDefined(master_address))
+            if (!_mainForm.DeviceManager.isDeviceDefined(master_address))
             {
-                Device device = new Device(master_address, _mainForm.parseDeviceAddress(Convert.ToString(master_address,16)), "Describe me.");
+                Device device = new Device(master_address, _mainForm.DeviceManager.parseDeviceAddress(Convert.ToString(master_address, 16)), "Describe me.");
                 _deviceManager.AddDevice(device);
             }
 
             // if the master device isn't already defined, create and define it
-            if (!_mainForm.isDeviceDefined(slave_address))
+            if (!_mainForm.DeviceManager.isDeviceDefined(slave_address))
             {
-                Device device = new Device(slave_address, _mainForm.parseDeviceAddress(Convert.ToString(slave_address, 16)), "Describe me.");
+                Device device = new Device(slave_address, _mainForm.DeviceManager.parseDeviceAddress(Convert.ToString(slave_address, 16)), "Describe me.");
                 _deviceManager.AddDevice(device);
             }
 

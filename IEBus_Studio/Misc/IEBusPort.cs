@@ -2,15 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IEBus_studioBridge.Misc
+namespace IEBus_Studio.Misc
 {
     class IEBusPort : System.IO.Ports.SerialPort
     {
-        delegate void EventReceivedHandler(IEBus_Studio.Event nEvent);
-        event EventReceivedHandler EventReceived;
+        public delegate void EventReceivedHandler(IEBus_Studio.Event nEvent);
+        public event EventReceivedHandler EventReceived;
+
+        public delegate void TextReceivedHandler(string Text);
+        public event TextReceivedHandler TextReceived;
+
         private string leftOverText = string.Empty;
 
-        public IEBusPort()
+        public IEBusPort() : base()
+        {
+           this.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(IEBusPort_DataReceived);
+        }
+        public IEBusPort(System.ComponentModel.IContainer Container) : base(Container)
         {
             this.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(IEBusPort_DataReceived);
         }
@@ -37,32 +45,38 @@ namespace IEBus_studioBridge.Misc
         void IEBusPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             string text = base.ReadExisting();
+            TextReceived(text);
             text = leftOverText + text;
-            while (text.IndexOf('~', text.IndexOf('~')) > text.IndexOf('~'))
+            if (text.IndexOf('~') > -1)
             {
-                if (text.Contains("~"))
+                while (text.IndexOf('~', text.IndexOf('~')+1) > text.IndexOf('~'))
                 {
-                    int wrkStart = text.IndexOf('~') + 1;
-                    int wrkEnd = text.IndexOf('~', text.IndexOf('~'));
-                    string wrkMessage = text.Substring(wrkStart, wrkEnd - wrkStart);
-                    if (wrkEnd < text.Length)
-                        text = text.Substring(wrkEnd + 1);
-
-                    if (!wrkMessage.Contains("*"))
+                    if (text.Contains("~"))
                     {
-                        IEBus_Studio.Event newEvent = new IEBus_Studio.Event();
-                        newEvent.Broadcast = Convert.ToInt32(wrkMessage.Substring(0, 2), 16);
-                        newEvent.Master = Convert.ToInt32(wrkMessage.Substring(2, 4), 16);
-                        newEvent.Slave = Convert.ToInt32(wrkMessage.Substring(6, 4), 16);
-                        newEvent.Control = (IEBus_Studio.ControlByte)Convert.ToInt32(wrkMessage.Substring(10, 2), 16);
-                        int dSize = Convert.ToInt32(wrkMessage.Substring(12, 2), 16);
-                        List<string> vars = new List<string>();
-                        for (int x = 0; x < dSize; x++)
+                        int wrkStart = text.IndexOf('~') + 1;
+                        int wrkEnd = text.IndexOf('~', wrkStart);
+                        string wrkMessage = text.Substring(wrkStart, wrkEnd - wrkStart);
+                        if (wrkEnd < text.Length)
+                            text = text.Substring(wrkEnd);
+
+                        if (!wrkMessage.Contains("*"))
                         {
-                            vars.Add(wrkMessage.Substring(14 + (x * 2), 2));
+                            IEBus_Studio.Event newEvent = new IEBus_Studio.Event();
+                            newEvent.Name = "Undefined";
+                            newEvent.Description = "Undefined";
+                            newEvent.Broadcast = Convert.ToInt32(wrkMessage.Substring(0, 2), 16);
+                            newEvent.Master = Convert.ToInt32(wrkMessage.Substring(2, 4), 16);
+                            newEvent.Slave = Convert.ToInt32(wrkMessage.Substring(6, 4), 16);
+                            newEvent.Control = (IEBus_Studio.ControlByte)Convert.ToInt32(wrkMessage.Substring(10, 2), 16);
+                            int dSize = Convert.ToInt32(wrkMessage.Substring(12, 2));
+                            List<string> vars = new List<string>();
+                            for (int x = 0; x < dSize; x++)
+                            {
+                                vars.Add(wrkMessage.Substring(14 + (x * 2), 2));
+                            }
+                            newEvent.Variables = vars;
+                            EventReceived(newEvent);
                         }
-                        newEvent.Variables = vars;
-                        EventReceived(newEvent);
                     }
                 }
             }

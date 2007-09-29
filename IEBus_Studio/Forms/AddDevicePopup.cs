@@ -69,7 +69,7 @@ namespace IEBus_Studio
             }
             
             // if the device has already been defined, display an error
-            if(_mainForm.isDeviceDefined(address))
+            if (_mainForm.DeviceManager.isDeviceDefined(address))
             {
                 errorLabel.Text = "This device is already defined.";
                 this.Width = errorLabel.Width + 10;
