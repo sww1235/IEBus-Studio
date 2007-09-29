@@ -85,7 +85,7 @@ namespace dllCreator
             sBuilder.AppendLine("Dim MasterDevice As CarDevice = Convert.ToInt32(wrkMessage.Substring(2, 4), 16)");
             sBuilder.AppendLine("Dim SlaveDevice As CarDevice = Convert.ToInt32(wrkMessage.Substring(6, 4), 16)");
             sBuilder.AppendLine("Dim ControlByte As Integer = Convert.ToInt32(wrkMessage.Substring(10, 2), 16)");
-            sBuilder.AppendLine("Dim DataLength As Integer =Convert.ToInt32(wrkMessage.Substring(12, 2))");
+            sBuilder.AppendLine("Dim DataLength As Integer =Convert.ToInt32(wrkMessage.Substring(12, 2), 16)");
             sBuilder.AppendLine("Dim RawData(DataLength - 1) As String");
             sBuilder.AppendLine("Console.WriteLine(wrkMessage)");
             sBuilder.AppendLine("Console.WriteLine(DataLength)");
@@ -175,7 +175,7 @@ namespace dllCreator
                 varString += Events[x].Slave.ToString("X1") + ":";
                 int cByte = (int)Events[x].Control;
                 varString += cByte.ToString("X1") + ":";
-                varString += Events[x].Size.ToString() + ":";
+                varString += Events[x].Size.ToString("X1") + ":";
                
                 for (int y = 0; y < Events[x].Variables.Count; y++)
                 {

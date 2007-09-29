@@ -14,11 +14,13 @@ namespace IEBus_Studio.Misc
 
         private string leftOverText = string.Empty;
 
-        public IEBusPort() : base()
+        public IEBusPort()
+            : base()
         {
-           this.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(IEBusPort_DataReceived);
+            this.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(IEBusPort_DataReceived);
         }
-        public IEBusPort(System.ComponentModel.IContainer Container) : base(Container)
+        public IEBusPort(System.ComponentModel.IContainer Container)
+            : base(Container)
         {
             this.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(IEBusPort_DataReceived);
         }
@@ -49,7 +51,7 @@ namespace IEBus_Studio.Misc
             text = leftOverText + text;
             if (text.IndexOf('~') > -1)
             {
-                while (text.IndexOf('~', text.IndexOf('~')+1) > text.IndexOf('~'))
+                while (text.IndexOf('~', text.IndexOf('~') + 1) > text.IndexOf('~'))
                 {
                     if (text.Contains("~"))
                     {
@@ -68,7 +70,7 @@ namespace IEBus_Studio.Misc
                             newEvent.Master = Convert.ToInt32(wrkMessage.Substring(2, 4), 16);
                             newEvent.Slave = Convert.ToInt32(wrkMessage.Substring(6, 4), 16);
                             newEvent.Control = (IEBus_Studio.ControlByte)Convert.ToInt32(wrkMessage.Substring(10, 2), 16);
-                            int dSize = Convert.ToInt32(wrkMessage.Substring(12, 2));
+                            int dSize = Convert.ToInt32(wrkMessage.Substring(12, 2), 16);
                             List<string> vars = new List<string>();
                             for (int x = 0; x < dSize; x++)
                             {
