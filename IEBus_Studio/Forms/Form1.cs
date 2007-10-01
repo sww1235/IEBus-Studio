@@ -1845,8 +1845,6 @@ namespace IEBus_Studio
 
         public void DefineEvent(DataGridViewRowContextMenuStripNeededEventArgs e)
         {
-            //DataGridViewRow patternGridRow = patternGrid.Rows[e.RowIndex];
-            //patternGridRow.
             // Get the event data of the event to be defined
             int broadcast = Convert.ToInt32((string)patternGrid.Rows[e.RowIndex].Cells["broadcastColumn"].Value);
             int master = (int)patternGrid.Rows[e.RowIndex].Cells["rawMasterColumn"].Value;
@@ -1871,7 +1869,7 @@ namespace IEBus_Studio
                     break;
                 }
             }
-            newData += data.Substring(lastIndex, data.Length - lastIndex - 1);
+            newData += data.Substring(lastIndex, data.Length - lastIndex);
 
             // Create an event from the data
             Event theEvent = new Event("", "", broadcast, master, slave, control, newData, "Checksum Calc");
@@ -2241,7 +2239,7 @@ namespace IEBus_Studio
                         break;
                     }
                 }
-                newData += data.Substring(lastIndex, data.Length - lastIndex - 1);
+                newData += data.Substring(lastIndex, data.Length - lastIndex);
 
                 // Create an event from the data
                 Event theEvent = new Event("", "", broadcast, master, slave, control, newData, "Checksum Calc");
