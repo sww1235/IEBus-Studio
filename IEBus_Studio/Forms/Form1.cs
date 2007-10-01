@@ -2441,12 +2441,12 @@ namespace IEBus_Studio
             }
             else
             {
-                terminal.Text += Text;
+                terminal.AppendText(Text + Environment.NewLine);
             }
         }
         private void SetText(string Text)
         {
-            this.terminal.Text += Text;
+            this.terminal.AppendText(Text + Environment.NewLine);
         }
 
         public DeviceManager DeviceManager
