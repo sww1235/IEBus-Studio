@@ -2423,6 +2423,20 @@ namespace IEBus_Studio
                 }
                 ParsedMessageTable.Rows.Add(values);
 
+                // autoscroll the ParsedMessageTable
+                if (this.ParsedMessageTable.Visible)
+                {
+                    foreach (Control ctl in this.ParsedMessageTable.Controls)
+                    {
+                        if (ctl is VScrollBar)
+                        {
+                            VScrollBar scroll = (VScrollBar)ctl;
+                            if (scroll.Visible)
+                                this.ParsedMessageTable.FirstDisplayedScrollingRowIndex = this.ParsedMessageTable.FirstDisplayedScrollingRowIndex + 1;
+                        }
+                    }
+                }
+
                 if (eventDiscoverer.discoveryingEvents())
                 {
                     eventDiscoverer.addEvent(nEvent);
