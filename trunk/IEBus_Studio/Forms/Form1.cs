@@ -2239,6 +2239,7 @@ namespace IEBus_Studio
                         break;
                     }
                 }
+
                 newData += data.Substring(lastIndex, data.Length - lastIndex);
 
                 // Create an event from the data
