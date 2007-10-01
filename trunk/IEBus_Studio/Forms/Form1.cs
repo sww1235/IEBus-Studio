@@ -147,6 +147,7 @@ namespace IEBus_Studio
         private DataGridViewTextBoxColumn Event_Size;
         private DataGridViewTextBoxColumn Event_Data;
         private DataGridViewTextBoxColumn Event_ChecksumCalc;
+        private CheckBox hideKnownEvent;
         public String serialBuffer = "This is a test.";
 
         public Form1()
@@ -316,6 +317,7 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serialPort1 = new IEBus_Studio.Misc.IEBusPort(this.components);
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hideKnownEvent = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -344,7 +346,7 @@ namespace IEBus_Studio
             this.ts_connectionStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 524);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(813, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(839, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -363,7 +365,7 @@ namespace IEBus_Studio
             this.helpToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(813, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(839, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -409,7 +411,7 @@ namespace IEBus_Studio
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(813, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(839, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -425,7 +427,7 @@ namespace IEBus_Studio
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // openToolStripMenuItem
@@ -434,14 +436,14 @@ namespace IEBus_Studio
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(148, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -449,38 +451,38 @@ namespace IEBus_Studio
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(148, 6);
             // 
             // exportDLLToolStripMenuItem
             // 
             this.exportDLLToolStripMenuItem.Name = "exportDLLToolStripMenuItem";
-            this.exportDLLToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exportDLLToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exportDLLToolStripMenuItem.Text = "&Export DLL";
             this.exportDLLToolStripMenuItem.Click += new System.EventHandler(this.exportDLLToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // toolsToolStripMenuItem
@@ -488,7 +490,7 @@ namespace IEBus_Studio
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeMessageTableToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // changeMessageTableToolStripMenuItem
@@ -504,24 +506,24 @@ namespace IEBus_Studio
             this.toolStripSeparator7,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.searchToolStripMenuItem.Text = "&Contents";
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(119, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(126, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
             // panel1
@@ -530,7 +532,7 @@ namespace IEBus_Studio
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 49);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(813, 475);
+            this.panel1.Size = new System.Drawing.Size(839, 475);
             this.panel1.TabIndex = 5;
             // 
             // splitContainer1
@@ -552,7 +554,7 @@ namespace IEBus_Studio
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.splitContainer1.Panel2.Controls.Add(this.BottomTabs);
-            this.splitContainer1.Size = new System.Drawing.Size(813, 475);
+            this.splitContainer1.Size = new System.Drawing.Size(839, 475);
             this.splitContainer1.SplitterDistance = 302;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -567,13 +569,14 @@ namespace IEBus_Studio
             this.MessageTableTabs.Multiline = true;
             this.MessageTableTabs.Name = "MessageTableTabs";
             this.MessageTableTabs.SelectedIndex = 0;
-            this.MessageTableTabs.Size = new System.Drawing.Size(813, 302);
+            this.MessageTableTabs.Size = new System.Drawing.Size(839, 302);
             this.MessageTableTabs.TabIndex = 5;
             this.MessageTableTabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.MessageTableTabs_Selected);
             // 
             // eventDiscoveryTab
             // 
             this.eventDiscoveryTab.BackColor = System.Drawing.SystemColors.Control;
+            this.eventDiscoveryTab.Controls.Add(this.hideKnownEvent);
             this.eventDiscoveryTab.Controls.Add(this.andOr);
             this.eventDiscoveryTab.Controls.Add(this.variableDataFilter);
             this.eventDiscoveryTab.Controls.Add(this.slaveFilter);
@@ -588,7 +591,7 @@ namespace IEBus_Studio
             this.eventDiscoveryTab.Location = new System.Drawing.Point(4, 22);
             this.eventDiscoveryTab.Name = "eventDiscoveryTab";
             this.eventDiscoveryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.eventDiscoveryTab.Size = new System.Drawing.Size(805, 276);
+            this.eventDiscoveryTab.Size = new System.Drawing.Size(831, 276);
             this.eventDiscoveryTab.TabIndex = 3;
             this.eventDiscoveryTab.Text = "Event Discovery";
             // 
@@ -608,7 +611,7 @@ namespace IEBus_Studio
             // 
             this.variableDataFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.variableDataFilter.AutoSize = true;
-            this.variableDataFilter.Location = new System.Drawing.Point(508, 24);
+            this.variableDataFilter.Location = new System.Drawing.Point(534, 24);
             this.variableDataFilter.Name = "variableDataFilter";
             this.variableDataFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.variableDataFilter.Size = new System.Drawing.Size(171, 17);
@@ -648,7 +651,7 @@ namespace IEBus_Studio
             // discoverEvent
             // 
             this.discoverEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.discoverEvent.Location = new System.Drawing.Point(696, 21);
+            this.discoverEvent.Location = new System.Drawing.Point(722, 21);
             this.discoverEvent.Name = "discoverEvent";
             this.discoverEvent.Size = new System.Drawing.Size(92, 20);
             this.discoverEvent.TabIndex = 2;
@@ -686,7 +689,7 @@ namespace IEBus_Studio
             this.patternGrid.Name = "patternGrid";
             this.patternGrid.ReadOnly = true;
             this.patternGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.patternGrid.Size = new System.Drawing.Size(799, 218);
+            this.patternGrid.Size = new System.Drawing.Size(825, 218);
             this.patternGrid.TabIndex = 8;
             this.patternGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cellClick);
             // 
@@ -1044,7 +1047,7 @@ namespace IEBus_Studio
             this.BottomTabs.Name = "BottomTabs";
             this.BottomTabs.SelectedIndex = 0;
             this.BottomTabs.ShowToolTips = true;
-            this.BottomTabs.Size = new System.Drawing.Size(813, 169);
+            this.BottomTabs.Size = new System.Drawing.Size(839, 169);
             this.BottomTabs.TabIndex = 21;
             // 
             // tabPage1
@@ -1054,7 +1057,7 @@ namespace IEBus_Studio
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(805, 143);
+            this.tabPage1.Size = new System.Drawing.Size(831, 143);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Serial Port";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1068,7 +1071,7 @@ namespace IEBus_Studio
             this.terminal.Multiline = true;
             this.terminal.Name = "terminal";
             this.terminal.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.terminal.Size = new System.Drawing.Size(388, 135);
+            this.terminal.Size = new System.Drawing.Size(414, 135);
             this.terminal.TabIndex = 0;
             // 
             // groupBox1
@@ -1396,19 +1399,19 @@ namespace IEBus_Studio
             this.addEventToolStripMenuItem,
             this.testEventToolStripMenuItem});
             this.EventActionsMenuStrip.Name = "contextMenuStrip1";
-            this.EventActionsMenuStrip.Size = new System.Drawing.Size(129, 48);
+            this.EventActionsMenuStrip.Size = new System.Drawing.Size(138, 48);
             // 
             // addEventToolStripMenuItem
             // 
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
-            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.addEventToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.addEventToolStripMenuItem.Text = "Add Event";
             this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
             // 
             // testEventToolStripMenuItem
             // 
             this.testEventToolStripMenuItem.Name = "testEventToolStripMenuItem";
-            this.testEventToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.testEventToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.testEventToolStripMenuItem.Text = "Test Event";
             // 
             // lookupDeviceNames
@@ -1620,11 +1623,21 @@ namespace IEBus_Studio
             this.dataGridViewTextBoxColumn20.Visible = false;
             this.dataGridViewTextBoxColumn20.Width = 2;
             // 
+            // hideKnownEvent
+            // 
+            this.hideKnownEvent.AutoSize = true;
+            this.hideKnownEvent.Location = new System.Drawing.Point(415, 24);
+            this.hideKnownEvent.Name = "hideKnownEvent";
+            this.hideKnownEvent.Size = new System.Drawing.Size(113, 17);
+            this.hideKnownEvent.TabIndex = 9;
+            this.hideKnownEvent.Text = "Hide known event";
+            this.hideKnownEvent.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 546);
+            this.ClientSize = new System.Drawing.Size(839, 546);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -2438,8 +2451,17 @@ namespace IEBus_Studio
 
                 if (eventDiscoverer.discoveryingEvents())
                 {
-                    eventDiscoverer.addEvent(nEvent);
-                    patternMatch();
+                    if(hideKnownEvent.Checked)
+                    {
+                        if(!eventManager.eventKnown(nEvent))
+                        {
+                            eventDiscoverer.addEvent(nEvent);
+                            patternMatch();
+                        }
+                    } else {
+                        eventDiscoverer.addEvent(nEvent);
+                        patternMatch();
+                    }
                 }
             }
         }

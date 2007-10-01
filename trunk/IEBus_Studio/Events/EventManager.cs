@@ -40,5 +40,15 @@ namespace IEBus_Studio
 
             return deviceEvents;
         }
+
+        public bool eventKnown(Event theEvent)
+        {
+            foreach (Event anEvent in _events)
+            {
+                if (anEvent.CompareTo(theEvent) == 0)
+                    return true;
+            }
+            return false;
+        }
     }
 }
