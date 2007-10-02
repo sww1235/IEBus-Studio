@@ -12,7 +12,7 @@ namespace IEBus_Studio
         private long timeLeft;
         private Timer timer;
         private Form formToLock;
-        private Label timeLeftLabel;
+        private ToolStripStatusLabel timeLeftLabel;
 
         public EventDiscovery()
         {
@@ -54,13 +54,13 @@ namespace IEBus_Studio
             set { formToLock = value; }
         }
 
-        public Label TimeLeftLabel
+        public ToolStripStatusLabel TimeLeftLabel
         {
             get { return timeLeftLabel; }
             set { timeLeftLabel = value; }
         }
 
-        public void Start(Form form, Label label)
+        public void Start(Form form, ToolStripStatusLabel label)
         {
             timer.Start();
             formToLock = form;

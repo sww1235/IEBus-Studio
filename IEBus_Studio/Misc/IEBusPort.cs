@@ -63,21 +63,27 @@ namespace IEBus_Studio.Misc
 
                         if (!wrkMessage.Contains("*"))
                         {
-                            IEBus_Studio.Event newEvent = new IEBus_Studio.Event();
-                            newEvent.Name = "Undefined";
-                            newEvent.Description = "Undefined";
-                            newEvent.Broadcast = Convert.ToInt32(wrkMessage.Substring(0, 2), 16);
-                            newEvent.Master = Convert.ToInt32(wrkMessage.Substring(2, 4), 16);
-                            newEvent.Slave = Convert.ToInt32(wrkMessage.Substring(6, 4), 16);
-                            newEvent.Control = (IEBus_Studio.ControlByte)Convert.ToInt32(wrkMessage.Substring(10, 2), 16);
-                            int dSize = Convert.ToInt32(wrkMessage.Substring(12, 2), 16);
-                            List<string> vars = new List<string>();
-                            for (int x = 0; x < dSize; x++)
+                            try
                             {
-                                vars.Add(wrkMessage.Substring(14 + (x * 2), 2));
+                                IEBus_Studio.Event newEvent = new IEBus_Studio.Event();
+                                newEvent.Name = "Undefined";
+                                newEvent.Description = "Undefined";
+                                newEvent.Broadcast = Convert.ToInt32(wrkMessage.Substring(0, 2), 16);
+                                newEvent.Master = Convert.ToInt32(wrkMessage.Substring(2, 4), 16);
+                                newEvent.Slave = Convert.ToInt32(wrkMessage.Substring(6, 4), 16);
+                                newEvent.Control = (IEBus_Studio.ControlByte)Convert.ToInt32(wrkMessage.Substring(10, 2), 16);
+                                int dSize = Convert.ToInt32(wrkMessage.Substring(12, 2), 16);
+                                List<string> vars = new List<string>();
+                                for (int x = 0; x < dSize; x++)
+                                {
+                                    vars.Add(wrkMessage.Substring(14 + (x * 2), 2));
+                                }
+                                newEvent.Variables = vars;
+                                EventReceived(newEvent);
                             }
-                            newEvent.Variables = vars;
-                            EventReceived(newEvent);
+                            catch (Exception ex)
+                            {
+                            }
                         }
                     }
                 }
