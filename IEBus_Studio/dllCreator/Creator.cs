@@ -85,7 +85,7 @@ namespace dllCreator
             sBuilder.AppendLine("Dim MasterDevice As CarDevice = Convert.ToInt32(wrkMessage.Substring(2, 4), 16)");
             sBuilder.AppendLine("Dim SlaveDevice As CarDevice = Convert.ToInt32(wrkMessage.Substring(6, 4), 16)");
             sBuilder.AppendLine("Dim ControlByte As Integer = Convert.ToInt32(wrkMessage.Substring(10, 2), 16)");
-            sBuilder.AppendLine("Dim DataLength As Integer =Convert.ToInt32(wrkMessage.Substring(12, 2), 16)");
+            sBuilder.AppendLine("Dim DataLength As Integer = Convert.ToInt32(wrkMessage.Substring(12, 2), 16)");
             sBuilder.AppendLine("Dim RawData(DataLength - 1) As String");
             sBuilder.AppendLine("Console.WriteLine(wrkMessage)");
             sBuilder.AppendLine("Console.WriteLine(DataLength)");

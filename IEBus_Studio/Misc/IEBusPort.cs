@@ -73,6 +73,7 @@ namespace IEBus_Studio.Misc
                                 newEvent.Slave = Convert.ToInt32(wrkMessage.Substring(6, 4), 16);
                                 newEvent.Control = (IEBus_Studio.ControlByte)Convert.ToInt32(wrkMessage.Substring(10, 2), 16);
                                 int dSize = Convert.ToInt32(wrkMessage.Substring(12, 2), 16);
+                                //int dSize = Convert.ToInt16(wrkMessage.Substring(12, 2));
                                 List<string> vars = new List<string>();
                                 for (int x = 0; x < dSize; x++)
                                 {
